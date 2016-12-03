@@ -1,0 +1,12 @@
+use_frameworks!
+
+target 'PINFuture_Example' do
+  pod 'PINFuture', :path => '../'
+
+  target 'PINFuture_Tests' do
+    inherit! :search_paths
+
+    pod 'Specta'
+  pod 'Expecta'
+  end
+end
