@@ -1,0 +1,6 @@
+framework module Pods_PINFuture_Tests {
+  umbrella header "Pods-PINFuture_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

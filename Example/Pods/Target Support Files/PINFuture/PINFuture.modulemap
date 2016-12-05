@@ -1,0 +1,6 @@
+framework module PINFuture {
+  umbrella header "PINFuture-umbrella.h"
+
+  export *
+  module * { export * }
+}

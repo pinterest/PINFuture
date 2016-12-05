@@ -6,6 +6,7 @@ target 'PINFuture_Example' do
   target 'PINFuture_Tests' do
     inherit! :search_paths
 
+    pod 'PINFuture', :path => '../'
     pod 'Specta'
   pod 'Expecta'
   end
