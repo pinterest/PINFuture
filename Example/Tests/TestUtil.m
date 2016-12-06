@@ -12,7 +12,7 @@ void expectFutureToResolveWith(id testCase, PINFuture *future, id expectedValue)
     waitUntil(^(DoneCallback done) {
         [future completion:^(NSError * _Nonnull error, NSNumber * _Nonnull value) {
             id self = testCase;
-            expect(value == expectedValue).to.beTruthy();
+            expect(value).to.equal(expectedValue);
             done();
         }];
     });
@@ -22,7 +22,7 @@ void expectFutureToRejectWith(id testCase, PINFuture *future, NSError *expectedE
     waitUntil(^(DoneCallback done) {
         [future completion:^(NSError * _Nonnull error, NSNumber * _Nonnull value) {
             id self = testCase;
-            expect(error == expectedError).to.beTruthy();
+            expect(error).to.equal(expectedError);
             done();
         }];
     });
