@@ -49,6 +49,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PINFuture<ObjectType> (Convenience)
 
+/**
+ * A future that immediately resolves with a value of no significance.  This is often useful inside of a `then` callback.
+ */
++ (PINFuture<NSNull *> *)futureWithNull;
+
 - (void)queue:(dispatch_queue_t)queue success:(void(^)(ObjectType value))success failure:(void(^)(NSError *error))failure;
 - (void)queue:(dispatch_queue_t)queue success:(void(^)(ObjectType value))success;
 

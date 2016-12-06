@@ -134,6 +134,11 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 @implementation PINFuture (Convenience)
 
++ (PINFuture<NSNull *> *)futureWithNull
+{
+    return [PINFuture futureWithValue:[NSNull null]];
+}
+
 - (void)queue:(dispatch_queue_t)queue success:(void(^)(id value))success failure:(void(^)(NSError *error))failure;
 {
     return [self queue:queue completion:^(NSError *error, NSObject * value) {
