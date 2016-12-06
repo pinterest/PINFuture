@@ -11,22 +11,22 @@
 
 @implementation PINFuture (Util)
 
-+ (PINFuture<NSArray<id> *> *)all:(NSArray<PINFuture<id> *> *)sourceFutures
++ (PINFuture<NSArray *> *)all:(NSArray<PINFuture *> *)sourceFutures
 {
     // A very naive implementation.
     if (sourceFutures.count == 0) {
-        return [PINFuture<NSArray<id> *> futureWithValue:@[]];
+        return [PINFuture<NSArray *> futureWithValue:@[]];
     } else {
-        return [PINFuture<NSArray<id> *> futureWithBlock:^(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
-            NSMutableArray<id> *resolvedValues = [[NSMutableArray alloc] initWithCapacity:sourceFutures.count];
+        PINFuture<NSArray *> *future =  [PINFuture<NSArray *> futureWithBlock:^(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+            NSMutableArray *resolvedValues = [[NSMutableArray alloc] initWithCapacity:sourceFutures.count];
             for (NSUInteger i = 0; i < sourceFutures.count; i++) {
                 [resolvedValues addObject:[NSNull null]];
             }
             __block NSUInteger remaining = sourceFutures.count;
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
             for (NSUInteger i = 0; i < sourceFutures.count; i++) {
-                PINFuture<id> *sourceFuture = sourceFutures[i];
-                // Dispatch to be off of main.  None of this work needs to be on main.
+                PINFuture *sourceFuture = sourceFutures[i];
+                // Dispatch to be off of main.  This work does not need to be on main.
                 [sourceFuture queue:queue
                             success:^(id  _Nonnull value) {
                                 @synchronized (resolvedValues) {
@@ -42,6 +42,7 @@
                             }];
             }
         }];
+        return future;
     }
 };
 
