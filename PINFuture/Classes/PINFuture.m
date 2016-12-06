@@ -28,6 +28,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 @interface PINFuture ()
 
+@property (nonatomic) NSLock *propertyLock;
 @property (nonatomic) enum PINFutureState state;
 @property (nonatomic) id value;
 @property (nonatomic) NSError *error;
@@ -36,6 +37,15 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 @end
 
 @implementation PINFuture
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _propertyLock = [NSLock new];
+    }
+    return self;
+}
 
 + (PINFuture<id> *)futureWithValue:(id)value
 {
@@ -57,13 +67,9 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 {
     PINFuture<id> *future = [[PINFuture alloc] init];
     block(^(id value) {
-        @synchronized (self) {
-            [future transitionToState:PINFutureStateResolved value:value error:nil];
-        }
+        [future transitionToState:PINFutureStateResolved value:value error:nil];
     }, ^(NSError *error) {
-        @synchronized (self) {
-            [future transitionToState:PINFutureStateRejected value:nil error:error];
-        }
+        [future transitionToState:PINFutureStateRejected value:nil error:error];
     });
     return future;
 }
@@ -75,14 +81,14 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     PINFutureCallback *callback = [[PINFutureCallback alloc] init];
     callback.queue = queue;
     callback.completion = completion;
-    @synchronized (self) {
+    [self.propertyLock lock];
         // Lazily instantiate self.callbacks.  Lots of futures will never have any callbacks.
         if (self.callbacks == nil) {
             self.callbacks = [NSMutableArray new];
         }
 
         [self.callbacks addObject:callback];
-    }
+    [self.propertyLock unlock];
 
     [self tryFlushCallbacks];
 }
@@ -91,32 +97,36 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 - (void)transitionToState:(PINFutureState)state value:(NSObject *)value error:(NSError *)error
 {
+    [self.propertyLock lock];
     if (self.state == PINFutureStatePending) {
         self.value = value;
         self.error = error;
         self.state = state;
-        [self tryFlushCallbacks];
     } else {
         //NSAssert(NO, @"a future executor callback was called more than once");
     }
+    [self.propertyLock unlock];
+
+    [self tryFlushCallbacks];
 }
 
 - (void)tryFlushCallbacks
 {
+    NSArray<PINFutureCallback *> *callbacks;
+
+    [self.propertyLock lock];
     if (self.state != PINFutureStatePending) {
         // dequeue
-        NSArray<PINFutureCallback *> *callbacks;
-        @synchronized (self) {
-            callbacks = self.callbacks;
-            self.callbacks = nil;
-        }
+        callbacks = self.callbacks;
+        self.callbacks = nil;
+    }
+    [self.propertyLock unlock];
 
-        // execute
-        for (PINFutureCallback *callback in callbacks) {
-            dispatch_async(callback.queue, ^{
-                callback.completion(self.error, self.value);
-            });
-        }
+    // execute
+    for (PINFutureCallback *callback in callbacks) {
+        dispatch_async(callback.queue, ^{
+            callback.completion(self.error, self.value);
+        });
     }
 }
 
