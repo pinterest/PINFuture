@@ -21,6 +21,9 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* FutureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* FutureTests.m */; };
+		83626EF51DF5EA1F001CDCC7 /* StressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83626EF41DF5EA1F001CDCC7 /* StressTests.m */; };
+		83626EF71DF5F5FA001CDCC7 /* UtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83626EF61DF5F5FA001CDCC7 /* UtilTests.m */; };
+		83626F011DF62ABE001CDCC7 /* DispatchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83626F001DF62ABE001CDCC7 /* DispatchTests.m */; };
 		83E1B2D81DF4C2730068B35F /* ThenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E1B2D71DF4C2730068B35F /* ThenTests.m */; };
 		83E1B2DB1DF4C5DF0068B35F /* TestUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E1B2DA1DF4C5DF0068B35F /* TestUtil.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
@@ -62,6 +65,9 @@
 		6003F5BB195388D20070C39A /* FutureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FutureTests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		781D0727B7DDED858FD00A64 /* Pods-PINFuture_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PINFuture_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PINFuture_Tests/Pods-PINFuture_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		83626EF41DF5EA1F001CDCC7 /* StressTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StressTests.m; sourceTree = "<group>"; };
+		83626EF61DF5F5FA001CDCC7 /* UtilTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilTests.m; sourceTree = "<group>"; };
+		83626F001DF62ABE001CDCC7 /* DispatchTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchTests.m; sourceTree = "<group>"; };
 		83E1B2D71DF4C2730068B35F /* ThenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThenTests.m; sourceTree = "<group>"; };
 		83E1B2D91DF4C5DF0068B35F /* TestUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestUtil.h; sourceTree = "<group>"; };
 		83E1B2DA1DF4C5DF0068B35F /* TestUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUtil.m; sourceTree = "<group>"; };
@@ -161,10 +167,11 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				83626F001DF62ABE001CDCC7 /* DispatchTests.m */,
 				6003F5BB195388D20070C39A /* FutureTests.m */,
 				83E1B2D71DF4C2730068B35F /* ThenTests.m */,
-				83E1B2D91DF4C5DF0068B35F /* TestUtil.h */,
-				83E1B2DA1DF4C5DF0068B35F /* TestUtil.m */,
+				83626EF41DF5EA1F001CDCC7 /* StressTests.m */,
+				83626EF61DF5F5FA001CDCC7 /* UtilTests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -173,6 +180,8 @@
 		6003F5B6195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				83E1B2D91DF4C5DF0068B35F /* TestUtil.h */,
+				83E1B2DA1DF4C5DF0068B35F /* TestUtil.m */,
 				6003F5B7195388D20070C39A /* Tests-Info.plist */,
 				6003F5B8195388D20070C39A /* InfoPlist.strings */,
 				606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */,
@@ -411,6 +420,9 @@
 				83E1B2D81DF4C2730068B35F /* ThenTests.m in Sources */,
 				83E1B2DB1DF4C5DF0068B35F /* TestUtil.m in Sources */,
 				6003F5BC195388D20070C39A /* FutureTests.m in Sources */,
+				83626F011DF62ABE001CDCC7 /* DispatchTests.m in Sources */,
+				83626EF71DF5F5FA001CDCC7 /* UtilTests.m in Sources */,
+				83626EF51DF5EA1F001CDCC7 /* StressTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

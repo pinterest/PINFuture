@@ -1,5 +1,5 @@
 //
-//  PINFutureUtil.h
+//  PINThen.h
 //  Pinterest
 //
 //  Created by Chris Danford on 11/23/16.
@@ -10,25 +10,28 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PINFutureUtil<FromType, ToType> : NSObject
+/**
+ * This exists as a separate class so that the class can have two type parameters.
+ */
+@interface PINThen<FromType, ToType> : NSObject
 
-+ (PINFuture<ToType> *)transform:(PINFuture<FromType> *)fromFuture
++ (PINFuture<ToType> *)then:(PINFuture<FromType> *)sourceFuture
                       queue:(dispatch_queue_t)queue
                     success:(PINFuture<ToType> *(^)(FromType fromValue))success
                     failure:(PINFuture<ToType> *(^)(NSError * error))failure;
 
 @end
 
-@interface PINFutureUtil<FromType, ToType> (Convenience)
+@interface PINThen<FromType, ToType> (Convenience)
 
-+ (PINFuture<ToType> *)transform:(PINFuture<FromType> *)fromFuture
++ (PINFuture<ToType> *)then:(PINFuture<FromType> *)sourceFuture
                       queue:(dispatch_queue_t)queue
                     success:(PINFuture<ToType> *(^)(FromType fromValue))success;
 
-+ (PINFuture<ToType> *)transform:(PINFuture<FromType> *)fromFuture
++ (PINFuture<ToType> *)then:(PINFuture<FromType> *)sourceFuture
                     success:(PINFuture<ToType> *(^)(FromType fromValue))success
                     failure:(PINFuture<ToType> *(^)(NSError * error))failure;
-+ (PINFuture<ToType> *)transform:(PINFuture<FromType> *)fromFuture
++ (PINFuture<ToType> *)then:(PINFuture<FromType> *)sourceFuture
                     success:(PINFuture<ToType> *(^)(FromType fromValue))success;
 
 @end

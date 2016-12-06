@@ -15,6 +15,9 @@ static inline BOOL isCurrentThreadMain()
     return 0 != pthread_main_np();
 }
 
+/**
+ * Return Main is the current thread is Main, otherwise the default global queue.
+ */
 dispatch_queue_t defaultDispatchQueueForCurrentThread()
 {
     if (isCurrentThreadMain()) {

@@ -40,6 +40,66 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>03409DE13DC6D43E6F8FD00A030E2B56</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>73F9D7E6565A4F31E35FDA95F3786DCB</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_NO_COMMON_BLOCKS</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/PINFuture/PINFuture-prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/PINFuture/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/PINFuture/PINFuture.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>PRODUCT_NAME</key>
+				<string>PINFuture</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
 		<key>04BBCCE13322F42620459D20E8DE3673</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -90,7 +150,7 @@
 			<key>name</key>
 			<string>PINFuture</string>
 			<key>target</key>
-			<string>4FC8865830EC32AD38D97BF9D717C350</string>
+			<string>9AEA3E6FDFC74D94D9ABC70F86A54B2E</string>
 			<key>targetProxy</key>
 			<string>D3E65B39CFC25AC7B1501D8DDE81804F</string>
 		</dict>
@@ -108,6 +168,27 @@
 			<string>Specta/Specta/SPTSharedExampleGroups.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>07E6A644EC8CC8A68EC193281BE12099</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D6DC015071E053DDFC8D0D794A9340A6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>08D87B98A36BDEDB9D633365598DD6DB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BE946B63732D5797F597CF4556D0FD16</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>0A43571BF330E7068A4CBD0E96CDC73E</key>
 		<dict>
@@ -291,6 +372,13 @@
 			<string>Expecta.framework</string>
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>0B9B65F03AFC50B72E4633A8B39CA93E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5EEA285EBF9583A17126B5483BA0F7E8</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>0C027F7044CF6DFEF725888A70900178</key>
 		<dict>
@@ -545,26 +633,6 @@
 				</array>
 			</dict>
 		</dict>
-		<key>135BA48A987EB2ED9DA2C0657234E117</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>818E59213881A5FE399EDC5DDF2C3887</string>
-				<string>B4EBFE1E354BEB6A48F3D1E5C8C8215E</string>
-				<string>F45DC88703AB25482EEDA2A47C6316EF</string>
-				<string>563C9D4A8D12BCC5E1C6203C14819F4F</string>
-				<string>79F106C51B654C67EEDD359DF8C29C71</string>
-				<string>DCD901BDBF03C94ABEC40FF5D242C524</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Classes</string>
-			<key>path</key>
-			<string>Classes</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>17572374B2AE183C6347C41E8DF8E579</key>
 		<dict>
 			<key>fileRef</key>
@@ -607,6 +675,21 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>182807AB840574C84E33A1DE0946F77E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>187CF584AF331BAAB9F07EEC2FEB2FAD</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>PINFuture</string>
+			<key>path</key>
+			<string>PINFuture</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>186D37D789BDC5806713AC08D0BD0452</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -619,6 +702,34 @@
 			<string>EXPMatchers+beKindOf.h</string>
 			<key>path</key>
 			<string>Expecta/Matchers/EXPMatchers+beKindOf.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>187CF584AF331BAAB9F07EEC2FEB2FAD</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D156580CEA58FE614356B77466139833</string>
+				<string>5EEA285EBF9583A17126B5483BA0F7E8</string>
+				<string>95631C8E602B0996743ED364E04DA75C</string>
+				<string>4D807BFC1E74905CF2B8CD8509FD1621</string>
+				<string>F9EFC5F6396F0AEDF42DD6BD7AC4E599</string>
+				<string>BDE9AECA01DF1566A0AB6D6947317573</string>
+				<string>D6DC015071E053DDFC8D0D794A9340A6</string>
+				<string>4C1931827C1648CAB8A4AE5870E5A8A8</string>
+				<string>2297EA6B53439C0C11A6FB9DCADBC2C8</string>
+				<string>E5E5E8B2DE46E2C705E84ACE4A087B60</string>
+				<string>F949D9CA32D60FD47E414254B6AFDA37</string>
+				<string>89147895205D4444F3B8057F3A5A5F5B</string>
+				<string>7FCEDE3794B29A59536CA429E860E8DE</string>
+				<string>5B5A4E8F5E647EA2F472A14A6C4690F0</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Classes</string>
+			<key>path</key>
+			<string>Classes</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -780,6 +891,19 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>2297EA6B53439C0C11A6FB9DCADBC2C8</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>PINFuture+Util.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>2499EDF4CE48DC7D295875D373CE6ACB</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -794,6 +918,20 @@
 			<string>Expecta/NSValue+Expecta.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>258C185DAB79FED5DD1ADB94C7D3F183</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95631C8E602B0996743ED364E04DA75C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>260BC7EED9289AF321A6F791964CE472</key>
 		<dict>
@@ -1039,6 +1177,13 @@
 			<string>Expecta/Matchers/EXPMatchers+raise.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>349A625A1A2C516502CD0EB460E217A4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5B5A4E8F5E647EA2F472A14A6C4690F0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>34B6E9A30603BEBBD87BA535B7D384CA</key>
 		<dict>
@@ -1460,7 +1605,7 @@
 			<key>proxyType</key>
 			<string>1</string>
 			<key>remoteGlobalIDString</key>
-			<string>4FC8865830EC32AD38D97BF9D717C350</string>
+			<string>9AEA3E6FDFC74D94D9ABC70F86A54B2E</string>
 			<key>remoteInfo</key>
 			<string>PINFuture</string>
 		</dict>
@@ -1476,6 +1621,19 @@
 				<string>-fno-objc-arc</string>
 			</dict>
 		</dict>
+		<key>4C1931827C1648CAB8A4AE5870E5A8A8</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>PINFuture+Dispatch.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>4D5E6ACB2017E0B523FADCEA875002CD</key>
 		<dict>
 			<key>fileRef</key>
@@ -1489,6 +1647,19 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>4D807BFC1E74905CF2B8CD8509FD1621</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>PHImageManager+PINFuture.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>4DA3602D7F8FAD5F91C232D4D61D417D</key>
 		<dict>
@@ -1524,31 +1695,6 @@
 			<string>Expecta/EXPBlockDefinedMatcher.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4FC8865830EC32AD38D97BF9D717C350</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>68CD0330A520D9C72C7753E995200819</string>
-			<key>buildPhases</key>
-			<array>
-				<string>9BB35BD6A781829EE02EB14A8880FE31</string>
-				<string>71DD2D83E015DB5B1EAC20A787373B06</string>
-				<string>D368ADBA752F1AF8D5C8822491CBF7A6</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>PINFuture</string>
-			<key>productName</key>
-			<string>PINFuture</string>
-			<key>productReference</key>
-			<string>7E57AF77A772C8F8761258D0810DEE07</string>
-			<key>productType</key>
-			<string>com.apple.product-type.framework</string>
 		</dict>
 		<key>4FF45E448FB8C6B05D40E4E636A81E52</key>
 		<dict>
@@ -1776,19 +1922,6 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>563C9D4A8D12BCC5E1C6203C14819F4F</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>PINFutureInternal.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>574D05103FA6D7B84B014BCBEC1A38BB</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1815,6 +1948,13 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>589B128820A9FC622040E5F6E59E00FC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>4D807BFC1E74905CF2B8CD8509FD1621</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>59028A329BAED88107D2675BA7C90B83</key>
 		<dict>
@@ -1885,6 +2025,19 @@
 				<key>COMPILER_FLAGS</key>
 				<string>-fno-objc-arc</string>
 			</dict>
+		</dict>
+		<key>5B5A4E8F5E647EA2F472A14A6C4690F0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>PINThen.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>5BC48829A0EB26D4DD51CD2AA4B0FE74</key>
 		<dict>
@@ -2015,6 +2168,19 @@
 				</array>
 			</dict>
 		</dict>
+		<key>5EEA285EBF9583A17126B5483BA0F7E8</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>ALAssetsLibrary+PINFuture.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>61544C3248D6986357ADE425007CE88B</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -2038,20 +2204,6 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>616CD638963177AE3844A2E6C939EDC5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>818E59213881A5FE399EDC5DDF2C3887</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
 		<key>621D45D57ACA8E38D852A1E07D2AD679</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2066,6 +2218,20 @@
 			<string>Specta/Specta/SpectaDSL.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>63075D9A3F81E566067CCE8601C3ACD9</key>
+		<dict>
+			<key>fileRef</key>
+			<string>7FCEDE3794B29A59536CA429E860E8DE</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>642CBADE05AB7AED541CB2A072F3023A</key>
 		<dict>
@@ -2308,20 +2474,6 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>68CD0330A520D9C72C7753E995200819</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>8D7AB6813EB7D9DA07ECCD1B108FAB2C</string>
-				<string>748D136AE16696E05311F6EA62703FA4</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
 		<key>68F820C46D336F1E6EB733BFC4374C51</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2411,26 +2563,6 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>71DD2D83E015DB5B1EAC20A787373B06</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>E61B173169E4D915D9C9BDFECE5DDCFC</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>72425012E9CF8BEB1940011D48646B2D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>DCD901BDBF03C94ABEC40FF5D242C524</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>73810F7B01AF1745817FDD4F168E40D4</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2467,66 +2599,6 @@
 			<string>PINFuture.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>748D136AE16696E05311F6EA62703FA4</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>73F9D7E6565A4F31E35FDA95F3786DCB</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEBUG_INFORMATION_FORMAT</key>
-				<string>dwarf-with-dsym</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_NO_COMMON_BLOCKS</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>Target Support Files/PINFuture/PINFuture-prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/PINFuture/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.0</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/PINFuture/PINFuture.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>NO</string>
-				<key>PRODUCT_NAME</key>
-				<string>PINFuture</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
 		</dict>
 		<key>7687931B86D55C2A3B7570964EEFDEAB</key>
 		<dict>
@@ -2612,19 +2684,6 @@
 					<string>Public</string>
 				</array>
 			</dict>
-		</dict>
-		<key>79F106C51B654C67EEDD359DF8C29C71</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>PINFutureUtil.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>7A21F86A69C9F106AA92ADFA3CD7C46C</key>
 		<dict>
@@ -2712,6 +2771,20 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>7DF84A3A9F29F6F59535F4DE5320D8B1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F9EFC5F6396F0AEDF42DD6BD7AC4E599</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>7E57AF77A772C8F8761258D0810DEE07</key>
 		<dict>
 			<key>explicitFileType</key>
@@ -2755,6 +2828,19 @@
 			<string>PBXFileReference</string>
 			<key>path</key>
 			<string>Expecta.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7FCEDE3794B29A59536CA429E860E8DE</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>PINThen.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2860,19 +2946,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>818E59213881A5FE399EDC5DDF2C3887</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>PINFuture.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>82018E76DBBAA11465301FB7614DA196</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2929,10 +3002,10 @@
 				</array>
 			</dict>
 		</dict>
-		<key>840482B302288A85AB0DE38E2BFE8F13</key>
+		<key>83C1C64CF369D42F13E8387773FACF83</key>
 		<dict>
 			<key>fileRef</key>
-			<string>79F106C51B654C67EEDD359DF8C29C71</string>
+			<string>F949D9CA32D60FD47E414254B6AFDA37</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -3100,6 +3173,19 @@
 				<string>-fno-objc-arc</string>
 			</dict>
 		</dict>
+		<key>89147895205D4444F3B8057F3A5A5F5B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>PINFutureInternal.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>8B13E7675CDFD3E42F7D76EFC061BDE1</key>
 		<dict>
 			<key>children</key>
@@ -3149,21 +3235,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>8C51F53ABADF89DF4503DDDA44698B60</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>135BA48A987EB2ED9DA2C0657234E117</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>PINFuture</string>
-			<key>path</key>
-			<string>PINFuture</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>8C8C1B0D83FE6A4352F15154DB16372C</key>
 		<dict>
 			<key>fileRef</key>
@@ -3177,66 +3248,6 @@
 					<string>Public</string>
 				</array>
 			</dict>
-		</dict>
-		<key>8D7AB6813EB7D9DA07ECCD1B108FAB2C</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>73F9D7E6565A4F31E35FDA95F3786DCB</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEBUG_INFORMATION_FORMAT</key>
-				<string>dwarf</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_NO_COMMON_BLOCKS</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>Target Support Files/PINFuture/PINFuture-prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/PINFuture/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.0</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/PINFuture/PINFuture.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>YES</string>
-				<key>PRODUCT_NAME</key>
-				<string>PINFuture</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
 		</dict>
 		<key>8ED315D20E5821A51EFF48719CB697ED</key>
 		<dict>
@@ -3391,6 +3402,19 @@
 				<string>-fno-objc-arc</string>
 			</dict>
 		</dict>
+		<key>95631C8E602B0996743ED364E04DA75C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>PHImageManager+PINFuture.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>966427BD32145AD621F074D1691342B8</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -3442,6 +3466,27 @@
 			<string>PBXHeadersBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
+		</dict>
+		<key>96F185D3439256ADA3608F43E2358F77</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2297EA6B53439C0C11A6FB9DCADBC2C8</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>981A0D4B5B67633CBB3E26B21D47930B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E5E5E8B2DE46E2C705E84ACE4A087B60</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>983F42157C09B24C95033E6A987BBF22</key>
 		<dict>
@@ -3498,6 +3543,31 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>9AEA3E6FDFC74D94D9ABC70F86A54B2E</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>A573708FD48A4862EED6189826287EAD</string>
+			<key>buildPhases</key>
+			<array>
+				<string>A1A4AD668A760F6B459DE0DD33AACC08</string>
+				<string>EF002E60BDE764888F823D1EEEB773D8</string>
+				<string>E24A2BBC903DA6178D8218761AC0A945</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>PINFuture</string>
+			<key>productName</key>
+			<string>PINFuture</string>
+			<key>productReference</key>
+			<string>7E57AF77A772C8F8761258D0810DEE07</string>
+			<key>productType</key>
+			<string>com.apple.product-type.framework</string>
+		</dict>
 		<key>9B2E761A064459F77EA9870BEF03ACC3</key>
 		<dict>
 			<key>fileRef</key>
@@ -3511,22 +3581,6 @@
 					<string>Public</string>
 				</array>
 			</dict>
-		</dict>
-		<key>9BB35BD6A781829EE02EB14A8880FE31</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>BAABA34F8E313736757AEE3450F8FE00</string>
-				<string>ACC16C2218AC426E8796E61A922BDC4C</string>
-				<string>B4AABDB46062218CF567F72CD12B0717</string>
-				<string>72425012E9CF8BEB1940011D48646B2D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
 		</dict>
 		<key>9BB9159FBA757600D3D4C0FF645F3911</key>
 		<dict>
@@ -3638,6 +3692,26 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>A1A4AD668A760F6B459DE0DD33AACC08</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>0B9B65F03AFC50B72E4633A8B39CA93E</string>
+				<string>589B128820A9FC622040E5F6E59E00FC</string>
+				<string>CBF268A6F8F58A59A2867C031E9268B3</string>
+				<string>981A0D4B5B67633CBB3E26B21D47930B</string>
+				<string>08D87B98A36BDEDB9D633365598DD6DB</string>
+				<string>F6A293A14E3268E2F8268D3B6B4EB59E</string>
+				<string>F2466E6DE7D0E90635B6FDC53BA6C963</string>
+				<string>349A625A1A2C516502CD0EB460E217A4</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
 		<key>A24D3400203E04D137441022262A66C2</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -3691,6 +3765,20 @@
 			<string>9D3DFF78C23F2B1E2C3958FCAA43B9F6</string>
 			<key>remoteInfo</key>
 			<string>Specta</string>
+		</dict>
+		<key>A573708FD48A4862EED6189826287EAD</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>03409DE13DC6D43E6F8FD00A030E2B56</string>
+				<string>D3252FB8C1132777B521A35B1FCDCE25</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
 		</dict>
 		<key>A86483E009A2C30E3472D0609B2DBFFB</key>
 		<dict>
@@ -3787,13 +3875,6 @@
 			<string>Specta/Specta/XCTestCase+Specta.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>ACC16C2218AC426E8796E61A922BDC4C</key>
-		<dict>
-			<key>fileRef</key>
-			<string>B4EBFE1E354BEB6A48F3D1E5C8C8215E</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>AD9A1402E8720FD00C46040083DC9692</key>
 		<dict>
@@ -3990,13 +4071,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>B4AABDB46062218CF567F72CD12B0717</key>
-		<dict>
-			<key>fileRef</key>
-			<string>563C9D4A8D12BCC5E1C6203C14819F4F</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>B4B76DA9BAFC87F66289EC6E45BAF284</key>
 		<dict>
 			<key>fileRef</key>
@@ -4011,25 +4085,26 @@
 				</array>
 			</dict>
 		</dict>
-		<key>B4EBFE1E354BEB6A48F3D1E5C8C8215E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>PINFuture.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>B7185ADC751C1C1B68DCE07933CF0CB5</key>
 		<dict>
 			<key>fileRef</key>
 			<string>AAC405455F8E20BD0434D9D3E3D2879A</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>B7362255290188247E58332B045272B5</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D156580CEA58FE614356B77466139833</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>B84431CF8C64F363A334AA7089F6C134</key>
 		<dict>
@@ -4056,20 +4131,6 @@
 			<key>sourceTree</key>
 			<string>DEVELOPER_DIR</string>
 		</dict>
-		<key>BA08F0707DA19A34D53F7DEE5E093554</key>
-		<dict>
-			<key>fileRef</key>
-			<string>F45DC88703AB25482EEDA2A47C6316EF</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
 		<key>BA12B131F10BCE3BE6E9A02FC908FE9D</key>
 		<dict>
 			<key>fileRef</key>
@@ -4086,13 +4147,6 @@
 		<dict>
 			<key>fileRef</key>
 			<string>BF3CD05CED877C5E19CB18BA095BC724</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>BAABA34F8E313736757AEE3450F8FE00</key>
-		<dict>
-			<key>fileRef</key>
-			<string>BE946B63732D5797F597CF4556D0FD16</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -4114,6 +4168,19 @@
 			<string>AAC405455F8E20BD0434D9D3E3D2879A</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>BDE9AECA01DF1566A0AB6D6947317573</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>PINFuture.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>BE946B63732D5797F597CF4556D0FD16</key>
 		<dict>
@@ -4175,7 +4242,7 @@
 			<key>name</key>
 			<string>PINFuture</string>
 			<key>target</key>
-			<string>4FC8865830EC32AD38D97BF9D717C350</string>
+			<string>9AEA3E6FDFC74D94D9ABC70F86A54B2E</string>
 			<key>targetProxy</key>
 			<string>4B335CE1158DB20A0FEF2905CFD3A46D</string>
 		</dict>
@@ -4193,6 +4260,13 @@
 			<string>Specta/Specta/XCTestCase+Specta.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C53816FF70825B6963E62A0E12CD2540</key>
+		<dict>
+			<key>fileRef</key>
+			<string>AAC405455F8E20BD0434D9D3E3D2879A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>C7A1FE2006A967BE06886C450214BDFE</key>
 		<dict>
@@ -4295,6 +4369,13 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
+		<key>CBF268A6F8F58A59A2867C031E9268B3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>4C1931827C1648CAB8A4AE5870E5A8A8</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>CDC92BECE41FDD487136814173CB1558</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -4337,6 +4418,19 @@
 				<string>-fno-objc-arc</string>
 			</dict>
 		</dict>
+		<key>D156580CEA58FE614356B77466139833</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>ALAssetsLibrary+PINFuture.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>D17AC7938D6BD3C32C903D9E21AA8968</key>
 		<dict>
 			<key>children</key>
@@ -4365,21 +4459,65 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>D368ADBA752F1AF8D5C8822491CBF7A6</key>
+		<key>D3252FB8C1132777B521A35B1FCDCE25</key>
 		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>D3EA966AF19E0F8917DB9F0B224D01BD</string>
-				<string>616CD638963177AE3844A2E6C939EDC5</string>
-				<string>BA08F0707DA19A34D53F7DEE5E093554</string>
-				<string>840482B302288A85AB0DE38E2BFE8F13</string>
-			</array>
+			<key>baseConfigurationReference</key>
+			<string>73F9D7E6565A4F31E35FDA95F3786DCB</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf-with-dsym</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_NO_COMMON_BLOCKS</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/PINFuture/PINFuture-prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/PINFuture/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/PINFuture/PINFuture.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>PRODUCT_NAME</key>
+				<string>PINFuture</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
 			<key>isa</key>
-			<string>PBXHeadersBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
 		</dict>
 		<key>D3E3D092A3FF7311A98E44BBA36FFD12</key>
 		<dict>
@@ -4468,23 +4606,9 @@
 			<key>proxyType</key>
 			<string>1</string>
 			<key>remoteGlobalIDString</key>
-			<string>4FC8865830EC32AD38D97BF9D717C350</string>
+			<string>9AEA3E6FDFC74D94D9ABC70F86A54B2E</string>
 			<key>remoteInfo</key>
 			<string>PINFuture</string>
-		</dict>
-		<key>D3EA966AF19E0F8917DB9F0B224D01BD</key>
-		<dict>
-			<key>fileRef</key>
-			<string>502A7CDE542D96C2BEFC9A9F3D018D23</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
 		<key>D41D8CD98F00B204E9800998ECF8427E</key>
 		<dict>
@@ -4522,7 +4646,7 @@
 			<key>targets</key>
 			<array>
 				<string>0D888F29E05E498D0CD91A51D28599A5</string>
-				<string>4FC8865830EC32AD38D97BF9D717C350</string>
+				<string>9AEA3E6FDFC74D94D9ABC70F86A54B2E</string>
 				<string>C9F359CB90CF6E468A3132B0C89B0808</string>
 				<string>427D7A873C457D049AB457A2061C6BA6</string>
 				<string>9D3DFF78C23F2B1E2C3958FCAA43B9F6</string>
@@ -4570,6 +4694,33 @@
 			<string>Specta/Specta/SPTGlobalBeforeAfterEach.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D6DC015071E053DDFC8D0D794A9340A6</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>PINFuture+Dispatch.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D78BBBD5CDADC24782D4ADDA4B5EC3D1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>502A7CDE542D96C2BEFC9A9F3D018D23</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>D7DA5AEABB4AD15EDB77ABA17126F8A5</key>
 		<dict>
@@ -4756,19 +4907,6 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>DCD901BDBF03C94ABEC40FF5D242C524</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>PINFutureUtil.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>DEB33EA3C18646B1DA6384B7C356C458</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -4869,6 +5007,26 @@
 				</array>
 			</dict>
 		</dict>
+		<key>E24A2BBC903DA6178D8218761AC0A945</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>B7362255290188247E58332B045272B5</string>
+				<string>258C185DAB79FED5DD1ADB94C7D3F183</string>
+				<string>07E6A644EC8CC8A68EC193281BE12099</string>
+				<string>96F185D3439256ADA3608F43E2358F77</string>
+				<string>D78BBBD5CDADC24782D4ADDA4B5EC3D1</string>
+				<string>7DF84A3A9F29F6F59535F4DE5320D8B1</string>
+				<string>83C1C64CF369D42F13E8387773FACF83</string>
+				<string>63075D9A3F81E566067CCE8601C3ACD9</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
 		<key>E4286F5B187014B00F18766782F7018D</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -4926,12 +5084,18 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>E61B173169E4D915D9C9BDFECE5DDCFC</key>
+		<key>E5E5E8B2DE46E2C705E84ACE4A087B60</key>
 		<dict>
-			<key>fileRef</key>
-			<string>AAC405455F8E20BD0434D9D3E3D2879A</string>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>PINFuture+Util.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>E64EE1FA2E988E166397F7C5FFFBEBB6</key>
 		<dict>
@@ -5069,6 +5233,19 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>EF002E60BDE764888F823D1EEEB773D8</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>C53816FF70825B6963E62A0E12CD2540</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
 		<key>EF6497EE123F6BC0C1B09717437C5908</key>
 		<dict>
 			<key>fileRef</key>
@@ -5117,6 +5294,13 @@
 			<string>PINFuture.modulemap</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F2466E6DE7D0E90635B6FDC53BA6C963</key>
+		<dict>
+			<key>fileRef</key>
+			<string>89147895205D4444F3B8057F3A5A5F5B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>F24F328AA1CFC9A061F629C917D03F44</key>
 		<dict>
@@ -5229,19 +5413,6 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
-		<key>F45DC88703AB25482EEDA2A47C6316EF</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>PINFutureInternal.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>F516E796C5D0EBDECB3AFE6DC816A562</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -5267,6 +5438,13 @@
 			<string>Info.plist</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F6A293A14E3268E2F8268D3B6B4EB59E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BDE9AECA01DF1566A0AB6D6947317573</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>F75CB2A727F678C9A848A3A11EA7979B</key>
 		<dict>
@@ -5299,7 +5477,7 @@
 		<dict>
 			<key>children</key>
 			<array>
-				<string>8C51F53ABADF89DF4503DDDA44698B60</string>
+				<string>182807AB840574C84E33A1DE0946F77E</string>
 				<string>7E77EEF29456FD3055835B83520DA3DC</string>
 			</array>
 			<key>isa</key>
@@ -5321,6 +5499,32 @@
 			<string>text.xcconfig</string>
 			<key>path</key>
 			<string>Pods-PINFuture_Example.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F949D9CA32D60FD47E414254B6AFDA37</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>PINFutureInternal.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F9EFC5F6396F0AEDF42DD6BD7AC4E599</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>PINFuture.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>

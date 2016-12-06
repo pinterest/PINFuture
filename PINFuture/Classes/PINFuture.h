@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)queue:(dispatch_queue_t)queue success:(void(^)(ObjectType value))success failure:(void(^)(NSError *error))failure;
 - (void)queue:(dispatch_queue_t)queue success:(void(^)(ObjectType value))success;
 
-#pragma mark - callbakck that dispatch to the default priority global queue
+#pragma mark - callback methods that smartly dispatch either to Main or the default global queue depending on whether they are called from Main.
 
 - (void)completion:(void(^)(NSError *error, ObjectType value))completion;
 - (void)success:(void(^)(ObjectType value))success failure:(void(^)(NSError *error))failure;
@@ -61,3 +61,8 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+// Import everything for caller convenience.
+#import "PINFuture+Dispatch.h"
+#import "PINFuture+Util.h"
+#import "PINThen.h"
