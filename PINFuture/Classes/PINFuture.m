@@ -156,21 +156,3 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 }
 
 @end
-
-@implementation PINFuture (Dispatch)
-
-+ (PINFuture<id> *)dispatchWithQueue:(dispatch_queue_t)queue block:(PINFuture<id> * (^)())block;
-{
-    return [PINFuture futureWithBlock:^(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
-        dispatch_async(queue, ^{
-            PINFuture<id> *future = block();
-            [future success:^(id  _Nonnull value) {
-                resolve(value);
-            } failure:^(NSError * _Nonnull error) {
-                reject(error);
-            }];
-        });
-    }];
-}
-
-@end

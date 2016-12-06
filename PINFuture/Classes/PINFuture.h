@@ -60,10 +60,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface PINFuture<ObjectType> (Dispatch)
-
-+ (PINFuture<ObjectType> *)dispatchWithQueue:(dispatch_queue_t)queue block:(PINFuture<ObjectType> * (^)())block;
-
-@end
-
 NS_ASSUME_NONNULL_END
