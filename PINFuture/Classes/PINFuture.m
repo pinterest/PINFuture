@@ -57,9 +57,13 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 {
     PINFuture<id> *future = [[PINFuture alloc] init];
     block(^(id value) {
-        [future transitionToState:PINFutureStateResolved value:value error:nil];
+        @synchronized (self) {
+            [future transitionToState:PINFutureStateResolved value:value error:nil];
+        }
     }, ^(NSError *error) {
-        [future transitionToState:PINFutureStateRejected value:nil error:error];
+        @synchronized (self) {
+            [future transitionToState:PINFutureStateRejected value:nil error:error];
+        }
     });
     return future;
 }
