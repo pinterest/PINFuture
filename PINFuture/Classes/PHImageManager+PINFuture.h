@@ -13,7 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * Immuable.  Futures need to resolve to a single value, so this struct hold all of the values normally passed to the callback.
+ * Immutable.  Futures need to resolve to a single value, so this struct hold all of the values normally passed to the callback.
  */
 @interface PHImageManagerImageDataResult : NSObject
 
