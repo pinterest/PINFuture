@@ -10,6 +10,20 @@
 
 @implementation PHImageManagerImageDataResult
 
+- (instancetype)initWithImageData:(NSData *)imageData
+                          dataUTI:(NSString *)dataUTI
+                      orientation:(UIImageOrientation)orientation
+                             info:(NSDictionary *)info
+{
+    if (self = [super init]) {
+        _imageData = imageData;
+        _dataUTI = dataUTI;
+        _orientation = orientation;
+        _info = info;
+    }
+    return self;
+}
+
 @end
 
 @implementation PHImageManager (PINFuture)
@@ -19,12 +33,10 @@
     return [PINFuture<PHImageManagerImageDataResult *> futureWithBlock:^(void (^ _Nonnull resolve)(PHImageManagerImageDataResult * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         [self requestImageDataForAsset:asset options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
             if (imageData) {
-                PHImageManagerImageDataResult *result = [[PHImageManagerImageDataResult alloc] init];
-                result.imageData = imageData;
-                result.dataUTI = dataUTI;
-                result.orientation = orientation;
-                result.info = info;
-
+                PHImageManagerImageDataResult *result = [[PHImageManagerImageDataResult alloc] initWithImageData:imageData
+                                                                                                         dataUTI:dataUTI
+                                                                                                     orientation:orientation
+                                                                                                            info:info];
                 resolve(result);
             } else {
                 NSString *failureReason = NSLocalizedString(@"Invalid Image Data", @"Failure reason for Invalid Image Data");
