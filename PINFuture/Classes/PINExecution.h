@@ -13,12 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * A context that takes a block and returns a new block that executes the original block in some context.
  */
-typedef dispatch_block_t (^PINExecutionContext)(dispatch_block_t);
+typedef _Nonnull dispatch_block_t (^PINExecutionContext)(dispatch_block_t);
 
 /**
  * A function evaluated at the time a callback is registered.  It returns an execution context.
  */
-typedef PINExecutionContext (*PINThreadingModel)();
+typedef _Nonnull PINExecutionContext (*PINThreadingModel)();
 
 //@protocol PINExecution
 //- (void)dispatch:(dispatch_block_t)block;
