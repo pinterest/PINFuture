@@ -21,7 +21,6 @@
                 [resolvedValues addObject:[NSNull null]];
             }
             __block NSUInteger remaining = sourceFutures.count;
-            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
             for (NSUInteger i = 0; i < sourceFutures.count; i++) {
                 PINFuture *sourceFuture = sourceFutures[i];
                 // Dispatch to be off of main.  This work does not need to be on main.

@@ -9,7 +9,7 @@
 
 @implementation PINFuture (Dispatch)
 
-+ (PINFuture<id> *)dispatchWithContext:(PINExecutionContext)context block:(PINFuture * _Nonnull (^)())block
++ (PINFuture<id> *)dispatchWithContext:(PINExecutionContext)context block:(PINFuture<id> * (^)())block;
 {
     return [PINFuture<id> futureWithBlock:^(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         // contextify, and execute

@@ -14,23 +14,23 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PINFuture2<FromType, ToType> (Map)
 
 + (PINFuture<ToType> *)map:(PINFuture<FromType> *)sourceFuture
-context:(PINExecutionContext)context
-success:(ToType (^)(FromType fromValue))success
-failure:(NSError *(^)(NSError * error))failure;
+                   context:(PINExecutionContext)context
+                   success:(ToType (^)(FromType fromValue))success
+                   failure:(NSError *(^)(NSError * error))failure;
 
 @end
 
 @interface PINFuture2<FromType, ToType> (MapConvenience)
 
 + (PINFuture<ToType> *)map:(PINFuture<FromType> *)sourceFuture
-context:(PINExecutionContext)context
-success:(ToType (^)(FromType fromValue))success;
+                   context:(PINExecutionContext)context
+                   success:(ToType (^)(FromType fromValue))success;
 
 + (PINFuture<ToType> *)map:(PINFuture<FromType> *)sourceFuture
-success:(ToType (^)(FromType fromValue))success
-failure:(NSError *(^)(NSError * error))failure;
+                   success:(ToType (^)(FromType fromValue))success
+                   failure:(NSError *(^)(NSError * error))failure;
 + (PINFuture<ToType> *)map:(PINFuture<FromType> *)sourceFuture
-success:(ToType (^)(FromType fromValue))success;
+                   success:(ToType (^)(FromType fromValue))success;
 
 @end
 

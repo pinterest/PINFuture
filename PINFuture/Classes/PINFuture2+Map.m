@@ -15,7 +15,7 @@
 + (PINFuture<id> *)map:(PINFuture<id> *)sourceFuture
                context:(PINExecutionContext)context
                success:(id (^)(id fromValue))success
-               failure:(id (^)(NSError * error))failure
+               failure:(NSError *(^)(NSError * error))failure
 {
     return [self flatMap:sourceFuture
                  context:context
@@ -41,7 +41,7 @@
 
 + (PINFuture<id> *)map:(PINFuture<id> *)sourceFuture
                success:(id (^)(id fromValue))success
-               failure:(id (^)(NSError * error))failure
+               failure:(NSError *(^)(NSError * error))failure
 {
     return [self map:sourceFuture context:[PINExecution defaultContextForCurrentThread] success:success failure:failure];
 }
