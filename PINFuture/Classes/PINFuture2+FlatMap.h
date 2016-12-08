@@ -13,23 +13,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PINFuture2<FromType, ToType> (FlatMap)
 + (PINFuture<ToType> *)flatMap:(PINFuture<FromType> *)sourceFuture
-                    context:(PINExecutionContext)context
-                    success:(PINFuture<ToType> *(^)(FromType fromValue))success
-                    failure:(PINFuture<ToType> *(^)(NSError * error))failure;
+                       context:(PINExecutionContext)context
+                       success:(PINFuture<ToType> *(^)(FromType fromValue))success;
 
 @end
 
 @interface PINFuture2<FromType, ToType> (FlatMapConvenience)
 
 + (PINFuture<ToType> *)flatMap:(PINFuture<FromType> *)sourceFuture
-                      context:(PINExecutionContext)context
-                    success:(PINFuture<ToType> *(^)(FromType fromValue))success;
-
-+ (PINFuture<ToType> *)flatMap:(PINFuture<FromType> *)sourceFuture
-                    success:(PINFuture<ToType> *(^)(FromType fromValue))success
-                    failure:(PINFuture<ToType> *(^)(NSError * error))failure;
-+ (PINFuture<ToType> *)flatMap:(PINFuture<FromType> *)sourceFuture
-                    success:(PINFuture<ToType> *(^)(FromType fromValue))success;
+                       success:(PINFuture<ToType> *(^)(FromType fromValue))success;
 
 @end
 

@@ -14,51 +14,22 @@
 SpecBegin(FlatMapSpecs)
 
 describe(@"flatMap", ^{
-
-    it(@"testResolveToResolve", ^{
+    it(@"can return resolved promise", ^{
         NSNumber *valueA = @1;
         NSString *valueB = @"A";
         PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> futureWithValue:valueA];
         PINFuture<NSString *> *futureB = [PINFuture2<NSNumber *, NSString *> flatMap:futureA success:^PINFuture<NSString *> * _Nonnull(NSNumber * _Nonnull fromValue) {
             return [PINFuture<NSString *> futureWithValue:valueB];
-        } failure:^PINFuture<NSString *> * _Nonnull(NSError * _Nonnull error) {
-            XCTAssertTrue(NO);
         }];
         expectFutureToResolveWith(self, futureB, valueB);
     });
     
-    it(@"testResolveToRejection", ^{
+    it(@"can return rejected promise", ^{
         NSNumber *valueA = @1;
         NSError *errorB = [[NSError alloc] init];
         PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> futureWithValue:valueA];
         PINFuture<NSString *> *futureB = [PINFuture2<NSNumber *, NSString *> flatMap:futureA success:^PINFuture<NSString *> * _Nonnull(NSNumber * _Nonnull fromValue) {
             return [PINFuture<NSString *> futureWithError:errorB];
-        } failure:^PINFuture<NSString *> * _Nonnull(NSError * _Nonnull error) {
-            XCTAssertTrue(NO);
-        }];
-        expectFutureToRejectWith(self, futureB, errorB);
-    });
-    
-    it(@"testRejectionToResolve", ^{
-        NSError *errorA = [[NSError alloc] init];
-        NSNumber *valueB = @1;
-        PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> futureWithError:errorA];
-        PINFuture<NSNumber *> *futureB = [PINFuture2<NSNumber *, NSNumber *> flatMap:futureA success:^PINFuture<NSNumber *> * _Nonnull(NSNumber * _Nonnull fromValue) {
-            XCTAssertTrue(NO);
-        } failure:^PINFuture<NSNumber *> * _Nonnull(NSError * _Nonnull error) {
-            return [PINFuture<NSNumber *> futureWithValue:valueB];
-        }];
-        expectFutureToResolveWith(self, futureB, valueB);
-    });
-    
-    it(@"testRejectionToRejection", ^{
-        NSError *errorA = [[NSError alloc] init];
-        NSError *errorB = [[NSError alloc] init];
-        PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> futureWithError:errorA];
-        PINFuture<NSNumber *> *futureB = [PINFuture2<NSNumber *, NSNumber *> flatMap:futureA success:^PINFuture<NSNumber *> * _Nonnull(NSNumber * _Nonnull fromValue) {
-            XCTAssertTrue(NO);
-        } failure:^PINFuture<NSNumber *> * _Nonnull(NSError * _Nonnull error) {
-            return [PINFuture<NSNumber *> futureWithError:errorB];
         }];
         expectFutureToRejectWith(self, futureB, errorB);
     });
