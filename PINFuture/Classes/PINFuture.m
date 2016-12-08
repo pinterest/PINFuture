@@ -155,6 +155,11 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     [self context:context success:success failure:^(NSError * _Nonnull error) {}];
 }
 
+- (void)context:(PINExecutionContext)context failure:(void(^)(NSError *error))failure
+{
+    [self context:context success:^(id  _Nonnull value) {} failure:failure];
+}
+
 - (void)completion:(void(^)(NSError *error, id value))completion
 {
     return [self context:[PINExecution defaultContextForCurrentThread] completion:completion];
@@ -176,6 +181,29 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
                                     success:^NSNull * _Nonnull(id _Nonnull fromValue) {
                                         return [NSNull null];
                                     }];
+}
+
+- (PINFuture<id> *)context:(PINExecutionContext)context recover:(PINFuture<id> *(^)(NSError *error))recover
+{
+    return [PINFuture<id> futureWithBlock:^(void (^resolve)(id), void (^reject)(NSError *)) {
+        [self context:context success:^(id  _Nonnull value) {
+            // A value is passed through
+            resolve(value);
+        } failure:^(NSError * _Nonnull error) {
+            // An error is given a chance to recover.
+            PINFuture<id> *recoveredFuture = recover(error);
+            [recoveredFuture context:context success:^(id  _Nonnull value) {
+                resolve(value);
+            } failure:^(NSError * _Nonnull error) {
+                reject(error);
+            }];
+        }];
+    }];
+}
+
+- (PINFuture<id> *)recover:(PINFuture<id> *(^)(NSError *error))recover
+{
+    return [self context:[PINExecution defaultContextForCurrentThread] recover:recover];
 }
 
 @end
