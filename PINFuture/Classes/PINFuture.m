@@ -8,7 +8,7 @@
 
 #import "PINFuture.h"
 
-#import "PINFutureInternal.h"
+#import "PINExecution.h"
 
 typedef void(^CompletionBlockType)(NSError *error, NSObject *value);
 
@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 };
 
 @interface PINFutureCallback : NSObject
-@property (nonatomic) dispatch_queue_t queue;
+@property (nonatomic) PINExecutionContext context;
 @property (nonatomic) void(^completion)(NSError *error, NSObject *value);
 @end
 
@@ -76,10 +76,10 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 #pragma mark - attach callbacks
 
-- (void)queue:(dispatch_queue_t)queue completion:(void(^)(NSError *error, id))completion
+- (void)context:(PINExecutionContext)context completion:(void(^)(NSError *error, id))completion
 {
     PINFutureCallback *callback = [[PINFutureCallback alloc] init];
-    callback.queue = queue;
+    callback.context = context;
     callback.completion = completion;
     [self.propertyLock lock];
         // Lazily instantiate self.callbacks.  Lots of futures will never have any callbacks.
@@ -124,9 +124,9 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
     // execute
     for (PINFutureCallback *callback in callbacks) {
-        dispatch_async(callback.queue, ^{
+        callback.context(^{
             callback.completion(self.error, self.value);
-        });
+        })();
     }
 }
 
@@ -139,9 +139,9 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     return [PINFuture futureWithValue:[NSNull null]];
 }
 
-- (void)queue:(dispatch_queue_t)queue success:(void(^)(id value))success failure:(void(^)(NSError *error))failure;
+- (void)context:(PINExecutionContext)context success:(void(^)(id value))success failure:(void(^)(NSError *error))failure;
 {
-    return [self queue:queue completion:^(NSError *error, NSObject * value) {
+    return [self context:context completion:^(NSError *error, NSObject * value) {
         if (error != nil) {
             if (failure != NULL) {
                 failure(error);
@@ -154,24 +154,32 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     }];
 }
 
-- (void)queue:(dispatch_queue_t)queue success:(void(^)(id value))success
+- (void)context:(PINExecutionContext)context success:(void(^)(id value))success
 {
-    [self queue:queue success:success failure:^(NSError * _Nonnull error) {}];
+    [self context:context success:success failure:^(NSError * _Nonnull error) {}];
 }
 
 - (void)completion:(void(^)(NSError *error, id value))completion
 {
-    return [self queue:defaultDispatchQueueForCurrentThread() completion:completion];
+    return [self context:[PINExecution defaultContextForCurrentThread] completion:completion];
 }
 
 - (void)success:(void(^)(id value))success failure:(void(^)(NSError *error))failure;
 {
-    return [self queue:defaultDispatchQueueForCurrentThread() success:success failure:failure];
+    return [self context:[PINExecution defaultContextForCurrentThread] success:success failure:failure];
 }
 
 - (void)success:(void(^)(id value))success
 {
-    return [self queue:defaultDispatchQueueForCurrentThread() success:success];
+    return [self context:[PINExecution defaultContextForCurrentThread] success:success];
+}
+
+- (PINFuture<NSNull *> *)mapToNull:(PINFuture<id>)sourceFuture
+{
+    return [PINMap<id, NSNull *> map:sourceFuture
+                                    success:^NSNull * _Nonnull(NSObject * _Nonnull fromValue) {
+                                        return [NSNull null]];
+                                    }];
 }
 
 @end

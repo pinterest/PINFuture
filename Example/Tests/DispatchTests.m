@@ -8,7 +8,7 @@
 
 // https://github.com/Specta/Specta
 
-#import "PINFuture+Dispatch.h"
+#import "PINFuture.h"
 
 #import "TestUtil.h"
 
@@ -19,10 +19,11 @@ dispatch_queue_t backgroundQueue() {
 SpecBegin(DispatchSpecs)
 
 describe(@"dispatch", ^{
+    PINExecutionContext context = [PINExecution background];
     
     it(@"resolve on background queue", ^{
         NSNumber *value = @4;
-        PINFuture<NSNumber *> *future = [PINFuture<NSNumber *> dispatchWithQueue:backgroundQueue() block:^PINFuture<NSNumber *> * _Nonnull{
+        PINFuture<NSNumber *> *future = [PINFuture<NSNumber *> dispatchWithContext:context block:^PINFuture<NSNumber *> * _Nonnull{
             return [PINFuture futureWithValue:value];
         }];
         expectFutureToResolveWith(self, future, value);
@@ -30,7 +31,7 @@ describe(@"dispatch", ^{
     
     it(@"reject on background queue", ^{
         NSError *error = [[NSError alloc] init];
-        PINFuture<NSNumber *> *future = [PINFuture<NSNumber *> dispatchWithQueue:backgroundQueue() block:^PINFuture<NSNumber *> * _Nonnull{
+        PINFuture<NSNumber *> *future = [PINFuture<NSNumber *> dispatchWithContext:context block:^PINFuture<NSNumber *> * _Nonnull{
             return [PINFuture futureWithError:error];
         }];
         expectFutureToRejectWith(self, future, error);

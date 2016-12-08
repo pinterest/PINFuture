@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PINThen<FromType, ToType> : NSObject
 
 + (PINFuture<ToType> *)then:(PINFuture<FromType> *)sourceFuture
-                      queue:(dispatch_queue_t)queue
+                    context:(PINExecutionContext)context
                     success:(PINFuture<ToType> *(^)(FromType fromValue))success
                     failure:(PINFuture<ToType> *(^)(NSError * error))failure;
 
@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PINThen<FromType, ToType> (Convenience)
 
 + (PINFuture<ToType> *)then:(PINFuture<FromType> *)sourceFuture
-                      queue:(dispatch_queue_t)queue
+                      context:(PINExecutionContext)context
                     success:(PINFuture<ToType> *(^)(FromType fromValue))success;
 
 + (PINFuture<ToType> *)then:(PINFuture<FromType> *)sourceFuture
@@ -33,6 +33,29 @@ NS_ASSUME_NONNULL_BEGIN
                     failure:(PINFuture<ToType> *(^)(NSError * error))failure;
 + (PINFuture<ToType> *)then:(PINFuture<FromType> *)sourceFuture
                     success:(PINFuture<ToType> *(^)(FromType fromValue))success;
+
+@end
+
+@interface PINMap<FromType, ToType> : NSObject
+
++ (PINFuture<ToType> *)map:(PINFuture<FromType> *)sourceFuture
+                   context:(PINExecutionContext)context
+                   success:(ToType (^)(FromType fromValue))success
+                   failure:(ToType (^)(NSError * error))failure;
+
+@end
+
+@interface PINMap<FromType, ToType> (Convenience)
+
++ (PINFuture<ToType> *)then:(PINFuture<FromType> *)sourceFuture
+                    context:(PINExecutionContext)context
+                   success:(ToType (^)(FromType fromValue))success;
+
++ (PINFuture<ToType> *)map:(PINFuture<FromType> *)sourceFuture
+                   success:(ToType (^)(FromType fromValue))success
+                   failure:(ToType (^)(NSError * error))failure;
++ (PINFuture<ToType> *)map:(PINFuture<FromType> *)sourceFuture
+                   success:(ToType (^)(FromType fromValue))success;
 
 @end
 

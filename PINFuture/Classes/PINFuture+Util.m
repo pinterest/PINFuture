@@ -27,7 +27,7 @@
             for (NSUInteger i = 0; i < sourceFutures.count; i++) {
                 PINFuture *sourceFuture = sourceFutures[i];
                 // Dispatch to be off of main.  This work does not need to be on main.
-                [sourceFuture queue:queue
+                [sourceFuture context:[PINExecution background]
                             success:^(id  _Nonnull value) {
                                 @synchronized (resolvedValues) {
                                     resolvedValues[i] = value;

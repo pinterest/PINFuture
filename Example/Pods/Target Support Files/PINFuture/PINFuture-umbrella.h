@@ -2,6 +2,7 @@
 
 #import "ALAssetsLibrary+PINFuture.h"
 #import "PHImageManager+PINFuture.h"
+#import "PINExecution.h"
 #import "PINFuture+Dispatch.h"
 #import "PINFuture+Util.h"
 #import "PINFuture.h"

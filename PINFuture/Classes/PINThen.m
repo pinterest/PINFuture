@@ -13,15 +13,15 @@
 @implementation PINThen
 
 + (PINFuture<id> *)then:(PINFuture<id> *)sourceFuture
-                               queue:(dispatch_queue_t)queue
+                               context:(PINExecutionContext)context
                              success:(PINFuture<id> *(^)(id fromValue))success
                              failure:(PINFuture<id> *(^)(NSError * error))failure
 {
     return [PINFuture futureWithBlock:^(void (^resolve)(NSObject *), void (^reject)(NSError *)) {
-        [sourceFuture queue:queue success:^(NSObject *value) {
+        [sourceFuture context:context success:^(NSObject *value) {
             PINFuture<id> *newFuture = success(value);
             NSAssert(newFuture != nil, @"returned future must not be nil");
-            [newFuture queue:queue success:^(NSObject *value) {
+            [newFuture context:context success:^(NSObject *value) {
                 resolve(value);
             } failure:^(NSError *error) {
                 reject(error);
@@ -29,7 +29,7 @@
         } failure:^(NSError *error) {
             PINFuture<id> *newFuture = failure(error);
             NSAssert(newFuture != nil, @"returned future must not be nil");
-            [newFuture queue:queue success:^(NSObject *value) {
+            [newFuture context:context success:^(NSObject *value) {
                 resolve(value);
             } failure:^(NSError *error) {
                 reject(error);
@@ -43,10 +43,10 @@
 @implementation PINThen (Convenience)
 
 + (PINFuture<id> *)then:(PINFuture<id> *)sourceFuture
-                               queue:(dispatch_queue_t)queue
+                               context:(PINExecutionContext)context
                              success:(PINFuture<id> *(^)(id fromValue))success
 {
-    return [self then:sourceFuture queue:queue success:success failure:^PINFuture * _Nonnull(NSError * _Nonnull error) {
+    return [self then:sourceFuture context:context success:success failure:^PINFuture * _Nonnull(NSError * _Nonnull error) {
         return [PINFuture futureWithError:error];
     }];
 }
@@ -55,13 +55,13 @@
                              success:(PINFuture<id> *(^)(id fromValue))success
                              failure:(PINFuture<id> *(^)(NSError * error))failure;
 {
-    return [self then:sourceFuture queue:defaultDispatchQueueForCurrentThread() success:success failure:failure];
+    return [self then:sourceFuture context:[PINExecution defaultContextForCurrentThread] success:success failure:failure];
 }
 
 + (PINFuture<id> *)then:(PINFuture<NSObject *> *)sourceFuture
                              success:(PINFuture<id> *(^)(id fromValue))success;
 {
-    return [self then:sourceFuture queue:defaultDispatchQueueForCurrentThread() success:success];
+    return [self then:sourceFuture context:[PINExecution defaultContextForCurrentThread] success:success];
 }
 
 @end

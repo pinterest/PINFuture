@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "PINExecution.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -43,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - attach callbacks
 
-- (void)queue:(dispatch_queue_t)queue completion:(void(^)(NSError *error, ObjectType value))completion;
+- (void)context:(PINExecutionContext)context completion:(void(^)(NSError *error, ObjectType value))completion;
 
 @end
 
@@ -54,14 +56,22 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (PINFuture<NSNull *> *)futureWithNull;
 
-- (void)queue:(dispatch_queue_t)queue success:(void(^)(ObjectType value))success failure:(void(^)(NSError *error))failure;
-- (void)queue:(dispatch_queue_t)queue success:(void(^)(ObjectType value))success;
+- (void)context:(PINExecutionContext)context success:(void(^)(ObjectType value))success failure:(void(^)(NSError *error))failure;
+- (void)context:(PINExecutionContext)context success:(void(^)(ObjectType value))success;
 
 #pragma mark - callback methods that smartly dispatch either to Main or the default global queue depending on whether they are called from Main.
 
 - (void)completion:(void(^)(NSError *error, ObjectType value))completion;
 - (void)success:(void(^)(ObjectType value))success failure:(void(^)(NSError *error))failure;
 - (void)success:(void(^)(ObjectType value))success;
+
+#pragma mark - misc
+
+/**
+ * Return a new future that strips out the resolved value.  Use this if you have a future but don't want to expose
+ * its value.
+ */
+- (PINFuture<NSNull *> *)mapToNull:(PINFuture<ObjectType>)sourceFuture;
 
 @end
 
