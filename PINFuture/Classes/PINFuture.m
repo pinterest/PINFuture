@@ -175,6 +175,11 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     return [self context:[PINExecution defaultContextForCurrentThread] success:success];
 }
 
+- (void)failure:(void(^)(NSError *error))failure
+{
+    return [self context:[PINExecution defaultContextForCurrentThread] failure:failure];
+}
+
 - (PINFuture<NSNull *> *)mapToNull;
 {
     return [PINFuture2<id, NSNull *> map:self
