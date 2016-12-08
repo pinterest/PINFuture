@@ -22,7 +22,7 @@ pod "PINFuture"
 
 ## Author
 
-Chris Danford, chris@pinterest.com
+Chris Danford, chrisdanford@gmail.com
 
 ## License
 
