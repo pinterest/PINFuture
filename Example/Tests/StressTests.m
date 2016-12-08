@@ -9,8 +9,6 @@
 // https://github.com/Specta/Specta
 
 #import "PINFuture.h"
-#import "PINFuture+Util.h"
-#import "PINThen.h"
 #import "TestUtil.h"
 
 SpecBegin(StressSpecs)

@@ -60,7 +60,6 @@ static PINThreadingModel currentThreadingModel = PINDefaultThreadingModel;
 + (PINExecutionContext)background
 {
     return [self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
-
 }
 
 @end

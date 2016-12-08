@@ -1,18 +1,18 @@
 //
-//  PINThen.m
+//  PINFuture2+FlatMap.m
 //  Pinterest
 //
 //  Created by Chris Danford on 11/23/16.
 //  Copyright © 2016 Pinterest. All rights reserved.
 //
 
-#import "PINThen.h"
+#import "PINFuture2.h"
 
-#import "PINFutureInternal.h"
+#import "PINFuture.h"
 
-@implementation PINThen
+@implementation PINFuture2 (FlatMap)
 
-+ (PINFuture<id> *)then:(PINFuture<id> *)sourceFuture
++ (PINFuture<id> *)flatMap:(PINFuture<id> *)sourceFuture
                                context:(PINExecutionContext)context
                              success:(PINFuture<id> *(^)(id fromValue))success
                              failure:(PINFuture<id> *(^)(NSError * error))failure
@@ -40,28 +40,28 @@
 
 @end
 
-@implementation PINThen (Convenience)
+@implementation PINFuture2 (FlatMapConvenience)
 
-+ (PINFuture<id> *)then:(PINFuture<id> *)sourceFuture
++ (PINFuture<id> *)flatMap:(PINFuture<id> *)sourceFuture
                                context:(PINExecutionContext)context
                              success:(PINFuture<id> *(^)(id fromValue))success
 {
-    return [self then:sourceFuture context:context success:success failure:^PINFuture * _Nonnull(NSError * _Nonnull error) {
+    return [self flatMap:sourceFuture context:context success:success failure:^PINFuture * _Nonnull(NSError * _Nonnull error) {
         return [PINFuture futureWithError:error];
     }];
 }
 
-+ (PINFuture<id> *)then:(PINFuture<id> *)sourceFuture
++ (PINFuture<id> *)flatMap:(PINFuture<id> *)sourceFuture
                              success:(PINFuture<id> *(^)(id fromValue))success
                              failure:(PINFuture<id> *(^)(NSError * error))failure;
 {
-    return [self then:sourceFuture context:[PINExecution defaultContextForCurrentThread] success:success failure:failure];
+    return [self flatMap:sourceFuture context:[PINExecution defaultContextForCurrentThread] success:success failure:failure];
 }
 
-+ (PINFuture<id> *)then:(PINFuture<NSObject *> *)sourceFuture
++ (PINFuture<id> *)flatMap:(PINFuture<NSObject *> *)sourceFuture
                              success:(PINFuture<id> *(^)(id fromValue))success;
 {
-    return [self then:sourceFuture context:[PINExecution defaultContextForCurrentThread] success:success];
+    return [self flatMap:sourceFuture context:[PINExecution defaultContextForCurrentThread] success:success];
 }
 
 @end

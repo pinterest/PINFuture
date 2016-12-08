@@ -5,9 +5,7 @@
 //  Created by Chris Danford on 12/5/16.
 //
 
-#import "PINFuture+Util.h"
-
-#import "PINThen.h"
+#import "PINFuture.h"
 
 @implementation PINFuture (Util)
 

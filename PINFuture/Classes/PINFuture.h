@@ -51,11 +51,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PINFuture<ObjectType> (Convenience)
 
-/**
- * A future that immediately resolves with a value of no significance.  This is often useful inside of a `then` callback.
- */
-+ (PINFuture<NSNull *> *)futureWithNull;
-
 - (void)context:(PINExecutionContext)context success:(void(^)(ObjectType value))success failure:(void(^)(NSError *error))failure;
 - (void)context:(PINExecutionContext)context success:(void(^)(ObjectType value))success;
 
@@ -68,10 +63,10 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - misc
 
 /**
- * Return a new future that strips out the resolved value.  Use this if you have a future but don't want to expose
- * its value.
+ * Return a new future that strips out the resolved value but passes through any error.
+ * Use this if you have a future but don't want to expose its value.
  */
-- (PINFuture<NSNull *> *)mapToNull:(PINFuture<ObjectType>)sourceFuture;
+- (PINFuture<NSNull *> *)mapToNull;
 
 @end
 
@@ -80,4 +75,6 @@ NS_ASSUME_NONNULL_END
 // Import everything for caller convenience.
 #import "PINFuture+Dispatch.h"
 #import "PINFuture+Util.h"
-#import "PINThen.h"
+#import "PINFuture2.h"
+#import "PINFuture2+Map.h"
+#import "PINFuture2+FlatMap.h"

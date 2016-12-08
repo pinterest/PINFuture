@@ -33,8 +33,6 @@
                                                  userInfo:@{NSLocalizedFailureReasonErrorKey : failureReason}];
                 reject(error);
             }
-
-
         }];
     }];
 }

@@ -9,6 +9,7 @@
 #import "PINFuture.h"
 
 #import "PINExecution.h"
+#import "PINFuture2+Map.h"
 
 typedef void(^CompletionBlockType)(NSError *error, NSObject *value);
 
@@ -134,11 +135,6 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 @implementation PINFuture (Convenience)
 
-+ (PINFuture<NSNull *> *)futureWithNull
-{
-    return [PINFuture futureWithValue:[NSNull null]];
-}
-
 - (void)context:(PINExecutionContext)context success:(void(^)(id value))success failure:(void(^)(NSError *error))failure;
 {
     return [self context:context completion:^(NSError *error, NSObject * value) {
@@ -174,11 +170,11 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     return [self context:[PINExecution defaultContextForCurrentThread] success:success];
 }
 
-- (PINFuture<NSNull *> *)mapToNull:(PINFuture<id>)sourceFuture
+- (PINFuture<NSNull *> *)mapToNull;
 {
-    return [PINMap<id, NSNull *> map:sourceFuture
-                                    success:^NSNull * _Nonnull(NSObject * _Nonnull fromValue) {
-                                        return [NSNull null]];
+    return [PINFuture2<id, NSNull *> map:self
+                                    success:^NSNull * _Nonnull(id _Nonnull fromValue) {
+                                        return [NSNull null];
                                     }];
 }
 

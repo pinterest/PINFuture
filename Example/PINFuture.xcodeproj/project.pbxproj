@@ -24,7 +24,8 @@
 		83626EF51DF5EA1F001CDCC7 /* StressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83626EF41DF5EA1F001CDCC7 /* StressTests.m */; };
 		83626EF71DF5F5FA001CDCC7 /* UtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83626EF61DF5F5FA001CDCC7 /* UtilTests.m */; };
 		83626F011DF62ABE001CDCC7 /* DispatchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83626F001DF62ABE001CDCC7 /* DispatchTests.m */; };
-		83E1B2D81DF4C2730068B35F /* ThenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E1B2D71DF4C2730068B35F /* ThenTests.m */; };
+		83626F121DF96773001CDCC7 /* MapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83626F111DF96773001CDCC7 /* MapTests.m */; };
+		83E1B2D81DF4C2730068B35F /* FlatMapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E1B2D71DF4C2730068B35F /* FlatMapTests.m */; };
 		83E1B2DB1DF4C5DF0068B35F /* TestUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E1B2DA1DF4C5DF0068B35F /* TestUtil.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		B81A292D7ACB087392340FE9 /* Pods_PINFuture_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAD6A03E1F0F7045FC95494 /* Pods_PINFuture_Example.framework */; };
@@ -68,7 +69,8 @@
 		83626EF41DF5EA1F001CDCC7 /* StressTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StressTests.m; sourceTree = "<group>"; };
 		83626EF61DF5F5FA001CDCC7 /* UtilTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilTests.m; sourceTree = "<group>"; };
 		83626F001DF62ABE001CDCC7 /* DispatchTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchTests.m; sourceTree = "<group>"; };
-		83E1B2D71DF4C2730068B35F /* ThenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThenTests.m; sourceTree = "<group>"; };
+		83626F111DF96773001CDCC7 /* MapTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTests.m; sourceTree = "<group>"; };
+		83E1B2D71DF4C2730068B35F /* FlatMapTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlatMapTests.m; sourceTree = "<group>"; };
 		83E1B2D91DF4C5DF0068B35F /* TestUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestUtil.h; sourceTree = "<group>"; };
 		83E1B2DA1DF4C5DF0068B35F /* TestUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUtil.m; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -169,7 +171,8 @@
 			children = (
 				83626F001DF62ABE001CDCC7 /* DispatchTests.m */,
 				6003F5BB195388D20070C39A /* FutureTests.m */,
-				83E1B2D71DF4C2730068B35F /* ThenTests.m */,
+				83E1B2D71DF4C2730068B35F /* FlatMapTests.m */,
+				83626F111DF96773001CDCC7 /* MapTests.m */,
 				83626EF41DF5EA1F001CDCC7 /* StressTests.m */,
 				83626EF61DF5F5FA001CDCC7 /* UtilTests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
@@ -417,11 +420,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83E1B2D81DF4C2730068B35F /* ThenTests.m in Sources */,
+				83E1B2D81DF4C2730068B35F /* FlatMapTests.m in Sources */,
 				83E1B2DB1DF4C5DF0068B35F /* TestUtil.m in Sources */,
 				6003F5BC195388D20070C39A /* FutureTests.m in Sources */,
 				83626F011DF62ABE001CDCC7 /* DispatchTests.m in Sources */,
 				83626EF71DF5F5FA001CDCC7 /* UtilTests.m in Sources */,
+				83626F121DF96773001CDCC7 /* MapTests.m in Sources */,
 				83626EF51DF5EA1F001CDCC7 /* StressTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
