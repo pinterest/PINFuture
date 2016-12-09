@@ -10,8 +10,12 @@
 
 #import "PINFuture.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface ALAssetsLibrary (PINFuture)
 
 - (PINFuture<ALAsset *> *)assetForURL:(NSURL *)assetURL;
 
 @end
+
+NS_ASSUME_NONNULL_END
