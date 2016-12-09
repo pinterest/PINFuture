@@ -53,16 +53,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - callback methods that specify an execution context
 
-- (void)context:(PINExecutionContext)context success:(void(^)(ObjectType value))success failure:(void(^)(NSError *error))failure;
-- (void)context:(PINExecutionContext)context success:(void(^)(ObjectType value))success;
-- (void)context:(PINExecutionContext)context failure:(void(^)(NSError *error))failure;
+- (void)context:(PINExecutionContext)context success:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure;
 
 #pragma mark - callback methods that don't specify an execution context
 
 - (void)completion:(void(^)(NSError *error, ObjectType value))completion;
-- (void)success:(void(^)(ObjectType value))success failure:(void(^)(NSError *error))failure;
-- (void)success:(void(^)(ObjectType value))success;
-- (void)failure:(void(^)(NSError *error))failure;
+- (void)success:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure;
 
 #pragma mark - misc
 

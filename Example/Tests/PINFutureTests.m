@@ -47,6 +47,26 @@ describe(@"future", ^{
         }];
         expectFutureToRejectWith(self, future, error);
     });
+
+    it(@"tolerates success callback being null", ^{
+        NSError *error = errorFixture();
+        PINFuture<NSString *> *future = [PINFuture<NSString *> futureWithBlock:^(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+            [[PINFuture futureWithError:error] success:NULL failure:^(NSError * _Nonnull error) {
+                reject(error);
+            }];
+        }];
+        expectFutureToRejectWith(self, future, error);
+    });
+
+    it(@"tolerates failure callback being null", ^{
+        NSString *value = stringFixture();
+        PINFuture<NSString *> *future = [PINFuture<NSString *> futureWithBlock:^(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+            [[PINFuture futureWithValue:value] success:^(id  _Nonnull value) {
+                resolve(value);
+            } failure:NULL];
+        }];
+        expectFutureToResolveWith(self, future, value);
+    });
 });
 
 SpecEnd

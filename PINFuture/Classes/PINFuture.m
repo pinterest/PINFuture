@@ -135,7 +135,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 @implementation PINFuture (Convenience)
 
-- (void)context:(PINExecutionContext)context success:(void(^)(id value))success failure:(void(^)(NSError *error))failure;
+- (void)context:(PINExecutionContext)context success:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure;
 {
     return [self context:context completion:^(NSError *error, NSObject * value) {
         if (error != nil) {
@@ -150,34 +150,14 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     }];
 }
 
-- (void)context:(PINExecutionContext)context success:(void(^)(id value))success
-{
-    [self context:context success:success failure:^(NSError * _Nonnull error) {}];
-}
-
-- (void)context:(PINExecutionContext)context failure:(void(^)(NSError *error))failure
-{
-    [self context:context success:^(id  _Nonnull value) {} failure:failure];
-}
-
 - (void)completion:(void(^)(NSError *error, id value))completion
 {
     return [self context:[PINExecution defaultContextForCurrentThread] completion:completion];
 }
 
-- (void)success:(void(^)(id value))success failure:(void(^)(NSError *error))failure;
+- (void)success:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure;
 {
     return [self context:[PINExecution defaultContextForCurrentThread] success:success failure:failure];
-}
-
-- (void)success:(void(^)(id value))success
-{
-    return [self context:[PINExecution defaultContextForCurrentThread] success:success];
-}
-
-- (void)failure:(void(^)(NSError *error))failure
-{
-    return [self context:[PINExecution defaultContextForCurrentThread] failure:failure];
 }
 
 - (PINFuture<NSNull *> *)mapToNull;
