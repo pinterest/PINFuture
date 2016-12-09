@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Returns a Future that never rejects.  The value type has an error field.
  * that is set in non-exceptional cases such as 4xx response codes.
  */
-- (PINPair<NSURLSessionDataTask *, PINFuture<PINFutureNSURLSessionDataTaskCompletionData *> *> *)dataTaskAndFutureWithRequest:(NSURLRequest *)request;
+- (PINPair<NSURLSessionDataTask *, PINFuture<PINFutureNSURLSessionDataTaskCompletionData *> *> *)dataTaskAndwithRequest:(NSURLRequest *)request;
 
 @end
 

@@ -12,7 +12,7 @@
 
 - (PINFuture<id> *)context:(PINExecutionContext)context flatMapError:(PINFuture<id> *(^)(NSError *error))flatMapError
 {
-    return [PINFuture<id> futureWithBlock:^(void (^resolve)(id), void (^reject)(NSError *)) {
+    return [PINFuture<id> withBlock:^(void (^resolve)(id), void (^reject)(NSError *)) {
         [self context:context success:^(id  _Nonnull value) {
             // A value is passed through
             resolve(value);

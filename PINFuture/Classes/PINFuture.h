@@ -14,34 +14,37 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  * A super-simple future implementation.
- * This is a pure objective C implemtnation that:
+ * This is a pure objective C implementation that:
  * - is thread-safe
- * - preserves type safety in callbacks as much as possible
- * - Doesn't always defer callbacks to the next runloop tick.
- * - Does not support "thenable" the concept of then-ables or wrapping of values returned from a `then` callback
- *   into a Future.  I haven't been able to find a good value to model this with Objective C's type system, and
- *   the convenience isn't worth the loss of type safety.
- * - does not have any automatic exception catching
+ * - preserves type safety as much as possible
+ *
+ * Non-goals:
+ * - Don't catch Exceptions in callbacks like Promises/A+.  On this platform, Exceptions are generally fatal
+ *   and Errors aren't.
  *
  * Future improvement ideas:
  * - Support progress and cancellation.
  */
 @interface PINFuture<ObjectType> : NSObject
 
+- (instancetype)init NS_UNAVAILABLE;
+
 /**
  * Return a future that is immediately resolved.
  */
-+ (PINFuture<ObjectType> *)futureWithValue:(ObjectType)value;
++ (PINFuture<ObjectType> *)withValue:(ObjectType)value;
 
 /**
  * Return a future that is immediately rejected.
  */
-+ (PINFuture<ObjectType> *)futureWithError:(NSError *)error;
++ (PINFuture<ObjectType> *)withError:(NSError *)error;
 
 /**
- * Adapt from callbacks to a future.
+ * Construct a future from a block that eventually calls resolve or reject.
+ * This is slightly dangerous and should only be used when adapting from callbacks to a Future because there's no compiler enforcement
+ * that all paths of your block will eventually call either `resolve` or `reject`.
  */
-+ (PINFuture<ObjectType> *)futureWithBlock:(void(^)(void(^resolve)(ObjectType), void(^reject)(NSError *)))block;
++ (PINFuture<ObjectType> *)withBlock:(void(^)(void(^resolve)(ObjectType), void(^reject)(NSError *)))block;
 
 #pragma mark - attach callbacks
 

@@ -17,9 +17,9 @@ describe(@"flatMap", ^{
     it(@"can return resolved promise", ^{
         NSNumber *valueA = numberFixture();
         NSString *valueB = stringFixture();
-        PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> futureWithValue:valueA];
+        PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> withValue:valueA];
         PINFuture<NSString *> *futureB = [PINFuture2<NSNumber *, NSString *> flatMap:futureA success:^PINFuture<NSString *> * _Nonnull(NSNumber * _Nonnull fromValue) {
-            return [PINFuture<NSString *> futureWithValue:valueB];
+            return [PINFuture<NSString *> withValue:valueB];
         }];
         expectFutureToResolveWith(self, futureB, valueB);
     });
@@ -27,9 +27,9 @@ describe(@"flatMap", ^{
     it(@"can return rejected promise", ^{
         NSString *valueA = stringFixture();
         NSError *errorB = errorFixture();
-        PINFuture<NSString *> *futureA = [PINFuture<NSString *> futureWithValue:valueA];
+        PINFuture<NSString *> *futureA = [PINFuture<NSString *> withValue:valueA];
         PINFuture<NSString *> *futureB = [PINFuture2<NSString *, NSString *> flatMap:futureA success:^PINFuture<NSString *> * _Nonnull(NSString * _Nonnull fromValue) {
-            return [PINFuture<NSString *> futureWithError:errorB];
+            return [PINFuture<NSString *> withError:errorB];
         }];
         expectFutureToRejectWith(self, futureB, errorB);
     });

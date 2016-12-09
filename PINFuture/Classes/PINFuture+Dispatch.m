@@ -11,7 +11,7 @@
 
 + (PINFuture<id> *)dispatchWithContext:(PINExecutionContext)context block:(PINFuture<id> * (^)())block;
 {
-    return [PINFuture<id> futureWithBlock:^(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+    return [PINFuture<id> withBlock:^(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         // contextify, and execute
         context(^{
             PINFuture<id> *future = block();

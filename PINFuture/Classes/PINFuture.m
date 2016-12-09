@@ -39,7 +39,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 @implementation PINFuture
 
-- (instancetype)init
+- (instancetype)initPrivate
 {
     self = [super init];
     if (self) {
@@ -48,25 +48,25 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     return self;
 }
 
-+ (PINFuture<id> *)futureWithValue:(id)value
++ (PINFuture<id> *)withValue:(id)value
 {
-    PINFuture<id> *future = [[PINFuture alloc] init];
+    PINFuture<id> *future = [[PINFuture alloc] initPrivate];
     future.state = PINFutureStateResolved;
     future.value = value;
     return future;
 }
 
-+ (PINFuture<id> *)futureWithError:(NSError *)error
++ (PINFuture<id> *)withError:(NSError *)error
 {
-    PINFuture<id> *future = [[PINFuture alloc] init];
+    PINFuture<id> *future = [[PINFuture alloc] initPrivate];
     future.state = PINFutureStateRejected;
     future.error = error;
     return future;
 }
 
-+ (PINFuture<id> *)futureWithBlock:(void(^)(void(^resolve)(id), void(^reject)(NSError *)))block
++ (PINFuture<id> *)withBlock:(void(^)(void(^resolve)(id), void(^reject)(NSError *)))block
 {
-    PINFuture<id> *future = [[PINFuture alloc] init];
+    PINFuture<id> *future = [[PINFuture alloc] initPrivate];
     block(^(id value) {
         [future transitionToState:PINFutureStateResolved value:value error:nil];
     }, ^(NSError *error) {
