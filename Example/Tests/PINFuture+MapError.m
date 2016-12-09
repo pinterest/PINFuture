@@ -12,12 +12,11 @@
 SpecBegin(PINFutureMapErrorSpecs)
 
 describe(@"mapError", ^{
-
-    it(@"resolves if all source promises resolve", ^{
-        NSError *error1 = [[NSError alloc] init];
-        NSError *error2 = [[NSError alloc] initWithDomain:NSOSStatusErrorDomain code:1 userInfo:nil];
+    it(@"can return a new error", ^{
+        NSError *error1 = errorFixture();
+        NSError *error2 = errorFixture();
         PINFuture<NSString *> *source = [PINFuture<NSString *> futureWithError:error1];
-        PINFuture<NSString *> *mapped = [source mapError:^NSString *(NSError *error) {
+        PINFuture<NSString *> *mapped = [source mapError:^NSError *(NSError *error) {
             return error2;
         }];
         expectFutureToRejectWith(self, mapped, error2);

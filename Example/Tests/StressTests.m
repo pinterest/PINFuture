@@ -14,10 +14,9 @@
 SpecBegin(StressSpecs)
 
 describe(@"stress test", ^{
-    
     it(@"handles large numbers of callbacks", ^{
         NSUInteger numChildren = 10000;
-        NSNumber *value = @1;
+        NSNumber *value = numberFixture();
         PINFuture<NSNumber *> *sourceFuture = [PINFuture<NSNumber *> futureWithValue:value];
         
         NSMutableArray<PINFuture<NSNumber *> *> *sourceFutures = [[NSMutableArray alloc] initWithCapacity:numChildren];

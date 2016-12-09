@@ -43,7 +43,7 @@ describe(@"future", ^{
         PINFuture<NSString *> *future = [PINFuture<NSString *> futureWithBlock:^(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
             reject(error);
             reject(error);
-            resolve(numberFixture());
+            resolve(stringFixture());
         }];
         expectFutureToRejectWith(self, future, error);
     });
