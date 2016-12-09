@@ -17,7 +17,7 @@
     }];
 }
 
-- (PINFuture<id> *)mapError:(id (^)(NSError *error))mapError
+- (PINFuture<id> *)mapError:(NSError *(^)(NSError *error))mapError
 {
     return [self context:[PINExecution defaultContextForCurrentThread] mapError:mapError];
 }

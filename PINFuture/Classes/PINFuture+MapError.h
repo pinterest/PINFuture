@@ -10,6 +10,6 @@
 @interface PINFuture<ObjectType> (MapError)
 
 - (PINFuture<ObjectType> *)context:(PINExecutionContext)context mapError:(ObjectType (^)(NSError *error))mapError;
-- (PINFuture<ObjectType> *)mapError:(ObjectType (^)(NSError *error))mapError;
+- (PINFuture<ObjectType> *)mapError:(NSError *(^)(NSError *error))mapError;
 
 @end
