@@ -13,9 +13,9 @@
 {
     // A very naive implementation.
     if (sourceFutures.count == 0) {
-        return [PINFuture<NSArray *> futureWithValue:@[]];
+        return [PINFuture<NSArray *> withValue:@[]];
     } else {
-        PINFuture<NSArray *> *future =  [PINFuture<NSArray *> futureWithBlock:^(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+        PINFuture<NSArray *> *future =  [PINFuture<NSArray *> withBlock:^(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
             NSMutableArray *resolvedValues = [[NSMutableArray alloc] initWithCapacity:sourceFutures.count];
             for (NSUInteger i = 0; i < sourceFutures.count; i++) {
                 [resolvedValues addObject:[NSNull null]];

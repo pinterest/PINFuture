@@ -16,7 +16,7 @@
                    context:(PINExecutionContext)context
                    success:(PINFuture<id> *(^)(id fromValue))success
 {
-    return [PINFuture futureWithBlock:^(void (^resolve)(NSObject *), void (^reject)(NSError *)) {
+    return [PINFuture withBlock:^(void (^resolve)(NSObject *), void (^reject)(NSError *)) {
         [sourceFuture context:context success:^(NSObject *value) {
             PINFuture<id> *newFuture = success(value);
             NSAssert(newFuture != nil, @"returned future must not be nil");

@@ -19,7 +19,7 @@
     return [self flatMap:sourceFuture
                  context:context
                  success:^PINFuture * _Nonnull(id  _Nonnull fromValue) {
-                     return [PINFuture futureWithValue:success(fromValue)];
+                     return [PINFuture withValue:success(fromValue)];
                  }];
 }
 

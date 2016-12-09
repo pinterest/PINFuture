@@ -12,7 +12,7 @@
 
 - (PINFuture<ALAsset *> *)assetForURL:(NSURL *)assetURL
 {
-    return [PINFuture<ALAsset *> futureWithBlock:^(void (^ _Nonnull resolve)(ALAsset * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+    return [PINFuture<ALAsset *> withBlock:^(void (^ _Nonnull resolve)(ALAsset * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         [self assetForURL:assetURL resultBlock:resolve failureBlock:reject];
     }];
 }

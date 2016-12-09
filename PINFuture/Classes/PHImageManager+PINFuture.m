@@ -30,7 +30,7 @@
 
 - (PINFuture<PHImageManagerImageDataResult *> *)requestImageDataForAsset:(PHAsset *)asset options:(nullable PHImageRequestOptions *)options
 {
-    return [PINFuture<PHImageManagerImageDataResult *> futureWithBlock:^(void (^ _Nonnull resolve)(PHImageManagerImageDataResult * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+    return [PINFuture<PHImageManagerImageDataResult *> withBlock:^(void (^ _Nonnull resolve)(PHImageManagerImageDataResult * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         [self requestImageDataForAsset:asset options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
             if (imageData) {
                 PHImageManagerImageDataResult *result = [[PHImageManagerImageDataResult alloc] initWithImageData:imageData

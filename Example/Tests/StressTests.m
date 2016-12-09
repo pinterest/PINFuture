@@ -17,7 +17,7 @@ describe(@"stress test", ^{
     it(@"handles large numbers of callbacks", ^{
         NSUInteger numChildren = 10000;
         NSNumber *value = numberFixture();
-        PINFuture<NSNumber *> *sourceFuture = [PINFuture<NSNumber *> futureWithValue:value];
+        PINFuture<NSNumber *> *sourceFuture = [PINFuture<NSNumber *> withValue:value];
         
         NSMutableArray<PINFuture<NSNumber *> *> *sourceFutures = [[NSMutableArray alloc] initWithCapacity:numChildren];
         for (NSUInteger i = 0; i < numChildren; i++) {

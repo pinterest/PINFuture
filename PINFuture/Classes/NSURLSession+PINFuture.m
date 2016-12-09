@@ -19,11 +19,11 @@
 
 @implementation NSURLSession (PINFuture)
 
-- (PINPair<NSURLSessionDataTask *, PINFuture<PINFutureNSURLSessionDataTaskCompletionData *> *> *)dataTaskAndFutureWithRequest:(NSURLRequest *)request;
+- (PINPair<NSURLSessionDataTask *, PINFuture<PINFutureNSURLSessionDataTaskCompletionData *> *> *)dataTaskAndwithRequest:(NSURLRequest *)request;
 {
     __block NSURLSessionDataTask *task;
     PINFuture<PINFutureNSURLSessionDataTaskCompletionData *> *future;
-    future = [PINFuture<PINFutureNSURLSessionDataTaskCompletionData *> futureWithBlock:^(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+    future = [PINFuture<PINFutureNSURLSessionDataTaskCompletionData *> withBlock:^(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         task = [self dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error)  {
             PINFutureNSURLSessionDataTaskCompletionData *resolvedData = [[PINFutureNSURLSessionDataTaskCompletionData alloc] init];
             resolvedData.data = data;

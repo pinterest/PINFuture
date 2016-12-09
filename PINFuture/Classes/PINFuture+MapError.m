@@ -13,7 +13,7 @@
 - (PINFuture<id> *)context:(PINExecutionContext)context mapError:(id (^)(NSError *error))mapError
 {
     return [self context:[PINExecution defaultContextForCurrentThread] flatMapError:^PINFuture * _Nonnull(NSError * _Nonnull error) {
-        return [PINFuture<id> futureWithError:mapError(error)];
+        return [PINFuture<id> withError:mapError(error)];
     }];
 }
 
