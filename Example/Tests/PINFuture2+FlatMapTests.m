@@ -23,7 +23,7 @@ describe(@"flatMap", ^{
         }];
         expectFutureToResolveWith(self, futureB, valueB);
     });
-    
+
     it(@"can return rejected promise", ^{
         NSNumber *valueA = @1;
         NSError *errorB = [[NSError alloc] init];

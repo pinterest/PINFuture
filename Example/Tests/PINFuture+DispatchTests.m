@@ -20,7 +20,7 @@ SpecBegin(DispatchSpecs)
 
 describe(@"dispatch", ^{
     PINExecutionContext context = [PINExecution background];
-    
+
     it(@"resolve on background queue", ^{
         NSNumber *value = @4;
         PINFuture<NSNumber *> *future = [PINFuture<NSNumber *> dispatchWithContext:context block:^PINFuture<NSNumber *> * _Nonnull{
@@ -28,7 +28,7 @@ describe(@"dispatch", ^{
         }];
         expectFutureToResolveWith(self, future, value);
     });
-    
+
     it(@"reject on background queue", ^{
         NSError *error = [[NSError alloc] init];
         PINFuture<NSNumber *> *future = [PINFuture<NSNumber *> dispatchWithContext:context block:^PINFuture<NSNumber *> * _Nonnull{

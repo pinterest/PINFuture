@@ -15,7 +15,7 @@
 SpecBegin(UtilSpecs)
 
 describe(@"all", ^{
-    
+
     it(@"resolves if all source promises resolve", ^{
         NSNumber *value1 = @1;
         NSNumber *value2 = @2;
@@ -24,7 +24,7 @@ describe(@"all", ^{
         PINFuture<NSArray<NSNumber *> *> *arrayFuture = [PINFuture<NSNumber *> all:@[source1, source2]];
         expectFutureToResolveWith(self, arrayFuture, @[value1, value2]);
     });
-    
+
     it(@"rejects if any source promise rejects", ^{
         NSNumber *value1 = @1;
         NSError *error2 = [[NSError alloc] init];

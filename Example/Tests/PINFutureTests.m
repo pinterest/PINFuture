@@ -26,7 +26,7 @@ describe(@"future", ^{
         PINFuture<NSNumber *> *future = [PINFuture<NSNumber *> futureWithError:error];
         expectFutureToRejectWith(self, future, error);
     });
-    
+
     it(@"resolves only once", ^{
         NSNumber *value = @1;
         // Calls to resolve or reject after the first should be ignored.
@@ -37,7 +37,7 @@ describe(@"future", ^{
         }];
         expectFutureToResolveWith(self, future, value);
     });
-    
+
     it(@"rejects only once", ^{
         NSError *error = [[NSError alloc] init];
         // Calls to resolve or reject after the first should be ignored.

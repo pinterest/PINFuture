@@ -20,12 +20,12 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		6003F5BC195388D20070C39A /* FutureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* FutureTests.m */; };
+		6003F5BC195388D20070C39A /* PINFutureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* PINFutureTests.m */; };
 		83626EF51DF5EA1F001CDCC7 /* StressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83626EF41DF5EA1F001CDCC7 /* StressTests.m */; };
-		83626EF71DF5F5FA001CDCC7 /* UtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83626EF61DF5F5FA001CDCC7 /* UtilTests.m */; };
-		83626F011DF62ABE001CDCC7 /* DispatchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83626F001DF62ABE001CDCC7 /* DispatchTests.m */; };
-		83626F121DF96773001CDCC7 /* MapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83626F111DF96773001CDCC7 /* MapTests.m */; };
-		83E1B2D81DF4C2730068B35F /* FlatMapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E1B2D71DF4C2730068B35F /* FlatMapTests.m */; };
+		83626EF71DF5F5FA001CDCC7 /* PINFuture+UtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83626EF61DF5F5FA001CDCC7 /* PINFuture+UtilTests.m */; };
+		83626F011DF62ABE001CDCC7 /* PINFuture+DispatchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83626F001DF62ABE001CDCC7 /* PINFuture+DispatchTests.m */; };
+		83626F121DF96773001CDCC7 /* PINFuture2+MapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83626F111DF96773001CDCC7 /* PINFuture2+MapTests.m */; };
+		83E1B2D81DF4C2730068B35F /* PINFuture2+FlatMapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E1B2D71DF4C2730068B35F /* PINFuture2+FlatMapTests.m */; };
 		83E1B2DB1DF4C5DF0068B35F /* TestUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E1B2DA1DF4C5DF0068B35F /* TestUtil.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		B81A292D7ACB087392340FE9 /* Pods_PINFuture_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAD6A03E1F0F7045FC95494 /* Pods_PINFuture_Example.framework */; };
@@ -63,14 +63,14 @@
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6003F5BB195388D20070C39A /* FutureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FutureTests.m; sourceTree = "<group>"; };
+		6003F5BB195388D20070C39A /* PINFutureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PINFutureTests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		781D0727B7DDED858FD00A64 /* Pods-PINFuture_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PINFuture_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PINFuture_Tests/Pods-PINFuture_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		83626EF41DF5EA1F001CDCC7 /* StressTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StressTests.m; sourceTree = "<group>"; };
-		83626EF61DF5F5FA001CDCC7 /* UtilTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilTests.m; sourceTree = "<group>"; };
-		83626F001DF62ABE001CDCC7 /* DispatchTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchTests.m; sourceTree = "<group>"; };
-		83626F111DF96773001CDCC7 /* MapTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTests.m; sourceTree = "<group>"; };
-		83E1B2D71DF4C2730068B35F /* FlatMapTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlatMapTests.m; sourceTree = "<group>"; };
+		83626EF61DF5F5FA001CDCC7 /* PINFuture+UtilTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PINFuture+UtilTests.m"; sourceTree = "<group>"; };
+		83626F001DF62ABE001CDCC7 /* PINFuture+DispatchTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PINFuture+DispatchTests.m"; sourceTree = "<group>"; };
+		83626F111DF96773001CDCC7 /* PINFuture2+MapTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PINFuture2+MapTests.m"; sourceTree = "<group>"; };
+		83E1B2D71DF4C2730068B35F /* PINFuture2+FlatMapTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PINFuture2+FlatMapTests.m"; sourceTree = "<group>"; };
 		83E1B2D91DF4C5DF0068B35F /* TestUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestUtil.h; sourceTree = "<group>"; };
 		83E1B2DA1DF4C5DF0068B35F /* TestUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUtil.m; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -169,12 +169,12 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				83626F001DF62ABE001CDCC7 /* DispatchTests.m */,
-				6003F5BB195388D20070C39A /* FutureTests.m */,
-				83E1B2D71DF4C2730068B35F /* FlatMapTests.m */,
-				83626F111DF96773001CDCC7 /* MapTests.m */,
+				6003F5BB195388D20070C39A /* PINFutureTests.m */,
+				83626F001DF62ABE001CDCC7 /* PINFuture+DispatchTests.m */,
+				83626EF61DF5F5FA001CDCC7 /* PINFuture+UtilTests.m */,
+				83E1B2D71DF4C2730068B35F /* PINFuture2+FlatMapTests.m */,
+				83626F111DF96773001CDCC7 /* PINFuture2+MapTests.m */,
 				83626EF41DF5EA1F001CDCC7 /* StressTests.m */,
-				83626EF61DF5F5FA001CDCC7 /* UtilTests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -420,12 +420,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83E1B2D81DF4C2730068B35F /* FlatMapTests.m in Sources */,
+				83E1B2D81DF4C2730068B35F /* PINFuture2+FlatMapTests.m in Sources */,
 				83E1B2DB1DF4C5DF0068B35F /* TestUtil.m in Sources */,
-				6003F5BC195388D20070C39A /* FutureTests.m in Sources */,
-				83626F011DF62ABE001CDCC7 /* DispatchTests.m in Sources */,
-				83626EF71DF5F5FA001CDCC7 /* UtilTests.m in Sources */,
-				83626F121DF96773001CDCC7 /* MapTests.m in Sources */,
+				6003F5BC195388D20070C39A /* PINFutureTests.m in Sources */,
+				83626F011DF62ABE001CDCC7 /* PINFuture+DispatchTests.m in Sources */,
+				83626EF71DF5F5FA001CDCC7 /* PINFuture+UtilTests.m in Sources */,
+				83626F121DF96773001CDCC7 /* PINFuture2+MapTests.m in Sources */,
 				83626EF51DF5EA1F001CDCC7 /* StressTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
