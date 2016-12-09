@@ -72,15 +72,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (PINFuture<NSNull *> *)mapToNull;
 
-- (PINFuture<ObjectType> *)context:(PINExecutionContext)context recover:(PINFuture<ObjectType> *(^)(NSError *error))recover;
-
 @end
 
 NS_ASSUME_NONNULL_END
 
 // Import everything for caller convenience.
+#import "PINFuture+All.h"
 #import "PINFuture+Dispatch.h"
-#import "PINFuture+Util.h"
+#import "PINFuture+FlatMapError.h"
+#import "PINFuture+MapError.h"
 #import "PINFuture2.h"
 #import "PINFuture2+Map.h"
 #import "PINFuture2+FlatMap.h"

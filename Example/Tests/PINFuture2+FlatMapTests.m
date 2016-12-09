@@ -11,24 +11,24 @@
 #import "PINFuture.h"
 #import "TestUtil.h"
 
-SpecBegin(FlatMapSpecs)
+SpecBegin(PINFuture2FlatMapSpecs)
 
 describe(@"flatMap", ^{
     it(@"can return resolved promise", ^{
-        NSNumber *valueA = @1;
-        NSString *valueB = @"A";
-        PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> futureWithValue:valueA];
-        PINFuture<NSString *> *futureB = [PINFuture2<NSNumber *, NSString *> flatMap:futureA success:^PINFuture<NSString *> * _Nonnull(NSNumber * _Nonnull fromValue) {
+        NSNumber *valueA = numberFixture();
+        NSString *valueB = stringFixture();
+        PINFuture<NSString *> *futureA = [PINFuture<NSString *> futureWithValue:valueA];
+        PINFuture<NSString *> *futureB = [PINFuture2<NSString *, NSString *> flatMap:futureA success:^PINFuture<NSString *> * _Nonnull(NSString * _Nonnull fromValue) {
             return [PINFuture<NSString *> futureWithValue:valueB];
         }];
         expectFutureToResolveWith(self, futureB, valueB);
     });
 
     it(@"can return rejected promise", ^{
-        NSNumber *valueA = @1;
-        NSError *errorB = [[NSError alloc] init];
-        PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> futureWithValue:valueA];
-        PINFuture<NSString *> *futureB = [PINFuture2<NSNumber *, NSString *> flatMap:futureA success:^PINFuture<NSString *> * _Nonnull(NSNumber * _Nonnull fromValue) {
+        NSString *valueA = stringFixture();
+        NSError *errorB = errorFixture();
+        PINFuture<NSString *> *futureA = [PINFuture<NSString *> futureWithValue:valueA];
+        PINFuture<NSString *> *futureB = [PINFuture2<NSString *, NSString *> flatMap:futureA success:^PINFuture<NSString *> * _Nonnull(NSString * _Nonnull fromValue) {
             return [PINFuture<NSString *> futureWithError:errorB];
         }];
         expectFutureToRejectWith(self, futureB, errorB);

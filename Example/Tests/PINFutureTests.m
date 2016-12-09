@@ -11,40 +11,39 @@
 #import "PINFuture.h"
 #import "TestUtil.h"
 
-SpecBegin(FutureSpecs)
+SpecBegin(PINFutureSpecs)
 
 describe(@"future", ^{
-
     it(@"create with value", ^{
-        NSNumber *value = @1;
-        PINFuture<NSNumber *> *future = [PINFuture<NSNumber *> futureWithValue:value];
+        NSString *value = stringFixture();
+        PINFuture<NSString *> *future = [PINFuture<NSString *> futureWithValue:value];
         expectFutureToResolveWith(self, future, value);
     });
 
     it(@"create with error", ^{
-        NSError *error = [[NSError alloc] init];
-        PINFuture<NSNumber *> *future = [PINFuture<NSNumber *> futureWithError:error];
+        NSError *error = errorFixture();
+        PINFuture<NSString *> *future = [PINFuture<NSString *> futureWithError:error];
         expectFutureToRejectWith(self, future, error);
     });
 
     it(@"resolves only once", ^{
-        NSNumber *value = @1;
+        NSString *value = stringFixture();
         // Calls to resolve or reject after the first should be ignored.
-        PINFuture<NSNumber *> *future = [PINFuture<NSNumber *> futureWithBlock:^(void (^ _Nonnull resolve)(NSNumber * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+        PINFuture<NSString *> *future = [PINFuture<NSString *> futureWithBlock:^(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
             resolve(value);
             resolve(value);
-            reject([[NSError alloc] init]);
+            reject(errorFixture());
         }];
         expectFutureToResolveWith(self, future, value);
     });
 
     it(@"rejects only once", ^{
-        NSError *error = [[NSError alloc] init];
+        NSError *error = errorFixture();
         // Calls to resolve or reject after the first should be ignored.
-        PINFuture<NSNumber *> *future = [PINFuture<NSNumber *> futureWithBlock:^(void (^ _Nonnull resolve)(NSNumber * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+        PINFuture<NSString *> *future = [PINFuture<NSString *> futureWithBlock:^(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
             reject(error);
             reject(error);
-            resolve(@1);
+            resolve(numberFixture());
         }];
         expectFutureToRejectWith(self, future, error);
     });

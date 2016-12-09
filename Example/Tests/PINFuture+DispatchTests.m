@@ -16,14 +16,14 @@ dispatch_queue_t backgroundQueue() {
     return dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 }
 
-SpecBegin(DispatchSpecs)
+SpecBegin(PINFutureDispatchSpecs)
 
 describe(@"dispatch", ^{
     PINExecutionContext context = [PINExecution background];
 
     it(@"resolve on background queue", ^{
-        NSNumber *value = @4;
-        PINFuture<NSNumber *> *future = [PINFuture<NSNumber *> dispatchWithContext:context block:^PINFuture<NSNumber *> * _Nonnull{
+        NSString *value = @4;
+        PINFuture<NSString *> *future = [PINFuture<NSString *> dispatchWithContext:context block:^PINFuture<NSString *> * _Nonnull{
             return [PINFuture futureWithValue:value];
         }];
         expectFutureToResolveWith(self, future, value);
@@ -31,7 +31,7 @@ describe(@"dispatch", ^{
 
     it(@"reject on background queue", ^{
         NSError *error = [[NSError alloc] init];
-        PINFuture<NSNumber *> *future = [PINFuture<NSNumber *> dispatchWithContext:context block:^PINFuture<NSNumber *> * _Nonnull{
+        PINFuture<NSString *> *future = [PINFuture<NSString *> dispatchWithContext:context block:^PINFuture<NSString *> * _Nonnull{
             return [PINFuture futureWithError:error];
         }];
         expectFutureToRejectWith(self, future, error);

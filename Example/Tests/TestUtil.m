@@ -27,3 +27,17 @@ void expectFutureToRejectWith(id testCase, PINFuture *future, NSError *expectedE
         }];
     });
 }
+
+static NSInteger counter = 0;
+
+NSNumber *numberFixture() {
+    return @(counter++);
+}
+
+NSString *stringFixture() {
+    return [NSString stringWithFormat:@"fixture%ld", (long)counter++];
+}
+
+NSError *errorFixture() {
+    return [NSError errorWithDomain:NSCocoaErrorDomain code:counter++ userInfo:nil];
+}

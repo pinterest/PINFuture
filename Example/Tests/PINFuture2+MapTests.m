@@ -11,12 +11,12 @@
 #import "PINFuture.h"
 #import "TestUtil.h"
 
-SpecBegin(MapSpecs)
+SpecBegin(PINFuture2MapSpecs)
 
 describe(@"map", ^{
-    it(@"can return a new value", ^{
-        NSNumber *valueA = @1;
-        NSString *valueB = @"A";
+    it(@"can return a value of a different type", ^{
+        NSNumber *valueA = numberFixture();
+        NSString *valueB = stringFixture();
         PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> futureWithValue:valueA];
         PINFuture<NSString *> *futureB = [PINFuture2<NSNumber *, NSString *> map:futureA success:^NSString * _Nonnull(NSNumber * _Nonnull fromValue) {
             return valueB;

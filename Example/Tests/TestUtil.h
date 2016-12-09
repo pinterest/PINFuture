@@ -10,3 +10,7 @@
 
 void expectFutureToResolveWith(id testCase, PINFuture *future, id expectedValue);
 void expectFutureToRejectWith(id testCase, PINFuture *future, NSError *expectedError);
+
+NSNumber *numberFixture();
+NSString *stringFixture();
+NSError *errorFixture();
