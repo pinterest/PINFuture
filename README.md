@@ -26,4 +26,6 @@ Chris Danford, chrisdanford@gmail.com
 
 ## License
 
+Copyright 2016 Pinterest, Inc
+
 PINFuture is available under the MIT license. See the LICENSE file for more info.
