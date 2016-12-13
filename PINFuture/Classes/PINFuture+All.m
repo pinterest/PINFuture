@@ -21,23 +21,22 @@
                 [resolvedValues addObject:[NSNull null]];
             }
             __block NSUInteger remaining = sourceFutures.count;
-            for (NSUInteger i = 0; i < sourceFutures.count; i++) {
-                PINFuture *sourceFuture = sourceFutures[i];
+            [sourceFutures enumerateObjectsUsingBlock:^(PINFuture * _Nonnull sourceFuture, NSUInteger index, BOOL * _Nonnull stop) {
                 // Dispatch to be off of main.  This work does not need to be on main.
                 [sourceFuture context:[PINExecution background]
-                            success:^(id  _Nonnull value) {
-                                @synchronized (resolvedValues) {
-                                    resolvedValues[i] = value;
-                                    remaining = remaining - 1;
-                                    if (remaining == 0) {
-                                        resolve(resolvedValues);
-                                    }
-                                }
-                            }
-                            failure:^(NSError * _Nonnull error) {
-                                reject(error);
-                            }];
-            }
+                              success:^(id  _Nonnull value) {
+                                  @synchronized (resolvedValues) {
+                                      resolvedValues[index] = value;
+                                      remaining = remaining - 1;
+                                      if (remaining == 0) {
+                                          resolve(resolvedValues);
+                                      }
+                                  }
+                              }
+                              failure:^(NSError * _Nonnull error) {
+                                  reject(error);
+                              }];
+            }];
         }];
         return future;
     }
