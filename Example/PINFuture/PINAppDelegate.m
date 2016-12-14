@@ -3,7 +3,7 @@
 //  PINFuture
 //
 //  Created by Chris Danford on 12/02/2016.
-//  Copyright (c) 2016 Chris Danford. All rights reserved.
+//  Copyright (c) 2016 Pinterest. All rights reserved.
 //
 
 #import "PINAppDelegate.h"

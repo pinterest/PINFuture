@@ -3,7 +3,7 @@
 //  Pods
 //
 //  Created by Chris Danford on 12/7/16.
-//
+//  Copyright (c) 2016 Pinterest. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
