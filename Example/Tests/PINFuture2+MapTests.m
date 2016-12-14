@@ -3,7 +3,7 @@
 //  PINFuture
 //
 //  Created by Chris Danford on 12/4/16.
-//  Copyright © 2016 Chris Danford. All rights reserved.
+//  Copyright (c) 2016 Pinterest. All rights reserved.
 //
 
 // https://github.com/Specta/Specta
