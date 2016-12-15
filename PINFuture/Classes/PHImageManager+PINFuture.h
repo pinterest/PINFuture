@@ -17,10 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface PHImageManagerImageDataResult : NSObject
 
-@property (nonatomic) NSData *imageData;
-@property (nonatomic) NSString *dataUTI;
-@property (nonatomic) UIImageOrientation orientation;
-@property (nonatomic) NSDictionary *info;
+@property (nonatomic, readonly) NSData *imageData;
+@property (nonatomic, copy, readonly) NSString *dataUTI;
+@property (nonatomic, readonly) UIImageOrientation orientation;
+@property (nonatomic, readonly) NSDictionary *info;
 
 @end
 
