@@ -12,6 +12,7 @@
 
 + (PINFuture<id> *)dispatchWithContext:(PINExecutionContext)context block:(PINFuture<id> * (^)())block;
 {
+    NSAssert(context != NULL, @"context must not be null");
     return [PINFuture<id> withBlock:^(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         // contextify, and execute
         context(^{

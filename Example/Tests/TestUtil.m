@@ -10,7 +10,7 @@
 
 void expectFutureToResolveWith(id testCase, PINFuture *future, id expectedValue) {
     waitUntil(^(DoneCallback done) {
-        [future completion:^(NSError * _Nonnull error, NSNumber * _Nonnull value) {
+        [future completion:^(NSError * _Nonnull error, id value) {
             id self = testCase;
             expect(value).to.equal(expectedValue);
             done();
@@ -20,13 +20,36 @@ void expectFutureToResolveWith(id testCase, PINFuture *future, id expectedValue)
 
 void expectFutureToRejectWith(id testCase, PINFuture *future, NSError *expectedError) {
     waitUntil(^(DoneCallback done) {
-        [future completion:^(NSError * _Nonnull error, NSNumber * _Nonnull value) {
+        [future completion:^(NSError * _Nonnull error, id value) {
             id self = testCase;
             expect(error).to.equal(expectedError);
             done();
         }];
     });
 }
+
+void runTaskAndExpectToResolveWith(id testCase, PINTask *task, id expectedValue) {
+    waitUntil(^(DoneCallback done) {
+        [task runAsyncCompletion:^(NSError * _Nonnull error, id _Nonnull value) {
+            id self = testCase;
+            expect(value).to.equal(expectedValue);
+            expect(error).to.beNil();
+            done();
+        }];
+    });
+}
+
+void runTaskAndExpectToRejectWith(id testCase, PINTask *task, NSError *expectedError) {
+    waitUntil(^(DoneCallback done) {
+        [task runAsyncCompletion:^(NSError * _Nonnull error, id _Nonnull value) {
+            id self = testCase;
+            expect(value).to.beNil();
+            expect(error).to.equal(expectedError);
+            done();
+        }];
+    });
+}
+
 
 static NSInteger counter = 0;
 
