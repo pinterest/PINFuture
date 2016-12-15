@@ -35,7 +35,8 @@
 {
     NSAssert(strcmp(invocation.methodSignature.methodReturnType, @encode(PINFuture *)) == 0, @"only able to proxy methods that return a `PINFuture *`");
 
-    NSInvocation *invocationCopy = [invocation copy];
+    // TODO(chris): This should copy but is crashing when the copy is invoked.  Why?
+    //NSInvocation *invocationCopy = [invocation copy];
     
     PINFuture *immediateFuture = [PINFuture dispatchWithContext:self.context block:^PINFuture * _Nonnull{
         // calling invoke will have the side-effect of setting the returnValue
