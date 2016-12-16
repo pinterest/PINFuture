@@ -30,23 +30,23 @@ void expectFutureToRejectWith(id testCase, PINFuture *future, NSError *expectedE
 
 void runTaskAndExpectToResolveWith(id testCase, PINTask *task, id expectedValue) {
     waitUntil(^(DoneCallback done) {
-        [task runAsyncCompletion:^(NSError * _Nonnull error, id _Nonnull value) {
+        [[task doCompletion:^(NSError * _Nonnull error, id _Nonnull value) {
             id self = testCase;
             expect(value).to.equal(expectedValue);
             expect(error).to.beNil();
             done();
-        }];
+        }] run];
     });
 }
 
 void runTaskAndExpectToRejectWith(id testCase, PINTask *task, NSError *expectedError) {
     waitUntil(^(DoneCallback done) {
-        [task runAsyncCompletion:^(NSError * _Nonnull error, id _Nonnull value) {
+        [[task doCompletion:^(NSError * _Nonnull error, id _Nonnull value) {
             id self = testCase;
             expect(value).to.beNil();
             expect(error).to.equal(expectedError);
             done();
-        }];
+        }] run];
     });
 }
 

@@ -1,31 +1,31 @@
 //
-//  NSURLSession+PINFuture.h
+//  NSURLSession+PINTask.h
 //  Pods
 //
-//  Created by Chris Danford on 12/8/16.
+//  Created by Chris Danford on 12/15/16.
 //  Copyright (c) 2016 Pinterest. All rights reserved.
 //
 
 #import <Foundation/NSURLSession.h>
 
-#import "PINFuture.h"
+#import "PINTask.h"
 #import "PINPair.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PINFutureNSURLSessionDataTaskCompletionData : NSObject
+@interface PINTaskNSURLSessionDataTaskCompletionData : NSObject
 @property (nonatomic, readonly) NSData * _Nullable data;
 @property (nonatomic, readonly) NSURLResponse * _Nullable response;
 @property (nonatomic, readonly) NSError * _Nullable error;
 @end
 
-@interface NSURLSession (PINFuture)
+@interface NSURLSession (PINTask)
 
 /**
- * Returns a Future that never rejects.  The value type has an error field.
+ * Returns a Task that never rejects.  The value type has an error field.
  * that is set in non-exceptional cases such as 4xx response codes.
  */
-- (PINPair<NSURLSessionDataTask *, PINFuture<PINFutureNSURLSessionDataTaskCompletionData *> *> *)dataTaskFutureWithRequest:(NSURLRequest *)request;
+- (PINPair<NSURLSessionDataTask *, PINTask<PINTaskNSURLSessionDataTaskCompletionData *> *> *)taskWithRequest:(NSURLRequest *)request;
 
 @end
 

@@ -19,7 +19,7 @@
 
 @implementation NSURLSession (PINFuture)
 
-- (PINPair<NSURLSessionDataTask *, PINFuture<PINFutureNSURLSessionDataTaskCompletionData *> *> *)dataTaskAndwithRequest:(NSURLRequest *)request;
+- (PINPair<NSURLSessionDataTask *, PINFuture<PINFutureNSURLSessionDataTaskCompletionData *> *> *)dataTaskFutureWithRequest:(NSURLRequest *)request;
 {
     __block NSURLSessionDataTask *task;
     PINFuture<PINFutureNSURLSessionDataTaskCompletionData *> *future;

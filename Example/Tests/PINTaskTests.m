@@ -69,30 +69,6 @@ describe(@"task", ^{
 //        }];
 //        runTaskAndExpectToRejectWith(self, task, value);
 //    });
-
-    it(@"can cache", ^{
-        NSString *initialValue = stringFixture();
-        __block NSUInteger callCount = 0;
-        PINTask<NSString *> *sourceTask = [PINTask<NSString *> new:^PINCancellationBlock _Nullable(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
-            callCount++;
-            resolve(initialValue);
-            return NULL;
-        }];
-        PINTask<NSString *> *cachedTask = [sourceTask cache];
-
-        // Intentionally call `runTask` twice.
-        for (NSUInteger i = 0; i < 2; i++) {
-            waitUntil(^(DoneCallback done) {
-                [cachedTask runAsyncCompletion:^(NSError * _Nonnull error, id _Nonnull value) {
-                    expect(value).to.equal(initialValue);
-                    expect(error).to.beNil();
-                    // The original task should have been executed only once.
-                    expect(callCount).to.equal(1);
-                    done();
-                }];
-            });
-        }
-    });
 });
 
 SpecEnd
