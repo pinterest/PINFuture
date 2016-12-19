@@ -22,14 +22,18 @@
 - (PINTask<id> *)doAsyncSuccess:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure
 {
     PINExecutionContext context = [PINExecution defaultContextForCurrentThread];
-    return [self doSuccess:^(id  _Nonnull value) {
+    return [self doSuccess:^(id _Nonnull value) {
         context(^{
-            success(value);
-        });
+            if (success != NULL) {
+                success(value);
+            }
+        })();
     } failure:^(NSError * _Nonnull error) {
         context(^{
-            failure(error);
-        });
+            if (failure != NULL) {
+                failure(error);
+            }
+        })();
     }];
 }
 

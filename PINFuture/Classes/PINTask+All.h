@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PINTask<ObjectType> (All)
-+ (PINTask<NSArray<ObjectType> *> *)all:(NSArray<PINTask<ObjectType> *> *)tasks;
++ (PINTask<NSArray<ObjectType> *> *)all:(NSArray<PINTask<ObjectType> *> *)tasks __attribute__((warn_unused_result));
 @end
 
 NS_ASSUME_NONNULL_END

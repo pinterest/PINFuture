@@ -50,6 +50,13 @@ describe(@"task", ^{
         runTaskAndExpectToRejectWith(self, task, error);
     });
     
+    it(@"not calling `run` before dealloc will assert", ^{
+        expect(^{
+            NSString *value = stringFixture();
+            __unused PINTask<NSString *> *task = [PINTask<NSString *> value:value];
+        }).to.raise(@"NSInternalInconsistencyException");
+    });
+
 //    it(@"tolerates success callback being null", ^{
 //        NSError *error = errorFixture();
 //        PINTask<NSString *> *task = [PINTask<NSString *> new:^PINCancellationBlock _Nullable(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {

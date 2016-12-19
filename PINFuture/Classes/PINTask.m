@@ -37,6 +37,9 @@ PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
 
 @interface PINTask ()
 @property (nonatomic) PINExecuteBlock block;
+@property (nonatomic) NSUInteger runCount;
+@property (nonatomic) NSArray<NSString *> *callStackSymbols;
+
 @end
 
 @implementation PINTask
@@ -45,6 +48,7 @@ PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
 {
     PINTask<id> *task = [[PINTask alloc] init];
     task.block = block;
+    task.callStackSymbols = [NSThread callStackSymbols];
     return task;
 }
 
@@ -64,6 +68,15 @@ PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
     }];
 }
 
+- (void)dealloc
+{
+    if (self.runCount <= 0) {
+        NSLog(@"chris %@", self.callStackSymbols);
+    }
+        
+    NSAssert(self.runCount > 0, @"constructed a PINTask but never ran it.");
+}
+
 - (PINTask<id> *)doSuccess:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure
 {
     return [self.class new:^PINCancellationBlock _Nullable(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
@@ -76,13 +89,15 @@ PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
             if (failure != NULL) {
                 failure(error);
             }
-            resolve(error);
+            reject(error);
         }];
     }];
 }
 
 - (__nullable PINCancellationBlock)runSuccess:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure;
 {
+    self.runCount += 1;
+             
     PINExecuteBlock onceBlock = resolveOrRejectOnceExecutionBlock(self.block);
     onceBlock(^void(id value) {
         if (success != NULL) {

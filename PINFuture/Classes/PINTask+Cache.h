@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PINTask<ObjectType> (Cache)
-- (PINTask<ObjectType> *)cache;
+- (PINTask<ObjectType> *)cache __attribute__((warn_unused_result));
 @end
 
 NS_ASSUME_NONNULL_END

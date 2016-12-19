@@ -28,13 +28,16 @@
         completionData.data = data;
         completionData.response = response;
         completionData.error = error;
-        NSAssert(finalResolve != NULL, @"finalResolve should not be nill");
+        NSAssert(finalResolve != NULL, @"finalResolve should not be nil");
         finalResolve(completionData);
     }];
     
     PINTask<PINTaskNSURLSessionDataTaskCompletionData *> *completionTask = [PINTask<PINTaskNSURLSessionDataTaskCompletionData *> new:^PINCancellationBlock _Nullable(void (^ _Nonnull resolve)(PINTaskNSURLSessionDataTaskCompletionData * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+        
+        // save the resolve block, then call `resume`.
         finalResolve = resolve;
         [dataTask resume];
+        
         return ^{
             [dataTask cancel];
         };

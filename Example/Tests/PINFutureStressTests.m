@@ -1,5 +1,5 @@
 //
-//  StressTests.m
+//  PINFutureStressTests.m
 //  PINFutureTests
 //
 //  Created by Chris Danford on 12/5/16.
@@ -11,7 +11,7 @@
 #import "PINFuture.h"
 #import "TestUtil.h"
 
-SpecBegin(StressSpecs)
+SpecBegin(PINFutureStressSpecs)
 
 describe(@"stress test", ^{
     it(@"handles large numbers of callbacks", ^{

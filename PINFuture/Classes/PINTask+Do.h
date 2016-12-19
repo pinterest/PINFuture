@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PINTask<ObjectType> (Do)
 
-- (PINTask<ObjectType> *)doCompletion:(void(^)(NSError *error, ObjectType value))completion;
-- (PINTask<ObjectType> *)doAsyncSuccess:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure;
-- (PINTask<ObjectType> *)doAsyncCompletion:(void(^)(NSError *error, ObjectType value))completion;
+- (PINTask<ObjectType> *)doCompletion:(void(^)(NSError *error, ObjectType value))completion __attribute__((warn_unused_result));
+- (PINTask<ObjectType> *)doAsyncSuccess:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure __attribute__((warn_unused_result));
+- (PINTask<ObjectType> *)doAsyncCompletion:(void(^)(NSError *error, ObjectType value))completion __attribute__((warn_unused_result));
 
 @end
 
