@@ -10,5 +10,5 @@
 #import "PINTask2.h"
 
 @interface PINTask2<FromType, ToType> (FlatMap)
-+ (PINTask<ToType> *)flatMap:(PINTask<FromType> *)sourceTask success:(PINTask<ToType> *(^)(FromType fromValue))success __attribute__((warn_unused_result));
++ (PINTask<ToType> *)flatMap:(PINTask<FromType> *)sourceTask success:(PINTask<ToType> *(^)(FromType fromValue))success PIN_WARN_UNUSED_RESULT;
 @end

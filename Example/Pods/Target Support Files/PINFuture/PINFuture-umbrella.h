@@ -6,6 +6,7 @@
 #import "NSURLSession+PINTask.h"
 #import "PHImageManager+PINFuture.h"
 #import "PHImageManager+PINTask.h"
+#import "PINDefines.h"
 #import "PINDispatchProxy.h"
 #import "PINExecution.h"
 #import "PINFuture+All.h"

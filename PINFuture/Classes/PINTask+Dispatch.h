@@ -12,8 +12,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PINTask<ObjectType> (Dispatch)
-- (PINTask<ObjectType> *)dispatch:(PINExecutionContext)context __attribute__((warn_unused_result));
-- (PINTask<ObjectType> *)dispatchDefault __attribute__((warn_unused_result));
+- (PINTask<ObjectType> *)dispatch:(PINExecutionContext)context PIN_WARN_UNUSED_RESULT;
+- (PINTask<ObjectType> *)dispatchDefault PIN_WARN_UNUSED_RESULT;
 @end
 
 NS_ASSUME_NONNULL_END

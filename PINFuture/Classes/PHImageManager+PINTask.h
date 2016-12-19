@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PHImageManager (PINTask)
 
-- (PINTask<PINImageManagerImageDataResult *> *)requestImageDataForAsset:(PHAsset *)asset options:(nullable PHImageRequestOptions *)options __attribute__((warn_unused_result));
+- (PINTask<PINImageManagerImageDataResult *> *)requestImageDataForAsset:(PHAsset *)asset options:(nullable PHImageRequestOptions *)options PIN_WARN_UNUSED_RESULT;
 
 @end
 

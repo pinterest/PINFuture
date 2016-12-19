@@ -6,6 +6,7 @@
 //  Copyright (c) 2016 Pinterest. All rights reserved.
 //
 
+#import "PINDefines.h"
 #import "PINExecution.h"
 #import "PINPair.h"
 
@@ -22,11 +23,11 @@ typedef __nullable PINCancellationBlock (^PINComputationBlock)(void(^resolve)(Ob
  * Computation is a function that accepts two callbacks. It should call one of them after completion with the final result (success or failure).
  * Also a computation may return a CancellationBlock with cancellation logic or it can return undefined if there is no cancellation logic
  */
-+ (PINTask<ObjectType> *)new:(__nullable PINCancellationBlock(^)(void(^resolve)(ObjectType), void(^reject)(NSError *)))block __attribute__((warn_unused_result));
-+ (PINTask<ObjectType> *)value:(ObjectType)value __attribute__((warn_unused_result));
-+ (PINTask<ObjectType> *)error:(NSError *)error __attribute__((warn_unused_result));
++ (PINTask<ObjectType> *)new:(__nullable PINCancellationBlock(^)(void(^resolve)(ObjectType), void(^reject)(NSError *)))block PIN_WARN_UNUSED_RESULT;
++ (PINTask<ObjectType> *)value:(ObjectType)value PIN_WARN_UNUSED_RESULT;
++ (PINTask<ObjectType> *)error:(NSError *)error PIN_WARN_UNUSED_RESULT;
 
-- (PINTask<ObjectType> *)doSuccess:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure __attribute__((warn_unused_result));
+- (PINTask<ObjectType> *)doSuccess:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure PIN_WARN_UNUSED_RESULT;
 - (__nullable PINCancellationBlock)run;
 
 @end
@@ -42,7 +43,7 @@ typedef __nullable PINCancellationBlock (^PINComputationBlock)(void(^resolve)(Ob
 //- (PINTask<ObjectType> *)retry:(NSUInteger)numRetries initialDelay:(NSTimeInterval)delay exponent:(float)exponent;
 //- (PINTask<ObjectType> *)mapError:(NSError *(^)(NSError *error))mapError;
 //- (PINTask<ObjectType> *)flatMapError:(PINTask<ObjectType> *(^)(NSError *error))flatMapError;
-- (PINTask<NSNull *> *)mapToNull __attribute__((warn_unused_result));
+- (PINTask<NSNull *> *)mapToNull PIN_WARN_UNUSED_RESULT;
 @end
 
 NS_ASSUME_NONNULL_END
