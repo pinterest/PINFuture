@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		053D46F717EF2EAA20035707C9B22397 /* PINFuture+FlatMapError.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E35BE18565333750577690AD0E9DBE /* PINFuture+FlatMapError.m */; };
 		0543FB5DB1735BF80E69BAF774143315 /* PINOnce.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4894DFC14D1E37316E945D7EDFD7CA /* PINOnce.m */; };
+		09A41C411E09B8460072EE8C /* PINResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 09A41C391E09B8460072EE8C /* PINResult.h */; };
+		09A41C421E09B8460072EE8C /* PINResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A41C3A1E09B8460072EE8C /* PINResult.m */; };
+		09A41C431E09B8460072EE8C /* PINResult2.h in Headers */ = {isa = PBXBuildFile; fileRef = 09A41C3B1E09B8460072EE8C /* PINResult2.h */; };
+		09A41C441E09B8460072EE8C /* PINResult2.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A41C3C1E09B8460072EE8C /* PINResult2.m */; };
+		09A41C451E09B8460072EE8C /* PINResultFailure.h in Headers */ = {isa = PBXBuildFile; fileRef = 09A41C3D1E09B8460072EE8C /* PINResultFailure.h */; };
+		09A41C461E09B8460072EE8C /* PINResultFailure.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A41C3E1E09B8460072EE8C /* PINResultFailure.m */; };
+		09A41C471E09B8460072EE8C /* PINResultSuccess.h in Headers */ = {isa = PBXBuildFile; fileRef = 09A41C3F1E09B8460072EE8C /* PINResultSuccess.h */; };
+		09A41C481E09B8460072EE8C /* PINResultSuccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A41C401E09B8460072EE8C /* PINResultSuccess.m */; };
 		0C6FF91EB1F0391ED75DC72D31D159EF /* EXPMatchers+beTruthy.m in Sources */ = {isa = PBXBuildFile; fileRef = 408EA78FA928332DAE21B1527BCC7A2F /* EXPMatchers+beTruthy.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0D16B556212D317A0D4FEB71E102E207 /* EXPMatchers+beLessThan.h in Headers */ = {isa = PBXBuildFile; fileRef = 42EC02837F7465B7AED8E1A256D57C91 /* EXPMatchers+beLessThan.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0D65EB7EB62C9E646B4F3DA1A85C1528 /* PINFuture2.m in Sources */ = {isa = PBXBuildFile; fileRef = F08F3DDF5850EA518EFD8A58D8978581 /* PINFuture2.m */; };
@@ -212,6 +220,14 @@
 		04D6221AD6AD261B601F9711E749A5D5 /* EXPBlockDefinedMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EXPBlockDefinedMatcher.h; path = Expecta/EXPBlockDefinedMatcher.h; sourceTree = "<group>"; };
 		0569AB1FCD6063E0A878F6359C231199 /* Pods-PINFuture_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PINFuture_Example-umbrella.h"; sourceTree = "<group>"; };
 		06C1DD363D5966F42C4D802641B4CEEA /* SPTSharedExampleGroups.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SPTSharedExampleGroups.h; path = Specta/Specta/SPTSharedExampleGroups.h; sourceTree = "<group>"; };
+		09A41C391E09B8460072EE8C /* PINResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PINResult.h; sourceTree = "<group>"; };
+		09A41C3A1E09B8460072EE8C /* PINResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PINResult.m; sourceTree = "<group>"; };
+		09A41C3B1E09B8460072EE8C /* PINResult2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PINResult2.h; sourceTree = "<group>"; };
+		09A41C3C1E09B8460072EE8C /* PINResult2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PINResult2.m; sourceTree = "<group>"; };
+		09A41C3D1E09B8460072EE8C /* PINResultFailure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PINResultFailure.h; sourceTree = "<group>"; };
+		09A41C3E1E09B8460072EE8C /* PINResultFailure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PINResultFailure.m; sourceTree = "<group>"; };
+		09A41C3F1E09B8460072EE8C /* PINResultSuccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PINResultSuccess.h; sourceTree = "<group>"; };
+		09A41C401E09B8460072EE8C /* PINResultSuccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PINResultSuccess.m; sourceTree = "<group>"; };
 		0A43571BF330E7068A4CBD0E96CDC73E /* Pods-PINFuture_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PINFuture_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		0B08D0370A9C9C27490B2C19D832C8AB /* Pods-PINFuture_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PINFuture_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		0B1690BB41C40A55A653FD269A17FFF6 /* Expecta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Expecta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -516,6 +532,14 @@
 		173E15D3D7DBC6F2443290BAD6EFDC31 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				09A41C391E09B8460072EE8C /* PINResult.h */,
+				09A41C3A1E09B8460072EE8C /* PINResult.m */,
+				09A41C3B1E09B8460072EE8C /* PINResult2.h */,
+				09A41C3C1E09B8460072EE8C /* PINResult2.m */,
+				09A41C3D1E09B8460072EE8C /* PINResultFailure.h */,
+				09A41C3E1E09B8460072EE8C /* PINResultFailure.m */,
+				09A41C3F1E09B8460072EE8C /* PINResultSuccess.h */,
+				09A41C401E09B8460072EE8C /* PINResultSuccess.m */,
 				FFDE830AE8156F95616D5F4D2CA3F204 /* ALAssetsLibrary+PINFuture.h */,
 				FDEB10005509A16F315D55F9A2F0840B /* ALAssetsLibrary+PINFuture.m */,
 				9D0375C40821582A7ABB9B3353BF8C9B /* ALAssetsLibrary+PINTask.h */,
@@ -844,6 +868,7 @@
 			files = (
 				3B5B7495707BF7133B9FB3F834045611 /* EXPBlockDefinedMatcher.h in Headers */,
 				5EA7043FE10E75D02F3C3052AF8B8318 /* EXPDefines.h in Headers */,
+				09A41C431E09B8460072EE8C /* PINResult2.h in Headers */,
 				2F427490ACABC4408D57CC0592276678 /* EXPDoubleTuple.h in Headers */,
 				837B593D7C1D01B4EA400247309D6AB0 /* Expecta-umbrella.h in Headers */,
 				E1EC4532663CA75DE5BD00CB0A56814D /* Expecta.h in Headers */,
@@ -858,7 +883,9 @@
 				FD2D4497BC41412128C2D87C1BDE7398 /* EXPMatchers+beginWith.h in Headers */,
 				6EFC63A5CED45BB39FC79D87F2C47D6B /* EXPMatchers+beGreaterThan.h in Headers */,
 				372F7A9CCE59CE86316CF436F832A3FC /* EXPMatchers+beGreaterThanOrEqualTo.h in Headers */,
+				09A41C411E09B8460072EE8C /* PINResult.h in Headers */,
 				E0AAF49134A0505DF00E20E7B62087E1 /* EXPMatchers+beIdenticalTo.h in Headers */,
+				09A41C451E09B8460072EE8C /* PINResultFailure.h in Headers */,
 				34B6E9A30603BEBBD87BA535B7D384CA /* EXPMatchers+beInstanceOf.h in Headers */,
 				131532787AD40BE1F35DF288D2E6FFD7 /* EXPMatchers+beInTheRangeOf.h in Headers */,
 				79558B1F97ABE4AB8942DC18BEBD4B82 /* EXPMatchers+beKindOf.h in Headers */,
@@ -874,6 +901,7 @@
 				0F94F5B0ABB3252B9275B7C129EC7A26 /* EXPMatchers+equal.h in Headers */,
 				F75CB2A727F678C9A848A3A11EA7979B /* EXPMatchers+haveCountOf.h in Headers */,
 				2916A0606136A9DC67F2463AB230868B /* EXPMatchers+match.h in Headers */,
+				09A41C471E09B8460072EE8C /* PINResultSuccess.h in Headers */,
 				9B2E761A064459F77EA9870BEF03ACC3 /* EXPMatchers+postNotification.h in Headers */,
 				46137F5CC368BF38BAF0D0AF81DD8FFE /* EXPMatchers+raise.h in Headers */,
 				11C1AEB289C1EB80089349B71F09D04B /* EXPMatchers+raiseWithReason.h in Headers */,
@@ -1094,6 +1122,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09A41C441E09B8460072EE8C /* PINResult2.m in Sources */,
 				5B2D4A621D3DA971A474776AF36BB073 /* EXPBlockDefinedMatcher.m in Sources */,
 				BC55C8365AEFF8217F6A567607754854 /* EXPDoubleTuple.m in Sources */,
 				204D694B03BFF3B244A6AB73FACFFC43 /* Expecta-dummy.m in Sources */,
@@ -1108,6 +1137,7 @@
 				1312A7D381C51428CF481E33E3D37901 /* EXPMatchers+beGreaterThan.m in Sources */,
 				1B0389CD88AA949B34DC7269030FEC6F /* EXPMatchers+beGreaterThanOrEqualTo.m in Sources */,
 				66A27898E989A3FA5C15AA671C4536F0 /* EXPMatchers+beIdenticalTo.m in Sources */,
+				09A41C461E09B8460072EE8C /* PINResultFailure.m in Sources */,
 				76D337327C10A7555447B69AA1562647 /* EXPMatchers+beInstanceOf.m in Sources */,
 				9BB9159FBA757600D3D4C0FF645F3911 /* EXPMatchers+beInTheRangeOf.m in Sources */,
 				87FD5F0F682CDEB6A348CA448889E3EA /* EXPMatchers+beKindOf.m in Sources */,
@@ -1124,8 +1154,10 @@
 				403292D82DA62291204BF59524BC4EDB /* EXPMatchers+haveCountOf.m in Sources */,
 				FC45858927D3B6A0F922C4B697B04A38 /* EXPMatchers+match.m in Sources */,
 				931D410B9F8ACB935883DF8C59F9C93E /* EXPMatchers+postNotification.m in Sources */,
+				09A41C481E09B8460072EE8C /* PINResultSuccess.m in Sources */,
 				2CFE2898496C1C7096DB8DA43AF19103 /* EXPMatchers+raise.m in Sources */,
 				FE8E34356D24F6759A8B010ED2F5707B /* EXPMatchers+raiseWithReason.m in Sources */,
+				09A41C421E09B8460072EE8C /* PINResult.m in Sources */,
 				E0A077DFB064B79685B810CCEFB2F1EF /* EXPMatchers+respondTo.m in Sources */,
 				EF6497EE123F6BC0C1B09717437C5908 /* EXPUnsupportedObject.m in Sources */,
 				B84431CF8C64F363A334AA7089F6C134 /* NSValue+Expecta.m in Sources */,
