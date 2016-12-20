@@ -16,10 +16,20 @@ describe(@"map", ^{
         NSNumber *valueA = numberFixture();
         NSString *valueB = stringFixture();
         PINTask<NSNumber *> *taskA = [PINTask<NSNumber *> value:valueA];
-        PINTask<NSString *> *taskB = [PINTask2<NSNumber *, NSString *> context:[PINExecution immediate] map:taskA success:^NSString *(NSNumber *fromValue) {
-            return valueB;
+        PINTask<NSString *> *taskB = [PINTask2<NSNumber *, NSString *> context:[PINExecution immediate] map:taskA success:^PINResult<NSString *> *(NSNumber *fromValue) {
+            return [PINResult succeedWith:valueB];
         }];
         runTaskAndExpectToResolveWith(self, taskB, valueB);
+    });
+    
+    it(@"can cause a failure", ^{
+        NSNumber *valueA = numberFixture();
+        NSError *error = errorFixture();
+        PINTask<NSNumber *> *taskA = [PINTask<NSNumber *> value:valueA];
+        PINTask<NSString *> *taskB = [PINTask2<NSNumber *, NSString *> context:[PINExecution immediate] map:taskA success:^PINResult<NSString *> *(NSNumber *fromValue) {
+            return [PINResult failWith:error];
+        }];
+        runTaskAndExpectToRejectWith(self, taskB, error);
     });
 });
 
