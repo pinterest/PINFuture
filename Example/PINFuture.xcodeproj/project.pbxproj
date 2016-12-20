@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09A41C381E09B5950072EE8C /* PINResultTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5971D279FCC25DA78DFD52A5 /* PINResultTests.m */; };
 		16328CA7B3F11E0B8B9D14ED /* Pods_PINFuture_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A821DF67E7C6F4B8CBFD0C4 /* Pods_PINFuture_Tests.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -56,6 +57,7 @@
 		2A821DF67E7C6F4B8CBFD0C4 /* Pods_PINFuture_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PINFuture_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31F4E9B3BEFC11D41B0E8B26 /* Pods-PINFuture_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PINFuture_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-PINFuture_Example/Pods-PINFuture_Example.release.xcconfig"; sourceTree = "<group>"; };
 		455156103D57344FBA3283B7 /* PINFuture.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PINFuture.podspec; path = ../PINFuture.podspec; sourceTree = "<group>"; };
+		5971D279FCC25DA78DFD52A5 /* PINResultTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PINResultTests.m; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* PINFuture_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PINFuture_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -206,6 +208,7 @@
 				8349E1291E026C8800EB7EA3 /* PINTask2+MapTests.m */,
 				8349E1411E047CE300EB7EA3 /* PINTaskStressTest.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
+				5971D279FCC25DA78DFD52A5 /* PINResultTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -250,12 +253,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "PINFuture_Example" */;
 			buildPhases = (
-				1BDE8456B130AFB191B3C499 /* 📦 Check Pods Manifest.lock */,
+				1BDE8456B130AFB191B3C499 /* [CP] Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				8BE011059005F372199CA421 /* 📦 Embed Pods Frameworks */,
-				A3C652621DDBC72DC05E1C5D /* 📦 Copy Pods Resources */,
+				8BE011059005F372199CA421 /* [CP] Embed Pods Frameworks */,
+				A3C652621DDBC72DC05E1C5D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -270,12 +273,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "PINFuture_Tests" */;
 			buildPhases = (
-				494039C0674E808B132BDE57 /* 📦 Check Pods Manifest.lock */,
+				494039C0674E808B132BDE57 /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				07F1E04CFA889C4C6FB65FB2 /* 📦 Embed Pods Frameworks */,
-				0C84E192F7D747E3F2757856 /* 📦 Copy Pods Resources */,
+				07F1E04CFA889C4C6FB65FB2 /* [CP] Embed Pods Frameworks */,
+				0C84E192F7D747E3F2757856 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -343,14 +346,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		07F1E04CFA889C4C6FB65FB2 /* 📦 Embed Pods Frameworks */ = {
+		07F1E04CFA889C4C6FB65FB2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,14 +361,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PINFuture_Tests/Pods-PINFuture_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		0C84E192F7D747E3F2757856 /* 📦 Copy Pods Resources */ = {
+		0C84E192F7D747E3F2757856 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,44 +376,44 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PINFuture_Tests/Pods-PINFuture_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1BDE8456B130AFB191B3C499 /* 📦 Check Pods Manifest.lock */ = {
+		1BDE8456B130AFB191B3C499 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		494039C0674E808B132BDE57 /* 📦 Check Pods Manifest.lock */ = {
+		494039C0674E808B132BDE57 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		8BE011059005F372199CA421 /* 📦 Embed Pods Frameworks */ = {
+		8BE011059005F372199CA421 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,14 +421,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PINFuture_Example/Pods-PINFuture_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A3C652621DDBC72DC05E1C5D /* 📦 Copy Pods Resources */ = {
+		A3C652621DDBC72DC05E1C5D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,6 +465,7 @@
 				83626EF71DF5F5FA001CDCC7 /* PINFuture+AllTests.m in Sources */,
 				8349E10D1E02094200EB7EA3 /* PINOnceTests.m in Sources */,
 				833DA7111DFA428700DCFACD /* PINFuture+FlatMapError.m in Sources */,
+				09A41C381E09B5950072EE8C /* PINResultTests.m in Sources */,
 				83626F121DF96773001CDCC7 /* PINFuture2+MapTests.m in Sources */,
 				8349E1101E02165900EB7EA3 /* PINDispatchProxyTests.m in Sources */,
 				83626EF51DF5EA1F001CDCC7 /* PINFutureStressTests.m in Sources */,

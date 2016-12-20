@@ -6,7 +6,6 @@
 //
 //
 
-#import <Foundation/Foundation.h>
 #import "PINResult2.h"
 #import "PINResultSuccess.h"
 #import "PINResultFailure.h"
@@ -22,9 +21,9 @@
 @implementation PINResult2
 + (id)match:(PINResult <id> *)result success:(id (^)(id))success failure:(id (^)(NSError *))failure {
     if ([self isKindOfClass:[PINResultSuccess class]]) {
-        return success(((PINResultSuccess *)self).value);
+        return success(((PINResultSuccess *)result).value);
     } else if ([self isKindOfClass:[PINResultFailure class]]) {
-        return failure(((PINResultFailure *)self).error);
+        return failure(((PINResultFailure *)result).error);
     } else {
         NSAssert(NO, @"Match error");
         return nil;

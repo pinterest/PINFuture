@@ -1,4 +1,6 @@
+#ifdef __OBJC__
 #import <UIKit/UIKit.h>
+#endif
 
 #import "ALAssetsLibrary+PINFuture.h"
 #import "ALAssetsLibrary+PINTask.h"
@@ -19,6 +21,10 @@
 #import "PINFuture2.h"
 #import "PINOnce.h"
 #import "PINPair.h"
+#import "PINResult.h"
+#import "PINResult2.h"
+#import "PINResultFailure.h"
+#import "PINResultSuccess.h"
 #import "PINTask+All.h"
 #import "PINTask+Cache.h"
 #import "PINTask+Dispatch.h"
