@@ -8,6 +8,7 @@
 
 #import "PINFuture.h"
 #import "PINFuture2.h"
+#import "PINResult.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,14 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (PINFuture<ToType> *)map:(PINFuture<FromType> *)sourceFuture
                    context:(PINExecutionContext)context
-                   success:(ToType (^)(FromType fromValue))success;
+                   success:(PINResult<ToType> *(^)(FromType fromValue))success;
 
 @end
 
 @interface PINFuture2<FromType, ToType> (MapConvenience)
 
 + (PINFuture<ToType> *)map:(PINFuture<FromType> *)sourceFuture
-                   success:(ToType (^)(FromType fromValue))success;
+                   success:(PINResult<ToType> *(^)(FromType fromValue))success;
 
 @end
 

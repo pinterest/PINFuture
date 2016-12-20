@@ -20,9 +20,9 @@
 
 @implementation PINResult2
 + (id)match:(PINResult <id> *)result success:(id (^)(id))success failure:(id (^)(NSError *))failure {
-    if ([self isKindOfClass:[PINResultSuccess class]]) {
+    if ([result isKindOfClass:[PINResultSuccess class]]) {
         return success(((PINResultSuccess *)result).value);
-    } else if ([self isKindOfClass:[PINResultFailure class]]) {
+    } else if ([result isKindOfClass:[PINResultFailure class]]) {
         return failure(((PINResultFailure *)result).error);
     } else {
         NSAssert(NO, @"Match error");

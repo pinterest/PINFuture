@@ -18,10 +18,20 @@ describe(@"map", ^{
         NSNumber *valueA = numberFixture();
         NSString *valueB = stringFixture();
         PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> withValue:valueA];
-        PINFuture<NSString *> *futureB = [PINFuture2<NSNumber *, NSString *> map:futureA success:^NSString * _Nonnull(NSNumber * _Nonnull fromValue) {
-            return valueB;
+        PINFuture<NSString *> *futureB = [PINFuture2<NSNumber *, NSString *> map:futureA success:^PINResult<NSString *> * _Nonnull(NSNumber * _Nonnull fromValue) {
+            return [PINResult succeedWith:valueB];
         }];
         expectFutureToResolveWith(self, futureB, valueB);
+    });
+    
+    it(@"can cause a failure", ^{
+        NSNumber *valueA = numberFixture();
+        NSError *error = errorFixture();
+        PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> withValue:valueA];
+        PINFuture<NSString *> *futureB = [PINFuture2<NSNumber *, NSString *> map:futureA success:^PINResult<NSString *> *(NSNumber *fromValue) {
+            return [PINResult failWith:error];
+        }];
+        expectFutureToRejectWith(self, futureB, error);
     });
 });
 

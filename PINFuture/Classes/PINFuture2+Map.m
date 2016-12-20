@@ -14,12 +14,16 @@
 
 + (PINFuture<id> *)map:(PINFuture<id> *)sourceFuture
                context:(PINExecutionContext)context
-               success:(id (^)(id fromValue))success
+               success:(PINResult<id> *(^)(id fromValue))success
 {
     return [self flatMap:sourceFuture
                  context:context
                  success:^PINFuture * _Nonnull(id  _Nonnull fromValue) {
-                     return [PINFuture withValue:success(fromValue)];
+                     return [PINResult2<id, id> match:success(fromValue) success:^id _Nonnull(id  _Nonnull value) {
+                         return [PINFuture withValue:value];
+                     } failure:^id _Nonnull(NSError * _Nonnull error) {
+                         return [PINFuture withError:error];
+                     }];
                  }];
 }
 
@@ -28,7 +32,7 @@
 @implementation PINFuture2 (MapConvenience)
 
 + (PINFuture<id> *)map:(PINFuture<id> *)sourceFuture
-               success:(id (^)(id fromValue))success
+               success:(PINResult<id> *(^)(id fromValue))success
 {
     return [self map:sourceFuture context:[PINExecution defaultContextForCurrentThread] success:success];
 }
