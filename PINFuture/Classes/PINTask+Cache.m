@@ -88,7 +88,7 @@ typedef void(^PINCompletionBlock)(NSError *error, id value);
         }
         [propertyLock unlock];
         if (shouldBegin) {
-            PINTask<id> *taskWithSideEffects = [strongSelf doSuccess:^(id  _Nonnull value) {
+            PINTask<id> *taskWithSideEffects = [strongSelf context:[PINExecution immediate] doSuccess:^(id  _Nonnull value) {
                 transitionToState(PINFutureStateResolved, value, nil);
             } failure:^(NSError * _Nonnull error) {
                 transitionToState(PINFutureStateRejected, nil, error);

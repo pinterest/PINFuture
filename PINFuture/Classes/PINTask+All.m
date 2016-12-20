@@ -23,8 +23,7 @@
             }
             __block NSUInteger remaining = sourceTasks.count;
             [sourceTasks enumerateObjectsUsingBlock:^(PINTask<id> * _Nonnull sourceTask, NSUInteger index, BOOL * _Nonnull stop) {
-                // Dispatch to be off of main.  This work does not need to be on main.
-                PINTask<id> *taskWithSideEffects = [sourceTask doSuccess:^(id _Nonnull value) {
+                PINTask<id> *taskWithSideEffects = [sourceTask context:[PINExecution immediate] doSuccess:^(id _Nonnull value) {
                     @synchronized (resolvedValues) {
                         resolvedValues[index] = value;
                         remaining = remaining - 1;

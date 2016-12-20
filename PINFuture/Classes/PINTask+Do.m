@@ -10,19 +10,19 @@
 
 @implementation PINTask (Do)
 
-- (PINTask<id> *)doCompletion:(void(^)(NSError *error, id value))completion
+- (PINTask<id> *)context:(PINExecutionContext)context doCompletion:(void(^)(NSError *error, id value))completion
 {
-    return [self doSuccess:^(id  _Nonnull value) {
+    return [self context:context doSuccess:^(id  _Nonnull value) {
         completion(nil, value);
     } failure:^(NSError * _Nonnull error) {
         completion(error, nil);
     }];
 }
 
-- (PINTask<id> *)doAsyncSuccess:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure
+- (PINTask<id> *)context:(PINExecutionContext)context doAsyncSuccess:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure
 {
-    PINExecutionContext context = [PINExecution defaultContextForCurrentThread];
-    return [self doSuccess:^(id _Nonnull value) {
+    // Tricky: We immediately execute these callbacks, but the callback themselves dispatch to the supplied context;
+    return [self context:[PINExecution immediate] doSuccess:^(id _Nonnull value) {
         context(^{
             if (success != NULL) {
                 success(value);
@@ -37,9 +37,9 @@
     }];
 }
 
-- (PINTask<id> *)doAsyncCompletion:(void(^)(NSError *error, id value))completion
+- (PINTask<id> *)context:(PINExecutionContext)context doAsyncCompletion:(void(^)(NSError *error, id value))completion
 {
-    return [self doAsyncSuccess:^(id  _Nonnull value) {
+    return [self context:context doAsyncSuccess:^(id  _Nonnull value) {
         completion(nil, value);
     } failure:^(NSError * _Nonnull error) {
         completion(error, nil);

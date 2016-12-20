@@ -77,19 +77,23 @@ PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
     NSAssert(self.runCount > 0, @"constructed a PINTask but never ran it.");
 }
 
-- (PINTask<id> *)doSuccess:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure
+- (PINTask<id> *)context:(PINExecutionContext)context doSuccess:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure
 {
     return [self.class new:^PINCancellationBlock _Nullable(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         return [self runSuccess:^(id value) {
-            if (success != NULL) {
-                success(value);
-            }
-            resolve(value);
+            context(^{
+                if (success != NULL) {
+                    success(value);
+                }
+                resolve(value);
+            })();
         } failure:^(NSError *error) {
-            if (failure != NULL) {
-                failure(error);
-            }
-            reject(error);
+            context(^{
+                if (failure != NULL) {
+                    failure(error);
+                }
+                reject(error);
+            })();
         }];
     }];
 }
@@ -133,7 +137,7 @@ PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
 
 - (PINTask<NSNull *> *)mapToNull
 {
-    return [PINTask2<id, NSNull *> map:self success:^id(id fromValue) {
+    return [PINTask2<id, NSNull *> context:[PINExecution immediate] map:self success:^id(id fromValue) {
         return [NSNull null];
     }];
 }

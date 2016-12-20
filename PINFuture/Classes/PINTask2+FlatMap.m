@@ -12,12 +12,12 @@
 
 @implementation PINTask2 (FlatMap)
 
-+ (PINTask<id> *)flatMap:(PINTask<id> *)sourceTask success:(PINTask<id> *(^)(id fromValue))success
++ (PINTask<id> *)context:(PINExecutionContext)context flatMap:(PINTask<id> *)sourceTask success:(PINTask<id> *(^)(id fromValue))success
 {
     return [PINTask<id> new:^PINCancellationBlock _Nullable(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
-        PINTask<id> *taskWithSideEffects = [sourceTask doSuccess:^(id  _Nonnull value) {
+        PINTask<id> *taskWithSideEffects = [sourceTask context:[PINExecution immediate] doSuccess:^(id  _Nonnull value) {
             PINTask<id> *mappedTask = success(value);
-            mappedTask = [mappedTask doSuccess:resolve failure:reject];
+            mappedTask = [mappedTask context:context doSuccess:resolve failure:reject];
             [mappedTask run];
         } failure:^(NSError * _Nonnull error) {
             reject(error);

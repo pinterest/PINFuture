@@ -27,7 +27,7 @@ typedef __nullable PINCancellationBlock (^PINComputationBlock)(void(^resolve)(Ob
 + (PINTask<ObjectType> *)value:(ObjectType)value PIN_WARN_UNUSED_RESULT;
 + (PINTask<ObjectType> *)error:(NSError *)error PIN_WARN_UNUSED_RESULT;
 
-- (PINTask<ObjectType> *)doSuccess:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure PIN_WARN_UNUSED_RESULT;
+- (PINTask<ObjectType> *)context:(PINExecutionContext)context doSuccess:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure PIN_WARN_UNUSED_RESULT;
 - (__nullable PINCancellationBlock)run;
 
 @end
