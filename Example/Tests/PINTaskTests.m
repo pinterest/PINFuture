@@ -29,7 +29,7 @@ describe(@"task", ^{
     it(@"resolves only once", ^{
         NSString *value = stringFixture();
         // Calls to resolve or reject after the first should be ignored.
-        PINTask<NSString *> *task = [PINTask<NSString *> new:^PINCancellationBlock _Nullable(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+        PINTask<NSString *> *task = [PINTask<NSString *> new:^PINCancelToken * _Nullable(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
             resolve(value);
             resolve(value);
             reject(errorFixture());
@@ -41,7 +41,7 @@ describe(@"task", ^{
     it(@"rejects only once", ^{
         NSError *error = errorFixture();
         // Calls to resolve or reject after the first should be ignored.
-        PINTask<NSString *> *task = [PINTask<NSString *> new:^PINCancellationBlock _Nullable(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+        PINTask<NSString *> *task = [PINTask<NSString *> new:^PINCancelToken * _Nullable(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
             reject(error);
             reject(error);
             resolve(stringFixture());

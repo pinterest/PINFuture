@@ -17,7 +17,7 @@ describe(@"cache", ^{
     it(@"only calls a cached task once", ^{
         NSString *initialValue = stringFixture();
         __block NSUInteger callCount = 0;
-        PINTask<NSString *> *sourceTask = [PINTask<NSString *> new:^PINCancellationBlock _Nullable(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+        PINTask<NSString *> *sourceTask = [PINTask<NSString *> new:^PINCancelToken * _Nullable(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
             callCount++;
             resolve(initialValue);
             return NULL;

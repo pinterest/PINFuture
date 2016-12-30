@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09E85BBA1E171A9D00238CEB /* PINCancelToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 5971D02410E596AB4C85529B /* PINCancelToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		09E85BBB1E171AA200238CEB /* PINCancelToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 5971D4EBC4F24EB2A8A82208 /* PINCancelToken.m */; };
 		00D0B1CECF1A324B990A5B66A5172C98 /* PINTask2+Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F1CD06212502783A748DE3F42D1999 /* PINTask2+Map.m */; };
 		01F278A54C85C2C865DDAD4090C559B6 /* EXPDoubleTuple.m in Sources */ = {isa = PBXBuildFile; fileRef = E8899DDCDB159906296A77EA9F670B8C /* EXPDoubleTuple.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		061B2246CFB0D727C0A6C42A9E34AECE /* PINResultFailure.h in Headers */ = {isa = PBXBuildFile; fileRef = 222AD35D7234791B2C15D60F97E16CC3 /* PINResultFailure.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -293,6 +295,9 @@
 		573A2DBE4C847817D19890A60D0A94D5 /* PINOnce.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PINOnce.m; sourceTree = "<group>"; };
 		574D05103FA6D7B84B014BCBEC1A38BB /* Pods-PINFuture_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PINFuture_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		592E81109E597E27A3D9DBB86ABBE590 /* EXPMatchers+beGreaterThanOrEqualTo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "EXPMatchers+beGreaterThanOrEqualTo.h"; path = "Expecta/Matchers/EXPMatchers+beGreaterThanOrEqualTo.h"; sourceTree = "<group>"; };
+		5971D02410E596AB4C85529B /* PINCancelToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PINCancelToken.h; sourceTree = "<group>"; };
+		5971D4EBC4F24EB2A8A82208 /* PINCancelToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PINCancelToken.m; sourceTree = "<group>"; };
+		5A1C406851DD8710F09531427213FC95 /* PINFuture.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PINFuture.h; sourceTree = "<group>"; };
 		5B01F350337B25F09061F55C2252CBD6 /* EXPMatchers+endWith.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+endWith.m"; path = "Expecta/Matchers/EXPMatchers+endWith.m"; sourceTree = "<group>"; };
 		5BC48829A0EB26D4DD51CD2AA4B0FE74 /* EXPMatchers+match.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+match.m"; path = "Expecta/Matchers/EXPMatchers+match.m"; sourceTree = "<group>"; };
 		5BE4506716AF52468B3550AD5824670F /* EXPMatchers+beCloseTo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+beCloseTo.m"; path = "Expecta/Matchers/EXPMatchers+beCloseTo.m"; sourceTree = "<group>"; };
@@ -536,6 +541,82 @@
 			);
 			name = "Pods-PINFuture_Tests";
 			path = "Target Support Files/Pods-PINFuture_Tests";
+			sourceTree = "<group>";
+		};
+		173E15D3D7DBC6F2443290BAD6EFDC31 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				09A41C391E09B8460072EE8C /* PINResult.h */,
+				09A41C3A1E09B8460072EE8C /* PINResult.m */,
+				09A41C3B1E09B8460072EE8C /* PINResult2.h */,
+				09A41C3C1E09B8460072EE8C /* PINResult2.m */,
+				09A41C3D1E09B8460072EE8C /* PINResultFailure.h */,
+				09A41C3E1E09B8460072EE8C /* PINResultFailure.m */,
+				09A41C3F1E09B8460072EE8C /* PINResultSuccess.h */,
+				09A41C401E09B8460072EE8C /* PINResultSuccess.m */,
+				FFDE830AE8156F95616D5F4D2CA3F204 /* ALAssetsLibrary+PINFuture.h */,
+				FDEB10005509A16F315D55F9A2F0840B /* ALAssetsLibrary+PINFuture.m */,
+				9D0375C40821582A7ABB9B3353BF8C9B /* ALAssetsLibrary+PINTask.h */,
+				B72A66E7B5A4B75ED7D6B2AB60719A7C /* ALAssetsLibrary+PINTask.m */,
+				2E444C796432324829EA0B08E658E6D5 /* NSURLSession+PINFuture.h */,
+				7E4799B8955488C00DE3C4A87C5F7C98 /* NSURLSession+PINFuture.m */,
+				BC07CC828530C8C213CD89E7C5757288 /* NSURLSession+PINTask.h */,
+				F99E8DCE1F20E13C023492E7424309F9 /* NSURLSession+PINTask.m */,
+				89F74EDB8EACEF0CD7D2084F81693320 /* PHImageManager+PINFuture.h */,
+				5C13B8459F740F61A532A646772D410D /* PHImageManager+PINFuture.m */,
+				4BB0A189C11C07B3ABC8AF525645CDE4 /* PHImageManager+PINTask.h */,
+				FDB1614DE0C59579B288AE0ECEE73336 /* PHImageManager+PINTask.m */,
+				C89936C5DC4B6CB8245FC6770A40CA02 /* PINDefines.h */,
+				D13B12B5C8FB2AA4A5FE912526C76924 /* PINDispatchProxy.h */,
+				D38E114439DCC01F332B35E55DA6CB21 /* PINDispatchProxy.m */,
+				C08FB41D248A1B95800495EE573BF77D /* PINExecution.h */,
+				1E6115B5712815D1FCE399F95CF742FF /* PINExecution.m */,
+				5A1C406851DD8710F09531427213FC95 /* PINFuture.h */,
+				DD8D464CF6CE0AAE1A66C5B36D960198 /* PINFuture.m */,
+				B10D9990B91DB42C3DB1DA9704A6BB6B /* PINFuture+All.h */,
+				3DDAD8E31E3BC35BA3E0A20BF09B303C /* PINFuture+All.m */,
+				CD0D1B146972D8E453272A36B6503974 /* PINFuture+Dispatch.h */,
+				159C3C87B6CCE8712C9D1D081FC9797F /* PINFuture+Dispatch.m */,
+				22C7DE1A65682D70A926D94E8B9844A3 /* PINFuture+FlatMapError.h */,
+				A3E35BE18565333750577690AD0E9DBE /* PINFuture+FlatMapError.m */,
+				705DB3EC7B17C8686E8E271E29869838 /* PINFuture+MapError.h */,
+				ABE00F3861989108EA5B665A18E4E597 /* PINFuture+MapError.m */,
+				9AB6052305E17FEC58A409C5B7A0ABC2 /* PINFuture2.h */,
+				F08F3DDF5850EA518EFD8A58D8978581 /* PINFuture2.m */,
+				B78D80ED2CE8D61EADA37008FB6E0F9F /* PINFuture2+FlatMap.h */,
+				4E11C11104217EA3FD0D7A44F48BF777 /* PINFuture2+FlatMap.m */,
+				01338E0D4AB52DBCBDB94FF234E92AF1 /* PINFuture2+Map.h */,
+				E68CB5CB0859F93810767F2F3662EC6D /* PINFuture2+Map.m */,
+				EEAE9FA1E4E411FF2340CA08E1E09FF0 /* PINOnce.h */,
+				0E4894DFC14D1E37316E945D7EDFD7CA /* PINOnce.m */,
+				64EBBC1EB179207E580F5B0D826E3462 /* PINPair.h */,
+				40C746F4FD155D9689CC3A6CC9F3F82A /* PINPair.m */,
+				230D3D61FE8E0C5F267FAF7C4F063E74 /* PINTask.h */,
+				3AE5F55C95F20B1DBA978CAA9487B44B /* PINTask.m */,
+				9BC64C373F03B7C2A7E625DF888CB2DD /* PINTask+All.h */,
+				630FE725B0AFBAD34C1DAC4C12B3B918 /* PINTask+All.m */,
+				E8B074390814071EB4C08B2E60FA46A1 /* PINTask+Cache.h */,
+				F2055962990A4A70C418D208BEEEFB47 /* PINTask+Cache.m */,
+				C4C61ED8FC4BA08BA0A19DB412947C2A /* PINTask+Do.h */,
+				6AB282CBE943848E7C14E08D4C4A57E5 /* PINTask+Do.m */,
+				69AB57830AE5B5F7C1DC05C311DA1BD3 /* PINTask2.h */,
+				E4F652C3AFFE8757F2DB734B8D1325C3 /* PINTask2.m */,
+				DE8944112B0023DEEBB24B7E2B7F9620 /* PINTask2+FlatMap.h */,
+				995E957BC22B508DE1157359C5B3C405 /* PINTask2+FlatMap.m */,
+				AC0D718EF8EB8A9352EB22552351BCB7 /* PINTask2+Map.h */,
+				693BC5DC5B53FBF8B9BF5CB716CA9362 /* PINTask2+Map.m */,
+				5971D4EBC4F24EB2A8A82208 /* PINCancelToken.m */,
+				5971D02410E596AB4C85529B /* PINCancelToken.h */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		263D4D10B8C09588A6463A31CE55EED0 /* PINFuture */ = {
+			isa = PBXGroup;
+			children = (
+				173E15D3D7DBC6F2443290BAD6EFDC31 /* Classes */,
+			);
+			path = PINFuture;
 			sourceTree = "<group>";
 		};
 		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
@@ -833,6 +914,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E847CF363DE065FEE9199DB8B93539A /* Pods-PINFuture_Tests-umbrella.h in Headers */,
+				09A41C4B1E09BDAD0072EE8C /* PINResult2.h in Headers */,
+				09A41C4C1E09BDC80072EE8C /* PINResultSuccess.h in Headers */,
+				1669CDD53B96184C0D4D882CB41AC2AB /* ALAssetsLibrary+PINFuture.h in Headers */,
+				A064F8338232E21B9E3B3050ED6BFF36 /* ALAssetsLibrary+PINTask.h in Headers */,
+				ABE237FC54A427E7E38E3FA7AABFC695 /* NSURLSession+PINFuture.h in Headers */,
+				09A41C4A1E09BD6C0072EE8C /* PINResult.h in Headers */,
+				9D515011D36DF93F5E8FED30618893A7 /* NSURLSession+PINTask.h in Headers */,
+				E0F1873666F1D0FFBBD2F237C4765E34 /* PHImageManager+PINFuture.h in Headers */,
+				330841A92B152C21234BE96BD518F4FF /* PHImageManager+PINTask.h in Headers */,
+				46ACB6069CA0AD6CFE7C22CB8882976D /* PINDefines.h in Headers */,
+				A7B6A9BD69A9B2D62FE68263C4A700F2 /* PINDispatchProxy.h in Headers */,
+				09A41C4E1E09BDCE0072EE8C /* PINResultFailure.h in Headers */,
+				9A294AE0B1FA937D0674F194FC4D43E9 /* PINExecution.h in Headers */,
+				97958CEEE6B355DBF8B23EF1ECA7C0DD /* PINFuture+All.h in Headers */,
+				AF9128372335CD31842173D9BF0BABD9 /* PINFuture+Dispatch.h in Headers */,
+				A19EDAEE8CFD495AB96BED510EC14588 /* PINFuture+FlatMapError.h in Headers */,
+				70A4379DC79527692D1E1D5263BF31E9 /* PINFuture+MapError.h in Headers */,
+				FB36B3F7F20121BE7BEEA7B5659C6D03 /* PINFuture-umbrella.h in Headers */,
+				6CC3C788D171675A44437FCEA2612C52 /* PINFuture.h in Headers */,
+				9B5BEA1AB647891DC618521A65B6B407 /* PINFuture2+FlatMap.h in Headers */,
+				09E85BBA1E171A9D00238CEB /* PINCancelToken.h in Headers */,
+				2811AA27BC8082D159D24B25B2292D4B /* PINFuture2+Map.h in Headers */,
+				C44B2710F4A54D88EDBA705B213193D6 /* PINFuture2.h in Headers */,
+				FD508CD4420BF38AA570F3C6BE30FAAE /* PINOnce.h in Headers */,
+				DF3A1488CBA1E2F0626D19675BFFB25F /* PINPair.h in Headers */,
+				6CD6BCAE16E80699A22D12008577B003 /* PINTask+All.h in Headers */,
+				C470F2016A9E853962C81A7AAD853A95 /* PINTask+Cache.h in Headers */,
+				8726907ECAA6EF5CE4E4489F82F07606 /* PINTask+Do.h in Headers */,
+				833D74F50C03F98C6984D3DB52A493C3 /* PINTask.h in Headers */,
+				C7FBF321423A3FAE5228EF4763B0F7C3 /* PINTask2+FlatMap.h in Headers */,
+				44F8D95CD88AC9166E31DF217E561329 /* PINTask2+Map.h in Headers */,
+				92EA883D93AAF2814BAE8FCA31FC3344 /* PINTask2.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1109,6 +1222,7 @@
 			files = (
 				5A8EB83E14C6204BAD2AD042116961CA /* ALAssetsLibrary+PINFuture.m in Sources */,
 				394657F947C00D9C94363A84566C8E2D /* ALAssetsLibrary+PINTask.m in Sources */,
+				09E85BBB1E171AA200238CEB /* PINCancelToken.m in Sources */,
 				162A2C1DCFC0C440D6B692AA3A142ED3 /* NSURLSession+PINFuture.m in Sources */,
 				697AACB5AA95385B998CA79E4D7278D3 /* NSURLSession+PINTask.m in Sources */,
 				A67BF1B18B822DDCF3EC75DF4D5DCFDA /* PHImageManager+PINFuture.m in Sources */,
