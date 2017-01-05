@@ -164,7 +164,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 {
     return [PINFuture2<id, NSNull *> map:self
                                     success:^PINResult<NSNull *> * _Nonnull(id _Nonnull fromValue) {
-                                        return [PINResult succeedWith:[NSNull null]];
+                                        return [PINResult<NSNull*> succeedWith:[NSNull null]];
                                     }];
 }
 

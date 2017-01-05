@@ -17,7 +17,7 @@ describe(@"map", ^{
         NSString *valueB = stringFixture();
         PINTask<NSNumber *> *taskA = [PINTask<NSNumber *> value:valueA];
         PINTask<NSString *> *taskB = [PINTask2<NSNumber *, NSString *> context:[PINExecution immediate] map:taskA success:^PINResult<NSString *> *(NSNumber *fromValue) {
-            return [PINResult succeedWith:valueB];
+            return [PINResult<NSString *> succeedWith:valueB];
         }];
         runTaskAndExpectToResolveWith(self, taskB, valueB);
     });
@@ -27,7 +27,7 @@ describe(@"map", ^{
         NSError *error = errorFixture();
         PINTask<NSNumber *> *taskA = [PINTask<NSNumber *> value:valueA];
         PINTask<NSString *> *taskB = [PINTask2<NSNumber *, NSString *> context:[PINExecution immediate] map:taskA success:^PINResult<NSString *> *(NSNumber *fromValue) {
-            return [PINResult failWith:error];
+            return [PINResult<NSString *> failWith:error];
         }];
         runTaskAndExpectToRejectWith(self, taskB, error);
     });

@@ -19,6 +19,7 @@
 @end
 
 @implementation PINResult2
+
 + (id)match:(PINResult <id> *)result success:(id (^)(id))success failure:(id (^)(NSError *))failure {
     if ([result isKindOfClass:[PINResultSuccess class]]) {
         return success(((PINResultSuccess *)result).value);
@@ -29,6 +30,5 @@
         return nil;
     }
 }
-
 
 @end

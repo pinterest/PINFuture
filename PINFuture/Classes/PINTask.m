@@ -15,20 +15,14 @@ typedef PINCancellationBlock(^PINExecuteBlock)(void(^resolve)(id), void(^reject)
 
 PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
 {
-    NSLog(@"PINCancellationBlock 1");
     return ^PINCancellationBlock(void(^resolve)(id), void(^reject)(NSError *)) {
-        NSLog(@"PINCancellationBlock 2");
         PINOnce *once = [[PINOnce alloc] init];
         return block(^(id value) {
-            NSLog(@"PINCancellationBlock 3a");
             [once performOnce:^{
-                NSLog(@"PINCancellationBlock 3b");
                 resolve(value);
             }];
         }, ^(NSError *error) {
-            NSLog(@"PINCancellationBlock 4a");
             [once performOnce:^{
-                NSLog(@"PINCancellationBlock 4b");
                 reject(error);
             }];
         });
@@ -70,10 +64,6 @@ PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
 
 - (void)dealloc
 {
-    if (self.runCount <= 0) {
-        NSLog(@"chris %@", self.callStackSymbols);
-    }
-        
     NSAssert(self.runCount > 0, @"constructed a PINTask but never ran it.");
 }
 
@@ -137,7 +127,7 @@ PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
 
 - (PINTask<NSNull *> *)mapToNull
 {
-    return [PINTask2<id, NSNull *> context:[PINExecution immediate] map:self success:^id(id fromValue) {
+    return [PINTask2<id, NSNull *> context:[PINExecution immediate] mapToValue:self success:^NSNull *(id fromValue) {
         return [NSNull null];
     }];
 }

@@ -19,7 +19,7 @@ describe(@"map", ^{
         NSString *valueB = stringFixture();
         PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> withValue:valueA];
         PINFuture<NSString *> *futureB = [PINFuture2<NSNumber *, NSString *> map:futureA success:^PINResult<NSString *> * _Nonnull(NSNumber * _Nonnull fromValue) {
-            return [PINResult succeedWith:valueB];
+            return [PINResult<NSString *> succeedWith:valueB];
         }];
         expectFutureToResolveWith(self, futureB, valueB);
     });
@@ -29,7 +29,7 @@ describe(@"map", ^{
         NSError *error = errorFixture();
         PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> withValue:valueA];
         PINFuture<NSString *> *futureB = [PINFuture2<NSNumber *, NSString *> map:futureA success:^PINResult<NSString *> *(NSNumber *fromValue) {
-            return [PINResult failWith:error];
+            return [PINResult<NSString *> failWith:error];
         }];
         expectFutureToRejectWith(self, futureB, error);
     });

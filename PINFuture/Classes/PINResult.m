@@ -12,6 +12,7 @@
 #import "PINResultFailure.h"
 
 @implementation PINResult
+
 + (PINResultSuccess <id> *)succeedWith:(id)value {
     return [[PINResultSuccess alloc] initWithValue:value];
 }
