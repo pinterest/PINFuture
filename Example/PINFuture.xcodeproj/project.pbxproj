@@ -22,6 +22,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* PINFutureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* PINFutureTests.m */; };
+		833B31EE1E1EF4B8002D0449 /* PINTask2+MapToValueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 833B31ED1E1EF4B8002D0449 /* PINTask2+MapToValueTests.m */; };
 		833DA7111DFA428700DCFACD /* PINFuture+FlatMapError.m in Sources */ = {isa = PBXBuildFile; fileRef = 833DA7101DFA428700DCFACD /* PINFuture+FlatMapError.m */; };
 		8349E10D1E02094200EB7EA3 /* PINOnceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8349E10C1E02094200EB7EA3 /* PINOnceTests.m */; };
 		8349E1101E02165900EB7EA3 /* PINDispatchProxyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8349E10E1E0215FF00EB7EA3 /* PINDispatchProxyTests.m */; };
@@ -78,6 +79,7 @@
 		6003F5BB195388D20070C39A /* PINFutureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PINFutureTests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		781D0727B7DDED858FD00A64 /* Pods-PINFuture_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PINFuture_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PINFuture_Tests/Pods-PINFuture_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		833B31ED1E1EF4B8002D0449 /* PINTask2+MapToValueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PINTask2+MapToValueTests.m"; sourceTree = "<group>"; };
 		833DA7101DFA428700DCFACD /* PINFuture+FlatMapError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PINFuture+FlatMapError.m"; sourceTree = "<group>"; };
 		8349E10C1E02094200EB7EA3 /* PINOnceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PINOnceTests.m; sourceTree = "<group>"; };
 		8349E10E1E0215FF00EB7EA3 /* PINDispatchProxyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PINDispatchProxyTests.m; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				8349E11F1E02308B00EB7EA3 /* PINTask+CacheTests.m */,
 				8349E12B1E026E9600EB7EA3 /* PINTask2+FlatMapTests.m */,
 				8349E1291E026C8800EB7EA3 /* PINTask2+MapTests.m */,
+				833B31ED1E1EF4B8002D0449 /* PINTask2+MapToValueTests.m */,
 				8349E1411E047CE300EB7EA3 /* PINTaskStressTest.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 				5971D279FCC25DA78DFD52A5 /* PINResultTests.m */,
@@ -253,12 +256,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "PINFuture_Example" */;
 			buildPhases = (
+				7D8AB9871FE8AE516D592C65 /* [CP] Check Pods Manifest.lock */,
 				1BDE8456B130AFB191B3C499 /* [CP] Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				8BE011059005F372199CA421 /* [CP] Embed Pods Frameworks */,
 				A3C652621DDBC72DC05E1C5D /* [CP] Copy Pods Resources */,
+				E81DC4278D39100DC8064B63 /* 📦 Embed Pods Frameworks */,
+				80C863D0009AEFE7FEECADCE /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -273,12 +279,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "PINFuture_Tests" */;
 			buildPhases = (
+				EF54C94AB96980CAA47267CD /* [CP] Check Pods Manifest.lock */,
 				494039C0674E808B132BDE57 /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
 				07F1E04CFA889C4C6FB65FB2 /* [CP] Embed Pods Frameworks */,
 				0C84E192F7D747E3F2757856 /* [CP] Copy Pods Resources */,
+				681F5639130DB43525D15BB2 /* 📦 Embed Pods Frameworks */,
+				005B9CC2C7CA98AD3004ACC1 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -346,6 +355,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		005B9CC2C7CA98AD3004ACC1 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PINFuture_Tests/Pods-PINFuture_Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		07F1E04CFA889C4C6FB65FB2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -406,6 +430,51 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		681F5639130DB43525D15BB2 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PINFuture_Tests/Pods-PINFuture_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D8AB9871FE8AE516D592C65 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		80C863D0009AEFE7FEECADCE /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PINFuture_Example/Pods-PINFuture_Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8BE011059005F372199CA421 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -434,6 +503,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PINFuture_Example/Pods-PINFuture_Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E81DC4278D39100DC8064B63 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PINFuture_Example/Pods-PINFuture_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF54C94AB96980CAA47267CD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -469,6 +568,7 @@
 				83626F121DF96773001CDCC7 /* PINFuture2+MapTests.m in Sources */,
 				8349E1101E02165900EB7EA3 /* PINDispatchProxyTests.m in Sources */,
 				83626EF51DF5EA1F001CDCC7 /* PINFutureStressTests.m in Sources */,
+				833B31EE1E1EF4B8002D0449 /* PINTask2+MapToValueTests.m in Sources */,
 				8349E1201E02308B00EB7EA3 /* PINTask+CacheTests.m in Sources */,
 				8349E12A1E026C8800EB7EA3 /* PINTask2+MapTests.m in Sources */,
 			);
