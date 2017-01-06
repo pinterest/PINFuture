@@ -16,7 +16,7 @@ describe(@"mapToValue", ^{
         NSNumber *valueA = numberFixture();
         NSString *valueB = stringFixture();
         PINTask<NSNumber *> *taskA = [PINTask<NSNumber *> value:valueA];
-        PINTask<NSString *> *taskB = [PINTask2<NSNumber *, NSString *> context:[PINExecution immediate] mapToValue:taskA success:^NSString *(NSNumber *fromValue) {
+        PINTask<NSString *> *taskB = [PINTask2<NSNumber *, NSString *> executor:[PINExecutor immediate] mapToValue:taskA success:^NSString *(NSNumber *fromValue) {
             return valueB;
         }];
         runTaskAndExpectToResolveWith(self, taskB, valueB);

@@ -10,16 +10,16 @@
 
 @implementation PINFuture (FlatMapError)
 
-- (PINFuture<id> *)context:(PINExecutionContext)context flatMapError:(PINFuture<id> *(^)(NSError *error))flatMapError
+- (PINFuture<id> *)executor:(id<PINExecutor>)executor flatMapError:(PINFuture<id> *(^)(NSError *error))flatMapError
 {
     return [PINFuture<id> withBlock:^(void (^resolve)(id), void (^reject)(NSError *)) {
-        [self context:context success:^(id  _Nonnull value) {
+        [self executor:executor success:^(id  _Nonnull value) {
             // A value is passed through
             resolve(value);
         } failure:^(NSError * _Nonnull error) {
             // An error is given a chance to recover.
             PINFuture<id> *recoveredFuture = flatMapError(error);
-            [recoveredFuture context:context success:^(id  _Nonnull value) {
+            [recoveredFuture executor:executor success:^(id  _Nonnull value) {
                 resolve(value);
             } failure:^(NSError * _Nonnull error) {
                 reject(error);
@@ -30,7 +30,7 @@
 
 - (PINFuture<id> *)flatMapError:(PINFuture<id> *(^)(NSError *error))flatMapError
 {
-    return [self context:[PINExecution defaultContextForCurrentThread] flatMapError:flatMapError];
+    return [self executor:[PINExecutor defaultContextForCurrentThread] flatMapError:flatMapError];
 }
 
 @end

@@ -28,7 +28,7 @@ describe(@"cache", ^{
         
         // Intentionally call `runTask` twice.
         waitUntil(^(DoneCallback done) {
-            [[taskThatCallsTwice context:[PINExecution immediate] doCompletion:^(NSError * _Nonnull error, NSArray<NSString *> *_Nonnull value) {
+            [[taskThatCallsTwice executor:[PINExecutor immediate] doCompletion:^(NSError * _Nonnull error, NSArray<NSString *> *_Nonnull value) {
                 expect(value).to.equal(@[initialValue, initialValue]);
                 expect(error).to.beNil();
 

@@ -11,17 +11,17 @@
 
 @interface PINDispatchProxy ()
 
-@property (nonatomic, strong) PINExecutionContext context;
+@property (nonatomic, strong) id<PINExecutor> executor;
 @property (nonatomic, strong) id target;
 
 @end
 
 @implementation PINDispatchProxy
 
-+ (instancetype)proxyWithContext:(PINExecutionContext)context target:(id)target
++ (instancetype)proxyWithExecutor:(id<PINExecutor>)executor target:(id)target
 {
     PINDispatchProxy *proxy = [PINDispatchProxy alloc];
-    proxy.context = context;
+    proxy.executor = executor;
     proxy.target = target;
     return proxy;
 }
@@ -38,7 +38,7 @@
     // TODO(chris): This should copy but is crashing when the copy is invoked.  Why?
     //NSInvocation *invocationCopy = [invocation copy];
     
-    PINFuture *immediateFuture = [PINFuture dispatchWithContext:self.context block:^PINFuture * _Nonnull{
+    PINFuture *immediateFuture = [PINFuture dispatchWithExecutor:self.executor block:^PINFuture * _Nonnull{
         // calling invoke will have the side-effect of setting the returnValue
         [invocation invokeWithTarget:self.target];
         void *returnValue = nil;

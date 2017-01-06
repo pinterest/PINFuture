@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PINExecution.h"
+#import "PINExecutor.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - attach callbacks
 
-- (void)context:(PINExecutionContext)context completion:(void(^)(NSError *error, ObjectType value))completion;
+- (void)executor:(id<PINExecutor>)executor completion:(void(^)(NSError *error, ObjectType value))completion;
 
 @end
 
@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - callback methods that specify an execution context
 
-- (void)context:(PINExecutionContext)context success:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure;
+- (void)executor:(id<PINExecutor>)executor success:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure;
 
 #pragma mark - callback methods that don't specify an execution context
 

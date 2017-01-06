@@ -10,19 +10,19 @@
 
 @implementation PINFuture (Dispatch)
 
-+ (PINFuture<id> *)dispatchWithContext:(PINExecutionContext)context block:(PINFuture<id> * (^)())block;
++ (PINFuture<id> *)dispatchWithExecutor:(id<PINExecutor>)executor block:(PINFuture<id> * (^)())block;
 {
-    NSAssert(context != NULL, @"context must not be null");
+    NSAssert(executor != NULL, @"executor must not be null");
     return [PINFuture<id> withBlock:^(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         // contextify, and execute
-        context(^{
+        [executor execute:^{
             PINFuture<id> *future = block();
             [future success:^(id  _Nonnull value) {
                 resolve(value);
             } failure:^(NSError * _Nonnull error) {
                 reject(error);
             }];
-        })();
+        }];
     }];
 }
 

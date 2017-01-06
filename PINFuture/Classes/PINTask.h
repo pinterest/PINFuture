@@ -7,7 +7,7 @@
 //
 
 #import "PINDefines.h"
-#import "PINExecution.h"
+#import "PINExecutor.h"
 #import "PINPair.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -27,22 +27,12 @@ typedef __nullable PINCancellationBlock (^PINComputationBlock)(void(^resolve)(Ob
 + (PINTask<ObjectType> *)value:(ObjectType)value PIN_WARN_UNUSED_RESULT;
 + (PINTask<ObjectType> *)error:(NSError *)error PIN_WARN_UNUSED_RESULT;
 
-- (PINTask<ObjectType> *)context:(PINExecutionContext)context doSuccess:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure PIN_WARN_UNUSED_RESULT;
+- (PINTask<ObjectType> *)executor:(id<PINExecutor>)executor doSuccess:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure PIN_WARN_UNUSED_RESULT;
 - (__nullable PINCancellationBlock)run;
 
 @end
 
-@interface PINTask<ObjectType> (Convenience)
-//- (__nullable PINCancellationBlock)doCompletion:(void(^)(NSError *error, ObjectType value))completion;
-//- (__nullable PINCancellationBlock)runAsyncContext:(PINExecutionContext)context success:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure;
-//- (__nullable PINCancellationBlock)runAsyncSuccess:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure;
-//- (__nullable PINCancellationBlock)runAsyncCompletion:(void(^)(NSError *error, ObjectType value))completion;
-@end
-
 @interface PINTask<ObjectType> (Compose)
-//- (PINTask<ObjectType> *)retry:(NSUInteger)numRetries initialDelay:(NSTimeInterval)delay exponent:(float)exponent;
-//- (PINTask<ObjectType> *)mapError:(NSError *(^)(NSError *error))mapError;
-//- (PINTask<ObjectType> *)flatMapError:(PINTask<ObjectType> *(^)(NSError *error))flatMapError;
 - (PINTask<NSNull *> *)mapToNull PIN_WARN_UNUSED_RESULT;
 @end
 
@@ -52,8 +42,7 @@ NS_ASSUME_NONNULL_END
 #import "PINTask+All.h"
 #import "PINTask+Cache.h"
 #import "PINTask+Do.h"
-//#import "PINTask+FlatMapError.h"
-//#import "PINTask+MapError.h"
 #import "PINTask2.h"
 #import "PINTask2+Map.h"
 #import "PINTask2+FlatMap.h"
+#import "PINTask2+MapToValue.h"

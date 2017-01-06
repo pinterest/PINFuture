@@ -8,7 +8,7 @@
 
 #import "PINFuture.h"
 
-#import "PINExecution.h"
+#import "PINExecutor.h"
 #import "PINFuture2+Map.h"
 
 typedef void(^CompletionBlockType)(NSError *error, NSObject *value);
@@ -20,7 +20,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 };
 
 @interface PINFutureCallback : NSObject
-@property (nonatomic) PINExecutionContext context;
+@property (nonatomic) id<PINExecutor> executor;
 @property (nonatomic) void(^completion)(NSError *error, NSObject *value);
 @end
 
@@ -77,10 +77,10 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 #pragma mark - attach callbacks
 
-- (void)context:(PINExecutionContext)context completion:(void(^)(NSError *error, id))completion
+- (void)executor:(id<PINExecutor>)executor completion:(void(^)(NSError *error, id))completion
 {
     PINFutureCallback *callback = [[PINFutureCallback alloc] init];
-    callback.context = context;
+    callback.executor = executor;
     callback.completion = completion;
     [self.propertyLock lock];
         // Lazily instantiate self.callbacks.  Lots of futures will never have any callbacks.
@@ -125,9 +125,9 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
     // execute
     for (PINFutureCallback *callback in callbacks) {
-        callback.context(^{
+        [callback.executor execute:^{
             callback.completion(self.error, self.value);
-        })();
+        }];
     }
 }
 
@@ -135,9 +135,9 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 @implementation PINFuture (Convenience)
 
-- (void)context:(PINExecutionContext)context success:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure;
+- (void)executor:(id<PINExecutor>)executor success:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure;
 {
-    return [self context:context completion:^(NSError *error, NSObject * value) {
+    return [self executor:executor completion:^(NSError *error, NSObject * value) {
         if (error != nil) {
             if (failure != NULL) {
                 failure(error);
@@ -152,12 +152,12 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 - (void)completion:(void(^)(NSError *error, id value))completion
 {
-    return [self context:[PINExecution defaultContextForCurrentThread] completion:completion];
+    return [self executor:[PINExecutor defaultContextForCurrentThread] completion:completion];
 }
 
 - (void)success:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure;
 {
-    return [self context:[PINExecution defaultContextForCurrentThread] success:success failure:failure];
+    return [self executor:[PINExecutor defaultContextForCurrentThread] success:success failure:failure];
 }
 
 - (PINFuture<NSNull *> *)mapToNull;

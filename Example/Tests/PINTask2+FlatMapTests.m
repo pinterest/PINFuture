@@ -16,7 +16,7 @@ describe(@"flatMap", ^{
         NSNumber *valueA = numberFixture();
         NSString *valueB = stringFixture();
         PINTask<NSNumber *> *taskA = [PINTask<NSNumber *> value:valueA];
-        PINTask<NSString *> *taskB = [PINTask2<NSNumber *, NSString *> context:[PINExecution immediate] flatMap:taskA success:^PINTask<NSString *> * _Nonnull(NSNumber * _Nonnull fromValue) {
+        PINTask<NSString *> *taskB = [PINTask2<NSNumber *, NSString *> executor:[PINExecutor immediate] flatMap:taskA success:^PINTask<NSString *> * _Nonnull(NSNumber * _Nonnull fromValue) {
             return [PINTask<NSString *> value:valueB];
         }];
         runTaskAndExpectToResolveWith(self, taskB, valueB);
@@ -26,7 +26,7 @@ describe(@"flatMap", ^{
         NSString *valueA = stringFixture();
         NSError *errorB = errorFixture();
         PINTask<NSString *> *taskA = [PINTask<NSString *> value:valueA];
-        PINTask<NSString *> *taskB = [PINTask2<NSString *, NSString *> context:[PINExecution immediate] flatMap:taskA success:^PINTask<NSString *> * _Nonnull(NSString * _Nonnull fromValue) {
+        PINTask<NSString *> *taskB = [PINTask2<NSString *, NSString *> executor:[PINExecutor immediate] flatMap:taskA success:^PINTask<NSString *> * _Nonnull(NSString * _Nonnull fromValue) {
             return [PINTask<NSString *> error:errorB];
         }];
         runTaskAndExpectToRejectWith(self, taskB, errorB);

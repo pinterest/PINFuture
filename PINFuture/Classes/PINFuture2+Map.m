@@ -13,11 +13,11 @@
 @implementation PINFuture2 (Map)
 
 + (PINFuture<id> *)map:(PINFuture<id> *)sourceFuture
-               context:(PINExecutionContext)context
+               executor:(id<PINExecutor>)executor
                success:(PINResult<id> *(^)(id fromValue))success
 {
     return [self flatMap:sourceFuture
-                 context:context
+                executor:executor
                  success:^PINFuture * _Nonnull(id  _Nonnull fromValue) {
                      return [PINResult2<id, id> match:success(fromValue) success:^id _Nonnull(id  _Nonnull value) {
                          return [PINFuture withValue:value];
@@ -34,7 +34,7 @@
 + (PINFuture<id> *)map:(PINFuture<id> *)sourceFuture
                success:(PINResult<id> *(^)(id fromValue))success
 {
-    return [self map:sourceFuture context:[PINExecution defaultContextForCurrentThread] success:success];
+    return [self map:sourceFuture executor:[PINExecutor defaultContextForCurrentThread] success:success];
 }
 
 @end

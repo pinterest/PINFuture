@@ -24,7 +24,7 @@
             __block NSUInteger remaining = sourceFutures.count;
             [sourceFutures enumerateObjectsUsingBlock:^(PINFuture * _Nonnull sourceFuture, NSUInteger index, BOOL * _Nonnull stop) {
                 // Dispatch to be off of main.  This work does not need to be on main.
-                [sourceFuture context:[PINExecution background]
+                [sourceFuture executor:[PINExecutor background]
                               success:^(id  _Nonnull value) {
                                   @synchronized (resolvedValues) {
                                       resolvedValues[index] = value;

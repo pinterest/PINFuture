@@ -11,5 +11,5 @@
 #import "PINTask2.h"
 
 @interface PINTask2<FromType, ToType> (MapToValue)
-+ (PINTask<ToType> *)context:(PINExecutionContext)context mapToValue:(PINTask<FromType> *)sourceTask success:(ToType (^)(FromType fromValue))success PIN_WARN_UNUSED_RESULT;
++ (PINTask<ToType> *)executor:(id<PINExecutor>)executor mapToValue:(PINTask<FromType> *)sourceTask success:(ToType (^)(FromType fromValue))success PIN_WARN_UNUSED_RESULT;
 @end

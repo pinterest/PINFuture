@@ -10,7 +10,7 @@
 #import "PHImageManager+PINTask.h"
 #import "PINDefines.h"
 #import "PINDispatchProxy.h"
-#import "PINExecution.h"
+#import "PINExecutor.h"
 #import "PINFuture+All.h"
 #import "PINFuture+Dispatch.h"
 #import "PINFuture+FlatMapError.h"
@@ -27,11 +27,11 @@
 #import "PINResultSuccess.h"
 #import "PINTask+All.h"
 #import "PINTask+Cache.h"
-#import "PINTask+Dispatch.h"
 #import "PINTask+Do.h"
 #import "PINTask.h"
 #import "PINTask2+FlatMap.h"
 #import "PINTask2+Map.h"
+#import "PINTask2+MapToValue.h"
 #import "PINTask2.h"
 
 FOUNDATION_EXPORT double PINFutureVersionNumber;

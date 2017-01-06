@@ -6,13 +6,13 @@
 //  Copyright (c) 2016 Pinterest. All rights reserved.
 //
 
-#import "PINExecution.h"
+#import "PINExecutor.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PINDispatchProxy : NSProxy
 
-+ (instancetype)proxyWithContext:(PINExecutionContext)context target:(id)target;
++ (instancetype)proxyWithExecutor:(id<PINExecutor>)executor target:(id)target;
 
 @end
 

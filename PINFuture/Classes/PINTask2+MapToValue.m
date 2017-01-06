@@ -12,9 +12,9 @@
 
 @implementation PINTask2 (MapToValue)
 
-+ (PINTask<id> *)context:(PINExecutionContext)context mapToValue:(PINTask<id> *)sourceTask success:(id (^)(id))success
++ (PINTask<id> *)executor:(id<PINExecutor>)executor mapToValue:(PINTask<id> *)sourceTask success:(id (^)(id))success
 {
-    return [self context:context map:sourceTask success:^PINResult *(id fromValue) {
+    return [self executor:executor map:sourceTask success:^PINResult *(id fromValue) {
         return [PINResult<id> succeedWith:success(fromValue)];
     }];
 }

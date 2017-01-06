@@ -13,14 +13,14 @@
 @implementation PINFuture2 (FlatMap)
 
 + (PINFuture<id> *)flatMap:(PINFuture<id> *)sourceFuture
-                   context:(PINExecutionContext)context
+                   executor:(id<PINExecutor>)executor
                    success:(PINFuture<id> *(^)(id fromValue))success
 {
     return [PINFuture withBlock:^(void (^resolve)(NSObject *), void (^reject)(NSError *)) {
-        [sourceFuture context:context success:^(NSObject *value) {
+        [sourceFuture executor:executor success:^(NSObject *value) {
             PINFuture<id> *newFuture = success(value);
             NSAssert(newFuture != nil, @"returned future must not be nil");
-            [newFuture context:context success:^(NSObject *value) {
+            [newFuture executor:executor success:^(NSObject *value) {
                 resolve(value);
             } failure:^(NSError *error) {
                 reject(error);
@@ -38,7 +38,7 @@
 + (PINFuture<id> *)flatMap:(PINFuture<NSObject *> *)sourceFuture
                              success:(PINFuture<id> *(^)(id fromValue))success;
 {
-    return [self flatMap:sourceFuture context:[PINExecution defaultContextForCurrentThread] success:success];
+    return [self flatMap:sourceFuture executor:[PINExecutor defaultContextForCurrentThread] success:success];
 }
 
 @end
