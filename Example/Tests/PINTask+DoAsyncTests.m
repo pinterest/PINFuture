@@ -16,7 +16,7 @@ SpecBegin(PINTaskDoAsyncSpecs)
 describe(@"task doAsync", ^{
     it(@"doCompletion executes side effect before continuing", ^{
         NSString *value = stringFixture();
-        PINTask<NSString *> *task = [PINTask<NSString *> value:value];
+        PINTask<NSString *> *task = [PINTask<NSString *> succeedWith:value];
         __block BOOL sideEffectExecuted = NO;
         
         // This doAsync will be dispatched to the main queue, and the Task should execute before the stack unwinds

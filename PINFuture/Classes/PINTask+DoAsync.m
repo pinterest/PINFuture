@@ -28,12 +28,12 @@
     }];
 }
 
-- (PINTask<id> *)executor:(id<PINExecutor>)executor doAsyncCompletion:(void(^)(PINResult<id> *result))completion
+- (PINTask<id> *)executor:(id<PINExecutor>)executor doAsyncCompletion:(void(^)())completion
 {
     return [self executor:executor doAsyncSuccess:^(id  _Nonnull value) {
-        completion([PINResult<id> succeedWith:value]);
+        completion();
     } failure:^(NSError * _Nonnull error) {
-        completion([PINResult<id> failWith:error]);
+        completion();
     }];
 }
 

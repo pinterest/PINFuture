@@ -18,9 +18,9 @@
                  flatMap:sourceTask
                  success:^PINTask * _Nonnull(id  _Nonnull fromValue) {
                      return [PINResult2<id, id> match:success(fromValue) success:^id _Nonnull(id  _Nonnull value) {
-                         return [PINTask value:value];
+                         return [PINTask succeedWith:value];
                      } failure:^id _Nonnull(NSError * _Nonnull error) {
-                         return [PINTask error:error];
+                         return [PINTask failWith:error];
                      }];
                  }];
 }

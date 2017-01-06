@@ -20,9 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
  * Computation is a function that accepts two callbacks. It should call one of them after completion with the final result (success or failure).
  * Also a computation may return a CancellationBlock with cancellation logic or it can return undefined if there is no cancellation logic
  */
-+ (PINTask<ObjectType> *)new:(PINCancelToken * _Nullable (^)(void(^resolve)(ObjectType), void(^reject)(NSError *)))block PIN_WARN_UNUSED_RESULT;
-+ (PINTask<ObjectType> *)value:(ObjectType)value PIN_WARN_UNUSED_RESULT;
-+ (PINTask<ObjectType> *)error:(NSError *)error PIN_WARN_UNUSED_RESULT;
++ (PINTask<ObjectType> *)create:(PINCancelToken * _Nullable (^)(void(^resolve)(ObjectType), void(^reject)(NSError *)))block PIN_WARN_UNUSED_RESULT;
++ (PINTask<ObjectType> *)succeedWith:(ObjectType)value PIN_WARN_UNUSED_RESULT;
++ (PINTask<ObjectType> *)failWith:(NSError *)error PIN_WARN_UNUSED_RESULT;
 
 - (PINTask<ObjectType> *)executor:(id<PINExecutor>)executor doSuccess:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure PIN_WARN_UNUSED_RESULT;
 - (PINCancelToken *)run;

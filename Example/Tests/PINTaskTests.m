@@ -16,20 +16,20 @@ SpecBegin(PINTaskSpecs)
 describe(@"task", ^{
     it(@"create with value", ^{
         NSString *value = stringFixture();
-        PINTask<NSString *> *task = [PINTask<NSString *> value:value];
+        PINTask<NSString *> *task = [PINTask<NSString *> succeedWith:value];
         runTaskAndExpectToResolveWith(self, task, value);
     });
     
     it(@"create with error", ^{
         NSError *error = errorFixture();
-        PINTask<NSString *> *task = [PINTask<NSString *> error:error];
+        PINTask<NSString *> *task = [PINTask<NSString *> failWith:error];
         runTaskAndExpectToRejectWith(self, task, error);
     });
     
     it(@"resolves only once", ^{
         NSString *value = stringFixture();
         // Calls to resolve or reject after the first should be ignored.
-        PINTask<NSString *> *task = [PINTask<NSString *> new:^PINCancelToken * _Nullable(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+        PINTask<NSString *> *task = [PINTask<NSString *> create:^PINCancelToken * _Nullable(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
             resolve(value);
             resolve(value);
             reject(errorFixture());
@@ -41,7 +41,7 @@ describe(@"task", ^{
     it(@"rejects only once", ^{
         NSError *error = errorFixture();
         // Calls to resolve or reject after the first should be ignored.
-        PINTask<NSString *> *task = [PINTask<NSString *> new:^PINCancelToken * _Nullable(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+        PINTask<NSString *> *task = [PINTask<NSString *> create:^PINCancelToken * _Nullable(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
             reject(error);
             reject(error);
             resolve(stringFixture());
@@ -53,14 +53,14 @@ describe(@"task", ^{
     it(@"not calling `run` before dealloc will assert", ^{
         expect(^{
             NSString *value = stringFixture();
-            __unused PINTask<NSString *> *task = [PINTask<NSString *> value:value];
+            __unused PINTask<NSString *> *task = [PINTask<NSString *> succeedWith:value];
         }).to.raise(@"NSInternalInconsistencyException");
     });
 
 //    it(@"tolerates success callback being null", ^{
 //        NSError *error = errorFixture();
 //        PINTask<NSString *> *task = [PINTask<NSString *> new:^PINCancellationBlock _Nullable(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
-//            [[PINTask<NSString *> error:error] runAsyncSuccess:NULL failure:^(NSError * _Nonnull error) {
+//            [[PINTask<NSString *> failWith:error] runAsyncSuccess:NULL failure:^(NSError * _Nonnull error) {
 //                reject(error);
 //            }];
 //            return NULL;

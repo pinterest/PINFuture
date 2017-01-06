@@ -32,7 +32,7 @@
         finalResolve(completionData);
     }];
     
-    PINTask<PINTaskNSURLSessionDataTaskCompletionData *> *completionTask = [PINTask<PINTaskNSURLSessionDataTaskCompletionData *> new:^PINCancelToken * (void (^ _Nonnull resolve)(PINTaskNSURLSessionDataTaskCompletionData * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+    PINTask<PINTaskNSURLSessionDataTaskCompletionData *> *completionTask = [PINTask<PINTaskNSURLSessionDataTaskCompletionData *> create:^PINCancelToken * (void (^ _Nonnull resolve)(PINTaskNSURLSessionDataTaskCompletionData * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         
         // save the resolve block, then call `resume`.
         finalResolve = resolve;

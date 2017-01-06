@@ -12,7 +12,7 @@
 
 - (PINTask<ALAsset *> *)assetTaskForURL:(NSURL *)assetURL
 {
-    return [PINTask<ALAsset *> new:^PINCancelToken * (void (^ _Nonnull resolve)(ALAsset * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+    return [PINTask<ALAsset *> create:^PINCancelToken * (void (^ _Nonnull resolve)(ALAsset * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         [self assetForURL:assetURL resultBlock:resolve failureBlock:reject];
         return NULL;
     }];

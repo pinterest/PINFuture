@@ -15,7 +15,7 @@ describe(@"mapToValue", ^{
     it(@"can return a value of a different type", ^{
         NSNumber *valueA = numberFixture();
         NSString *valueB = stringFixture();
-        PINTask<NSNumber *> *taskA = [PINTask<NSNumber *> value:valueA];
+        PINTask<NSNumber *> *taskA = [PINTask<NSNumber *> succeedWith:valueA];
         PINTask<NSString *> *taskB = [PINTask2<NSNumber *, NSString *> executor:[PINExecutor immediate] mapToValue:taskA success:^NSString *(NSNumber *fromValue) {
             return valueB;
         }];

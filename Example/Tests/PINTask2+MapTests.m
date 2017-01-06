@@ -15,7 +15,7 @@ describe(@"map", ^{
     it(@"can return a value of a different type", ^{
         NSNumber *valueA = numberFixture();
         NSString *valueB = stringFixture();
-        PINTask<NSNumber *> *taskA = [PINTask<NSNumber *> value:valueA];
+        PINTask<NSNumber *> *taskA = [PINTask<NSNumber *> succeedWith:valueA];
         PINTask<NSString *> *taskB = [PINTask2<NSNumber *, NSString *> executor:[PINExecutor immediate] map:taskA success:^PINResult<NSString *> *(NSNumber *fromValue) {
             return [PINResult<NSString *> succeedWith:valueB];
         }];
@@ -25,7 +25,7 @@ describe(@"map", ^{
     it(@"can cause a failure", ^{
         NSNumber *valueA = numberFixture();
         NSError *error = errorFixture();
-        PINTask<NSNumber *> *taskA = [PINTask<NSNumber *> value:valueA];
+        PINTask<NSNumber *> *taskA = [PINTask<NSNumber *> succeedWith:valueA];
         PINTask<NSString *> *taskB = [PINTask2<NSNumber *, NSString *> executor:[PINExecutor immediate] map:taskA success:^PINResult<NSString *> *(NSNumber *fromValue) {
             return [PINResult<NSString *> failWith:error];
         }];

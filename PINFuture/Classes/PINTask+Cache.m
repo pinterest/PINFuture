@@ -57,7 +57,7 @@ typedef void(^PINCompletionBlock)(NSError *error, id value);
     };
     
     __weak typeof(self) weakSelf = self;
-    return [PINTask<id> new:^PINCancelToken * (void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+    return [PINTask<id> create:^PINCancelToken * (void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         
         PINCompletionBlock callback = ^void(NSError *error, id value) {
