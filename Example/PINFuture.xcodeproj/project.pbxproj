@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		09A41C381E09B5950072EE8C /* PINResultTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5971D279FCC25DA78DFD52A5 /* PINResultTests.m */; };
+		09E85BBE1E171B2400238CEB /* PINCancelTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E85BBC1E171B1A00238CEB /* PINCancelTokenTests.m */; };
 		16328CA7B3F11E0B8B9D14ED /* Pods_PINFuture_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A821DF67E7C6F4B8CBFD0C4 /* Pods_PINFuture_Tests.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09E85BBC1E171B1A00238CEB /* PINCancelTokenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PINCancelTokenTests.m; sourceTree = "<group>"; };
 		1C1EC260D16EA51C1A79998D /* Pods-PINFuture_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PINFuture_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PINFuture_Example/Pods-PINFuture_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		2A821DF67E7C6F4B8CBFD0C4 /* Pods_PINFuture_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PINFuture_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31F4E9B3BEFC11D41B0E8B26 /* Pods-PINFuture_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PINFuture_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-PINFuture_Example/Pods-PINFuture_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -218,6 +220,8 @@
 				833B31ED1E1EF4B8002D0449 /* PINTask2+MapToValueTests.m */,
 				8349E1411E047CE300EB7EA3 /* PINTaskStressTest.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
+				5971D279FCC25DA78DFD52A5 /* PINResultTests.m */,
+				09E85BBC1E171B1A00238CEB /* PINCancelTokenTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -574,6 +578,7 @@
 				09A41C381E09B5950072EE8C /* PINResultTests.m in Sources */,
 				83626F121DF96773001CDCC7 /* PINFuture2+MapTests.m in Sources */,
 				8349E1101E02165900EB7EA3 /* PINDispatchProxyTests.m in Sources */,
+				09E85BBE1E171B2400238CEB /* PINCancelTokenTests.m in Sources */,
 				83626EF51DF5EA1F001CDCC7 /* PINFutureStressTests.m in Sources */,
 				833B31EE1E1EF4B8002D0449 /* PINTask2+MapToValueTests.m in Sources */,
 				8349E1201E02308B00EB7EA3 /* PINTask+CacheTests.m in Sources */,

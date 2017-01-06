@@ -30,7 +30,7 @@
 
 - (PINTask<PINImageManagerImageDataResult *> *)requestImageDataForAsset:(PHAsset *)asset options:(nullable PHImageRequestOptions *)options
 {
-    return [PINTask<PINImageManagerImageDataResult *> new:^PINCancellationBlock _Nullable(void (^ _Nonnull resolve)(PINImageManagerImageDataResult * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+    return [PINTask<PINImageManagerImageDataResult *> new:^PINCancelToken * (void (^ _Nonnull resolve)(PINImageManagerImageDataResult * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         [self requestImageDataForAsset:asset options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
             if (imageData) {
                 PINImageManagerImageDataResult *result = [[PINImageManagerImageDataResult alloc] initWithImageData:imageData

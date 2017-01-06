@@ -11,11 +11,11 @@
 #import "PINFuture.h"
 #import "PINOnce.h"
 
-typedef PINCancellationBlock(^PINExecuteBlock)(void(^resolve)(id), void(^reject)(NSError *));
+typedef PINCancelToken *(^PINExecuteBlock)(void(^resolve)(id), void(^reject)(NSError *));
 
 PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
 {
-    return ^PINCancellationBlock(void(^resolve)(id), void(^reject)(NSError *)) {
+    return ^PINCancelToken *(void(^resolve)(id), void(^reject)(NSError *)) {
         PINOnce *once = [[PINOnce alloc] init];
         return block(^(id value) {
             [once performOnce:^{
@@ -38,7 +38,7 @@ PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
 
 @implementation PINTask
 
-+ (PINTask<id> *)new:(__nullable PINCancellationBlock(^)(void(^resolve)(id), void(^reject)(NSError *)))block
++ (PINTask<id> *)new:(PINCancelToken *(^)(void(^resolve)(id), void(^reject)(NSError *)))block
 {
     PINTask<id> *task = [[PINTask alloc] init];
     task.block = block;
@@ -48,17 +48,17 @@ PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
 
 + (PINTask<id> *)value:(id)value
 {
-    return [self new:^PINCancellationBlock _Nullable(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+    return [self new:^PINCancelToken *(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         resolve(value);
-        return NULL;
+        return nil;
     }];
 }
 
 + (PINTask<id> *)error:(NSError *)error
 {
-    return [self new:^PINCancellationBlock _Nullable(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+    return [self new:^PINCancelToken * (void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         reject(error);
-        return NULL;
+        return nil;
     }];
 }
 
@@ -69,7 +69,7 @@ PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
 
 - (PINTask<id> *)executor:(id<PINExecutor>)executor doSuccess:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure
 {
-    return [self.class new:^PINCancellationBlock _Nullable(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+    return [self.class new:^PINCancelToken * (void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         return [self runSuccess:^(id value) {
             [executor execute:^{
                 if (success != NULL) {
@@ -88,12 +88,12 @@ PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
     }];
 }
 
-- (__nullable PINCancellationBlock)runSuccess:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure;
+- (PINCancelToken *)runSuccess:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure;
 {
     self.runCount += 1;
              
     PINExecuteBlock onceBlock = resolveOrRejectOnceExecutionBlock(self.block);
-    onceBlock(^void(id value) {
+    return onceBlock(^void(id value) {
         if (success != NULL) {
             success(value);
         }
@@ -102,10 +102,9 @@ PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
             failure(error);
         }
     });
-    return NULL;
 }
 
-- (__nullable PINCancellationBlock)run;
+- (PINCancelToken *)run;
 {
     return [self runSuccess:NULL failure:NULL];
 }
@@ -113,12 +112,11 @@ PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
 //- (__nullable PINCancellationBlock)runAsyncCompletion:(void(^)(NSError *error, id value))completion;
 //{
 //    PINExecuteBlock onceBlock = resolveOrRejectOnceExecutionBlock(self.block);
-//    onceBlock(^void(id value) {
+//    return onceBlock(^void(id value) {
 //        completion(nil, value);
 //    }, ^void(NSError *error) {
 //        completion(error, nil);
 //    });
-//    return NULL;
 //}
 
 @end
