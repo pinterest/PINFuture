@@ -3,7 +3,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PINExecution.h"
+#import "PINExecutor.h"
 
 typedef dispatch_block_t PINCancellationBlock;
 
@@ -11,7 +11,7 @@ typedef dispatch_block_t PINCancellationBlock;
 
 +(PINCancelToken *)fold:(NSArray<PINCancelToken *> *)tokens;
 
--(PINCancelToken *)initWithContext:(PINExecutionContext)context andBlock:(PINCancellationBlock)block;
+-(PINCancelToken *)initWithExecutor:(PINExecutor *)executor andBlock:(PINCancellationBlock)block;
 
 -(PINCancelToken *)and:(PINCancelToken *)other;
 

@@ -9,18 +9,19 @@
 #import "PINTask.h"
 #import "TestUtil.h"
 
-SpecBegin(PINCancelTokenSpecs)
+// TODO: Do real cancel tests
+/*SpecBegin(PINCancelTokenSpecs)
 
 describe(@"cancel tokens", ^{
     it(@"cancellation works", ^{
         NSNumber *valueA = numberFixture();
         NSString *valueB = stringFixture();
         PINTask<NSNumber *> *taskA = [PINTask<NSNumber *> value:valueA];
-        PINTask<NSString *> *taskB = [PINTask2<NSNumber *, NSString *> context:[PINExecution immediate] map:taskA success:^PINResult<NSString *> *(NSNumber *fromValue) {
+        PINTask<NSString *> *taskB = [PINTask2<NSNumber *, NSString *> executor:[PINExecutor immediate] map:taskA success:^PINResult<NSString *> *(NSNumber *fromValue) {
             return [PINResult succeedWith:valueB];
         }];
         runTaskAndExpectToResolveWith(self, taskB, valueB);
     });
 });
 
-SpecEnd
+SpecEnd*/

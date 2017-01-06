@@ -3,7 +3,7 @@
 //
 
 #import "PINCancelToken.h"
-#import "PINExecution.h"
+#import "PINExecutor.h"
 #import "PINOnce.h"
 
 @interface PINCancelToken ()
@@ -17,7 +17,7 @@
 + (PINCancelToken *)fold:(NSArray<PINCancelToken *> *)tokens {
     
     // TODO: replace with identity constant
-    PINCancelToken * accumulator = [[PINCancelToken alloc] initWithContext:[PINExecution immediate] andBlock:^{}];
+    PINCancelToken * accumulator = [[PINCancelToken alloc] initWithExecutor:[PINExecutor immediate] andBlock:^{}];
     if (tokens == nil) {
         return accumulator;
     }
@@ -28,12 +28,14 @@
     return accumulator;
 }
 
-- (PINCancelToken *)initWithContext:(PINExecutionContext)context andBlock:(PINCancellationBlock)block {
+- (PINCancelToken *)initWithExecutor:(PINExecutor *)executor andBlock:(PINCancellationBlock)block {
     if (self = [super init]) {
         PINOnce *once = [[PINOnce alloc] init];
-        self.cancellationBlock = context(^{
-            [once performOnce:block];
-        });
+        self.cancellationBlock = ^{
+            [executor execute:^{
+                [once performOnce:block];
+            }];
+        };
     }
     return self;
 }
@@ -46,7 +48,7 @@
     }
 
     __weak typeof(self) weakSelf = self;
-    return [[PINCancelToken alloc] initWithContext:[PINExecution immediate] andBlock:^{
+    return [[PINCancelToken alloc] initWithExecutor:[PINExecutor immediate] andBlock:^{
         weakSelf.cancellationBlock();
         other.cancellationBlock();
     }];

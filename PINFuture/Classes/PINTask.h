@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (PINTask<ObjectType> *)executor:(id<PINExecutor>)executor doSuccess:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure PIN_WARN_UNUSED_RESULT;
 - (PINCancelToken *)run;
-
+
 @end
 
 @interface PINTask<ObjectType> (Compose)
