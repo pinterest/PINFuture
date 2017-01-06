@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_END
 #import "PINTask+All.h"
 #import "PINTask+Cache.h"
 #import "PINTask+Do.h"
+#import "PINTask+DoAsync.h"
 #import "PINTask2.h"
 #import "PINTask2+Map.h"
 #import "PINTask2+FlatMap.h"

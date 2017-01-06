@@ -28,6 +28,7 @@
 #import "PINTask+All.h"
 #import "PINTask+Cache.h"
 #import "PINTask+Do.h"
+#import "PINTask+DoAsync.h"
 #import "PINTask.h"
 #import "PINTask2+FlatMap.h"
 #import "PINTask2+Map.h"
