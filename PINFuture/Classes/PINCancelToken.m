@@ -38,6 +38,8 @@
     return self;
 }
 
+// TODO: Reconsider parallel cancellation
+//       * Downside is an extra async dispatch
 - (PINCancelToken *)and:(PINCancelToken *)other {
     if (other == nil) {
         return self;
