@@ -11,7 +11,7 @@ typedef dispatch_block_t PINCancellationBlock;
 
 +(PINCancelToken *)fold:(NSArray<PINCancelToken *> *)tokens;
 
--(PINCancelToken *)initWithExecutor:(PINExecutor *)executor andBlock:(PINCancellationBlock)block;
+-(PINCancelToken *)initWithExecutor:(id<PINExecutor>)executor andBlock:(PINCancellationBlock)block;
 
 -(PINCancelToken *)and:(PINCancelToken *)other;
 

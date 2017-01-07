@@ -8,7 +8,7 @@
 
 #import "PHImageManager+PINFuture.h"
 
-@implementation PHImageManagerImageDataResult
+@implementation PINPHImageManagerImageDataResult
 
 - (instancetype)initWithImageData:(NSData *)imageData
                           dataUTI:(NSString *)dataUTI
@@ -28,12 +28,12 @@
 
 @implementation PHImageManager (PINFuture)
 
-- (PINFuture<PHImageManagerImageDataResult *> *)requestImageDataForAsset:(PHAsset *)asset options:(nullable PHImageRequestOptions *)options
+- (PINFuture<PINPHImageManagerImageDataResult *> *)requestImageDataForAsset:(PHAsset *)asset options:(nullable PHImageRequestOptions *)options
 {
-    return [PINFuture<PHImageManagerImageDataResult *> withBlock:^(void (^ _Nonnull resolve)(PHImageManagerImageDataResult * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+    return [PINFuture<PINPHImageManagerImageDataResult *> withBlock:^(void (^ _Nonnull resolve)(PINPHImageManagerImageDataResult * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         [self requestImageDataForAsset:asset options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
             if (imageData) {
-                PHImageManagerImageDataResult *result = [[PHImageManagerImageDataResult alloc] initWithImageData:imageData
+                PINPHImageManagerImageDataResult *result = [[PINPHImageManagerImageDataResult alloc] initWithImageData:imageData
                                                                                                          dataUTI:dataUTI
                                                                                                      orientation:orientation
                                                                                                             info:info];

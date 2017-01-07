@@ -7,13 +7,13 @@
 //
 
 #import "PINFuture+MapError.h"
-
+/*
 @implementation PINFuture (MapError)
 
 - (PINFuture<id> *)executor:(id<PINExecutor>)executor mapError:(id (^)(NSError *error))mapError
 {
     return [self executor:[PINExecutor defaultContextForCurrentThread] flatMapError:^PINFuture * _Nonnull(NSError * _Nonnull error) {
-        return [PINFuture<id> withError:mapError(error)];
+        return [PINFuture<id> failWith:mapError(error)];
     }];
 }
 
@@ -23,3 +23,4 @@
 }
 
 @end
+*/

@@ -17,7 +17,7 @@ describe(@"map", ^{
     it(@"can return a value of a different type", ^{
         NSNumber *valueA = numberFixture();
         NSString *valueB = stringFixture();
-        PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> withValue:valueA];
+        PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> succeedWith:valueA];
         PINFuture<NSString *> *futureB = [PINFuture2<NSNumber *, NSString *> map:futureA success:^PINResult<NSString *> * _Nonnull(NSNumber * _Nonnull fromValue) {
             return [PINResult<NSString *> succeedWith:valueB];
         }];
@@ -27,7 +27,7 @@ describe(@"map", ^{
     it(@"can cause a failure", ^{
         NSNumber *valueA = numberFixture();
         NSError *error = errorFixture();
-        PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> withValue:valueA];
+        PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> succeedWith:valueA];
         PINFuture<NSString *> *futureB = [PINFuture2<NSNumber *, NSString *> map:futureA success:^PINResult<NSString *> *(NSNumber *fromValue) {
             return [PINResult<NSString *> failWith:error];
         }];

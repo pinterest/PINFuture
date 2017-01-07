@@ -28,7 +28,7 @@
     return accumulator;
 }
 
-- (PINCancelToken *)initWithExecutor:(PINExecutor *)executor andBlock:(PINCancellationBlock)block {
+- (PINCancelToken *)initWithExecutor:(id<PINExecutor>)executor andBlock:(PINCancellationBlock)block {
     if (self = [super init]) {
         PINOnce *once = [[PINOnce alloc] init];
         self.cancellationBlock = ^{

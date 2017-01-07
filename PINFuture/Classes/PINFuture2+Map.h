@@ -25,6 +25,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (PINFuture<ToType> *)map:(PINFuture<FromType> *)sourceFuture
                    success:(PINResult<ToType> *(^)(FromType fromValue))success;
 
++ (PINFuture<ToType> *)mapValue:(PINFuture<FromType> *)sourceFuture
+                       executor:(id<PINExecutor>)executor
+                        success:(ToType (^)(FromType fromValue))success;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Immutable.  Futures need to resolve to a single value, so this struct hold all of the values normally passed to the callback.
  */
-@interface PHImageManagerImageDataResult : NSObject
+@interface PINPHImageManagerImageDataResult : NSObject
 
 @property (nonatomic, readonly) NSData *imageData;
 @property (nonatomic, copy, readonly) NSString *dataUTI;
@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PHImageManager (PINFuture)
 
-- (PINFuture<PHImageManagerImageDataResult *> *)requestImageDataForAsset:(PHAsset *)asset options:(nullable PHImageRequestOptions *)options;
+- (PINFuture<PINPHImageManagerImageDataResult *> *)requestImageDataForAsset:(PHAsset *)asset options:(nullable PHImageRequestOptions *)options;
 
 @end
 

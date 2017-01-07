@@ -31,6 +31,7 @@
             resolvedData.error = error;
             resolve(resolvedData);
         }];
+        [task resume];
     }];
 
     return [PINPair<NSURLSessionDataTask *, PINFuture<PINFutureNSURLSessionDataTaskCompletionData *> *> pairWithFirst:task second:future];

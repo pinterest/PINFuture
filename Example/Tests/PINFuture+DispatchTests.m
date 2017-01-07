@@ -24,7 +24,7 @@ describe(@"dispatch", ^{
     it(@"resolve on background queue", ^{
         NSString *value = stringFixture();
         PINFuture<NSString *> *future = [PINFuture<NSString *> dispatchWithExecutor:backgroundContext block:^PINFuture<NSString *> * _Nonnull{
-            return [PINFuture withValue:value];
+            return [PINFuture succeedWith:value];
         }];
         expectFutureToResolveWith(self, future, value);
     });
@@ -32,7 +32,7 @@ describe(@"dispatch", ^{
     it(@"reject on background queue", ^{
         NSError *error = errorFixture();
         PINFuture<NSString *> *future = [PINFuture<NSString *> dispatchWithExecutor:backgroundContext block:^PINFuture<NSString *> * _Nonnull{
-            return [PINFuture withError:error];
+            return [PINFuture failWith:error];
         }];
         expectFutureToRejectWith(self, future, error);
     });

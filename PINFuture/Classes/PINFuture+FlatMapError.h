@@ -8,9 +8,11 @@
 
 #import "PINFuture.h"
 
+/*
 @interface PINFuture<ObjectType> (FlatMapError)
 
 - (PINFuture<ObjectType> *)executor:(id<PINExecutor>)executor flatMapError:(PINFuture<ObjectType> *(^)(NSError *error))flatMapError;
 - (PINFuture<ObjectType> *)flatMapError:(PINFuture<ObjectType> *(^)(NSError *error))flatMapError;
 
 @end
+*/

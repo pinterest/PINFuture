@@ -20,9 +20,9 @@
                 executor:executor
                  success:^PINFuture * _Nonnull(id  _Nonnull fromValue) {
                      return [PINResult2<id, id> match:success(fromValue) success:^id _Nonnull(id  _Nonnull value) {
-                         return [PINFuture withValue:value];
+                         return [PINFuture succeedWith:value];
                      } failure:^id _Nonnull(NSError * _Nonnull error) {
-                         return [PINFuture withError:error];
+                         return [PINFuture failWith:error];
                      }];
                  }];
 }
@@ -35,6 +35,15 @@
                success:(PINResult<id> *(^)(id fromValue))success
 {
     return [self map:sourceFuture executor:[PINExecutor defaultContextForCurrentThread] success:success];
+}
+
++ (PINFuture<id> *)mapValue:(PINFuture<id> *)sourceFuture
+                   executor:(id<PINExecutor>)executor
+                    success:(id (^)(id fromValue))success
+{
+    return [self map:sourceFuture executor:executor success:^PINResult * _Nonnull(id  _Nonnull fromValue) {
+        return [PINResult succeedWith:success(fromValue)];
+    }];
 }
 
 @end

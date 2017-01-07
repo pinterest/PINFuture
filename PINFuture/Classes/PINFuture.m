@@ -21,7 +21,8 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 @interface PINFutureCallback : NSObject
 @property (nonatomic) id<PINExecutor> executor;
-@property (nonatomic) void(^completion)(NSError *error, NSObject *value);
+@property (nonatomic, nullable) void(^success)(id value);
+@property (nonatomic, nullable) void(^failure)(NSError *error);
 @end
 
 @implementation PINFutureCallback
@@ -30,6 +31,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 @interface PINFuture ()
 
 @property (nonatomic) NSLock *propertyLock;
+// TODO(chris): Use PINResult here.
 @property (nonatomic) enum PINFutureState state;
 @property (nonatomic) id value;
 @property (nonatomic) NSError *error;
@@ -48,7 +50,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     return self;
 }
 
-+ (PINFuture<id> *)withValue:(id)value
++ (PINFuture<id> *)succeedWith:(id)value
 {
     PINFuture<id> *future = [[PINFuture alloc] initPrivate];
     future.state = PINFutureStateResolved;
@@ -56,7 +58,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     return future;
 }
 
-+ (PINFuture<id> *)withError:(NSError *)error
++ (PINFuture<id> *)failWith:(NSError *)error
 {
     PINFuture<id> *future = [[PINFuture alloc] initPrivate];
     future.state = PINFutureStateRejected;
@@ -77,20 +79,21 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 #pragma mark - attach callbacks
 
-- (void)executor:(id<PINExecutor>)executor completion:(void(^)(NSError *error, id))completion
+- (void)executor:(id<PINExecutor>)executor success:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure
 {
     PINFutureCallback *callback = [[PINFutureCallback alloc] init];
     callback.executor = executor;
-    callback.completion = completion;
+    callback.success = success;
+    callback.failure = failure;
     [self.propertyLock lock];
-        // Lazily instantiate self.callbacks.  Lots of futures will never have any callbacks.
-        if (self.callbacks == nil) {
-            self.callbacks = [NSMutableArray new];
-        }
-
-        [self.callbacks addObject:callback];
+    // Lazily instantiate self.callbacks.  Lots of futures will never have any callbacks.
+    if (self.callbacks == nil) {
+        self.callbacks = [NSMutableArray new];
+    }
+    
+    [self.callbacks addObject:callback];
     [self.propertyLock unlock];
-
+    
     [self tryFlushCallbacks];
 }
 
@@ -126,7 +129,16 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     // execute
     for (PINFutureCallback *callback in callbacks) {
         [callback.executor execute:^{
-            callback.completion(self.error, self.value);
+            switch (self.state) {
+                case PINFutureStateResolved:
+                    callback.success(self.value);
+                    break;
+                case PINFutureStateRejected:
+                    callback.failure(self.error);
+                    break;
+                default:
+                    NSAssert(NO, @"unexpected state value");
+            }
         }];
     }
 }
@@ -135,22 +147,16 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 @implementation PINFuture (Convenience)
 
-- (void)executor:(id<PINExecutor>)executor success:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure;
+- (void)executor:(id<PINExecutor>)executor completion:(void(^)())completion
 {
-    return [self executor:executor completion:^(NSError *error, NSObject * value) {
-        if (error != nil) {
-            if (failure != NULL) {
-                failure(error);
-            }
-        } else {
-            if (success != NULL) {
-                success(value);
-            }
-        }
+    return [self executor:executor success:^(id  _Nonnull value) {
+        completion();
+    } failure:^(NSError * _Nonnull error) {
+        completion();
     }];
 }
 
-- (void)completion:(void(^)(NSError *error, id value))completion
+- (void)completion:(void(^)())completion
 {
     return [self executor:[PINExecutor defaultContextForCurrentThread] completion:completion];
 }

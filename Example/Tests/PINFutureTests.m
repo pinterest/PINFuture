@@ -16,13 +16,13 @@ SpecBegin(PINFutureSpecs)
 describe(@"future", ^{
     it(@"create with value", ^{
         NSString *value = stringFixture();
-        PINFuture<NSString *> *future = [PINFuture<NSString *> withValue:value];
+        PINFuture<NSString *> *future = [PINFuture<NSString *> succeedWith:value];
         expectFutureToResolveWith(self, future, value);
     });
 
     it(@"create with error", ^{
         NSError *error = errorFixture();
-        PINFuture<NSString *> *future = [PINFuture<NSString *> withError:error];
+        PINFuture<NSString *> *future = [PINFuture<NSString *> failWith:error];
         expectFutureToRejectWith(self, future, error);
     });
 
@@ -51,7 +51,7 @@ describe(@"future", ^{
     it(@"tolerates success callback being null", ^{
         NSError *error = errorFixture();
         PINFuture<NSString *> *future = [PINFuture<NSString *> withBlock:^(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
-            [[PINFuture withError:error] success:NULL failure:^(NSError * _Nonnull error) {
+            [[PINFuture failWith:error] success:NULL failure:^(NSError * _Nonnull error) {
                 reject(error);
             }];
         }];
@@ -61,7 +61,7 @@ describe(@"future", ^{
     it(@"tolerates failure callback being null", ^{
         NSString *value = stringFixture();
         PINFuture<NSString *> *future = [PINFuture<NSString *> withBlock:^(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
-            [[PINFuture withValue:value] success:^(id  _Nonnull value) {
+            [[PINFuture succeedWith:value] success:^(id  _Nonnull value) {
                 resolve(value);
             } failure:NULL];
         }];

@@ -32,12 +32,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Return a future that is immediately resolved.
  */
-+ (PINFuture<ObjectType> *)withValue:(ObjectType)value;
++ (PINFuture<ObjectType> *)succeedWith:(ObjectType)value;
 
 /**
  * Return a future that is immediately rejected.
  */
-+ (PINFuture<ObjectType> *)withError:(NSError *)error;
++ (PINFuture<ObjectType> *)failWith:(NSError *)error;
 
 /**
  * Construct a future from a block that eventually calls resolve or reject.
@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - attach callbacks
 
-- (void)executor:(id<PINExecutor>)executor completion:(void(^)(NSError *error, ObjectType value))completion;
+- (void)executor:(id<PINExecutor>)executor success:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure;
 
 @end
 
@@ -56,11 +56,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - callback methods that specify an execution context
 
-- (void)executor:(id<PINExecutor>)executor success:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure;
+- (void)executor:(id<PINExecutor>)executor completion:(void(^)())completion;
 
 #pragma mark - callback methods that don't specify an execution context
 
-- (void)completion:(void(^)(NSError *error, ObjectType value))completion;
+- (void)completion:(void(^)())completion;
 - (void)success:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure;
 
 #pragma mark - misc
