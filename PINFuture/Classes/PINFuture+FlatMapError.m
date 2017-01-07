@@ -8,7 +8,6 @@
 
 #import "PINFuture+FlatMapError.h"
 
-/*
 @implementation PINFuture (FlatMapError)
 
 - (PINFuture<id> *)executor:(id<PINExecutor>)executor flatMapError:(PINFuture<id> *(^)(NSError *error))flatMapError
@@ -35,4 +34,3 @@
 }
 
 @end
-*/

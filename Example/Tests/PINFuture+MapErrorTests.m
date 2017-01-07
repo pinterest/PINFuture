@@ -16,8 +16,8 @@ describe(@"mapError", ^{
         NSError *error1 = errorFixture();
         NSError *error2 = errorFixture();
         PINFuture<NSString *> *source = [PINFuture<NSString *> failWith:error1];
-        PINFuture<NSString *> *mapped = [source mapError:^NSError *(NSError *error) {
-            return error2;
+        PINFuture<NSString *> *mapped = [source mapError:^PINResult<NSString *> *(NSError *error) {
+            return [PINResult<NSString *> failWith:error2];
         }];
         expectFutureToRejectWith(self, mapped, error2);
     });
