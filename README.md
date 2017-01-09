@@ -37,37 +37,32 @@ Future style
 
 ### Handling values ###
 
-To get at the value of a Future, you register one or more callbacks that will be executed when the Future resolves (i.e. succeeds) or rejects (i.e. fails).  You can register a success, failure, complete, any combination of the 3.
+You can be informed of the result of a Future by registering callbacks: complete, success and failure.
 
 ```objc
 PINFuture<PIPin *> *future = [controller createPinWithImageURL:imageURL];
 [future executor:[PINExecutor mainQueue] complete:^{
-	[PILoadingHUD dismiss:[error descriptionForHUD]];
+    [LoadingHUD dismiss:[error descriptionForHUD]];
 }];
 [future executor:[PINExecutor mainQueue] success:^(PIPin * _Nonnull pin) {
     [self dismissViewController];
 } failure:^(NSError * _Nonnull error) {
-    [PILoadingHUD showErrorWithStatus:[error descriptionForHUD]];
+    [LoadingHUD showErrorWithStatus:[error descriptionForHUD]];
 }];
 ```
 
-### Callback execution context ###
+The order in which the callbacks are executed upon completion of the future is not guaranteed.  However, it is guaranteed that callbacks will be *dispatched* in the order that they are registered.
 
-When you register a callback, there is a required `executor:` parameter.  An `executor` determines where and how a callback will be executed (e.g. on a background GCD queue, new thread, in a pooled thread or in the current thread (although executing the computation in the current thread is discouraged – more on that below).
+It is not safe to add another callback from within a callback of the same future.
 
-This will usually be either `[PINExecutor mainQueue]` or `[PINExecutor background]` depending on the needs of your callback.  You should prefer `background` unless something in your callback is needs to be on the Main thread.
+### Threading model ###
 
-A Future can be `map`'d to a Future of a new type, and operations on futures can be composed into higher-level functions that return Futures.
+When you register a callback, there is a required `executor:` parameter.  An `executor` determines where and when a callback will be executed.  For example:
+- on a the main GCD queue
+- on the global background queue
+- immediately when the Future is competed from the thread that completed the future 
 
-```objc
-- (SomeUser *)userForId:(NSUInteger)userId
-{
-    PINFuture<NSString *> payloadFuture = [httpSession getPath:[NSString stringWithFormat:@"user/%d", userId]];
-    return [PINFuture2<NSDictionary *, SomeModel *> map:payloadFuture executor:[PINExecutor background] success:^PINFuture<SomeUser *> * _Nonnull(NSString * _Nonnull payload) {
-        return [self parseUser:payload];
-    }];
-}
-```
+For `executor:` you'll almost always specify `[PINExecutor mainQueue]` or `[PINExecutor background]` depending on the needs of your callback.  You should prefer `background` unless something in your callback is needs to be on the Main thread (e.g. touching UIKit in a way that needs to be on Main).
 
 ### Preserving type safety
 
@@ -90,9 +85,33 @@ PINFuture<NSString *> *stringFuture = [PINFuture2<NSNumber *, NSString *> mapVal
 }];
 ```
 
+### Chaining and composition
+A Future can be `map`'d to a Future of a new type, and operations on futures can be composed into higher-level functions that return Futures.
+
+```objc
+- (SomeUser *)userForId:(NSUInteger)userId
+{
+    PINFuture<NSString *> payloadFuture = [httpSession getPath:[NSString stringWithFormat:@"user/%d", userId]];
+    return [PINFuture2<NSDictionary *, SomeModel *> map:payloadFuture executor:[PINExecutor background] success:^PINFuture<SomeUser *> * _Nonnull(NSString * _Nonnull payload) {
+        return [self parseUser:payload];
+    }];
+}
+```
+
+### Recovering from an error
+
+`map` and `flatMap` let you handle errors by transforming them back to successful values.
+
+```objc
+```
+
 ### Blocking on a result
 
-PINFuture is non-blocking and provides no blocking mechanism.  Blocking is generally not a good practice, but is possible using [Grand Central Dispatch Semaphores](http://www.g8production.com/post/76942348764/wait-for-blocks-execution-using-a-dispatch)
+PINFuture is non-blocking and provides no mechanism for blocking.  Blocking is generally not a good practice, but is possible to achieve this using [Grand Central Dispatch Semaphores](http://www.g8production.com/post/76942348764/wait-for-blocks-execution-using-a-dispatch)
+
+### Errors and exceptions
+
+PINFuture does not capture Exceptions thrown by callbacks.  On the platforms that PINFuture targets, Exceptions are generally fatal and NSErrors are non-exceptional failures.  PINFuture deals with `NSError`s.
 
 ## Reference
 
@@ -110,8 +129,29 @@ PINFuture is non-blocking and provides no blocking mechanism.  Blocking is gener
 
 ## Alternatives
 
+### Java
+- Guava: https://github.com/google/guava/wiki/ListenableFutureExplained
 
-## Future
+### Scala
+- Scalaz Task - the missing documentation http://timperrett.com/2014/07/20/scalaz-task-the-missing-documentation/
+- Monix https://monix.io/docs/2x/eval/task.html
+
+- Monix design history https://gist.github.com/alexandru/55a6038c2fe61025d555
+- Is Future a worthless abstraction compared to Task?  https://www.reddit.com/r/scala/comments/3zofjl/why_is_future_totally_unusable/  Interesting comment by the author of Monix.
+- Easy Performance Wins With Scalaz - http://blog.higher-order.com/blog/2015/06/18/easy-performance-wins-with-scalaz/
+- Referential transparency: https://wiki.haskell.org/Referential_transparency
+- Difference between a Promise and a Task https://glebbahmutov.com/blog/difference-between-promise-and-task/
+- Difference between a future and a task https://github.com/indyscala/scalaz-task-intro/blob/master/presentation.md
+
+#### C++
+- Folly futures: https://github.com/facebook/folly/tree/master/folly/futures https://code.facebook.com/posts/1661982097368498/futures-for-c-11-at-facebook/
+
+#### JavaScript
+- Pied Piper https://github.com/WeltN24/PiedPiper/blob/master/README.md#promises
+- Data.Task https://github.com/folktale/data.task
+- fun-task https://github.com/rpominov/fun-task/blob/master/docs/api-reference.md#taskmaprejectedfn
+
+Exection Contexts https://www.cocoawithlove.com/blog/specifying-execution-contexts.html
 
 ## Author
 
