@@ -15,6 +15,9 @@ pod "PINFuture"
 ```
 
 ## Overview
+
+PINFuture is an Objective C implementation of the async primitive called "future" that differs from other Objective C implementations in that it aims to preserve type safety.
+
 ### What is a Future?
 
 A Future is a read-only reference to a yet-to-be-computed value (or error if the operation fails).
