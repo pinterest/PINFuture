@@ -225,6 +225,7 @@ Exection Contexts https://www.cocoawithlove.com/blog/specifying-execution-contex
 ## Deliberate design decisions
 These are possibly controvercial.
 - Don't return a value from the `success:failure:` and `completion:` methods that register a callback.  A reader might be mislead into thinking that the callbacks will be executed (not just dispatched) sequentially.
+- Don't implement BrightFutures behavior of "execute callback on Main of it was registered from Main, or execute callback in background if registered from not Main".  We think an explicit executor is better.  With the BrightFuture behavior, a chunk of code copied to another location may not behave properly for very subtle reasons.
 
 ## Author
 
