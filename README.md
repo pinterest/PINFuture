@@ -29,16 +29,18 @@ When you write a function that produces an asynchronous value, that function can
 #### Method signatures
 Callback style
 ```objc
-- (void)readFile:(NSString *)path
-         success:( void (^)(NSData *data) )successBlock
-         failure:( void (^)(NSError *error) )failureBlock;
+- (void)logInWithUsername:(NSString *)username
+                 password:(NSString *)password
+                  success:( void (^)(User *user) )successBlock
+                  failure:( void (^)(NSError *error) )failureBlock;
 ```
 Future style
 ```objc
-- (PINFuture<NSData *>)readFile:(NSString *)path;
+- (PINFuture<User *user> *)logInWithUsername:(NSString *)username 
+                                    password:(NSString *)password;
 ```
 
-#### Chaining two async operations
+#### Chaining asynchronous operations
 Callback style
 ```objc
 [User logInWithUsername:username password:password success:^(User *user) {
@@ -60,7 +62,7 @@ Callback style
 Future style
 ```objc
 PINFuture<User *> *userFuture = [User logInWithUsername:username password:password];
-PINFuture<Posts *> *postsFuture = [PINFuture2<User *, Posts *> flatMap:userFuture executor:[PINExecutor background] transform:^PINFuture<Posts *> *(User *user) {
+PINFuture<Posts *> *postsFuture = [PINFutureMap<User *, Posts *> flatMap:userFuture executor:[PINExecutor background] transform:^PINFuture<Posts *> *(User *user) {
     return [Posts fetchPostsForUser:user];
 }];
 [postsFuture executor:[PINExecutor mainQueue] success:^(Posts *posts) {
@@ -72,9 +74,9 @@ PINFuture<Posts *> *postsFuture = [PINFuture2<User *, Posts *> flatMap:userFutur
 
 ### Handling values
 
-You access the final value of a Future by registering callbacks: `success`, `failure`, and `complete`.
+To access the final value of a Future, you register `success` and `failure` callbacks.  If you only want to know when a future completes (and not the specific value or error), then register a `complete` callback.
 
-- Callbacks will be *dispatched* in the order that they are registered.  However, depending on your `executor`, the blocks might actually *execute* in a different order or even concurrently (if, for example, you specify `[PINExecutor background]`).
+- Callbacks will be *dispatched* in the order that they are registered.  However, depending on your specified `executor`, the blocks might actually *execute* in a different order or even concurrently.
 - It is not safe to add another callback from within a callback of the same Future.
 
 ### Threading model ###
@@ -82,32 +84,28 @@ You access the final value of a Future by registering callbacks: `success`, `fai
 When you register a callback, there is a required `executor:` parameter.  The `executor` determines where and when a callback will be executed.
 
 #### Common PINExecutors
-- `[PINExecutor mainQueue]` Executes a block on the Main GCD queue
-- `[PINExecutor background]` Executes a block in a background pool of threads
+- `[PINExecutor mainQueue]` Executes a callback block on the Main GCD queue
+- `[PINExecutor background]` Executes a callback block from a background pool of threads.
 
-A good rule of thumb: Always use `[PINExecutor background]` unless your block specifically needs to be executed from the main thread (e.g. because it's reading from or modifying the UI).
-
-#### Uncommon PINExecutors
-- `[PINExecutor immediate]` Executea a block immediately when the Future is resolved or rejected from whatever thread and callstack caused the Future to be resolved/rejected.  Using this is only appropriate as an optimization if your block will execute extremely quickly, will be executed with a very high frequency, and if the cost of executing the block is low compared to the cost of the PINExecutor dispatching the block.
-- `[PINExecutor immediateOnMain]` Executes a block on the Main thread.  If the Future linked with the block is resolved or rejected on the Main thread, then the block is called immediately.  If it's resolved or rejected from a thread other than Main, then `[PINExecutor mainQueue]` is used to execute the block.
+A good rule of thumb: Always use `[PINExecutor background]` unless your block specifically needs to be executed from the Main thread (e.g. because it's touching UIKit).
 
 ### Preserving type safety
 
 PINFuture makes use of Objective C generics to maintain the same type safety that you'd have with callbacks.
 
 ```objc
-[PINFuture<NSNumber *> succeedWithValue:@"foo"]; // compile error.  Good.
+[PINFuture<NSNumber *> succeedWithValue:@"foo"]; // compile error.  Good!
 ```
 
 In Objective C, type parameters are optional.  It's a good practice to always specify them for a PINFuture, and ever better if you have tooling that can enforce that a type is always for a `PINFuture`.
 ```objc
-[PINFuture succeedWithValue:@"foo"]; // This compiles but is likely to blow up when a callback uses the value.
+[PINFuture succeedWithValue:@"foo"]; // This compiles but will likely blow up with "unrecognized selector" when the value is used.
 ```
 
-In order to preserve value type safety for operation that take one type Future and returns a different type of Future, we have to jump through some hoops due to Objective C's rudimentary support for generics.  Any such operation like `map` is implemented as a class method on the `PINFuture2` class.  `PINFuture2` is a class with two type parameters.  The first parameter is the `FromType` and the second is the `ToType`.
+In order to preserve type safety for operation like `map` that convert from one value type to another, we have to jump through some hoops because of Objective C's rudimentary support for generics.  `map` and `flatMap` are class methods on the class `PINFutureMap`.  The `PINFutureMap` class has two type parameters:  `FromType` and `ToType`.
 ```objc
 PINFuture<NSNumber *> *numberFuture = [PINFuture<NSNumber *> succeedWithValue:@123];
-PINFuture<NSString *> *stringFuture = [PINFuture2<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor immediate] success:^NSString * _Nonnull(NSNumber * _Nonnull number) {
+PINFuture<NSString *> *stringFuture = [PINFutureMap<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor immediate] success:^NSString * _Nonnull(NSNumber * _Nonnull number) {
     return [number stringValue];
 }];
 ```
@@ -156,7 +154,7 @@ PINFuture<NSString *> stringFuture = [PINFuture<NSString *> withBlock:^(void (^ 
 #### `mapValue`
 Use to convert a Future of one ObjectType to a Future of another ObjectType.  `success` is called only if the source future succeeds.  The value returned by `success` populated a new, succeeded future.
 ```objc
-PINFuture<NSString *> stringFuture = [PINFuture2<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] transform:^NSString * _Nonnull(NSNumber * _Nonnull number) {
+PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] transform:^NSString * _Nonnull(NSNumber * _Nonnull number) {
     return [number stringValue];
 }];
 ```
@@ -164,7 +162,7 @@ PINFuture<NSString *> stringFuture = [PINFuture2<NSNumber *, NSString *> mapValu
 #### `map`
 Use to convert a Future of one ObjectType to a Future of another ObjectType.  `success` is called only if the source future succeeds.  The value returned by `success` populated a future.
 ```objc
-PINFuture<NSString *> stringFuture = [PINFuture2<NSNumber *, NSString *> map:numberFuture executor:[PINExecutor background] transform:^NSString * _Nonnull(NSNumber * _Nonnull number) {
+PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> map:numberFuture executor:[PINExecutor background] transform:^NSString * _Nonnull(NSNumber * _Nonnull number) {
     if ([number isEqual:@1]) {
         return [PINResult<NSString *> succeedWith:stringValue];
     } else {
@@ -176,7 +174,7 @@ PINFuture<NSString *> stringFuture = [PINFuture2<NSNumber *, NSString *> map:num
 #### `flatMap`
 Use to convert a Future of one ObjectType to a Future of another ObjectType.  `success` is called only if the source future succeeds.  The value returned by `success` becomes the new future.
 ```objc
-PINFuture<NSString *> stringFuture = [PINFuture2<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] transform:^NSString * _Nonnull(NSNumber * _Nonnull number) {
+PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] transform:^NSString * _Nonnull(NSNumber * _Nonnull number) {
     if ([number isEqual:@1]) {
         return [PINResult<NSString *> succeedWith:stringValue];
     } else {
