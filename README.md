@@ -1,3 +1,5 @@
+This is a work-in-progress and not ready for public consumption.
+
 # PINFuture
 
 [![CI Status](http://img.shields.io/travis/Chris Danford/PINFuture.svg?style=flat)](https://travis-ci.org/Chris Danford/PINFuture)
@@ -7,8 +9,7 @@
 
 ## Installation
 
-PINFuture is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+PINFuture is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
 ```ruby
 pod "PINFuture"
@@ -20,7 +21,7 @@ PINFuture is an Objective C implementation of the async primitive called "future
 
 ### What is a Future?
 
-A Future is a read-only reference to a yet-to-be-computed value (or error if the operation fails).
+A Future is a read-only reference to a computation that has already been started but might not yet have finished.
 
 When you write a function that produces an asynchronous value, that function can return a Future instead having 1 or more callback parameters.
 
@@ -115,8 +116,77 @@ PINFuture does not capture Exceptions thrown by callbacks.  On the platforms tha
 
 ## Reference
 
+### Constructing
+
+#### `succeedWith`
+Construct an already-resolved Future with a value.
+```objc
+PINFuture<NSString *> stringFuture = [PINFuture<NSString *> succeedWith:@"foo"];
+```
+
+#### `failWith`
+Construct an already-rejected Future with an error.
+```objc
+PINFuture<NSString *> stringFuture = [PINFuture<NSString *> failWith:[NSError errorWithDescription:...]];
+```
+
+#### `withBlock`
+Construct a Future and resolve or reject it by calling one of two callbacks.  This construct is generally not safe since because your block might not call `resolve` or `reject`.  This is generally only useful for writing a Future-based wrapper for a Callback-based method.
+```objc
+PINFuture<NSString *> stringFuture = [PINFuture<NSString *> withBlock:^(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+    [foo somethingAsyncWithSuccess:resolve failure:reject];
+}];
+```
+
+### Transforming
+
+#### `mapValue`
+Use to convert a Future of one ObjectType to a Future of another ObjectType.  `success` is called only if the source future succeeds.  The value returned by `success` populated a new, succeeded future.
+```objc
+PINFuture<NSString *> stringFuture = [PINFuture2<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] success:^NSString * _Nonnull(NSNumber * _Nonnull number) {
+    return [number stringValue];
+}];
+```
+
+#### `map`
+Use to convert a Future of one ObjectType to a Future of another ObjectType.  `success` is called only if the source future succeeds.  The value returned by `success` populated a future.
+```objc
+PINFuture<NSString *> stringFuture = [PINFuture2<NSNumber *, NSString *> map:numberFuture executor:[PINExecutor background] success:^NSString * _Nonnull(NSNumber * _Nonnull number) {
+    if ([number isEqual:@1]) {
+        return [PINResult<NSString *> succeedWith:stringValue];
+    } else {
+        return [PINResult<NSString *> failWith:[NSError errorWithDescription:@"only supports '1'"]];
+    }
+}];
+```
+
+#### `flatMap`
+Use to convert a Future of one ObjectType to a Future of another ObjectType.  `success` is called only if the source future succeeds.  The value returned by `success` becomes the new future.
+```objc
+PINFuture<NSString *> stringFuture = [PINFuture2<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] success:^NSString * _Nonnull(NSNumber * _Nonnull number) {
+    if ([number isEqual:@1]) {
+        return [PINResult<NSString *> succeedWith:stringValue];
+    } else {
+        return [PINResult<NSString *> failWith:[NSError errorWithDescription:@"only supports '1'"]];
+    }
+}];
+```
+
+#### `mapToNull`
+
+```objc
+PINFuture<NSString *> *stringFuture = [PINFuture<NSString *> succeedWith:@"foo"];
+PINFuture<NSNull *> *futureWithNullValue = [stringFuture mapToNull];
+return futureWithNullValue;
+```
+
+### Gathering
+#### `gatherSome`
+#### `gatherAll`
+
 ## Roadmap
-- Cancellation
+- support cancellation
+- Task primitive?
 
 ## Versus the Callback async primitive
 
