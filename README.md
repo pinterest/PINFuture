@@ -17,11 +17,14 @@ pod "PINFuture"
 
 ## Overview
 
-PINFuture is an Objective C implementation of the async primitive called "future" that differs from other Objective C implementations in that it aims to preserve type safety.
+PINFuture is an Objective C implementation of the asynchronous primitive called "future".  This library differs from other Objective C implementations of "future" primarily in that it aims to preserve type safety using Objective C generics.
 
 ### What is a Future?
 
-A Future is a read-only reference to a value.  The computation of the value is already in-progress, but might not have finished by the time the Future object exists.
+A Future is a read-only reference to a value.  The underlying value of the Future may not be ready at the time that the Future object exists.  However, the value is guaranteed to eventually exist.
+
+![State diagram for a Future](https://cloud.githubusercontent.com/assets/1527302/21829570/aff25f0c-d74b-11e6-9423-4976fa47bcdb.png "State diagram for a Future")
+from [Cancelable Asynchronous Operations with Promises in JavaScript](https://blog.codecentric.de/en/2015/03/cancelable-async-operations-promises-javascript/) by Ben Ripkens
 
 When you write a function that produces an asynchronous value, that function can return a Future instead having 1 or more callback parameters.
 
