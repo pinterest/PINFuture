@@ -25,6 +25,8 @@ A Future is a read-only reference to a value.  The computation of the value is a
 
 When you write a function that produces an asynchronous value, that function can return a Future instead having 1 or more callback parameters.
 
+### Examples
+#### Method signatures
 Callback style
 ```objc
 - (void)readFile:(NSString *)path
@@ -36,84 +38,58 @@ Future style
 - (PINFuture<NSData *>)readFile:(NSString *)path;
 ```
 
-### Handling values ###
-
-You access the final value of a Future by registering callbacks: complete, success and failure.
-
+#### Chaining two async operations
+Callback style
 ```objc
-[LoadingHUD showSpinner];
-PINFuture<NSData *> *future = [FileUtil readFile:path];
-[future executor:[PINExecutor mainQueue] complete:^{
-    [LoadingHUD hideSpinner];
-}];
-[future executor:[PINExecutor mainQueue] success:^(NSData * _Nonnull data) {
-    [ToastManager showSuccessToastWithText:[NSString stringWithFormat:@"read %d bytes", data.length]];
-} failure:^(NSError * _Nonnull error) {
-    [LoadingHUD showError:error];
-}];
-```
-
-Callbacks will be *dispatched* in the order that they are registered.  However, depending on your `executor`, the blocks might actually *execute* in a different order or even concurrently.
-
-It is not safe to add another callback from within a callback of the same Future.
-
-### Chaining operations (`flatMap` and `map`)
-
-The most common operation you'll want to do with a Future is to transform it to produce a new Future.  Remember that Futures are read-only, so transforming a Future produces a new Future and doesn't alter the original.
-
-`flatMap` is the main method to perform a transformation.  It takes one `PINFuture`, one `transform` block, and returns a new `PINFuture`.
-
-```objc
-PINFuture<User *> userFuture = [User userForUsername:username];  // makes a network call
-PINFuture<Posts *> postsFuture = [PINFuture2<User *, Post *> flatMap:userFuture executor:[PINExecutor background] transform:^PINFuture<Posts *> * (User * _Nonnull user) {
-    return [Posts postsForUserId:user.id];  // also makes a network call
-}];
-```
-
-`map` is similar to `flatMap` except that the `transform` block returns a value directly instead of a `PINFuture`.  Because it returns a value instead of a `PINFuture`, the transformation must be synchronous and must not produce an error.  `map` is a convenience because it's slightly shorter than `flatMap`.
-
-```objc
-PINFuture<NSNumber *> latestPostFuture = [PINFuture2<User *, Post *> map:postsFuture executor:[PINExecutor background] transform:^Post * (Posts *post) {
-    return posts.latestPost;
-}]
-```
-
-### Composition
-Functions that return a Future can be composed into higher-level functions that return a Future.
-
-```objc
-- (PINFuture<Posts *> *)postsForUsername:(NSString *)username
-{
-    return [PINFuture2<User *, Post *> flatMap:[User userForUsername:username] executor:[PINExecutor background] transform:^PINFuture<Posts *> * (User * _Nonnull user) {
-        return [Posts postsForUserId:user.id];
+[User logInWithUsername:username password:password success:^(User *user) {
+    [Posts fetchPostsForUser:user success:^(Posts *posts) {
+         dispatch_async(dispatch_get_main_queue(), ^{
+             // update the UI to show posts
+         });
+    } failure:^(NSError *error) {
+         dispatch_async(dispatch_get_main_queue(), ^{
+             // update the UI to show the error
+         });
     }];
-}
-```
-
-### Best Practices
-
-Generally, you'll want to string together a series of operations, then call `success:failure:` once at the end to have some side-effect.
-
-```objc
-PINFuture<User *> *userFuture = [User userForUsername:username];
-PINFuture<UIImage *> *imageFuture = [PINFuture2<User *, Post *> flatMap:userFuture executor:[PINExecutor background] transform:^PINFuture<Posts *> * (User * _Nonnull user) {
-    return [HTTP getImage:user.profileImageURL];
-}];
-[imageFuture success:^(UIImage *image) {
-    imageView.image = image;
 } failure:^(NSError *error) {
-    NSLog(@"failed %@", error);
-}
+    dispatch_async(dispatch_get_main_queue(), ^{
+         // update the UI to show the error
+    });
+}];
 ```
+Future style
+```objc
+PINFuture<User *> *userFuture = [User logInWithUsername:username password:password];
+PINFuture<Posts *> *postsFuture = [PINFuture2<User *, Posts *> flatMap:userFuture executor:[PINExecutor background] transform:^PINFuture<Posts *> *(User *user) {
+    return [Posts fetchPostsForUser:user];
+}];
+[postsFuture executor:[PINExecutor mainQueue] success:^(Posts *posts) {
+    // update the UI to show posts
+} failure:^(NSError *error) {
+    // update the UI to show the error
+}];
+```
+
+### Handling values
+
+You access the final value of a Future by registering callbacks: `success`, `failure`, and `complete`.
+
+- Callbacks will be *dispatched* in the order that they are registered.  However, depending on your `executor`, the blocks might actually *execute* in a different order or even concurrently (if, for example, you specify `[PINExecutor background]`).
+- It is not safe to add another callback from within a callback of the same Future.
 
 ### Threading model ###
 
-When you register a callback, there is a required `executor:` parameter.  An `executor` determines where and when a callback will be executed.  For example:
-- On the Main thread GCD queue (`[PINExecutor mainQueue]`)
-- Somewhere in a pool of background threads (`[PINExecutor background]`)
-- Immediately when the Future is competed from the thread that completed the future (`[PINExecutor immediate]`).  Don't use this unless your callback is guaranteed to execute super-quickly and with a very high volume.  Your callback may be executed on Main, and you generally don't want any computation to happen on Main that doesn't need to be done specifically there.
+When you register a callback, there is a required `executor:` parameter.  The `executor` determines where and when a callback will be executed.
 
-For `executor:` you'll almost always specify `[PINExecutor mainQueue]` or `[PINExecutor background]` depending on the needs of your callback.  You should prefer `background` unless something in your callback is needs to be on the Main thread (e.g. touching UIKit in a way that needs to be on Main).
+#### Common PINExecutors
+- `[PINExecutor mainQueue]` Executes a block on the Main GCD queue
+- `[PINExecutor background]` Executes a block in a background pool of threads
+
+A good rule of thumb: Always use `[PINExecutor background]` unless your block specifically needs to be executed from the main thread (e.g. because it's reading from or modifying the UI).
+
+#### Uncommon PINExecutors
+- `[PINExecutor immediate]` Executea a block immediately when the Future is resolved or rejected from whatever thread and callstack caused the Future to be resolved/rejected.  Using this is only appropriate as an optimization if your block will execute extremely quickly, will be executed with a very high frequency, and if the cost of executing the block is low compared to the cost of the PINExecutor dispatching the block.
+- `[PINExecutor immediateOnMain]` Executes a block on the Main thread.  If the Future linked with the block is resolved or rejected on the Main thread, then the block is called immediately.  If it's resolved or rejected from a thread other than Main, then `[PINExecutor mainQueue]` is used to execute the block.
 
 ### Preserving type safety
 
