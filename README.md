@@ -59,9 +59,9 @@ It is not safe to add another callback from within a callback of the same Future
 ### Threading model ###
 
 When you register a callback, there is a required `executor:` parameter.  An `executor` determines where and when a callback will be executed.  For example:
-- on a the Main thread GCD queue (`[PINExecutor mainQueue]`)
-- somewhere on a background thread (`[PINExecutor background]`)
-- immediately when the Future is competed from the thread that completed the future (`[PINExecutor immediate]`).  Don't use this unless your callback is guaranteed to execute super-quickly and with a very high volume.  Your callback may be executed on Main, and you generally don't want any computation to happen on Main that doesn't need to be done specifically there.
+- On a the Main thread GCD queue (`[PINExecutor mainQueue]`)
+- Somewhere on a background thread (`[PINExecutor background]`)
+- Immediately when the Future is competed from the thread that completed the future (`[PINExecutor immediate]`).  Don't use this unless your callback is guaranteed to execute super-quickly and with a very high volume.  Your callback may be executed on Main, and you generally don't want any computation to happen on Main that doesn't need to be done specifically there.
 
 For `executor:` you'll almost always specify `[PINExecutor mainQueue]` or `[PINExecutor background]` depending on the needs of your callback.  You should prefer `background` unless something in your callback is needs to be on the Main thread (e.g. touching UIKit in a way that needs to be on Main).
 
