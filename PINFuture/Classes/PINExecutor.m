@@ -15,13 +15,6 @@ static inline BOOL isCurrentThreadMain()
     return 0 != pthread_main_np();
 }
 
-id<PINExecutor> PINDefaultThreadingModel()
-{
-    return isCurrentThreadMain() ? [PINExecutor mainQueue] : [PINExecutor background];
-}
-
-static PINThreadingModel currentThreadingModel = PINDefaultThreadingModel;
-
 
 @interface PINExecutor ()
 
@@ -46,21 +39,21 @@ static PINThreadingModel currentThreadingModel = PINDefaultThreadingModel;
     self.executorBlock(block);
 }
 
-+ (id<PINExecutor>)defaultContextForCurrentThread;
-{
-    return currentThreadingModel();
-}
-
-// TODO: If there's demand, enable and test this.
-//+ (void)setDefaultThreadingModel:(PINThreadingModel)threadingModel
-//{
-//    currentThreadingModel = threadingModel;
-//}
-
 + (id<PINExecutor>)immediate
 {
     return [[PINExecutor alloc] initWithExecutorBlock:^(dispatch_block_t block) {
         block();
+    }];
+}
+
++ (id<PINExecutor>)immediateOnMain
+{
+    return [[PINExecutor alloc] initWithExecutorBlock:^(dispatch_block_t block) {
+        if (isCurrentThreadMain()) {
+            block();
+        } else {
+            [[self mainQueue] execute:block];
+        }
     }];
 }
 

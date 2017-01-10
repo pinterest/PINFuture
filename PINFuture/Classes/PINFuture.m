@@ -156,20 +156,11 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     }];
 }
 
-- (void)completion:(void(^)())completion
-{
-    return [self executor:[PINExecutor defaultContextForCurrentThread] completion:completion];
-}
-
-- (void)success:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure;
-{
-    return [self executor:[PINExecutor defaultContextForCurrentThread] success:success failure:failure];
-}
-
 - (PINFuture<NSNull *> *)mapToNull;
 {
     return [PINFuture2<id, NSNull *> map:self
-                                    success:^PINResult<NSNull *> * _Nonnull(id _Nonnull fromValue) {
+                                executor:[PINExecutor immediate]
+                               transform:^PINResult<NSNull *> * _Nonnull(id _Nonnull fromValue) {
                                         return [PINResult<NSNull*> succeedWith:[NSNull null]];
                                     }];
 }

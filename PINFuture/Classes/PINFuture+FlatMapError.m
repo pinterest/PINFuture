@@ -28,9 +28,4 @@
     }];
 }
 
-- (PINFuture<id> *)flatMapError:(PINFuture<id> *(^)(NSError *error))flatMapError
-{
-    return [self executor:[PINExecutor defaultContextForCurrentThread] flatMapError:flatMapError];
-}
-
 @end

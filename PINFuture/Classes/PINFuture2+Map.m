@@ -14,12 +14,12 @@
 
 + (PINFuture<id> *)map:(PINFuture<id> *)sourceFuture
                executor:(id<PINExecutor>)executor
-               success:(PINResult<id> *(^)(id fromValue))success
+               transform:(PINResult<id> *(^)(id fromValue))transform
 {
     return [self flatMap:sourceFuture
                 executor:executor
-                 success:^PINFuture * _Nonnull(id  _Nonnull fromValue) {
-                     return [PINResult2<id, id> match:success(fromValue) success:^id _Nonnull(id  _Nonnull value) {
+                 transform:^PINFuture * _Nonnull(id  _Nonnull fromValue) {
+                     return [PINResult2<id, id> match:transform(fromValue) success:^id _Nonnull(id  _Nonnull value) {
                          return [PINFuture succeedWith:value];
                      } failure:^id _Nonnull(NSError * _Nonnull error) {
                          return [PINFuture failWith:error];
@@ -31,18 +31,12 @@
 
 @implementation PINFuture2 (MapConvenience)
 
-+ (PINFuture<id> *)map:(PINFuture<id> *)sourceFuture
-               success:(PINResult<id> *(^)(id fromValue))success
-{
-    return [self map:sourceFuture executor:[PINExecutor defaultContextForCurrentThread] success:success];
-}
-
 + (PINFuture<id> *)mapValue:(PINFuture<id> *)sourceFuture
                    executor:(id<PINExecutor>)executor
-                    success:(id (^)(id fromValue))success
+                  transform:(id (^)(id fromValue))transform
 {
-    return [self map:sourceFuture executor:executor success:^PINResult * _Nonnull(id  _Nonnull fromValue) {
-        return [PINResult succeedWith:success(fromValue)];
+    return [self map:sourceFuture executor:executor transform:^PINResult * _Nonnull(id  _Nonnull fromValue) {
+        return [PINResult succeedWith:transform(fromValue)];
     }];
 }
 

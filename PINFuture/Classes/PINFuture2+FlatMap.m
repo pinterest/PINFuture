@@ -14,11 +14,11 @@
 
 + (PINFuture<id> *)flatMap:(PINFuture<id> *)sourceFuture
                    executor:(id<PINExecutor>)executor
-                   success:(PINFuture<id> *(^)(id fromValue))success
+                   transform:(PINFuture<id> *(^)(id fromValue))transform
 {
     return [PINFuture withBlock:^(void (^resolve)(NSObject *), void (^reject)(NSError *)) {
         [sourceFuture executor:executor success:^(NSObject *value) {
-            PINFuture<id> *newFuture = success(value);
+            PINFuture<id> *newFuture = transform(value);
             NSAssert(newFuture != nil, @"returned future must not be nil");
             [newFuture executor:executor success:^(NSObject *value) {
                 resolve(value);
@@ -29,16 +29,6 @@
             reject(error);
         }];
     }];
-}
-
-@end
-
-@implementation PINFuture2 (FlatMapConvenience)
-
-+ (PINFuture<id> *)flatMap:(PINFuture<NSObject *> *)sourceFuture
-                             success:(PINFuture<id> *(^)(id fromValue))success;
-{
-    return [self flatMap:sourceFuture executor:[PINExecutor defaultContextForCurrentThread] success:success];
 }
 
 @end

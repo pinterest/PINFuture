@@ -12,16 +12,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PINFuture2<FromType, ToType> (FlatMap)
-+ (PINFuture<ToType> *)flatMap:(PINFuture<FromType> *)sourceFuture
-                       executor:(id<PINExecutor>)executor
-                       success:(PINFuture<ToType> *(^)(FromType fromValue))success;
-
-@end
-
-@interface PINFuture2<FromType, ToType> (FlatMapConvenience)
 
 + (PINFuture<ToType> *)flatMap:(PINFuture<FromType> *)sourceFuture
-                       success:(PINFuture<ToType> *(^)(FromType fromValue))success;
+                      executor:(id<PINExecutor>)executor
+                     transform:(PINFuture<ToType> *(^)(FromType fromValue))transform;
 
 @end
 

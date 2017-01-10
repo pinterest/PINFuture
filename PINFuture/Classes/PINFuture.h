@@ -58,11 +58,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)executor:(id<PINExecutor>)executor completion:(void(^)())completion;
 
-#pragma mark - callback methods that don't specify an execution context
-
-- (void)completion:(void(^)())completion;
-- (void)success:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure;
-
 #pragma mark - misc
 
 /**
