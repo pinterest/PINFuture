@@ -87,13 +87,13 @@ PINFuture<NSString *> *stringFuture = [PINFuture2<NSNumber *, NSString *> mapVal
 ```
 
 ### Chaining and composition
-A Future can be transformed (or `map`'d) to a Future of a new type.  Also, operations on Future can be composed into higher-level functions that return Futures.
+A Future of one type can be transformed (or `map`'d) to a Future of a new type.  Also, functions that return a Future can be composed into higher-level functions that return a Future.
 
 ```objc
 - (SomeUser *)userForId:(NSUInteger)userId
 {
-    PINFuture<NSString *> payloadFuture = [httpSession getPath:[NSString stringWithFormat:@"user/%d", userId]];
-    return [PINFuture2<NSString *, SomeModel *> map:payloadFuture executor:[PINExecutor background] success:^PINFuture<SomeUser *> * _Nonnull(NSString * _Nonnull payload) {
+    PINFuture<NSString *> payloadFuture = [httpClient getPath:[NSString stringWithFormat:@"user/%d", userId]];
+    return [PINFuture2<NSString *, SomeModel *> map:payloadFuture executor:[PINExecutor background] transform:^PINFuture<SomeUser *> * _Nonnull(NSString * _Nonnull payload) {
         return [self parseUser:payload];
     }];
 }
@@ -143,7 +143,7 @@ PINFuture<NSString *> stringFuture = [PINFuture<NSString *> withBlock:^(void (^ 
 #### `mapValue`
 Use to convert a Future of one ObjectType to a Future of another ObjectType.  `success` is called only if the source future succeeds.  The value returned by `success` populated a new, succeeded future.
 ```objc
-PINFuture<NSString *> stringFuture = [PINFuture2<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] success:^NSString * _Nonnull(NSNumber * _Nonnull number) {
+PINFuture<NSString *> stringFuture = [PINFuture2<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] transform:^NSString * _Nonnull(NSNumber * _Nonnull number) {
     return [number stringValue];
 }];
 ```
@@ -151,7 +151,7 @@ PINFuture<NSString *> stringFuture = [PINFuture2<NSNumber *, NSString *> mapValu
 #### `map`
 Use to convert a Future of one ObjectType to a Future of another ObjectType.  `success` is called only if the source future succeeds.  The value returned by `success` populated a future.
 ```objc
-PINFuture<NSString *> stringFuture = [PINFuture2<NSNumber *, NSString *> map:numberFuture executor:[PINExecutor background] success:^NSString * _Nonnull(NSNumber * _Nonnull number) {
+PINFuture<NSString *> stringFuture = [PINFuture2<NSNumber *, NSString *> map:numberFuture executor:[PINExecutor background] transform:^NSString * _Nonnull(NSNumber * _Nonnull number) {
     if ([number isEqual:@1]) {
         return [PINResult<NSString *> succeedWith:stringValue];
     } else {
@@ -163,7 +163,7 @@ PINFuture<NSString *> stringFuture = [PINFuture2<NSNumber *, NSString *> map:num
 #### `flatMap`
 Use to convert a Future of one ObjectType to a Future of another ObjectType.  `success` is called only if the source future succeeds.  The value returned by `success` becomes the new future.
 ```objc
-PINFuture<NSString *> stringFuture = [PINFuture2<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] success:^NSString * _Nonnull(NSNumber * _Nonnull number) {
+PINFuture<NSString *> stringFuture = [PINFuture2<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] transform:^NSString * _Nonnull(NSNumber * _Nonnull number) {
     if ([number isEqual:@1]) {
         return [PINResult<NSString *> succeedWith:stringValue];
     } else {
