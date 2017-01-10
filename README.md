@@ -59,7 +59,7 @@ It is not safe to add another callback from within a callback of the same Future
 ### Threading model ###
 
 When you register a callback, there is a required `executor:` parameter.  An `executor` determines where and when a callback will be executed.  For example:
-- On a the Main thread GCD queue (`[PINExecutor mainQueue]`)
+- On the Main thread GCD queue (`[PINExecutor mainQueue]`)
 - Somewhere on a background thread (`[PINExecutor background]`)
 - Immediately when the Future is competed from the thread that completed the future (`[PINExecutor immediate]`).  Don't use this unless your callback is guaranteed to execute super-quickly and with a very high volume.  Your callback may be executed on Main, and you generally don't want any computation to happen on Main that doesn't need to be done specifically there.
 
