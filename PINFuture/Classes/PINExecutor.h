@@ -41,6 +41,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (id<PINExecutor>)background;
 
+/**
+ * Executes immediately if the executor is invoked from the Main thread.  If the executor is not invoked from the Main thread
+ * then uses `mainQueue`.
+ */
++ (id<PINExecutor>)immediateOnMain;
+
 @end
 
 NS_ASSUME_NONNULL_END
