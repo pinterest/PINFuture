@@ -75,7 +75,7 @@ PINFuture makes use of Objective C generics to maintain the same type safety tha
 
 In Objective C, type parameters are optional.  It's a good practice to always specify them for a PINFuture, and ever better if you have tooling that can enforce that a type is always for a `PINFuture`.
 ```objc
-[PINFuture succeedWithValue:@"foo"]; // This compiles but probably won't do what you want.
+[PINFuture succeedWithValue:@"foo"]; // This compiles but is likely to blow up when a callback uses the value.
 ```
 
 In order to preserve value type safety for operation that take one type Future and returns a different type of Future, we have to jump through some hoops due to Objective C's rudimentary support for generics.  Any such operation like `map` is implemented as a class method on the `PINFuture2` class.  `PINFuture2` is a class with two type parameters.  The first parameter is the `FromType` and the second is the `ToType`.
@@ -226,6 +226,7 @@ Exection Contexts https://www.cocoawithlove.com/blog/specifying-execution-contex
 These are possibly controvercial.
 - Don't return a value from the `success:failure:` and `completion:` methods that register a callback.  A reader might be mislead into thinking that the callbacks will be executed (not just dispatched) sequentially.
 - Don't implement BrightFutures behavior of "execute callback on Main of it was registered from Main, or execute callback in background if registered from not Main".  We think an explicit executor is better.  With the BrightFuture behavior, a chunk of code copied to another location may not behave properly for very subtle reasons.
+- Don't pass "nullable `value`" and "nullable `error`" as parameters to the `completion` block.  If a caller needs to consume `value` or `error`, they should be using `success:failure:`.  If they need to execute cleanup code without consuming the value, then `completion` is more appropriate.
 
 ## Author
 
