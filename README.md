@@ -21,46 +21,80 @@ PINFuture is an Objective C implementation of the async primitive called "future
 
 ### What is a Future?
 
-A Future is a read-only reference to a computation that has already been started but might not yet have finished.
+A Future is a read-only reference to a value.  The computation of the value is already in-progress, but might not have finished by the time the Future object exists.
 
 When you write a function that produces an asynchronous value, that function can return a Future instead having 1 or more callback parameters.
 
 Callback style
 ```objc
-- (void)createPinWithImageURL:(NSURL *)imageURL
-                      success:(PIPinAPIControllerSuccessBlock)successBlock
-                      failure:( void (^)(NSError *error) )failureBlock;
+- (void)readFile:(NSString *)path
+         success:( void (^)(NSData *data) )successBlock
+         failure:( void (^)(NSError *error) )failureBlock;
 ```
 Future style
 ```objc
-- (PINFuture<PIPin *> *)createPinWithImageURL:(NSURL *)imageURL;
+- (PINFuture<NSData *>)readFile:(NSString *)path;
 ```
 
 ### Handling values ###
 
-You can be informed of the result of a Future by registering callbacks: complete, success and failure.
+You access the final value of a Future by registering callbacks: complete, success and failure.
 
 ```objc
-PINFuture<PIPin *> *future = [controller createPinWithImageURL:imageURL];
+[LoadingHUD showSpinner];
+PINFuture<NSData *> *future = [FileUtil readFile:path];
 [future executor:[PINExecutor mainQueue] complete:^{
     [LoadingHUD hideSpinner];
 }];
-[future executor:[PINExecutor mainQueue] success:^(PIPin * _Nonnull pin) {
-    [ToastManager showToastForPin:pin];
+[future executor:[PINExecutor mainQueue] success:^(NSData * _Nonnull data) {
+    [ToastManager showSuccessToastWithText:[NSString stringWithFormat:@"read %d bytes", data.length]];
 } failure:^(NSError * _Nonnull error) {
     [LoadingHUD showError:error];
 }];
 ```
 
-The order in which the callbacks are executed upon completion of the future is not guaranteed.  However, it is guaranteed that callbacks will be *dispatched* in the order that they are registered.
+Callbacks will be *dispatched* in the order that they are registered.  However, depending on your `executor`, the blocks might actually *execute* in a different order or even concurrently.
 
 It is not safe to add another callback from within a callback of the same Future.
+
+### Chaining operations (`flatMap` and `map`)
+
+The most common operation you'll want to do with a Future is to transform it to produce a new Future.  Remember that Futures are read-only, so transforming a Future produces a new Future and doesn't alter the original.
+
+`flatMap` is the main method to perform a transformation.  It takes one `PINFuture`, one `transform` block, and returns a new `PINFuture`.
+
+```objc
+PINFuture<User *> userFuture = [User userForUsername:username];  // makes a network call
+PINFuture<Posts *> postsFuture = [PINFuture2<User *, Post *> flatMap:userFuture executor:[PINExecutor background] transform:^PINFuture<Posts *> * (User * _Nonnull user) {
+    return [Posts postsForUserId:user.id];  // also makes a network call
+}];
+```
+
+`map` is similar to `flatMap` except that the `transform` block returns a value directly instead of a `PINFuture`.  Because it returns a value instead of a `PINFuture`, the transformation must be synchronous and must not produce an error.  `map` is a convenience because it's slightly shorter than `flatMap`.
+
+```objc
+PINFuture<Post *> latestPostFuture = [PINFuture2<User *, Post *> map:postsFuture executor:[PINExecutor background] transform:^Post * (Posts *post) {
+    return [[posts.array sortedArrayUsingSelector:@selector(date)] lastObject];
+}]
+```
+
+### Composition
+Functions that return a Future can be composed into higher-level functions that return a Future.
+
+```objc
+- (PINFuture<Posts *> *)postsForUsername:(NSString *)username
+{
+    return [PINFuture2<User *, Post *> flatMap:[User userForUsername:username] executor:[PINExecutor background] transform:^PINFuture<Posts *> * (User * _Nonnull user) {
+        return [Posts postsForUserId:user.id];
+    }];
+}
+```
 
 ### Threading model ###
 
 When you register a callback, there is a required `executor:` parameter.  An `executor` determines where and when a callback will be executed.  For example:
 - On the Main thread GCD queue (`[PINExecutor mainQueue]`)
-- Somewhere on a background thread (`[PINExecutor background]`)
+- Somewhere in a pool of background threads (`[PINExecutor background]`)
 - Immediately when the Future is competed from the thread that completed the future (`[PINExecutor immediate]`).  Don't use this unless your callback is guaranteed to execute super-quickly and with a very high volume.  Your callback may be executed on Main, and you generally don't want any computation to happen on Main that doesn't need to be done specifically there.
 
 For `executor:` you'll almost always specify `[PINExecutor mainQueue]` or `[PINExecutor background]` depending on the needs of your callback.  You should prefer `background` unless something in your callback is needs to be on the Main thread (e.g. touching UIKit in a way that needs to be on Main).
@@ -84,19 +118,6 @@ PINFuture<NSNumber *> *numberFuture = [PINFuture<NSNumber *> succeedWithValue:@1
 PINFuture<NSString *> *stringFuture = [PINFuture2<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor immediate] success:^NSString * _Nonnull(NSNumber * _Nonnull number) {
     return [number stringValue];
 }];
-```
-
-### Chaining and composition
-A Future of one type can be transformed (or `map`'d) to a Future of a new type.  Also, functions that return a Future can be composed into higher-level functions that return a Future.
-
-```objc
-- (SomeUser *)userForId:(NSUInteger)userId
-{
-    PINFuture<NSString *> payloadFuture = [httpClient getPath:[NSString stringWithFormat:@"user/%d", userId]];
-    return [PINFuture2<NSString *, SomeModel *> map:payloadFuture executor:[PINExecutor background] transform:^PINFuture<SomeUser *> * _Nonnull(NSString * _Nonnull payload) {
-        return [self parseUser:payload];
-    }];
-}
 ```
 
 ### Recovering from an error
