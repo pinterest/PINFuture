@@ -73,8 +73,8 @@ PINFuture<Posts *> postsFuture = [PINFuture2<User *, Post *> flatMap:userFuture 
 `map` is similar to `flatMap` except that the `transform` block returns a value directly instead of a `PINFuture`.  Because it returns a value instead of a `PINFuture`, the transformation must be synchronous and must not produce an error.  `map` is a convenience because it's slightly shorter than `flatMap`.
 
 ```objc
-PINFuture<Post *> latestPostFuture = [PINFuture2<User *, Post *> map:postsFuture executor:[PINExecutor background] transform:^Post * (Posts *post) {
-    return [[posts.array sortedArrayUsingSelector:@selector(date)] lastObject];
+PINFuture<NSNumber *> latestPostFuture = [PINFuture2<User *, Post *> map:postsFuture executor:[PINExecutor background] transform:^Post * (Posts *post) {
+    return posts.latestPost;
 }]
 ```
 
@@ -87,6 +87,22 @@ Functions that return a Future can be composed into higher-level functions that 
     return [PINFuture2<User *, Post *> flatMap:[User userForUsername:username] executor:[PINExecutor background] transform:^PINFuture<Posts *> * (User * _Nonnull user) {
         return [Posts postsForUserId:user.id];
     }];
+}
+```
+
+### Best Practices
+
+Generally, you'll want to string together a series of operations, then call `success:failure:` once at the end to have some side-effect.
+
+```objc
+PINFuture<User *> *userFuture = [User userForUsername:username];
+PINFuture<UIImage *> *imageFuture = [PINFuture2<User *, Post *> flatMap:userFuture executor:[PINExecutor background] transform:^PINFuture<Posts *> * (User * _Nonnull user) {
+    return [HTTP getImage:user.profileImageURL];
+}];
+[imageFuture success:^(UIImage *image) {
+    imageView.image = image;
+} failure:^(NSError *error) {
+    NSLog(@"failed %@", error);
 }
 ```
 
