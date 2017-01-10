@@ -1,5 +1,5 @@
 //
-//  PINFuture2+FlatMap.h
+//  PINFutureMap+FlatMap.h
 //  Pinterest
 //
 //  Created by Chris Danford on 11/23/16.
@@ -7,11 +7,11 @@
 //
 
 #import "PINFuture.h"
-#import "PINFuture2.h"
+#import "PINFutureMap.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PINFuture2<FromType, ToType> (FlatMap)
+@interface PINFutureMap<FromType, ToType> (FlatMap)
 
 + (PINFuture<ToType> *)flatMap:(PINFuture<FromType> *)sourceFuture
                       executor:(id<PINExecutor>)executor

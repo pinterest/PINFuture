@@ -1,12 +1,12 @@
 //
-//  PINTask2.m
+//  PINTaskMap.m
 //  Pods
 //
 //  Created by Chris Danford on 12/14/16.
 //
 //
 
-#import "PINTask2.h"
+#import "PINTaskMap.h"
 
-@implementation PINTask2
+@implementation PINTaskMap
 @end

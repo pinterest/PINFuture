@@ -1,16 +1,16 @@
 //
-//  PINFuture2+FlatMap.m
+//  PINFutureMap+FlatMap.m
 //  Pinterest
 //
 //  Created by Chris Danford on 11/23/16.
 //  Copyright © 2016 Pinterest. All rights reserved.
 //
 
-#import "PINFuture2.h"
+#import "PINFutureMap.h"
 
 #import "PINFuture.h"
 
-@implementation PINFuture2 (FlatMap)
+@implementation PINFutureMap (FlatMap)
 
 + (PINFuture<id> *)flatMap:(PINFuture<id> *)sourceFuture
                    executor:(id<PINExecutor>)executor
