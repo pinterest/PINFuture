@@ -43,12 +43,12 @@ You can be informed of the result of a Future by registering callbacks: complete
 ```objc
 PINFuture<PIPin *> *future = [controller createPinWithImageURL:imageURL];
 [future executor:[PINExecutor mainQueue] complete:^{
-    [LoadingHUD dismiss:[error descriptionForHUD]];
+    [LoadingHUD hideSpinner];
 }];
 [future executor:[PINExecutor mainQueue] success:^(PIPin * _Nonnull pin) {
-    [self dismissViewController];
+    [ToastManager showToastForPin:pin];
 } failure:^(NSError * _Nonnull error) {
-    [LoadingHUD showErrorWithStatus:[error descriptionForHUD]];
+    [LoadingHUD showError:error];
 }];
 ```
 
