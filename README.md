@@ -54,7 +54,7 @@ PINFuture<PIPin *> *future = [controller createPinWithImageURL:imageURL];
 
 The order in which the callbacks are executed upon completion of the future is not guaranteed.  However, it is guaranteed that callbacks will be *dispatched* in the order that they are registered.
 
-It is not safe to add another callback from within a callback of the same future.
+It is not safe to add another callback from within a callback of the same Future.
 
 ### Threading model ###
 
@@ -70,15 +70,15 @@ For `executor:` you'll almost always specify `[PINExecutor mainQueue]` or `[PINE
 PINFuture makes use of Objective C generics to maintain the same type safety that you'd have with callbacks.
 
 ```objc
-[PINFuture<NSNumber *> succeedWithValue:@"foo"]; // error!
+[PINFuture<NSNumber *> succeedWithValue:@"foo"]; // compile error.  Good.
 ```
 
-In Objective C, type parameters are optional.  It's a good practice to always specify them, and ever better if you have tooling that can enforce that a type is always specified for a `PINFuture` type expression.
+In Objective C, type parameters are optional.  It's a good practice to always specify them for a PINFuture, and ever better if you have tooling that can enforce that a type is always for a `PINFuture`.
 ```objc
-[PINFuture succeedWithValue:@"foo"]; // compiles and probably won't do what you want
+[PINFuture succeedWithValue:@"foo"]; // This compiles but probably won't do what you want.
 ```
 
-In order to preserve type safety for operation that take one Future and returns a new type of Future, we have to jump through some hoops due to Objective C's rudimentary support for generics.  Any such operation like `map` is implemented as a class method on the `PINFuture2` class.  `PINFuture2` is a class with two type parameters.  The first parameter is the `FromType` and the second is the `ToType`.
+In order to preserve value type safety for operation that take one type Future and returns a different type of Future, we have to jump through some hoops due to Objective C's rudimentary support for generics.  Any such operation like `map` is implemented as a class method on the `PINFuture2` class.  `PINFuture2` is a class with two type parameters.  The first parameter is the `FromType` and the second is the `ToType`.
 ```objc
 PINFuture<NSNumber *> *numberFuture = [PINFuture<NSNumber *> succeedWithValue:@123];
 PINFuture<NSString *> *stringFuture = [PINFuture2<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor immediate] success:^NSString * _Nonnull(NSNumber * _Nonnull number) {
@@ -87,13 +87,13 @@ PINFuture<NSString *> *stringFuture = [PINFuture2<NSNumber *, NSString *> mapVal
 ```
 
 ### Chaining and composition
-A Future can be `map`'d to a Future of a new type, and operations on futures can be composed into higher-level functions that return Futures.
+A Future can be transformed (or `map`'d) to a Future of a new type.  Also, operations on Future can be composed into higher-level functions that return Futures.
 
 ```objc
 - (SomeUser *)userForId:(NSUInteger)userId
 {
     PINFuture<NSString *> payloadFuture = [httpSession getPath:[NSString stringWithFormat:@"user/%d", userId]];
-    return [PINFuture2<NSDictionary *, SomeModel *> map:payloadFuture executor:[PINExecutor background] success:^PINFuture<SomeUser *> * _Nonnull(NSString * _Nonnull payload) {
+    return [PINFuture2<NSString *, SomeModel *> map:payloadFuture executor:[PINExecutor background] success:^PINFuture<SomeUser *> * _Nonnull(NSString * _Nonnull payload) {
         return [self parseUser:payload];
     }];
 }
@@ -108,11 +108,11 @@ A Future can be `map`'d to a Future of a new type, and operations on futures can
 
 ### Blocking on a result
 
-PINFuture is non-blocking and provides no mechanism for blocking.  Blocking is generally not a good practice, but is possible to achieve this using [Grand Central Dispatch Semaphores](http://www.g8production.com/post/76942348764/wait-for-blocks-execution-using-a-dispatch)
+PINFuture is non-blocking and provides no mechanism for blocking.  Blocking a thread on the computation of an async value is generally not a good practice, but is possible using [Grand Central Dispatch Semaphores](http://www.g8production.com/post/76942348764/wait-for-blocks-execution-using-a-dispatch)
 
 ### Errors and exceptions
 
-PINFuture does not capture Exceptions thrown by callbacks.  On the platforms that PINFuture targets, Exceptions are generally fatal and NSErrors are non-exceptional failures.  PINFuture deals with `NSError`s.
+PINFuture does not capture Exceptions thrown by callbacks.  On platforms that PINFuture targets, `NSException`s are generally fatal and `NSError`s are non-exceptional failures.  PINFuture deals with `NSError`s.
 
 ## Reference
 
@@ -173,7 +173,6 @@ PINFuture<NSString *> stringFuture = [PINFuture2<NSNumber *, NSString *> mapValu
 ```
 
 #### `mapToNull`
-
 ```objc
 PINFuture<NSString *> *stringFuture = [PINFuture<NSString *> succeedWith:@"foo"];
 PINFuture<NSNull *> *futureWithNullValue = [stringFuture mapToNull];
@@ -186,7 +185,8 @@ return futureWithNullValue;
 
 ## Roadmap
 - support cancellation
-- Task primitive?
+- Task primitive
+- "immediateOnMain" execution context https://github.com/Thomvis/BrightFutures/blob/master/Sources/BrightFutures/ExecutionContext.swift#L35
 
 ## Versus the Callback async primitive
 
@@ -195,7 +195,6 @@ return futureWithNullValue;
 - Being explicit about where callbacks are dispatched prevents unnecessary bottlenecking on the Main Queue compared to functions that take callbacks and always dispatch to Main.
 
 ## Versus the Task async primitive
-
 
 ## Alternatives
 
@@ -222,6 +221,10 @@ return futureWithNullValue;
 - fun-task https://github.com/rpominov/fun-task/blob/master/docs/api-reference.md#taskmaprejectedfn
 
 Exection Contexts https://www.cocoawithlove.com/blog/specifying-execution-contexts.html
+
+## Deliberate design decisions
+These are possibly controvercial.
+- Don't return a value from the `success:failure:` and `completion:` methods that register a callback.  A reader might be mislead into thinking that the callbacks will be executed (not just dispatched) sequentially.
 
 ## Author
 
