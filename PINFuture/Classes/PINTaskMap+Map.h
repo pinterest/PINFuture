@@ -1,5 +1,5 @@
 //
-//  PINTask2+Map.h
+//  PINTaskMap+Map.h
 //  Pods
 //
 //  Created by Chris Danford on 12/14/16.
@@ -8,8 +8,8 @@
 
 #import "PINResult.h"
 #import "PINTask.h"
-#import "PINTask2.h"
+#import "PINTaskMap.h"
 
-@interface PINTask2<FromType, ToType> (Map)
+@interface PINTaskMap<FromType, ToType> (Map)
 + (PINTask<ToType> *)executor:(id<PINExecutor>)executor map:(PINTask<FromType> *)sourceTask success:(PINResult<ToType> *(^)(FromType fromValue))success PIN_WARN_UNUSED_RESULT;
 @end

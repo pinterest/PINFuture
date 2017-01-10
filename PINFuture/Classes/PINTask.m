@@ -125,7 +125,7 @@ PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
 
 - (PINTask<NSNull *> *)mapToNull
 {
-    return [PINTask2<id, NSNull *> executor:[PINExecutor immediate] mapToValue:self success:^NSNull *(id fromValue) {
+    return [PINTaskMap<id, NSNull *> executor:[PINExecutor immediate] mapToValue:self success:^NSNull *(id fromValue) {
         return [NSNull null];
     }];
 }

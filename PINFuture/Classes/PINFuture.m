@@ -9,7 +9,7 @@
 #import "PINFuture.h"
 
 #import "PINExecutor.h"
-#import "PINFuture2+Map.h"
+#import "PINFutureMap+Map.h"
 
 typedef void(^CompletionBlockType)(NSError *error, NSObject *value);
 
@@ -158,7 +158,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 - (PINFuture<NSNull *> *)mapToNull;
 {
-    return [PINFuture2<id, NSNull *> map:self
+    return [PINFutureMap<id, NSNull *> map:self
                                 executor:[PINExecutor immediate]
                                transform:^PINResult<NSNull *> * _Nonnull(id _Nonnull fromValue) {
                                         return [PINResult<NSNull*> succeedWith:[NSNull null]];

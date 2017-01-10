@@ -17,9 +17,9 @@
 #import "PINFuture+FlatMapError.h"
 #import "PINFuture+MapError.h"
 #import "PINFuture.h"
-#import "PINFuture2+FlatMap.h"
-#import "PINFuture2+Map.h"
-#import "PINFuture2.h"
+#import "PINFutureMap+FlatMap.h"
+#import "PINFutureMap+Map.h"
+#import "PINFutureMap.h"
 #import "PINOnce.h"
 #import "PINPair.h"
 #import "PINResult.h"
@@ -31,10 +31,10 @@
 #import "PINTask+Do.h"
 #import "PINTask+DoAsync.h"
 #import "PINTask.h"
-#import "PINTask2+FlatMap.h"
-#import "PINTask2+Map.h"
-#import "PINTask2+MapToValue.h"
-#import "PINTask2.h"
+#import "PINTaskMap+FlatMap.h"
+#import "PINTaskMap+Map.h"
+#import "PINTaskMap+MapToValue.h"
+#import "PINTaskMap.h"
 
 FOUNDATION_EXPORT double PINFutureVersionNumber;
 FOUNDATION_EXPORT const unsigned char PINFutureVersionString[];

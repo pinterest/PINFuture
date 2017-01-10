@@ -1,12 +1,12 @@
 //
-//  PINFuture2.m
+//  PINFutureMap.m
 //  Pods
 //
 //  Created by Chris Danford on 12/8/16.
 //  Copyright (c) 2016 Pinterest. All rights reserved.
 //
 
-#import "PINFuture2.h"
+#import "PINFutureMap.h"
 
-@implementation PINFuture2
+@implementation PINFutureMap
 @end

@@ -1,5 +1,5 @@
 //
-//  PINFuture2+Map.h
+//  PINFutureMap+Map.h
 //  Pinterest
 //
 //  Created by Chris Danford on 11/23/16.
@@ -7,12 +7,12 @@
 //
 
 #import "PINFuture.h"
-#import "PINFuture2.h"
+#import "PINFutureMap.h"
 #import "PINResult.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PINFuture2<FromType, ToType> (Map)
+@interface PINFutureMap<FromType, ToType> (Map)
 
 + (PINFuture<ToType> *)map:(PINFuture<FromType> *)sourceFuture
                    executor:(id<PINExecutor>)executor
@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface PINFuture2<FromType, ToType> (MapConvenience)
+@interface PINFutureMap<FromType, ToType> (MapConvenience)
 
 + (PINFuture<ToType> *)mapValue:(PINFuture<FromType> *)sourceFuture
                        executor:(id<PINExecutor>)executor

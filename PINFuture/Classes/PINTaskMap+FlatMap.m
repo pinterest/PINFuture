@@ -1,16 +1,16 @@
 //
-//  PINTask2+FlatMap.m
+//  PINTaskMap+FlatMap.m
 //  Pods
 //
 //  Created by Chris Danford on 12/14/16.
 //  Copyright © 2016 Pinterest. All rights reserved.
 //
 
-#import "PINTask2+FlatMap.h"
+#import "PINTaskMap+FlatMap.h"
 
 #import "PINTask.h"
 
-@implementation PINTask2 (FlatMap)
+@implementation PINTaskMap (FlatMap)
 
 + (PINTask<id> *)executor:(id<PINExecutor>)executor flatMap:(PINTask<id> *)sourceTask success:(PINTask<id> *(^)(id fromValue))success
 {

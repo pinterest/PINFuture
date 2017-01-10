@@ -1,5 +1,5 @@
 //
-//  PINFuture2.h
+//  PINFutureMap.h
 //  Pods
 //
 //  Created by Chris Danford on 12/8/16.
@@ -11,5 +11,5 @@
 /**
  * This exists as a separate class so that the class can have two type parameters.
  */
-@interface PINFuture2<FromType, ToType> : NSObject
+@interface PINFutureMap<FromType, ToType> : NSObject
 @end

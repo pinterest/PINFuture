@@ -1,5 +1,5 @@
 //
-//  PINTask2.h
+//  PINTaskMap.h
 //  Pods
 //
 //  Created by Chris Danford on 12/14/16.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PINTask2<A, B> : NSObject
+@interface PINTaskMap<A, B> : NSObject
 //+ (PINTask<PINPair<A, B> *> *)zip:(PINTask<A> *)taskA with:(PINTask<B> *)taskB;
 @end
 
