@@ -27,9 +27,7 @@ A Future is a state machine that usually begins in a "Pending" state.  "Pending"
 
 ![State diagram for a Future](https://cloud.githubusercontent.com/assets/1527302/21839743/3e2709a2-d78e-11e6-8044-9df62b662fd6.png "State diagram for a Future")
 
-Some important properties of Futures:
-- The value of a Future is not lazily computed.  If a Future exists, the computation of its value is already in-flight.  Even the eventual value of the Future is never used, it will still be computed.
-- A future is read-only.  Once a Future is constructed, its computation has begun and there is no method on Future to *influence* the eventual value - only methods to *get* the eventual value.
+Once a future resolves or rejects, it's frozen and cannot resolve or reject again, and its value cannot be changed.
 
 ### Examples
 #### Method signatures
@@ -221,6 +219,8 @@ PINFuture<NSArray<NSString *> *> *fileContentsFuture = [PINFuture<NSString *> ga
 - Being explicit about where callbacks are dispatched prevents unnecessary bottlenecking on the Main Queue compared to functions that take callbacks and always dispatch to Main.
 
 ## "Future" versus "Task"
+- Future: The value is eagerly computed.  The work of computing the value of the Future will still occur even if there are no consumers of the value.
+- Task: The value is not computed until a consumer calls `run`.
 
 ## Alternatives
 
