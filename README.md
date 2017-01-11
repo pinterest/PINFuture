@@ -260,8 +260,8 @@ These decisions are possibly controvercial but deliberate.
 - Don't pass `value` and `error` as parameters to the `completion` block.  If a caller needs to consume `value` or `error`, they should be using `success:failure:`.  If they need to execute cleanup code without consuming the value, then `completion` is more appropriate.  If a `value` and an `error` are passed to `completion`, it's very easy for callback code to misinterpret whether the future resolved or rejected.
 
 ## Authors
-- Chris Danford, https://github.com/chrisdanford
-- Brandon Kase, https://github.com/bkase
+- [Chris Danford](https://github.com/chrisdanford)
+- [Brandon Kase](https://github.com/bkase)
 
 ## License
 
