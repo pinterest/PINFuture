@@ -35,8 +35,6 @@ Some important properties of Futures:
 
 ### Examples
 #### Method signatures
-When you write a function that produces an asynchronous value, your function can return a Future instead having callback parameters.
-
 Callback style
 ```objc
 - (void)logInWithUsername:(NSString *)username
@@ -50,7 +48,7 @@ Future style
                                     password:(NSString *)password;
 ```
 
-#### Chaining asynchronous operations
+#### Chain asynchronous operations and have side-effects at the end
 Callback style
 ```objc
 [self showSpinner];
