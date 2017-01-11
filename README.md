@@ -23,7 +23,7 @@ PINFuture is an Objective C implementation of the asynchronous primitive called 
 
 A Future is a wrapper for "a value that will eventually be ready to use".
 
-A Future is a state machine that usually begins in a the "Pending" state.  "Pending" means that the final value of the Future is not yet known but is currently in-progress.  The Future will eventually transition to either a "Fulfilled" state and contain a final value, or transition to a "Rejected" state and contain an error.  "Fulfilled" and "Rejected" are terminal states for a Future.
+A Future is a state machine that usually begins in a "Pending" state.  "Pending" means that the final value of the Future is not yet known but is currently in-progress.  The Future will eventually transition to either a "Fulfilled" state and contain a final value, or transition to a "Rejected" state and contain an error.  "Fulfilled" and "Rejected" are terminal states for a Future.
 
 ![State diagram for a Future](https://cloud.githubusercontent.com/assets/1527302/21839743/3e2709a2-d78e-11e6-8044-9df62b662fd6.png "State diagram for a Future")
 
