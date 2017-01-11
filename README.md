@@ -38,8 +38,8 @@ Callback style
 ```
 Future style
 ```objc
-- (PINFuture<User *user> *)logInWithUsername:(NSString *)username 
-                                    password:(NSString *)password;
+- (PINFuture<User *> *)logInWithUsername:(NSString *)username 
+                                password:(NSString *)password;
 ```
 
 #### Chain asynchronous operations
