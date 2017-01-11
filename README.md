@@ -98,7 +98,7 @@ OCMStub([fileMock readFileContents:@"foo.txt"
 
 Future style
 ```objc
-OCMStub([fileMock readFileContents:@"foo.txt"]).andReturn(PINFuture withValue:@"fake contents");
+OCMStub([fileMock readFileContents:@"foo.txt"]).andReturn([PINFuture<NSString *> withValue:@"fake contents"]);
 ```
 
 ### Handling values
@@ -129,14 +129,6 @@ PINFuture makes use of Objective C generics to maintain the same type safety tha
 In Objective C, type parameters are optional.  It's a good practice to always specify them for a PINFuture.
 ```objc
 [PINFuture succeedWithValue:@"foo"]; // This compiles but will likely blow up with "unrecognized selector" when the value is used.
-```
-
-In order to achieve type safety for an operation like `map` that converts from one type of value to another type, we have to jump through some hoops because of Objective C's rudimentary support for generics.  `map` and `flatMap` are class methods on the class `PINFutureMap`.  The `PINFutureMap` class has two type parameters:  `FromType` and `ToType`.
-```objc
-PINFuture<NSNumber *> *numberFuture = [PINFuture<NSNumber *> succeedWithValue:@123];
-PINFuture<NSString *> *stringFuture = [PINFutureMap<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor immediate] success:^NSString * (NSNumber * number) {
-    return [number stringValue];
-}];
 ```
 
 ### Blocking on a result
@@ -172,33 +164,29 @@ PINFuture<NSString *> stringFuture = [PINFuture<NSString *> withBlock:^(void (^ 
 ```
 
 ### Transforming
+In order to achieve type safety for an operation like `map` that converts from one type of value to another type, we have to jump through some hoops because of Objective C's rudimentary support for generics.  `map` and `flatMap` are class methods on the class `PINFutureMap`.  The `PINFutureMap` class has two type parameters: `FromType` and `ToType`.
 
 #### `map`
 ```objc
-PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] transform:^NSString * (NSNumber * number) {
+PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] transform:^NSString *(NSNumber * number) {
     return [number stringValue];
 }];
 ```
 
 #### `flatMap`
 ```objc
-PINFuture<UIImage *> imageFuture = [PINFutureMap<User *, UIImage *> mapValue:userFuture executor:[PINExecutor background] transform:^NSString * (User *user) {
-    if (user.isAnonymous) {
-        return [PINFuture<NSString *> withValue:[UIImage imageNamed:@"anon_user"]];
-    } else {
-        return [NetworkImageManager fetchImage:[NSString stringWithFormat:@"images/user/%d.jpg"]];
-    }
+PINFuture<UIImage *> imageFuture = [PINFutureMap<User *, UIImage *> mapValue:userFuture executor:[PINExecutor background] transform:^PINFuture<NSString *> *(User *user) {
+    return [NetworkImageManager fetchImageWithURL:user.profileURL];
 }];
 ```
 
 ### Recovering from an error
-
 #### `flatMapError`
 
 ```objc
 // Try to read the contents of "fileA.txt".  If the file doesn't exist, then try to read the contents of "fileB.txt".
-PINFuture<NSString *> *fileAFuture = [File readContentsPath:@"fileA.txt" encoding:EncodingUTF8];
-PINFuture<NSString *> *oneFileFuture = [fileAFuture executor:[PINExecutor immediate] flatMapError:^PINFuture<NSString *> * (NSError *errror) {
+PINFuture<NSString *> *stringFuture = [File readContentsPath:@"fileA.txt" encoding:EncodingUTF8];
+stringFuture = [fileAFuture executor:[PINExecutor immediate] flatMapError:^PINFuture<NSString *> * (NSError *errror) {
     if ([error isKindOf:[NSURLErrorFileDoesNotExist class]) {
         return [File readContentsPath:@"fileB.txt" encoding:EncodingUTF8];
     } else {
