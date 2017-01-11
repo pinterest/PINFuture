@@ -17,7 +17,7 @@ pod "PINFuture"
 
 ## Overview
 
-PINFuture is an Objective C implementation of the asynchronous primitive called "Future".  This library differs from other Objective C implementations of Future primarily beccause it aims to preserve type safety using Objective C generics.
+PINFuture is an Objective C implementation of the asynchronous primitive called "Future".  This library differs from other Objective C implementations of Future primarily because it aims to preserve type safety using Objective C generics.
 
 ### What is a Future?
 
