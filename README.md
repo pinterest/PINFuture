@@ -120,13 +120,6 @@ PINFuture<NSString *> *stringFuture = [PINFutureMap<NSNumber *, NSString *> mapV
 }];
 ```
 
-### Recovering from an error
-
-`mapError` and `flatMapError` let you recover from an error by transforming an error into a value.
-
-```objc
-```
-
 ### Blocking on a result
 
 PINFuture is non-blocking and provides no mechanism for blocking.  Blocking a thread on the computation of an async value is generally not a good practice, but is possible using [Grand Central Dispatch Semaphores](http://www.g8production.com/post/76942348764/wait-for-blocks-execution-using-a-dispatch)
@@ -181,11 +174,27 @@ PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> map:n
 
 #### `flatMap`
 ```objc
-PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] transform:^NSString * (NSNumber * number) {
+PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] transform:^NSString * (NSNumber *number) {
     if ([number isEqual:@1]) {
         return [PINResult<NSString *> succeedWith:stringValue];
     } else {
         return [PINResult<NSString *> failWith:[NSError errorWithDescription:@"only supports '1'"]];
+    }
+}];
+```
+
+### Recovering from an error
+
+#### `flatMapError`
+
+```objc
+// Try to read the contents of "fileA.txt".  If the file doesn't exist, then try to read the contents of "fileB.txt".
+PINFuture<NSString *> *fileAFuture = [File readContentsPath:@"fileA.txt" encoding:EncodingUTF8];
+PINFuture<NSString *> *oneFileFuture = [fileAFuture executor:[PINExecutor immediate] flatMapError:^PINFuture<NSString *> * (NSError *errror) {
+    if ([error isKindOf:[NSURLErrorFileDoesNotExist class]) {
+        return [File readContentsPath:@"fileB.txt" encoding:EncodingUTF8];
+    } else {
+        return [PINFuture withError:error];  // Pass the error through.
     }
 }];
 ```
@@ -195,7 +204,7 @@ PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> mapVa
 ```objc
 NSArray<NSString *> fileNames = @[@"a.txt", @"b.txt", @"c.txt"];
 NSArray<PINFuture<NSString *> *> *fileContentFutures = [fileNames map:^ PINFuture<NSString *> *(NSString *fileName) {
-    return [File readContentsWithPath:fileName];
+    return [File readContentsPath:fileName encoding:EncodingUTF8];
 }];
 PINFuture<NSArray<NSString *> *> *fileContentsFuture = [PINFuture<NSString *> gatherAll:fileContentFutures executor:[PINExecutor background]];
 [fileContentsFuture executor:[PINExecutor background] success:^(NSArray<NSString *> *fileContents) {
@@ -206,12 +215,10 @@ PINFuture<NSArray<NSString *> *> *fileContentsFuture = [PINFuture<NSString *> ga
 ```
 
 ## Roadmap
-- support cancellation
+- support for cancelling the computation of the value
 - Task primitive
-- "immediateOnMain" execution context https://github.com/Thomvis/BrightFutures/blob/master/Sources/BrightFutures/ExecutionContext.swift#L35
 
 ## "Future" versus "Callback"
-
 - For a function that returns a Future, the compiler can enforce that a value is returned in all code paths.  With callbacks, there's no way to enforce the convention that all code paths should end by calling exactly one callback.
 - A Future guarantees that a callback is never called more than once.  This is a difficult convention to enforce in a function that has the side-effect of calling a callback.
 - Being explicit about where callbacks are dispatched prevents unnecessary bottlenecking on the Main Queue compared to functions that take callbacks and always dispatch to Main.
