@@ -42,7 +42,7 @@ Future style
                                     password:(NSString *)password;
 ```
 
-#### Chain asynchronous operations and have side-effects at the end
+#### Chain asynchronous operations
 Callback style
 ```objc
 [self showSpinner];
@@ -80,6 +80,25 @@ PINFuture<Posts *> *postsFuture = [PINFutureMap<User *, Posts *> flatMap:userFut
 } failure:^(NSError *error) {
     // update the UI to show the error
 }];
+```
+
+#### Stubbing an async function in a test
+Callback style
+```objc
+OCMStub([fileMock readFileContents:@"foo.txt" 
+                           success:OCMOCK_ANY
+                           failure:OCMOCK_ANY]).andDo(^(NSInvocation *invocation) {
+    (void)(^successBlock)(NSString *) = nil;
+    [invocation getArgument:&successBlock atIndex:3];
+    if (successBlock) {
+        successBlock(@"fake Contents");
+    }
+});
+```
+
+Future style
+```objc
+OCMStub([fileMock readFileContents:@"foo.txt"]).andReturn(PINFuture withValue:@"fake contents");
 ```
 
 ### Handling values
