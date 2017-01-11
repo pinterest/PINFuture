@@ -17,8 +17,8 @@ describe(@"gatherAll", ^{
     it(@"resolves if all source promises resolve", ^{
         NSString *value1 = stringFixture();
         NSString *value2 = stringFixture();
-        PINFuture<NSString *> *source1 = [PINFuture<NSString *> succeedWith:value1];
-        PINFuture<NSString *> *source2 = [PINFuture<NSString *> succeedWith:value2];
+        PINFuture<NSString *> *source1 = [PINFuture<NSString *> withValue:value1];
+        PINFuture<NSString *> *source2 = [PINFuture<NSString *> withValue:value2];
         PINFuture<NSArray<NSString *> *> *arrayFuture = [PINFuture<NSString *> gatherAll:@[source1, source2]];
         expectFutureToResolveWith(self, arrayFuture, @[value1, value2]);
     });
@@ -26,8 +26,8 @@ describe(@"gatherAll", ^{
     it(@"rejects if any source promise rejects", ^{
         NSString *value1 = stringFixture();
         NSError *error2 = errorFixture();
-        PINFuture<NSString *> *source1 = [PINFuture<NSString *> succeedWith:value1];
-        PINFuture<NSString *> *source2 = [PINFuture<NSString *> failWith:error2];
+        PINFuture<NSString *> *source1 = [PINFuture<NSString *> withValue:value1];
+        PINFuture<NSString *> *source2 = [PINFuture<NSString *> withError:error2];
         PINFuture<NSArray<NSString *> *> *arrayFuture = [PINFuture<NSString *> gatherAll:@[source1, source2]];
         expectFutureToRejectWith(self, arrayFuture, error2);
     });

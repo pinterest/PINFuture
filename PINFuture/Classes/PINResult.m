@@ -13,11 +13,11 @@
 
 @implementation PINResult
 
-+ (PINResultSuccess <id> *)succeedWith:(id)value {
++ (PINResultSuccess <id> *)withValue:(id)value {
     return [[PINResultSuccess alloc] initWithValue:value];
 }
 
-+ (PINResultFailure <id> *)failWith:(NSError *)error {
++ (PINResultFailure <id> *)withError:(NSError *)error {
     return [[PINResultFailure alloc] initWithError:error];
 }
 

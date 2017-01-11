@@ -15,9 +15,9 @@ describe(@"flatMapError", ^{
     it(@"can return a resolved promise", ^{
         NSError *error1 = errorFixture();
         NSString *value2 = stringFixture();
-        PINFuture<NSString *> *source = [PINFuture<NSString *> failWith:error1];
+        PINFuture<NSString *> *source = [PINFuture<NSString *> withError:error1];
         PINFuture<NSString *> *mapped = [source executor:[PINExecutor immediate] flatMapError:^PINFuture<NSString *> *(NSError *error) {
-            return [PINFuture succeedWith:value2];
+            return [PINFuture withValue:value2];
         }];
         expectFutureToResolveWith(self, mapped, value2);
     });
@@ -25,9 +25,9 @@ describe(@"flatMapError", ^{
     it(@"can return a rejected promise", ^{
         NSError *error1 = errorFixture();
         NSError *error2 = errorFixture();
-        PINFuture<NSString *> *source = [PINFuture<NSString *> failWith:error1];
+        PINFuture<NSString *> *source = [PINFuture<NSString *> withError:error1];
         PINFuture<NSString *> *mapped = [source executor:[PINExecutor immediate] flatMapError:^PINFuture<NSString *> *(NSError *error) {
-            return [PINFuture failWith:error2];
+            return [PINFuture withError:error2];
         }];
         expectFutureToRejectWith(self, mapped, error2);
     });

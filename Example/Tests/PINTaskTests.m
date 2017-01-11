@@ -16,13 +16,13 @@ SpecBegin(PINTaskSpecs)
 describe(@"task", ^{
     it(@"create with value", ^{
         NSString *value = stringFixture();
-        PINTask<NSString *> *task = [PINTask<NSString *> succeedWith:value];
+        PINTask<NSString *> *task = [PINTask<NSString *> withValue:value];
         runTaskAndExpectToResolveWith(self, task, value);
     });
     
     it(@"create with error", ^{
         NSError *error = errorFixture();
-        PINTask<NSString *> *task = [PINTask<NSString *> failWith:error];
+        PINTask<NSString *> *task = [PINTask<NSString *> withError:error];
         runTaskAndExpectToRejectWith(self, task, error);
     });
     
@@ -53,14 +53,14 @@ describe(@"task", ^{
     it(@"not calling `run` before dealloc will assert", ^{
         expect(^{
             NSString *value = stringFixture();
-            __unused PINTask<NSString *> *task = [PINTask<NSString *> succeedWith:value];
+            __unused PINTask<NSString *> *task = [PINTask<NSString *> withValue:value];
         }).to.raise(@"NSInternalInconsistencyException");
     });
 
 //    it(@"tolerates success callback being null", ^{
 //        NSError *error = errorFixture();
 //        PINTask<NSString *> *task = [PINTask<NSString *> new:^PINCancellationBlock _Nullable(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
-//            [[PINTask<NSString *> failWith:error] runAsyncSuccess:NULL failure:^(NSError * _Nonnull error) {
+//            [[PINTask<NSString *> withError:error] runAsyncSuccess:NULL failure:^(NSError * _Nonnull error) {
 //                reject(error);
 //            }];
 //            return NULL;

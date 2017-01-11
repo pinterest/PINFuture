@@ -13,7 +13,7 @@ describe(@"Result", ^{
         NSString * str = stringFixture();
         NSNumber * num1 = numberFixture();
         NSNumber * num2 = numberFixture();
-        NSNumber * res = [PINResult2<NSString *, NSNumber *> match:[PINResult<NSString *> succeedWith:str]
+        NSNumber * res = [PINResult2<NSString *, NSNumber *> match:[PINResult<NSString *> withValue:str]
                         success:^NSNumber *(NSString *value){
                               return num1;
                           }
@@ -27,7 +27,7 @@ describe(@"Result", ^{
         NSError * err = errorFixture();
         NSNumber * num1 = numberFixture();
         NSNumber * num2 = numberFixture();
-        NSNumber * res2 = [PINResult2<NSString *, NSNumber *> match:[PINResult failWith:err]
+        NSNumber * res2 = [PINResult2<NSString *, NSNumber *> match:[PINResult withError:err]
                            success:^NSNumber *(NSString *value){
                                return num1;
                            }

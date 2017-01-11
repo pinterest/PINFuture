@@ -32,7 +32,7 @@ describe(@"dispatchProxy", ^{
         TestObject *testObject = [[TestObject alloc] init];
         [testObject setBlock:^PINFuture *{
             expect([NSThread isMainThread]).to.beFalsy();
-            return [PINFuture succeedWith:value];
+            return [PINFuture withValue:value];
         }];
         
         id proxy = [PINDispatchProxy proxyWithExecutor:[PINExecutor background] target:testObject];

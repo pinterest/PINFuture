@@ -16,7 +16,7 @@ SpecBegin(PINTaskDoSpecs)
 describe(@"task do", ^{
     it(@"doCompletion executes side effect before continuing", ^{
         NSString *value = stringFixture();
-        PINTask<NSString *> *task = [PINTask<NSString *> succeedWith:value];
+        PINTask<NSString *> *task = [PINTask<NSString *> withValue:value];
         __block BOOL sideEffectExecuted = NO;
         task = [task executor:[PINExecutor immediate] doCompletion:^{
             sideEffectExecuted = YES;

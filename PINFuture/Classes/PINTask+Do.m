@@ -13,9 +13,9 @@
 - (PINTask<id> *)executor:(id<PINExecutor>)executor doCompletion:(void(^)())completion
 {
     return [self executor:executor doSuccess:^(id _Nonnull value) {
-        completion([PINResult<id> succeedWith:value]);
+        completion([PINResult<id> withValue:value]);
     } failure:^(NSError * _Nonnull error) {
-        completion([PINResult<id> failWith:error]);
+        completion([PINResult<id> withError:error]);
     }];
 }
 

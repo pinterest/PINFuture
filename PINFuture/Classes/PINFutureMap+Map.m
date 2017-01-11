@@ -20,9 +20,9 @@
                 executor:executor
                  transform:^PINFuture * _Nonnull(id  _Nonnull fromValue) {
                      return [PINResult2<id, id> match:transform(fromValue) success:^id _Nonnull(id  _Nonnull value) {
-                         return [PINFuture succeedWith:value];
+                         return [PINFuture withValue:value];
                      } failure:^id _Nonnull(NSError * _Nonnull error) {
-                         return [PINFuture failWith:error];
+                         return [PINFuture withError:error];
                      }];
                  }];
 }
@@ -36,7 +36,7 @@
                   transform:(id (^)(id fromValue))transform
 {
     return [self map:sourceFuture executor:executor transform:^PINResult * _Nonnull(id  _Nonnull fromValue) {
-        return [PINResult succeedWith:transform(fromValue)];
+        return [PINResult withValue:transform(fromValue)];
     }];
 }
 

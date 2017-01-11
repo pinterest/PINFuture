@@ -50,7 +50,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     return self;
 }
 
-+ (PINFuture<id> *)succeedWith:(id)value
++ (PINFuture<id> *)withValue:(id)value
 {
     PINFuture<id> *future = [[PINFuture alloc] initPrivate];
     future.state = PINFutureStateResolved;
@@ -58,7 +58,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     return future;
 }
 
-+ (PINFuture<id> *)failWith:(NSError *)error
++ (PINFuture<id> *)withError:(NSError *)error
 {
     PINFuture<id> *future = [[PINFuture alloc] initPrivate];
     future.state = PINFutureStateRejected;
@@ -161,7 +161,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     return [PINFutureMap<id, NSNull *> map:self
                                 executor:[PINExecutor immediate]
                                transform:^PINResult<NSNull *> * _Nonnull(id _Nonnull fromValue) {
-                                        return [PINResult<NSNull*> succeedWith:[NSNull null]];
+                                        return [PINResult<NSNull*> withValue:[NSNull null]];
                                     }];
 }
 

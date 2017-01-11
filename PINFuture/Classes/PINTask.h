@@ -21,8 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
  * Also a computation may return a CancellationBlock with cancellation logic or it can return undefined if there is no cancellation logic
  */
 + (PINTask<ObjectType> *)create:(PINCancelToken * _Nullable (^)(void(^resolve)(ObjectType), void(^reject)(NSError *)))block PIN_WARN_UNUSED_RESULT;
-+ (PINTask<ObjectType> *)succeedWith:(ObjectType)value PIN_WARN_UNUSED_RESULT;
-+ (PINTask<ObjectType> *)failWith:(NSError *)error PIN_WARN_UNUSED_RESULT;
++ (PINTask<ObjectType> *)withValue:(ObjectType)value PIN_WARN_UNUSED_RESULT;
++ (PINTask<ObjectType> *)withError:(NSError *)error PIN_WARN_UNUSED_RESULT;
 
 - (PINTask<ObjectType> *)executor:(id<PINExecutor>)executor doSuccess:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure PIN_WARN_UNUSED_RESULT;
 - (PINCancelToken *)run;

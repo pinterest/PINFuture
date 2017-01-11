@@ -32,12 +32,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Return a future that is immediately resolved.
  */
-+ (PINFuture<ObjectType> *)succeedWith:(ObjectType)value;
++ (PINFuture<ObjectType> *)withValue:(ObjectType)value;
 
 /**
  * Return a future that is immediately rejected.
  */
-+ (PINFuture<ObjectType> *)failWith:(NSError *)error;
++ (PINFuture<ObjectType> *)withError:(NSError *)error;
 
 /**
  * Construct a future from a block that eventually calls resolve or reject.

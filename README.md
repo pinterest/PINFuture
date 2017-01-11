@@ -123,12 +123,12 @@ A good rule of thumb: Use `[PINExecutor background]` if work that your callback 
 PINFuture makes use of Objective C generics to maintain the same type safety that you'd have with callbacks.
 
 ```objc
-[PINFuture<NSNumber *> succeedWithValue:@"foo"]; // Compile error.  Good!
+[PINFuture<NSNumber *> withValue:@"foo"]; // Compile error.  Good!
 ```
 
 In Objective C, type parameters are optional.  It's a good practice to always specify them for a PINFuture.
 ```objc
-[PINFuture succeedWithValue:@"foo"]; // This compiles but will likely blow up with "unrecognized selector" when the value is used.
+[PINFuture withValue:@"foo"]; // This compiles but will likely blow up with "unrecognized selector" when the value is used.
 ```
 
 ### Blocking on a result
@@ -143,16 +143,16 @@ PINFuture does not capture Exceptions thrown by callbacks.  On platforms that PI
 
 ### Constructing
 
-#### `succeedWith`
+#### `withValue`
 Construct an already-resolved Future with a value.
 ```objc
-PINFuture<NSString *> stringFuture = [PINFuture<NSString *> succeedWith:@"foo"];
+PINFuture<NSString *> stringFuture = [PINFuture<NSString *> withValue:@"foo"];
 ```
 
-#### `failWith`
+#### `withError`
 Construct an already-rejected Future with an error.
 ```objc
-PINFuture<NSString *> stringFuture = [PINFuture<NSString *> failWith:[NSError errorWithDescription:...]];
+PINFuture<NSString *> stringFuture = [PINFuture<NSString *> withError:[NSError errorWithDescription:...]];
 ```
 
 #### `withBlock`

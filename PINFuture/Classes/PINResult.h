@@ -18,8 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface PINResult<ObjectType> : NSObject
 
-+ (PINResultSuccess<ObjectType> *)succeedWith:(ObjectType)value;
-+ (PINResultFailure<ObjectType> *)failWith:(NSError *)error;
++ (PINResultSuccess<ObjectType> *)withValue:(ObjectType)value;
++ (PINResultFailure<ObjectType> *)withError:(NSError *)error;
 
 @end
 

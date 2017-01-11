@@ -17,8 +17,8 @@ describe(@"task all", ^{
     it(@"resolves with expected values", ^{
         NSString *valueA = stringFixture();
         NSString *valueB = stringFixture();
-        PINTask<NSString *> *sourceTaskA = [PINTask<NSString *> succeedWith:valueA];
-        PINTask<NSString *> *sourceTaskB = [PINTask<NSString *> succeedWith:valueB];
+        PINTask<NSString *> *sourceTaskA = [PINTask<NSString *> withValue:valueA];
+        PINTask<NSString *> *sourceTaskB = [PINTask<NSString *> withValue:valueB];
         
         PINTask<NSArray<NSString *> *> *allTask = [PINTask<NSString *> all:@[sourceTaskA, sourceTaskB]];
         runTaskAndExpectToResolveWith(self, allTask, @[valueA, valueB]);
@@ -26,8 +26,8 @@ describe(@"task all", ^{
     it(@"rejects when any source task rejects", ^{
         NSString *valueA = stringFixture();
         NSError *errorB = errorFixture();
-        PINTask<NSString *> *sourceTaskA = [PINTask<NSString *> succeedWith:valueA];
-        PINTask<NSString *> *sourceTaskB = [PINTask<NSString *> failWith:errorB];
+        PINTask<NSString *> *sourceTaskA = [PINTask<NSString *> withValue:valueA];
+        PINTask<NSString *> *sourceTaskB = [PINTask<NSString *> withError:errorB];
         
         PINTask<NSArray<NSString *> *> *allTask = [PINTask<NSString *> all:@[sourceTaskA, sourceTaskB]];
         runTaskAndExpectToRejectWith(self, allTask, errorB);

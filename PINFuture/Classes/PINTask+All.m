@@ -14,7 +14,7 @@
 {
     // A very naive implementation.
     if (sourceTasks.count == 0) {
-        return [PINTask<NSArray<id> *> succeedWith:@[]];
+        return [PINTask<NSArray<id> *> withValue:@[]];
     } else {
         return [PINTask<NSArray<id> *> create:^PINCancelToken * (void (^ _Nonnull resolve)(NSArray<id> * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
             NSMutableArray *resolvedValues = [[NSMutableArray alloc] initWithCapacity:sourceTasks.count];

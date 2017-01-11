@@ -46,7 +46,7 @@ PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
     return task;
 }
 
-+ (PINTask<id> *)succeedWith:(id)value
++ (PINTask<id> *)withValue:(id)value
 {
     return [self create:^PINCancelToken *(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         resolve(value);
@@ -54,7 +54,7 @@ PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
     }];
 }
 
-+ (PINTask<id> *)failWith:(NSError *)error
++ (PINTask<id> *)withError:(NSError *)error
 {
     return [self create:^PINCancelToken * (void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         reject(error);
