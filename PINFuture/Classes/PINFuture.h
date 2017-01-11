@@ -60,12 +60,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - misc
 
-/**
- * Return a new future that strips out the resolved value but passes through any error.
- * Use this if you have a future but don't want to expose its value.
- */
-- (PINFuture<NSNull *> *)mapToNull;
-
 @end
 
 NS_ASSUME_NONNULL_END

@@ -156,13 +156,4 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     }];
 }
 
-- (PINFuture<NSNull *> *)mapToNull;
-{
-    return [PINFutureMap<id, NSNull *> map:self
-                                executor:[PINExecutor immediate]
-                               transform:^PINResult<NSNull *> * _Nonnull(id _Nonnull fromValue) {
-                                        return [PINResult<NSNull*> withValue:[NSNull null]];
-                                    }];
-}
-
 @end

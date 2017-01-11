@@ -16,15 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (PINFuture<ToType> *)map:(PINFuture<FromType> *)sourceFuture
                    executor:(id<PINExecutor>)executor
-                   transform:(PINResult<ToType> *(^)(FromType fromValue))transform;
+                   transform:(ToType (^)(FromType fromValue))transform;
 
 @end
 
 @interface PINFutureMap<FromType, ToType> (MapConvenience)
 
-+ (PINFuture<ToType> *)mapValue:(PINFuture<FromType> *)sourceFuture
-                       executor:(id<PINExecutor>)executor
-                        transform:(ToType (^)(FromType fromValue))transform;
++ (PINFuture<ToType> *)mapToValue:(PINFuture<FromType> *)sourceFuture
+                            value:(ToType)value;
 
 @end
 

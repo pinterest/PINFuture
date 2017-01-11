@@ -6,7 +6,6 @@
 //  Copyright (c) 2016 Pinterest. All rights reserved.
 //
 
-#import "PINResult.h"
 #import "PINTask.h"
 #import "PINTaskMap.h"
 

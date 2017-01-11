@@ -18,20 +18,20 @@ describe(@"map", ^{
         NSNumber *valueA = numberFixture();
         NSString *valueB = stringFixture();
         PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> withValue:valueA];
-        PINFuture<NSString *> *futureB = [PINFutureMap<NSNumber *, NSString *> map:futureA executor:[PINExecutor immediate] transform:^PINResult<NSString *> * _Nonnull(NSNumber * _Nonnull fromValue) {
-            return [PINResult<NSString *> withValue:valueB];
+        PINFuture<NSString *> *futureB = [PINFutureMap<NSNumber *, NSString *> map:futureA executor:[PINExecutor immediate] transform:^NSString * _Nonnull(NSNumber * _Nonnull fromValue) {
+            return valueB;
         }];
         expectFutureToResolveWith(self, futureB, valueB);
     });
-    
-    it(@"can cause a failure", ^{
+});
+
+describe(@"mapToValue", ^{
+    it(@"can return a value of a different type", ^{
         NSNumber *valueA = numberFixture();
-        NSError *error = errorFixture();
+        NSString *valueB = stringFixture();
         PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> withValue:valueA];
-        PINFuture<NSString *> *futureB = [PINFutureMap<NSNumber *, NSString *> map:futureA executor:[PINExecutor immediate] transform:^PINResult<NSString *> *(NSNumber *fromValue) {
-            return [PINResult<NSString *> withError:error];
-        }];
-        expectFutureToRejectWith(self, futureB, error);
+        PINFuture<NSString *> *futureB = [PINFutureMap<NSNumber *, NSString *> mapToValue:futureA value:valueB];
+        expectFutureToResolveWith(self, futureB, valueB);
     });
 });
 
