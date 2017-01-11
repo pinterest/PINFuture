@@ -21,13 +21,11 @@ PINFuture is an Objective C implementation of the asynchronous primitive called 
 
 ### What is a Future?
 
-A Future is a wrapper for "a value that will eventually be ready to use".
+A Future is a wrapper for "a value that will eventually be ready".
 
-A Future is a state machine that usually begins in a "Pending" state.  "Pending" means that the final value of the Future is not yet known but is currently in-progress.  The Future will eventually transition to either a "Fulfilled" state and contain a final value, or transition to a "Rejected" state and contain an error.  "Fulfilled" and "Rejected" are terminal states for a Future.
+A Future can have one of 3 states and usually begins in the "Pending" state.  "Pending" means that the final value of the Future is not yet known but is currently being computed.  The Future will eventually transition to either a "Fulfilled" state and contain a final value, or transition to a "Rejected" state and contain an error object.  "Fulfilled" and "Rejected" are terminal states, and the value/error of a Future cannot change after the first fulfill or reject transition.
 
 ![State diagram for a Future](https://cloud.githubusercontent.com/assets/1527302/21839743/3e2709a2-d78e-11e6-8044-9df62b662fd6.png "State diagram for a Future")
-
-Once a future resolves or rejects, it's frozen and cannot resolve or reject again, and its value cannot be changed.
 
 ### Examples
 #### Method signatures
