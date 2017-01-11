@@ -26,15 +26,17 @@ A Future is a wrapper for "a value that will eventually be ready to use".
 A Future is a state machine that usually begins in a the "Pending" state.  "Pending" means that the final value of the Future is not yet known but is currently in-progress.  The Future will eventually transition to either a "Fulfilled" state and contain a final value, or transition to a "Rejected" state and contain an error.  "Fulfilled" and "Rejected" are terminal states for a Future.
 
 ![State diagram for a Future](https://cloud.githubusercontent.com/assets/1527302/21829570/aff25f0c-d74b-11e6-9423-4976fa47bcdb.png "State diagram for a Future")
+
 from [Cancelable Asynchronous Operations with Promises in JavaScript](https://blog.codecentric.de/en/2015/03/cancelable-async-operations-promises-javascript/) by Ben Ripkens
 
-- The value of a Future is not lazily computed.  If a Future exists, the computation of its value is already in flight.
+Some important properties of Futures:
+- The value of a Future is not lazily computed.  If a Future exists, the computation of its value is already in-flight.  Even the eventual value of the Future is never used, it will still be computed.
 - A future is read-only.  Once a Future is constructed, its computation has begun and there is no method on Future to influence the eventual value.
-
-When you write a function that produces an asynchronous value, your function can return a Future instead having 1 or more callback parameters.
 
 ### Examples
 #### Method signatures
+When you write a function that produces an asynchronous value, your function can return a Future instead having callback parameters.
+
 Callback style
 ```objc
 - (void)logInWithUsername:(NSString *)username
@@ -51,27 +53,35 @@ Future style
 #### Chaining asynchronous operations
 Callback style
 ```objc
+[self showSpinner];
 [User logInWithUsername:username password:password success:^(User *user) {
     [Posts fetchPostsForUser:user success:^(Posts *posts) {
-         dispatch_async(dispatch_get_main_queue(), ^{
-             // update the UI to show posts
-         });
+        dispatch_async(dispatch_get_main_queue(), ^{
+           [self hideSpinner];
+            // update the UI to show posts
+        });
     } failure:^(NSError *error) {
-         dispatch_async(dispatch_get_main_queue(), ^{
-             // update the UI to show the error
-         });
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self hideSpinner];
+            // update the UI to show the error
+        });
     }];
 } failure:^(NSError *error) {
     dispatch_async(dispatch_get_main_queue(), ^{
-         // update the UI to show the error
+        [self hideSpinner];
+        // update the UI to show the error
     });
 }];
 ```
 Future style
 ```objc
+[self showSpinner];
 PINFuture<User *> *userFuture = [User logInWithUsername:username password:password];
-PINFuture<Posts *> *postsFuture = [PINFutureMap<User *, Posts *> flatMap:userFuture executor:[PINExecutor background] transform:^PINFuture<Posts *> *(User *user) {
+PINFuture<Posts *> *postsFuture = [PINFutureMap<User *, Posts *> flatMap:userFuture executor:[PINExecutor mainQueue] transform:^PINFuture<Posts *> *(User *user) {
     return [Posts fetchPostsForUser:user];
+}];
+[postsFuture executor:[PINExecutor mainQueue] complete:^{
+    [self hideSpinner];
 }];
 [postsFuture executor:[PINExecutor mainQueue] success:^(Posts *posts) {
     // update the UI to show posts
