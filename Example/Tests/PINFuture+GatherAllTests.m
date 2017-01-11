@@ -11,15 +11,15 @@
 #import "PINFuture.h"
 #import "TestUtil.h"
 
-SpecBegin(PINFutureAllSpecs)
+SpecBegin(PINFutureGatherAllSpecs)
 
-describe(@"all", ^{
+describe(@"gatherAll", ^{
     it(@"resolves if all source promises resolve", ^{
         NSString *value1 = stringFixture();
         NSString *value2 = stringFixture();
         PINFuture<NSString *> *source1 = [PINFuture<NSString *> succeedWith:value1];
         PINFuture<NSString *> *source2 = [PINFuture<NSString *> succeedWith:value2];
-        PINFuture<NSArray<NSString *> *> *arrayFuture = [PINFuture<NSString *> all:@[source1, source2]];
+        PINFuture<NSArray<NSString *> *> *arrayFuture = [PINFuture<NSString *> gatherAll:@[source1, source2]];
         expectFutureToResolveWith(self, arrayFuture, @[value1, value2]);
     });
 
@@ -28,7 +28,7 @@ describe(@"all", ^{
         NSError *error2 = errorFixture();
         PINFuture<NSString *> *source1 = [PINFuture<NSString *> succeedWith:value1];
         PINFuture<NSString *> *source2 = [PINFuture<NSString *> failWith:error2];
-        PINFuture<NSArray<NSString *> *> *arrayFuture = [PINFuture<NSString *> all:@[source1, source2]];
+        PINFuture<NSArray<NSString *> *> *arrayFuture = [PINFuture<NSString *> gatherAll:@[source1, source2]];
         expectFutureToRejectWith(self, arrayFuture, error2);
     });
 });

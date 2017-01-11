@@ -24,7 +24,7 @@ describe(@"stress test", ^{
             [sourceFutures addObject:sourceFuture];
         }
         
-        PINFuture<NSArray<NSNumber *> *> *arrayFuture = [PINFuture<NSNumber *> all:sourceFutures];
+        PINFuture<NSArray<NSNumber *> *> *arrayFuture = [PINFuture<NSNumber *> gatherAll:sourceFutures];
         NSMutableArray<NSNumber *> *expectedValue = [[NSMutableArray alloc] initWithCapacity:numChildren];
         for (NSUInteger i = 0; i < numChildren; i++) {
             [expectedValue addObject:value];

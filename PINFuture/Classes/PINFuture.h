@@ -71,7 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
 NS_ASSUME_NONNULL_END
 
 // Import everything for caller convenience.
-#import "PINFuture+All.h"
+#import "PINFuture+GatherAll.h"
 #import "PINFuture+Dispatch.h"
 #import "PINFuture+FlatMapError.h"
 #import "PINFuture+MapError.h"

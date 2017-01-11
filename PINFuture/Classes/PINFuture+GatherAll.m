@@ -1,5 +1,5 @@
 //
-//  PINFuture+Util.m
+//  PINFuture+GatherAll.m
 //  Pods
 //
 //  Created by Chris Danford on 12/5/16.
@@ -8,9 +8,9 @@
 
 #import "PINFuture.h"
 
-@implementation PINFuture (Util)
+@implementation PINFuture (GatherAll)
 
-+ (PINFuture<NSArray *> *)all:(NSArray<PINFuture *> *)sourceFutures
++ (PINFuture<NSArray *> *)gatherAll:(NSArray<PINFuture *> *)sourceFutures
 {
     // A very naive implementation.
     if (sourceFutures.count == 0) {

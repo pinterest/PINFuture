@@ -1,6 +1,6 @@
 PODS:
   - Expecta (1.0.5)
-  - PINFuture (0.6.0)
+  - PINFuture (0.7.0)
   - Specta (1.0.5)
 
 DEPENDENCIES:
@@ -14,7 +14,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Expecta: e1c022fcd33910b6be89c291d2775b3fe27a89fe
-  PINFuture: 4b7d52a3c56494d725fbe3c32d52e8989dc24d2a
+  PINFuture: 960afe950cc0a37860f4a07de0f31a9af585330a
   Specta: ac94d110b865115fe60ff2c6d7281053c6f8e8a2
 
 PODFILE CHECKSUM: 699d06a490a2ae8d8e6dcf963cf46656dad30462
