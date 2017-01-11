@@ -25,9 +25,7 @@ A Future is a wrapper for "a value that will eventually be ready to use".
 
 A Future is a state machine that usually begins in a the "Pending" state.  "Pending" means that the final value of the Future is not yet known but is currently in-progress.  The Future will eventually transition to either a "Fulfilled" state and contain a final value, or transition to a "Rejected" state and contain an error.  "Fulfilled" and "Rejected" are terminal states for a Future.
 
-![State diagram for a Future](https://cloud.githubusercontent.com/assets/1527302/21829570/aff25f0c-d74b-11e6-9423-4976fa47bcdb.png "State diagram for a Future")
-
-(diagram from [Cancelable Asynchronous Operations with Promises in JavaScript](https://blog.codecentric.de/en/2015/03/cancelable-async-operations-promises-javascript/) by Ben Ripkens)
+![State diagram for a Future](https://cloud.githubusercontent.com/assets/1527302/21839392/5ff55f86-d78c-11e6-9e00-b4c2ddc0a8bb.png "State diagram for a Future")
 
 Some important properties of Futures:
 - The value of a Future is not lazily computed.  If a Future exists, the computation of its value is already in-flight.  Even the eventual value of the Future is never used, it will still be computed.
