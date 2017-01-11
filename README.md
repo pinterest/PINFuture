@@ -259,10 +259,9 @@ These decisions are possibly controvercial but deliberate.
 - Don't implement BrightFutures behavior of "execute callback on Main of it was registered from Main, or execute callback in background if registered from not Main".  We think an explicit executor is better.  With the BrightFuture behavior, a chunk of code copied to another location may not behave properly for very subtle reasons.
 - Don't pass `value` and `error` as parameters to the `completion` block.  If a caller needs to consume `value` or `error`, they should be using `success:failure:`.  If they need to execute cleanup code without consuming the value, then `completion` is more appropriate.  If a `value` and an `error` are passed to `completion`, it's very easy for callback code to misinterpret whether the future resolved or rejected.
 
-## Author
-
-Chris Danford, https://github.com/chrisdanford
-Brandon Kase, https://github.com/bkase
+## Authors
+- Chris Danford, https://github.com/chrisdanford
+- Brandon Kase, https://github.com/bkase
 
 ## License
 
