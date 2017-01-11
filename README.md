@@ -31,7 +31,7 @@ A Future is a state machine that usually begins in a the "Pending" state.  "Pend
 
 Some important properties of Futures:
 - The value of a Future is not lazily computed.  If a Future exists, the computation of its value is already in-flight.  Even the eventual value of the Future is never used, it will still be computed.
-- A future is read-only.  Once a Future is constructed, its computation has begun and there is no method on Future to influence the eventual value.
+- A future is read-only.  Once a Future is constructed, its computation has begun and there is no method on Future to *influence* the eventual value - only methods to *get* the eventual value.
 
 ### Examples
 #### Method signatures
