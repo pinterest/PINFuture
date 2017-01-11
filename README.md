@@ -27,7 +27,7 @@ A Future is a state machine that usually begins in a the "Pending" state.  "Pend
 
 ![State diagram for a Future](https://cloud.githubusercontent.com/assets/1527302/21829570/aff25f0c-d74b-11e6-9423-4976fa47bcdb.png "State diagram for a Future")
 
-from [Cancelable Asynchronous Operations with Promises in JavaScript](https://blog.codecentric.de/en/2015/03/cancelable-async-operations-promises-javascript/) by Ben Ripkens
+(diagram from [Cancelable Asynchronous Operations with Promises in JavaScript](https://blog.codecentric.de/en/2015/03/cancelable-async-operations-promises-javascript/) by Ben Ripkens)
 
 Some important properties of Futures:
 - The value of a Future is not lazily computed.  If a Future exists, the computation of its value is already in-flight.  Even the eventual value of the Future is never used, it will still be computed.
