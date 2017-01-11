@@ -260,6 +260,9 @@ PINFuture<NSArray<NSString *> *> *fileContentsFuture = [PINFuture<NSString *> ga
 - Difference between a Promise and a Task https://glebbahmutov.com/blog/difference-between-promise-and-task/
 - Difference between a future and a task https://github.com/indyscala/scalaz-task-intro/blob/master/presentation.md
 - Exection Contexts https://www.cocoawithlove.com/blog/specifying-execution-contexts.html
+- ScalaZ Task: The Missing Documenttion http://timperrett.com/2014/07/20/scalaz-task-the-missing-documentation/
+- Comparing promises frameworks in different languages http://blog.slaks.net/2015-01-08/comparing-different-languages-promises-frameworks/
+- Futures and Promises (mostly useful for the list of implementations) https://en.wikipedia.org/wiki/Futures_and_promises
 
 ## Design decisions
 These decisions are possibly controvercial but deliberate.
