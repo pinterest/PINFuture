@@ -173,31 +173,20 @@ PINFuture<NSString *> stringFuture = [PINFuture<NSString *> withBlock:^(void (^ 
 
 ### Transforming
 
-#### `mapValue`
+#### `map`
 ```objc
 PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] transform:^NSString * (NSNumber * number) {
     return [number stringValue];
 }];
 ```
 
-#### `map`
-```objc
-PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> map:numberFuture executor:[PINExecutor background] transform:^NSString * (NSNumber * number) {
-    if ([number isEqual:@1]) {
-        return [PINResult<NSString *> succeedWith:stringValue];
-    } else {
-        return [PINResult<NSString *> failWith:[NSError errorWithDescription:@"only supports '1'"]];
-    }
-}];
-```
-
 #### `flatMap`
 ```objc
-PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] transform:^NSString * (NSNumber *number) {
-    if ([number isEqual:@1]) {
-        return [PINResult<NSString *> succeedWith:stringValue];
+PINFuture<UIImage *> imageFuture = [PINFutureMap<User *, UIImage *> mapValue:userFuture executor:[PINExecutor background] transform:^NSString * (User *user) {
+    if (user.isAnonymous) {
+        return [PINFuture<NSString *> withValue:[UIImage imageNamed:@"anon_user"]];
     } else {
-        return [PINResult<NSString *> failWith:[NSError errorWithDescription:@"only supports '1'"]];
+        return [NetworkImageManager fetchImage:[NSString stringWithFormat:@"images/user/%d.jpg"]];
     }
 }];
 ```
