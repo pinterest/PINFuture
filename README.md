@@ -91,13 +91,13 @@ To access the final value of a Future, register `success` and `failure` callback
 
 ### Threading model ###
 
-When you register a callback, there is a required `executor:` parameter.  The `executor` determines where and when a callback block will be executed.
+When you register a callback block, there is a required `executor:` parameter.  The `executor` determines where and when your block will be executed.
 
 #### Common values for `executor:`
 - `[PINExecutor mainQueue]` Executes a block on the Main GCD queue.
 - `[PINExecutor background]` Executes a block from a background pool of threads.  If multiple callback blocks are attached, it's possible the blocks will execute concurrently.
 
-A good rule of thumb: Always use `[PINExecutor background]` unless your block specifically needs to be executed from the Main thread (e.g. because it's touching UIKit).
+A good rule of thumb: Use `[PINExecutor background]` if work that your callback block does is thread-safe *and* if it doesn't need to be executed from the Main thread (e.g. because it's touching UIKit).
 
 ### Preserving type safety
 
@@ -122,7 +122,7 @@ PINFuture<NSString *> *stringFuture = [PINFutureMap<NSNumber *, NSString *> mapV
 
 ### Recovering from an error
 
-`map` and `flatMap` let you handle errors by transforming them back to successful values.
+`mapError` and `flatMapError` let you recover from an error by transforming an error into a value.
 
 ```objc
 ```
