@@ -236,22 +236,22 @@ PINFuture<NSArray<NSString *> *> *fileContentsFuture = [PINFuture<NSString *> ga
 - Scalaz Task - the missing documentation http://timperrett.com/2014/07/20/scalaz-task-the-missing-documentation/
 - Monix https://monix.io/docs/2x/eval/task.html
 
+### C++
+- Folly futures: https://github.com/facebook/folly/tree/master/folly/futures https://code.facebook.com/posts/1661982097368498/futures-for-c-11-at-facebook/
+
+### JavaScript
+- Pied Piper https://github.com/WeltN24/PiedPiper/blob/master/README.md#promises
+- Data.Task https://github.com/folktale/data.task
+- fun-task https://github.com/rpominov/fun-task/blob/master/docs/api-reference.md#taskmaprejectedfn
+
+## Other inspiration
 - Monix design history https://gist.github.com/alexandru/55a6038c2fe61025d555
 - Is Future a worthless abstraction compared to Task?  https://www.reddit.com/r/scala/comments/3zofjl/why_is_future_totally_unusable/  Interesting comment by the author of Monix.
 - Easy Performance Wins With Scalaz - http://blog.higher-order.com/blog/2015/06/18/easy-performance-wins-with-scalaz/
 - Referential transparency: https://wiki.haskell.org/Referential_transparency
 - Difference between a Promise and a Task https://glebbahmutov.com/blog/difference-between-promise-and-task/
 - Difference between a future and a task https://github.com/indyscala/scalaz-task-intro/blob/master/presentation.md
-
-#### C++
-- Folly futures: https://github.com/facebook/folly/tree/master/folly/futures https://code.facebook.com/posts/1661982097368498/futures-for-c-11-at-facebook/
-
-#### JavaScript
-- Pied Piper https://github.com/WeltN24/PiedPiper/blob/master/README.md#promises
-- Data.Task https://github.com/folktale/data.task
-- fun-task https://github.com/rpominov/fun-task/blob/master/docs/api-reference.md#taskmaprejectedfn
-
-Exection Contexts https://www.cocoawithlove.com/blog/specifying-execution-contexts.html
+- Exection Contexts https://www.cocoawithlove.com/blog/specifying-execution-contexts.html
 
 ## Design decisions
 These decisions are possibly controvercial but deliberate.
@@ -261,7 +261,8 @@ These decisions are possibly controvercial but deliberate.
 
 ## Author
 
-Chris Danford, chrisdanford@gmail.com
+Chris Danford, https://github.com/chrisdanford
+Brandon Kase, https://github.com/bkase
 
 ## License
 
