@@ -90,18 +90,18 @@ PINFuture<Posts *> *postsFuture = [PINFutureMap<User *, Posts *> flatMap:userFut
 
 ### Handling values
 
-To access the final value of a Future, you register `success` and `failure` callbacks.  If you only want to know when a future completes (and not the specific value or error), then register a `complete` callback.
+To access the final value of a Future, register `success` and `failure` callbacks.  If you only want to know when a Future completes (and not the specific value or error), register a `complete` callback.
 
-- Callbacks will be *dispatched* in the order that they are registered.  However, depending on your specified `executor`, the blocks might actually *execute* in a different order or even concurrently.
+- Callbacks will be *dispatched* in the order that they are registered.  However, depending on your specified `executor`, the blocks might  *execute* in a different order or even execute concurrently.
 - It is not safe to add another callback from within a callback of the same Future.
 
 ### Threading model ###
 
-When you register a callback, there is a required `executor:` parameter.  The `executor` determines where and when a callback will be executed.
+When you register a callback, there is a required `executor:` parameter.  The `executor` determines where and when a callback block will be executed.
 
-#### Common PINExecutors
-- `[PINExecutor mainQueue]` Executes a callback block on the Main GCD queue
-- `[PINExecutor background]` Executes a callback block from a background pool of threads.
+#### Common values for `executor:`
+- `[PINExecutor mainQueue]` Executes a block on the Main GCD queue.
+- `[PINExecutor background]` Executes a block from a background pool of threads.  If multiple callback blocks are attached, it's possible the blocks will execute concurrently.
 
 A good rule of thumb: Always use `[PINExecutor background]` unless your block specifically needs to be executed from the Main thread (e.g. because it's touching UIKit).
 
@@ -110,18 +110,18 @@ A good rule of thumb: Always use `[PINExecutor background]` unless your block sp
 PINFuture makes use of Objective C generics to maintain the same type safety that you'd have with callbacks.
 
 ```objc
-[PINFuture<NSNumber *> succeedWithValue:@"foo"]; // compile error.  Good!
+[PINFuture<NSNumber *> succeedWithValue:@"foo"]; // Compile error.  Good!
 ```
 
-In Objective C, type parameters are optional.  It's a good practice to always specify them for a PINFuture, and ever better if you have tooling that can enforce that a type is always for a `PINFuture`.
+In Objective C, type parameters are optional.  It's a good practice to always specify them for a PINFuture.
 ```objc
 [PINFuture succeedWithValue:@"foo"]; // This compiles but will likely blow up with "unrecognized selector" when the value is used.
 ```
 
-In order to preserve type safety for operation like `map` that convert from one value type to another, we have to jump through some hoops because of Objective C's rudimentary support for generics.  `map` and `flatMap` are class methods on the class `PINFutureMap`.  The `PINFutureMap` class has two type parameters:  `FromType` and `ToType`.
+In order to achieve type safety for an operation like `map` that converts from one type of value to another type, we have to jump through some hoops because of Objective C's rudimentary support for generics.  `map` and `flatMap` are class methods on the class `PINFutureMap`.  The `PINFutureMap` class has two type parameters:  `FromType` and `ToType`.
 ```objc
 PINFuture<NSNumber *> *numberFuture = [PINFuture<NSNumber *> succeedWithValue:@123];
-PINFuture<NSString *> *stringFuture = [PINFutureMap<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor immediate] success:^NSString * _Nonnull(NSNumber * _Nonnull number) {
+PINFuture<NSString *> *stringFuture = [PINFutureMap<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor immediate] success:^NSString * (NSNumber * number) {
     return [number stringValue];
 }];
 ```
@@ -139,9 +139,9 @@ PINFuture is non-blocking and provides no mechanism for blocking.  Blocking a th
 
 ### Errors and exceptions
 
-PINFuture does not capture Exceptions thrown by callbacks.  On platforms that PINFuture targets, `NSException`s are generally fatal and `NSError`s are non-exceptional failures.  PINFuture deals with `NSError`s.
+PINFuture does not capture Exceptions thrown by callbacks.  On platforms that PINFuture targets, `NSException`s are generally fatal.  PINFuture deals with `NSError`s.
 
-## Reference
+## API Reference
 
 ### Constructing
 
@@ -160,7 +160,7 @@ PINFuture<NSString *> stringFuture = [PINFuture<NSString *> failWith:[NSError er
 #### `withBlock`
 Construct a Future and resolve or reject it by calling one of two callbacks.  This construct is generally not safe since because your block might not call `resolve` or `reject`.  This is generally only useful for writing a Future-based wrapper for a Callback-based method.
 ```objc
-PINFuture<NSString *> stringFuture = [PINFuture<NSString *> withBlock:^(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+PINFuture<NSString *> stringFuture = [PINFuture<NSString *> withBlock:^(void (^ resolve)(NSString *), void (^ reject)(NSError *)) {
     [foo somethingAsyncWithSuccess:resolve failure:reject];
 }];
 ```
@@ -168,17 +168,15 @@ PINFuture<NSString *> stringFuture = [PINFuture<NSString *> withBlock:^(void (^ 
 ### Transforming
 
 #### `mapValue`
-Use to convert a Future of one ObjectType to a Future of another ObjectType.  `success` is called only if the source future succeeds.  The value returned by `success` populated a new, succeeded future.
 ```objc
-PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] transform:^NSString * _Nonnull(NSNumber * _Nonnull number) {
+PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] transform:^NSString * (NSNumber * number) {
     return [number stringValue];
 }];
 ```
 
 #### `map`
-Use to convert a Future of one ObjectType to a Future of another ObjectType.  `success` is called only if the source future succeeds.  The value returned by `success` populated a future.
 ```objc
-PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> map:numberFuture executor:[PINExecutor background] transform:^NSString * _Nonnull(NSNumber * _Nonnull number) {
+PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> map:numberFuture executor:[PINExecutor background] transform:^NSString * (NSNumber * number) {
     if ([number isEqual:@1]) {
         return [PINResult<NSString *> succeedWith:stringValue];
     } else {
@@ -188,9 +186,8 @@ PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> map:n
 ```
 
 #### `flatMap`
-Use to convert a Future of one ObjectType to a Future of another ObjectType.  `success` is called only if the source future succeeds.  The value returned by `success` becomes the new future.
 ```objc
-PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] transform:^NSString * _Nonnull(NSNumber * _Nonnull number) {
+PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] transform:^NSString * (NSNumber * number) {
     if ([number isEqual:@1]) {
         return [PINResult<NSString *> succeedWith:stringValue];
     } else {
@@ -199,29 +196,33 @@ PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> mapVa
 }];
 ```
 
-#### `mapToNull`
-```objc
-PINFuture<NSString *> *stringFuture = [PINFuture<NSString *> succeedWith:@"foo"];
-PINFuture<NSNull *> *futureWithNullValue = [stringFuture mapToNull];
-return futureWithNullValue;
-```
-
 ### Gathering
-#### `gatherSome`
 #### `gatherAll`
+```objc
+NSArray<NSString *> fileNames = @[@"a.txt", @"b.txt", @"c.txt"];
+NSArray<PINFuture<NSString *> *> *fileContentFutures = [fileNames map:^ PINFuture<NSString *> *(NSString *fileName) {
+    return [File readContentsWithPath:fileName];
+}];
+PINFuture<NSArray<NSString *> *> *fileContentsFuture = [PINFuture<NSString *> gatherAll:fileContentFutures executor:[PINExecutor background]];
+[fileContentsFuture executor:[PINExecutor background] success:^(NSArray<NSString *> *fileContents) {
+    // All succceeded.
+} failure:^(NSError *error) {
+    // One or more failed.  `error` is the first one to fail.
+}];
+```
 
 ## Roadmap
 - support cancellation
 - Task primitive
 - "immediateOnMain" execution context https://github.com/Thomvis/BrightFutures/blob/master/Sources/BrightFutures/ExecutionContext.swift#L35
 
-## Versus the Callback async primitive
+## "Future" versus "Callback"
 
 - For a function that returns a Future, the compiler can enforce that a value is returned in all code paths.  With callbacks, there's no way to enforce the convention that all code paths should end by calling exactly one callback.
 - A Future guarantees that a callback is never called more than once.  This is a difficult convention to enforce in a function that has the side-effect of calling a callback.
 - Being explicit about where callbacks are dispatched prevents unnecessary bottlenecking on the Main Queue compared to functions that take callbacks and always dispatch to Main.
 
-## Versus the Task async primitive
+## "Future" versus "Task"
 
 ## Alternatives
 
@@ -249,8 +250,8 @@ return futureWithNullValue;
 
 Exection Contexts https://www.cocoawithlove.com/blog/specifying-execution-contexts.html
 
-## Deliberate design decisions
-These are possibly controvercial.
+## Design decisions
+These decisions are possibly controvercial but deliberate.
 - Don't return a value from the `success:failure:` and `completion:` methods that register a callback.  A reader might be mislead into thinking that the callbacks will be executed (not just dispatched) sequentially.
 - Don't implement BrightFutures behavior of "execute callback on Main of it was registered from Main, or execute callback in background if registered from not Main".  We think an explicit executor is better.  With the BrightFuture behavior, a chunk of code copied to another location may not behave properly for very subtle reasons.
 - Don't pass `value` and `error` as parameters to the `completion` block.  If a caller needs to consume `value` or `error`, they should be using `success:failure:`.  If they need to execute cleanup code without consuming the value, then `completion` is more appropriate.  If a `value` and an `error` are passed to `completion`, it's very easy for callback code to misinterpret whether the future resolved or rejected.
