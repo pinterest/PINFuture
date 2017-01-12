@@ -9,7 +9,7 @@
 #import "PINFuture.h"
 #import "PINTask.h"
 
-void expectFutureToFullfillWith(id testCase, PINFuture *future, id expectedValue);
+void expectFutureToFulfillWith(id testCase, PINFuture *future, id expectedValue);
 void expectFutureToRejectWith(id testCase, PINFuture *future, NSError *expectedError);
 
 void runTaskAndExpectToFulfillWith(id testCase, PINTask *future, id expectedValue);

@@ -26,7 +26,7 @@ describe(@"dispatch", ^{
         PINFuture<NSString *> *future = [PINFuture<NSString *> dispatchWithExecutor:backgroundContext block:^PINFuture<NSString *> * _Nonnull{
             return [PINFuture withValue:value];
         }];
-        expectFutureToFullfillWith(self, future, value);
+        expectFutureToFulfillWith(self, future, value);
     });
 
     it(@"reject on background queue", ^{

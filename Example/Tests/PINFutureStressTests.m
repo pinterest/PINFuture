@@ -30,7 +30,7 @@ describe(@"stress test", ^{
             [expectedValue addObject:value];
         }
         
-        expectFutureToFullfillWith(self, arrayFuture, expectedValue);
+        expectFutureToFulfillWith(self, arrayFuture, expectedValue);
     });
 });
 

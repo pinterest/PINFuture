@@ -17,7 +17,7 @@ describe(@"future", ^{
     it(@"create with value", ^{
         NSString *value = stringFixture();
         PINFuture<NSString *> *future = [PINFuture<NSString *> withValue:value];
-        expectFutureToFullfillWith(self, future, value);
+        expectFutureToFulfillWith(self, future, value);
     });
 
     it(@"create with error", ^{
@@ -34,7 +34,7 @@ describe(@"future", ^{
             resolve(value);
             reject(errorFixture());
         }];
-        expectFutureToFullfillWith(self, future, value);
+        expectFutureToFulfillWith(self, future, value);
     });
 
     it(@"rejects only once", ^{
@@ -65,7 +65,7 @@ describe(@"future", ^{
                 resolve(value);
             } failure:NULL];
         }];
-        expectFutureToFullfillWith(self, future, value);
+        expectFutureToFulfillWith(self, future, value);
     });
 });
 

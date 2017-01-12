@@ -8,7 +8,7 @@
 
 #import "TestUtil.h"
 
-void expectFutureToFullfillWith(id testCase, PINFuture *future, id expectedValue) {
+void expectFutureToFulfillWith(id testCase, PINFuture *future, id expectedValue) {
     waitUntil(^(DoneCallback done) {
         [future executor:[PINExecutor immediate] success:^(id  _Nonnull value) {
             id self = testCase;
