@@ -91,7 +91,7 @@ OCMStub([fileMock readFileContents:@"foo.txt"
     (void)(^successBlock)(NSString *) = nil;
     [invocation getArgument:&successBlock atIndex:3];
     if (successBlock) {
-        successBlock(@"fake Contents");
+        successBlock(@"fake contents");
     }
 });
 ```
