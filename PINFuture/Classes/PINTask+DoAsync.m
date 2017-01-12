@@ -13,7 +13,7 @@
 - (PINTask<id> *)executor:(id<PINExecutor>)executor doAsyncSuccess:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure
 {
     // Tricky: We immediately execute these callbacks, but the callbacks themselves dispatch to the supplied context;
-    return [self executor:PINExecutor.immediate doSuccess:^(id _Nonnull value) {
+    return [self executor:[PINExecutor immediate] doSuccess:^(id _Nonnull value) {
         [executor execute:^{
             if (success != NULL) {
                 success(value);

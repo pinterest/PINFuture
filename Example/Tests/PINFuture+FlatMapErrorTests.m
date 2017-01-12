@@ -16,7 +16,7 @@ describe(@"flatMapError", ^{
         NSError *error1 = errorFixture();
         NSString *value2 = stringFixture();
         PINFuture<NSString *> *source = [PINFuture<NSString *> withError:error1];
-        PINFuture<NSString *> *mapped = [source executor:PINExecutor.immediate flatMapError:^PINFuture<NSString *> *(NSError *error) {
+        PINFuture<NSString *> *mapped = [source executor:[PINExecutor immediate] flatMapError:^PINFuture<NSString *> *(NSError *error) {
             return [PINFuture withValue:value2];
         }];
         expectFutureToFulfillWith(self, mapped, value2);
@@ -26,7 +26,7 @@ describe(@"flatMapError", ^{
         NSError *error1 = errorFixture();
         NSError *error2 = errorFixture();
         PINFuture<NSString *> *source = [PINFuture<NSString *> withError:error1];
-        PINFuture<NSString *> *mapped = [source executor:PINExecutor.immediate flatMapError:^PINFuture<NSString *> *(NSError *error) {
+        PINFuture<NSString *> *mapped = [source executor:[PINExecutor immediate] flatMapError:^PINFuture<NSString *> *(NSError *error) {
             return [PINFuture withError:error2];
         }];
         expectFutureToRejectWith(self, mapped, error2);

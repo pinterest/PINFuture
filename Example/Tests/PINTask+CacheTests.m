@@ -28,14 +28,14 @@ describe(@"cache", ^{
         
         // Intentionally call `runTask` twice.
         waitUntil(^(DoneCallback done) {
-            [[[taskThatCallsTwice executor:PINExecutor.immediate doSuccess:^(NSArray<NSString *> *_Nonnull value) {
+            [[[taskThatCallsTwice executor:[PINExecutor immediate] doSuccess:^(NSArray<NSString *> *_Nonnull value) {
                 expect(value).to.equal(@[initialValue, initialValue]);
 
                 // The original task should have been executed only once.
                 expect(callCount).to.equal(1);
             } failure:^(NSError * _Nonnull error) {
                 NSCAssert(NO, @"expected success but failed");
-            }] executor:PINExecutor.immediate doCompletion:^{
+            }] executor:[PINExecutor immediate] doCompletion:^{
                 done();
             }] run];
         });

@@ -16,7 +16,7 @@ describe(@"map", ^{
         NSNumber *valueA = numberFixture();
         NSString *valueB = stringFixture();
         PINTask<NSNumber *> *taskA = [PINTask<NSNumber *> withValue:valueA];
-        PINTask<NSString *> *taskB = [PINTaskMap<NSNumber *, NSString *> executor:PINExecutor.immediate map:taskA success:^NSString *(NSNumber *fromValue) {
+        PINTask<NSString *> *taskB = [PINTaskMap<NSNumber *, NSString *> executor:[PINExecutor immediate] map:taskA success:^NSString *(NSNumber *fromValue) {
             return valueB;
         }];
         runTaskAndExpectToFulfillWith(self, taskB, valueB);

@@ -23,7 +23,7 @@
             }
             __block NSUInteger remaining = sourceTasks.count;
             [sourceTasks enumerateObjectsUsingBlock:^(PINTask<id> * _Nonnull sourceTask, NSUInteger index, BOOL * _Nonnull stop) {
-                PINTask<id> *taskWithSideEffects = [sourceTask executor:PINExecutor.immediate doSuccess:^(id _Nonnull value) {
+                PINTask<id> *taskWithSideEffects = [sourceTask executor:[PINExecutor immediate] doSuccess:^(id _Nonnull value) {
                     @synchronized (resolvedValues) {
                         resolvedValues[index] = value;
                         remaining = remaining - 1;

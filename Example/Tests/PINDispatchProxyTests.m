@@ -35,7 +35,7 @@ describe(@"dispatchProxy", ^{
             return [PINFuture withValue:value];
         }];
         
-        id proxy = [PINDispatchProxy proxyWithExecutor:PINExecutor.background target:testObject];
+        id proxy = [PINDispatchProxy proxyWithExecutor:[PINExecutor background] target:testObject];
         PINFuture<NSString *> *future = [proxy futureTest];
         expectFutureToFulfillWith(self, future, value);
     });

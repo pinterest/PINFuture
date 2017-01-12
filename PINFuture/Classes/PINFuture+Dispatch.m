@@ -17,7 +17,7 @@
         // contextify, and execute
         [executor execute:^{
             PINFuture<id> *future = block();
-            [future executor:PINExecutor.immediate success:^(id  _Nonnull value) {
+            [future executor:[PINExecutor immediate] success:^(id  _Nonnull value) {
                 resolve(value);
             } failure:^(NSError * _Nonnull error) {
                 reject(error);

@@ -28,7 +28,7 @@
 + (PINFuture<id> *)mapToValue:(PINFuture<id> *)sourceFuture
                         value:(id)value
 {
-    return [self map:sourceFuture executor:PINExecutor.immediate transform:^id _Nonnull(id  _Nonnull fromValue) {
+    return [self map:sourceFuture executor:[PINExecutor immediate] transform:^id _Nonnull(id  _Nonnull fromValue) {
         return value;
     }];
 }

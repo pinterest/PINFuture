@@ -17,7 +17,7 @@ describe(@"cancel tokens", ^{
         NSNumber *valueA = numberFixture();
         NSString *valueB = stringFixture();
         PINTask<NSNumber *> *taskA = [PINTask<NSNumber *> value:valueA];
-        PINTask<NSString *> *taskB = [PINTaskMap<NSNumber *, NSString *> executor:PINExecutor.immediate map:taskA success:^PINFuture<NSString *> *(NSNumber *fromValue) {
+        PINTask<NSString *> *taskB = [PINTaskMap<NSNumber *, NSString *> executor:[PINExecutor immediate] map:taskA success:^PINFuture<NSString *> *(NSNumber *fromValue) {
             return [PINFuture withValue:valueB];
         }];
         runTaskAndExpectToFulfillWith(self, taskB, valueB);
