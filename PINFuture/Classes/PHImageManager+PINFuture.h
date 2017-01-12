@@ -17,6 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface PINPHImageManagerImageDataResult : NSObject
 
+// Exposed consumers of PINFuture to write stubs that return fake data.
+- (instancetype)initWithImageData:(NSData *)imageData
+                          dataUTI:(NSString *)dataUTI
+                      orientation:(UIImageOrientation)orientation
+                             info:(NSDictionary *)info NS_DESIGNATED_INITIALIZER;
+
 @property (nonatomic, readonly) NSData *imageData;
 @property (nonatomic, copy, readonly) NSString *dataUTI;
 @property (nonatomic, readonly) UIImageOrientation orientation;
