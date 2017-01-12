@@ -19,5 +19,6 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "PINFuture/Classes/**/*"
+  "source_files": "PINFuture/Classes/**/*",
+  "public_header_files": "PINFuture/Classes/public/**/*.h"
 }

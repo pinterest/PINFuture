@@ -7,13 +7,12 @@
 //
 
 #import "PINTask.h"
-#import "PINResult.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PINTask<ObjectType> (Do)
 
-- (PINTask<ObjectType> *)executor:(id<PINExecutor>)executor doCompletion:(void(^)())completion PIN_WARN_UNUSED_RESULT;
+- (PINTask<ObjectType> *)executor:(id<PINExecutor>)executor doCompletion:(void(^)(void))completion PIN_WARN_UNUSED_RESULT;
 
 @end
 

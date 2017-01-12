@@ -91,7 +91,7 @@ PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
 - (PINCancelToken *)runSuccess:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure;
 {
     self.runCount += 1;
-             
+
     PINExecuteBlock onceBlock = resolveOrRejectOnceExecutionBlock(self.block);
     return onceBlock(^void(id value) {
         if (success != NULL) {

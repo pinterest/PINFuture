@@ -7,10 +7,9 @@
 //
 
 #import "PINFuture.h"
-#import "PINResult.h"
 
 @interface PINFuture<ObjectType> (MapError)
 
-- (PINFuture<ObjectType> *)executor:(id<PINExecutor>)executor mapError:(PINResult<ObjectType> *(^)(NSError *error))mapError;
+- (PINFuture<ObjectType> *)executor:(id<PINExecutor>)executor mapError:(ObjectType (^)(NSError *error))mapError;
 
 @end

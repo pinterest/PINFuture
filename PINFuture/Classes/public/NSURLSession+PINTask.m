@@ -31,18 +31,18 @@
         NSAssert(finalResolve != NULL, @"finalResolve should not be nil");
         finalResolve(completionData);
     }];
-    
+
     PINTask<PINTaskNSURLSessionDataTaskCompletionData *> *completionTask = [PINTask<PINTaskNSURLSessionDataTaskCompletionData *> create:^PINCancelToken * (void (^ _Nonnull resolve)(PINTaskNSURLSessionDataTaskCompletionData * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
-        
+
         // save the resolve block, then call `resume`.
         finalResolve = resolve;
         [dataTask resume];
-        
+
         return [[PINCancelToken alloc] initWithExecutor:[PINExecutor immediate] andBlock:^{
             [dataTask cancel];
         }];
     }];
-    
+
     return [PINPair<NSURLSessionDataTask *, PINTask<PINTaskNSURLSessionDataTaskCompletionData *> *> pairWithFirst:dataTask second:completionTask];
 }
 

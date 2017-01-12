@@ -28,7 +28,7 @@
     }];
 }
 
-- (PINTask<id> *)executor:(id<PINExecutor>)executor doAsyncCompletion:(void(^)())completion
+- (PINTask<id> *)executor:(id<PINExecutor>)executor doAsyncCompletion:(void(^)(void))completion
 {
     return [self executor:executor doAsyncSuccess:^(id  _Nonnull value) {
         completion();

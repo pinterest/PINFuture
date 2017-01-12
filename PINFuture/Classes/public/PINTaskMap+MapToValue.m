@@ -14,8 +14,8 @@
 
 + (PINTask<id> *)executor:(id<PINExecutor>)executor mapToValue:(PINTask<id> *)sourceTask success:(id (^)(id))success
 {
-    return [self executor:executor map:sourceTask success:^PINResult *(id fromValue) {
-        return [PINResult<id> withValue:success(fromValue)];
+    return [self executor:executor map:sourceTask success:^id (id fromValue) {
+        return success(fromValue);
     }];
 }
 

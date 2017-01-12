@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - callback methods that specify an execution context
 
-- (void)executor:(id<PINExecutor>)executor completion:(void(^)())completion;
+- (void)executor:(id<PINExecutor>)executor completion:(void(^)(void))completion;
 
 #pragma mark - misc
 

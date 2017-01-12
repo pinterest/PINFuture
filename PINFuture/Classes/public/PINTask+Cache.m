@@ -26,7 +26,7 @@ typedef void(^PINCompletionBlock)(NSError *error, id value);
     __block id finalValue = nil;
     __block NSError *finalError = nil;
     __block NSMutableArray<PINCompletionBlock> *callbacks;
-    
+
     dispatch_block_t tryFlushCallbacks = ^{
         NSArray<PINCompletionBlock> *callbacksToExecute;
         [propertyLock lock];
@@ -35,13 +35,13 @@ typedef void(^PINCompletionBlock)(NSError *error, id value);
             callbacks = nil;
         }
         [propertyLock unlock];
-        
+
         // execute
         for (PINCompletionBlock callback in callbacksToExecute) {
             callback(finalValue, finalError);
         }
     };
-    
+
     void (^transitionToState)(PINFutureState newState, NSObject *value, NSError *error) = ^void(PINFutureState newState, NSObject *value, NSError *error) {
         [propertyLock lock];
         if (currentState == PINFutureStateStarted) {
@@ -52,14 +52,14 @@ typedef void(^PINCompletionBlock)(NSError *error, id value);
             //NSAssert(NO, @"a future executor callback was called more than once");
         }
         [propertyLock unlock];
-        
+
         tryFlushCallbacks();
     };
-    
+
     __weak typeof(self) weakSelf = self;
     return [PINTask<id> create:^PINCancelToken * (void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
-        
+
         PINCompletionBlock callback = ^void(NSError *error, id value) {
             switch (currentState) {
                 case PINFutureStateResolved:
@@ -79,7 +79,7 @@ typedef void(^PINCompletionBlock)(NSError *error, id value);
         }
         [callbacks addObject:callback];
         [propertyLock unlock];
-        
+
         BOOL shouldBegin = NO;
         [propertyLock lock];
         if (currentState == PINFutureStateUnstarted) {

@@ -12,7 +12,7 @@
 
 @implementation PINFuture (MapError)
 
-- (PINFuture<id> *)executor:(id<PINExecutor>)executor mapError:(PINResult<id> *(^)(NSError *error))mapError
+- (PINFuture<id> *)executor:(id<PINExecutor>)executor mapError:(id (^)(NSError *error))mapError
 {
     return [self executor:executor flatMapError:^PINFuture<id> * _Nonnull(NSError * _Nonnull error) {
         return [PINResult2<id, PINFuture<id> *> match:mapError(error) success:^PINFuture<id> * _Nonnull(id  _Nonnull value) {

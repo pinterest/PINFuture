@@ -90,10 +90,10 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     if (self.callbacks == nil) {
         self.callbacks = [NSMutableArray new];
     }
-    
+
     [self.callbacks addObject:callback];
     [self.propertyLock unlock];
-    
+
     [self tryFlushCallbacks];
 }
 
@@ -147,7 +147,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 @implementation PINFuture (Convenience)
 
-- (void)executor:(id<PINExecutor>)executor completion:(void(^)())completion
+- (void)executor:(id<PINExecutor>)executor completion:(void(^)(void))completion
 {
     return [self executor:executor success:^(id  _Nonnull value) {
         completion();

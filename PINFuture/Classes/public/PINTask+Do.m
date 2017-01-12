@@ -10,12 +10,12 @@
 
 @implementation PINTask (Do)
 
-- (PINTask<id> *)executor:(id<PINExecutor>)executor doCompletion:(void(^)())completion
+- (PINTask<id> *)executor:(id<PINExecutor>)executor doCompletion:(void(^)(void))completion
 {
     return [self executor:executor doSuccess:^(id _Nonnull value) {
-        completion([PINResult<id> withValue:value]);
+        completion();
     } failure:^(NSError * _Nonnull error) {
-        completion([PINResult<id> withError:error]);
+        completion();
     }];
 }
 

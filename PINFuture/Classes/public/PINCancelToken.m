@@ -15,7 +15,7 @@
 }
 
 + (PINCancelToken *)fold:(NSArray<PINCancelToken *> *)tokens {
-    
+
     // TODO: replace with identity constant
     PINCancelToken * accumulator = [[PINCancelToken alloc] initWithExecutor:[PINExecutor immediate] andBlock:^{}];
     if (tokens == nil) {
