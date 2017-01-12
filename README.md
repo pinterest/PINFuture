@@ -168,29 +168,35 @@ In order to achieve type safety for an operation like `map` that converts from o
 
 #### `map`
 ```objc
-PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> mapValue:numberFuture executor:[PINExecutor background] transform:^NSString *(NSNumber * number) {
+PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> map:numberFuture executor:[PINExecutor background] transform:^NSString *(NSNumber * number) {
     return [number stringValue];
 }];
 ```
 
 #### `flatMap`
 ```objc
-PINFuture<UIImage *> imageFuture = [PINFutureMap<User *, UIImage *> mapValue:userFuture executor:[PINExecutor background] transform:^PINFuture<NSString *> *(User *user) {
+PINFuture<UIImage *> imageFuture = [PINFutureMap<User *, UIImage *> flatMap:userFuture executor:[PINExecutor background] transform:^PINFuture<NSString *> *(User *user) {
     return [NetworkImageManager fetchImageWithURL:user.profileURL];
 }];
 ```
 
 ### Recovering from an error
-#### `flatMapError`
-
+#### `mapError`
 ```objc
-// Try to read the contents of "fileA.txt".  If the file doesn't exist, then try to read the contents of "fileB.txt".
-PINFuture<NSString *> *stringFuture = [File readContentsPath:@"fileA.txt" encoding:EncodingUTF8];
+PINFuture<NSString *> *stringFuture = [File readContentsPath:@"foo.txt" encoding:EncodingUTF8];
+stringFuture = [fileAFuture executor:[PINExecutor immediate] flatMap:^PINFuture<NSString *> * (NSError *errror) {
+    return "";  // If there's any problem reading the file, continue processing as if the file was empty.
+}];
+```
+
+#### `flatMapError`
+```objc
+PINFuture<NSString *> *stringFuture = [File readContentsPath:@"tryFirst.txt" encoding:EncodingUTF8];
 stringFuture = [fileAFuture executor:[PINExecutor immediate] flatMapError:^PINFuture<NSString *> * (NSError *errror) {
     if ([error isKindOf:[NSURLErrorFileDoesNotExist class]) {
-        return [File readContentsPath:@"fileB.txt" encoding:EncodingUTF8];
+        return [File readContentsPath:@"trySecond.txt" encoding:EncodingUTF8];
     } else {
-        return [PINFuture withError:error];  // Pass the error through.
+        return [PINFuture withError:error];  // Pass through any other type of error
     }
 }];
 ```
