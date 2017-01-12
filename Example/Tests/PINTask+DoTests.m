@@ -18,7 +18,7 @@ describe(@"task do", ^{
         NSString *value = stringFixture();
         PINTask<NSString *> *task = [PINTask<NSString *> withValue:value];
         __block BOOL sideEffectExecuted = NO;
-        task = [task executor:[PINExecutor immediate] doCompletion:^{
+        task = [task executor:PINExecutor.immediate doCompletion:^{
             sideEffectExecuted = YES;
         }];
         

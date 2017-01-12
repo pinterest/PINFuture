@@ -51,7 +51,7 @@ describe(@"future", ^{
     it(@"tolerates success callback being null", ^{
         NSError *error = errorFixture();
         PINFuture<NSString *> *future = [PINFuture<NSString *> withBlock:^(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
-            [[PINFuture withError:error] executor:[PINExecutor immediate] success:NULL failure:^(NSError * _Nonnull error) {
+            [[PINFuture withError:error] executor:PINExecutor.immediate success:NULL failure:^(NSError * _Nonnull error) {
                 reject(error);
             }];
         }];
@@ -61,7 +61,7 @@ describe(@"future", ^{
     it(@"tolerates failure callback being null", ^{
         NSString *value = stringFixture();
         PINFuture<NSString *> *future = [PINFuture<NSString *> withBlock:^(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
-            [[PINFuture withValue:value] executor:[PINExecutor immediate] success:^(id  _Nonnull value) {
+            [[PINFuture withValue:value] executor:PINExecutor.immediate success:^(id  _Nonnull value) {
                 resolve(value);
             } failure:NULL];
         }];

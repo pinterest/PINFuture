@@ -18,7 +18,7 @@ describe(@"map", ^{
         NSNumber *valueA = numberFixture();
         NSString *valueB = stringFixture();
         PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> withValue:valueA];
-        PINFuture<NSString *> *futureB = [PINFutureMap<NSNumber *, NSString *> map:futureA executor:[PINExecutor immediate] transform:^NSString * _Nonnull(NSNumber * _Nonnull fromValue) {
+        PINFuture<NSString *> *futureB = [PINFutureMap<NSNumber *, NSString *> map:futureA executor:PINExecutor.immediate transform:^NSString * _Nonnull(NSNumber * _Nonnull fromValue) {
             return valueB;
         }];
         expectFutureToFulfillWith(self, futureB, valueB);

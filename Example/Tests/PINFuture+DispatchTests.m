@@ -19,7 +19,7 @@ dispatch_queue_t backgroundQueue() {
 SpecBegin(PINFutureDispatchSpecs)
 
 describe(@"dispatch", ^{
-    id<PINExecutor> backgroundContext = [PINExecutor background];
+    id<PINExecutor> backgroundContext = PINExecutor.background;
 
     it(@"resolve on background queue", ^{
         NSString *value = stringFixture();

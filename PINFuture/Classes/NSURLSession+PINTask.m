@@ -38,7 +38,7 @@
         finalResolve = resolve;
         [dataTask resume];
 
-        return [[PINCancelToken alloc] initWithExecutor:[PINExecutor immediate] andBlock:^{
+        return [[PINCancelToken alloc] initWithExecutor:PINExecutor.immediate andBlock:^{
             [dataTask cancel];
         }];
     }];

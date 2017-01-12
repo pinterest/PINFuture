@@ -17,7 +17,7 @@
 + (PINCancelToken *)fold:(NSArray<PINCancelToken *> *)tokens {
 
     // TODO: replace with identity constant
-    PINCancelToken * accumulator = [[PINCancelToken alloc] initWithExecutor:[PINExecutor immediate] andBlock:^{}];
+    PINCancelToken * accumulator = [[PINCancelToken alloc] initWithExecutor:PINExecutor.immediate andBlock:^{}];
     if (tokens == nil) {
         return accumulator;
     }
@@ -48,7 +48,7 @@
     }
 
     __weak typeof(self) weakSelf = self;
-    return [[PINCancelToken alloc] initWithExecutor:[PINExecutor immediate] andBlock:^{
+    return [[PINCancelToken alloc] initWithExecutor:PINExecutor.immediate andBlock:^{
         weakSelf.cancellationBlock();
         other.cancellationBlock();
     }];

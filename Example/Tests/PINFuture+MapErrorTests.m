@@ -16,7 +16,7 @@ describe(@"mapError", ^{
         NSError *error = errorFixture();
         NSString *value = stringFixture();
         PINFuture<NSString *> *source = [PINFuture<NSString *> withError:error];
-        PINFuture<NSString *> *mapped = [source executor:[PINExecutor immediate] mapError:^NSString *(NSError *error) {
+        PINFuture<NSString *> *mapped = [source executor:PINExecutor.immediate mapError:^NSString *(NSError *error) {
             return value;
         }];
         expectFutureToFulfillWith(self, mapped, value);

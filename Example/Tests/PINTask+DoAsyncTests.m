@@ -26,11 +26,11 @@ describe(@"task doAsync", ^{
         }];
         
         waitUntil(^(DoneCallback done) {
-            [[[task executor:[PINExecutor immediate] doSuccess:^(id  _Nonnull resolvedValue) {
+            [[[task executor:PINExecutor.immediate doSuccess:^(id  _Nonnull resolvedValue) {
                 expect(resolvedValue).to.equal(value);
             } failure:^(NSError * _Nonnull error) {
                 NSCAssert(NO, @"Task should have succeeded but didn't.");
-            }] executor:[PINExecutor immediate] doCompletion:^{
+            }] executor:PINExecutor.immediate doCompletion:^{
                 expect(sideEffectExecuted).to.beFalsy();
                 done();
             }] run];

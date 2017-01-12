@@ -69,13 +69,13 @@ Future style
 ```objc
 [self showSpinner];
 PINFuture<User *> *userFuture = [User logInWithUsername:username password:password];
-PINFuture<Posts *> *postsFuture = [PINFutureMap<User *, Posts *> flatMap:userFuture executor:[PINExecutor mainQueue] transform:^PINFuture<Posts *> *(User *user) {
+PINFuture<Posts *> *postsFuture = [PINFutureMap<User *, Posts *> flatMap:userFuture executor:PINExecutor.main transform:^PINFuture<Posts *> *(User *user) {
     return [Posts fetchPostsForUser:user];
 }];
-[postsFuture executor:[PINExecutor mainQueue] complete:^{
+[postsFuture executor:PINExecutor.main complete:^{
     [self hideSpinner];
 }];
-[postsFuture executor:[PINExecutor mainQueue] success:^(Posts *posts) {
+[postsFuture executor:PINExecutor.main success:^(Posts *posts) {
     // update the UI to show posts
 } failure:^(NSError *error) {
     // update the UI to show the error
@@ -112,10 +112,10 @@ Callbacks will be *dispatched* in the order that they are registered.  However, 
 Whenever you pass a callback block you must also pass a required `executor:` parameter.  The `executor` determines where and when your block will be executed.
 
 #### Common values for `executor:`
-- `[PINExecutor mainQueue]` Executes a block on the Main GCD queue.
-- `[PINExecutor background]` Executes a block from a pool of background threads.  Careful: With this executor, it's possible that two callback blocks attached to a single future will execute concurrently.
+- `PINExecutor.main` Executes a block on the Main GCD queue.
+- `PINExecutor.background` Executes a block from a pool of background threads.  Careful: With this executor, it's possible that two callback blocks attached to a single future will execute concurrently.
 
-A good rule of thumb: Use `[PINExecutor background]` if work that your callback block does is thread-safe *and* if the work doesn't need to be executed from the Main thread (e.g. because it's touching UIKit).
+A good rule of thumb: Use `PINExecutor.background` if work that your callback block does is thread-safe *and* if the work doesn't need to be executed from the Main thread (e.g. because it's touching UIKit).
 
 ### Preserving type safety
 
@@ -171,14 +171,14 @@ In order to achieve type safety for an operation like `map` that converts from o
 
 #### `map`
 ```objc
-PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> map:numberFuture executor:[PINExecutor background] transform:^NSString *(NSNumber * number) {
+PINFuture<NSString *> stringFuture = [PINFutureMap<NSNumber *, NSString *> map:numberFuture executor:PINExecutor.background transform:^NSString *(NSNumber * number) {
     return [number stringValue];
 }];
 ```
 
 #### `flatMap`
 ```objc
-PINFuture<UIImage *> imageFuture = [PINFutureMap<User *, UIImage *> flatMap:userFuture executor:[PINExecutor background] transform:^PINFuture<NSString *> *(User *user) {
+PINFuture<UIImage *> imageFuture = [PINFutureMap<User *, UIImage *> flatMap:userFuture executor:PINExecutor.background transform:^PINFuture<NSString *> *(User *user) {
     return [NetworkImageManager fetchImageWithURL:user.profileURL];
 }];
 ```
@@ -186,7 +186,7 @@ PINFuture<UIImage *> imageFuture = [PINFutureMap<User *, UIImage *> flatMap:user
 #### `mapError`
 ```objc
 PINFuture<NSString *> *stringFuture = [File readUTF8ContentsPath:@"foo.txt" encoding:EncodingUTF8];
-stringFuture = [fileAFuture executor:[PINExecutor immediate] mapError:^NSString * (NSError *errror) {
+stringFuture = [fileAFuture executor:PINExecutor.immediate mapError:^NSString * (NSError *errror) {
     return "";  // If there's any problem reading the file, continue processing as if the file was empty.
 }];
 ```
@@ -194,7 +194,7 @@ stringFuture = [fileAFuture executor:[PINExecutor immediate] mapError:^NSString 
 #### `flatMapError`
 ```objc
 PINFuture<NSString *> *stringFuture = [File readUTF8ContentsPath:@"tryFirst.txt"];
-stringFuture = [fileAFuture executor:[PINExecutor background] flatMapError:^PINFuture<NSString *> * (NSError *errror) {
+stringFuture = [fileAFuture executor:PINExecutor.background flatMapError:^PINFuture<NSString *> * (NSError *errror) {
     if ([error isKindOf:[NSURLErrorFileDoesNotExist class]) {
         return [File readUTF8ContentsPath:@"trySecond.txt"];
     } else {
@@ -211,7 +211,7 @@ NSArray<PINFuture<NSString *> *> *fileContentFutures = [fileNames map:^ PINFutur
     return [File readUTF8ContentsPath:fileName];
 }];
 PINFuture<NSArray<NSString *> *> *fileContentsFuture = [PINFuture<NSString *> gatherAll:fileContentFutures];
-[fileContentsFuture executor:[PINExecutor mainQueue] success:^(NSArray<NSString *> *fileContents) {
+[fileContentsFuture executor:PINExecutor.main success:^(NSArray<NSString *> *fileContents) {
     // All succceeded.
 } failure:^(NSError *error) {
     // One or more failed.  `error` is the first one to fail.
