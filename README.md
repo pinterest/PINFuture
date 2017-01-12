@@ -85,7 +85,7 @@ PINFuture<Posts *> *postsFuture = [PINFutureMap<User *, Posts *> flatMap:userFut
 #### Stubbing an async function in a test
 Callback style
 ```objc
-OCMStub([fileMock readFileContents:@"foo.txt" 
+OCMStub([fileMock readContentsPath:@"foo.txt" 
                            success:OCMOCK_ANY
                            failure:OCMOCK_ANY]).andDo(^(NSInvocation *invocation) {
     (void)(^successBlock)(NSString *) = nil;
@@ -98,7 +98,7 @@ OCMStub([fileMock readFileContents:@"foo.txt"
 
 Future style
 ```objc
-OCMStub([fileMock readFileContents:@"foo.txt"]).andReturn([PINFuture<NSString *> withValue:@"fake contents"]);
+OCMStub([fileMock readContentsPath:@"foo.txt"]).andReturn([PINFuture<NSString *> withValue:@"fake contents"]);
 ```
 
 ### Handling values
@@ -109,13 +109,13 @@ Callbacks will be *dispatched* in the order that they are registered.  However, 
 
 ### Threading model ###
 
-When you register a callback block, there is a required `executor:` parameter.  The `executor` determines where and when your block will be executed.
+Whenever you pass a callback block you must also pass a required `executor:` parameter.  The `executor` determines where and when your block will be executed.
 
 #### Common values for `executor:`
 - `[PINExecutor mainQueue]` Executes a block on the Main GCD queue.
-- `[PINExecutor background]` Executes a block from a background pool of threads.  If multiple callback blocks are attached, it's possible the blocks will execute concurrently.
+- `[PINExecutor background]` Executes a block from a pool of background threads.  Careful: With this executor, it's possible that two callback blocks attached to a single future will execute concurrently.
 
-A good rule of thumb: Use `[PINExecutor background]` if work that your callback block does is thread-safe *and* if it doesn't need to be executed from the Main thread (e.g. because it's touching UIKit).
+A good rule of thumb: Use `[PINExecutor background]` if work that your callback block does is thread-safe *and* if the work doesn't need to be executed from the Main thread (e.g. because it's touching UIKit).
 
 ### Preserving type safety
 
@@ -134,7 +134,7 @@ In Objective C, type parameters are optional.  It's a good practice to always sp
 
 PINFuture is non-blocking and provides no mechanism for blocking.  Blocking a thread on the computation of an async value is generally not a good practice, but is possible using [Grand Central Dispatch Semaphores](http://www.g8production.com/post/76942348764/wait-for-blocks-execution-using-a-dispatch)
 
-### Errors and exceptions
+### Handling exceptions
 
 PINFuture does not capture Exceptions thrown by callbacks.  On platforms that PINFuture targets, `NSException`s are generally fatal.  PINFuture deals with `NSError`s.
 
@@ -143,7 +143,7 @@ PINFuture does not capture Exceptions thrown by callbacks.  On platforms that PI
 ### Constructing
 
 #### `withValue`
-Construct an already-resolved Future with a value.
+Construct an already-fulfilled Future with a value.
 ```objc
 PINFuture<NSString *> stringFuture = [PINFuture<NSString *> withValue:@"foo"];
 ```
@@ -155,15 +155,19 @@ PINFuture<NSString *> stringFuture = [PINFuture<NSString *> withError:[NSError e
 ```
 
 #### `withBlock`
-Construct a Future and resolve or reject it by calling one of two callbacks.  This construct is generally not safe since because your block might not call `resolve` or `reject`.  This is generally only useful for writing a Future-based wrapper for a Callback-based method.
+Construct a Future and fulfill or reject it by calling one of two callbacks.  This method is generally not safe since because there's no enforcement that your block will call either `resolve` or `reject`.  This is generally only useful for writing a Future-based wrapper for a Callback-based method.
 ```objc
-PINFuture<NSString *> stringFuture = [PINFuture<NSString *> withBlock:^(void (^ resolve)(NSString *), void (^ reject)(NSError *)) {
+PINFuture<NSString *> stringFuture = [PINFuture<NSString *> withBlock:^(void (^ fulfill)(NSString *), void (^ reject)(NSError *)) {
     [foo somethingAsyncWithSuccess:resolve failure:reject];
 }];
 ```
 
-### Transforming
+### Transformations
 In order to achieve type safety for an operation like `map` that converts from one type of value to another type, we have to jump through some hoops because of Objective C's rudimentary support for generics.  `map` and `flatMap` are class methods on the class `PINFutureMap`.  The `PINFutureMap` class has two type parameters: `FromType` and `ToType`.
+
+#### Error handling with transformations
+- `map` and `flatMap` only preform a transformation is the source Future is *fulfilled*.  If the source Future is *rejected*, then the original error is simply passed through to the return value.
+- `mapError` and `flatMapError` only preform a transformation is the source Future is *rejected*.  If the source Future is *fulfilled*, then the original value is simply passed through to the return value.
 
 #### `map`
 ```objc
@@ -179,21 +183,20 @@ PINFuture<UIImage *> imageFuture = [PINFutureMap<User *, UIImage *> flatMap:user
 }];
 ```
 
-### Recovering from an error
 #### `mapError`
 ```objc
-PINFuture<NSString *> *stringFuture = [File readContentsPath:@"foo.txt" encoding:EncodingUTF8];
-stringFuture = [fileAFuture executor:[PINExecutor immediate] flatMap:^PINFuture<NSString *> * (NSError *errror) {
+PINFuture<NSString *> *stringFuture = [File readUTF8ContentsPath:@"foo.txt" encoding:EncodingUTF8];
+stringFuture = [fileAFuture executor:[PINExecutor immediate] mapError:^NSString * (NSError *errror) {
     return "";  // If there's any problem reading the file, continue processing as if the file was empty.
 }];
 ```
 
 #### `flatMapError`
 ```objc
-PINFuture<NSString *> *stringFuture = [File readContentsPath:@"tryFirst.txt" encoding:EncodingUTF8];
+PINFuture<NSString *> *stringFuture = [File readUTF8ContentsPath:@"tryFirst.txt"];
 stringFuture = [fileAFuture executor:[PINExecutor background] flatMapError:^PINFuture<NSString *> * (NSError *errror) {
     if ([error isKindOf:[NSURLErrorFileDoesNotExist class]) {
-        return [File readContentsPath:@"trySecond.txt" encoding:EncodingUTF8];
+        return [File readUTF8ContentsPath:@"trySecond.txt"];
     } else {
         return [PINFuture withError:error];  // Pass through any other type of error
     }
@@ -205,10 +208,10 @@ stringFuture = [fileAFuture executor:[PINExecutor background] flatMapError:^PINF
 ```objc
 NSArray<NSString *> fileNames = @[@"a.txt", @"b.txt", @"c.txt"];
 NSArray<PINFuture<NSString *> *> *fileContentFutures = [fileNames map:^ PINFuture<NSString *> *(NSString *fileName) {
-    return [File readContentsPath:fileName encoding:EncodingUTF8];
+    return [File readUTF8ContentsPath:fileName];
 }];
-PINFuture<NSArray<NSString *> *> *fileContentsFuture = [PINFuture<NSString *> gatherAll:fileContentFutures executor:[PINExecutor background]];
-[fileContentsFuture executor:[PINExecutor background] success:^(NSArray<NSString *> *fileContents) {
+PINFuture<NSArray<NSString *> *> *fileContentsFuture = [PINFuture<NSString *> gatherAll:fileContentFutures];
+[fileContentsFuture executor:[PINExecutor mainQueue] success:^(NSArray<NSString *> *fileContents) {
     // All succceeded.
 } failure:^(NSError *error) {
     // One or more failed.  `error` is the first one to fail.
@@ -259,7 +262,8 @@ PINFuture<NSArray<NSString *> *> *fileContentsFuture = [PINFuture<NSString *> ga
 
 ## Design decisions
 These decisions are possibly controvercial but deliberate.
-- Don't return a value from the `success:failure:` and `completion:` methods that register a callback.  A reader might be mislead into thinking that the callbacks will be executed (not just dispatched) sequentially.
+- Don't allow chaining of `success:failure:` and `completion:` methods.  A reader could easily be mislead into thinking that the chained operations are guaranteed to execute sequentially.
+- Don't expose a `success:` method or a `failure:` method.  We think it's a better for the site of any side-effects to make it explicit that they don't want to handle a value or that they don't want to handle an error by passing a `NULL` argument. 
 - Don't implement BrightFutures behavior of "execute callback on Main of it was registered from Main, or execute callback in background if registered from not Main".  We think an explicit executor is better.  With the BrightFuture behavior, a chunk of code copied to another location may not behave properly for very subtle reasons.
 - Don't pass `value` and `error` as parameters to the `completion` block.  If a caller needs to consume `value` or `error`, they should be using `success:failure:`.  If they need to execute cleanup code without consuming the value, then `completion` is more appropriate.  If a `value` and an `error` are passed to `completion`, it's very easy for callback code to misinterpret whether the future resolved or rejected.
 
