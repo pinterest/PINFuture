@@ -20,7 +20,7 @@ describe(@"gatherAll", ^{
         PINFuture<NSString *> *source1 = [PINFuture<NSString *> withValue:value1];
         PINFuture<NSString *> *source2 = [PINFuture<NSString *> withValue:value2];
         PINFuture<NSArray<NSString *> *> *arrayFuture = [PINFuture<NSString *> gatherAll:@[source1, source2]];
-        expectFutureToResolveWith(self, arrayFuture, @[value1, value2]);
+        expectFutureToFullfillWith(self, arrayFuture, @[value1, value2]);
     });
 
     it(@"rejects if any source promise rejects", ^{

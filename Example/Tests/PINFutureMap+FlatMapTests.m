@@ -21,7 +21,7 @@ describe(@"flatMap", ^{
         PINFuture<NSString *> *futureB = [PINFutureMap<NSNumber *, NSString *> flatMap:futureA executor:[PINExecutor immediate] transform:^PINFuture<NSString *> * _Nonnull(NSNumber * _Nonnull fromValue) {
             return [PINFuture<NSString *> withValue:valueB];
         }];
-        expectFutureToResolveWith(self, futureB, valueB);
+        expectFutureToFullfillWith(self, futureB, valueB);
     });
 
     it(@"can return rejected promise", ^{

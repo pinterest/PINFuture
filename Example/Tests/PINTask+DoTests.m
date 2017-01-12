@@ -22,7 +22,7 @@ describe(@"task do", ^{
             sideEffectExecuted = YES;
         }];
         
-        runTaskAndExpectToResolveWith(self, task, value);
+        runTaskAndExpectToFulfillWith(self, task, value);
         expect(sideEffectExecuted).to.beTruthy();
     });
 });

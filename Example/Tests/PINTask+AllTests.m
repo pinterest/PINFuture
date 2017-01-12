@@ -21,7 +21,7 @@ describe(@"task all", ^{
         PINTask<NSString *> *sourceTaskB = [PINTask<NSString *> withValue:valueB];
         
         PINTask<NSArray<NSString *> *> *allTask = [PINTask<NSString *> all:@[sourceTaskA, sourceTaskB]];
-        runTaskAndExpectToResolveWith(self, allTask, @[valueA, valueB]);
+        runTaskAndExpectToFulfillWith(self, allTask, @[valueA, valueB]);
     });
     it(@"rejects when any source task rejects", ^{
         NSString *valueA = stringFixture();

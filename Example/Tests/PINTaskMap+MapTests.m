@@ -19,7 +19,7 @@ describe(@"map", ^{
         PINTask<NSString *> *taskB = [PINTaskMap<NSNumber *, NSString *> executor:[PINExecutor immediate] map:taskA success:^PINResult<NSString *> *(NSNumber *fromValue) {
             return [PINResult<NSString *> withValue:valueB];
         }];
-        runTaskAndExpectToResolveWith(self, taskB, valueB);
+        runTaskAndExpectToFulfillWith(self, taskB, valueB);
     });
     
     it(@"can cause a failure", ^{

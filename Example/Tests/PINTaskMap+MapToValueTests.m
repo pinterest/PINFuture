@@ -19,7 +19,7 @@ describe(@"mapToValue", ^{
         PINTask<NSString *> *taskB = [PINTaskMap<NSNumber *, NSString *> executor:[PINExecutor immediate] mapToValue:taskA success:^NSString *(NSNumber *fromValue) {
             return valueB;
         }];
-        runTaskAndExpectToResolveWith(self, taskB, valueB);
+        runTaskAndExpectToFulfillWith(self, taskB, valueB);
     });
 });
 

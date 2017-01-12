@@ -8,12 +8,11 @@
 
 #import "PINFuture.h"
 #import "PINTask.h"
-#import "PINResult.h"
 
-void expectFutureToResolveWith(id testCase, PINFuture *future, id expectedValue);
+void expectFutureToFullfillWith(id testCase, PINFuture *future, id expectedValue);
 void expectFutureToRejectWith(id testCase, PINFuture *future, NSError *expectedError);
 
-void runTaskAndExpectToResolveWith(id testCase, PINTask *future, id expectedValue);
+void runTaskAndExpectToFulfillWith(id testCase, PINTask *future, id expectedValue);
 void runTaskAndExpectToRejectWith(id testCase, PINTask *future, NSError *expectedError);
 
 NSNumber *numberFixture();

@@ -19,7 +19,7 @@ describe(@"flatMap", ^{
         PINTask<NSString *> *taskB = [PINTaskMap<NSNumber *, NSString *> executor:[PINExecutor immediate] flatMap:taskA success:^PINTask<NSString *> * _Nonnull(NSNumber * _Nonnull fromValue) {
             return [PINTask<NSString *> withValue:valueB];
         }];
-        runTaskAndExpectToResolveWith(self, taskB, valueB);
+        runTaskAndExpectToFulfillWith(self, taskB, valueB);
     });
     
     it(@"can map to a rejected error", ^{

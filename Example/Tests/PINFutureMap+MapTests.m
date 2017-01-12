@@ -21,7 +21,7 @@ describe(@"map", ^{
         PINFuture<NSString *> *futureB = [PINFutureMap<NSNumber *, NSString *> map:futureA executor:[PINExecutor immediate] transform:^NSString * _Nonnull(NSNumber * _Nonnull fromValue) {
             return valueB;
         }];
-        expectFutureToResolveWith(self, futureB, valueB);
+        expectFutureToFullfillWith(self, futureB, valueB);
     });
 });
 
@@ -31,7 +31,7 @@ describe(@"mapToValue", ^{
         NSString *valueB = stringFixture();
         PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> withValue:valueA];
         PINFuture<NSString *> *futureB = [PINFutureMap<NSNumber *, NSString *> mapToValue:futureA value:valueB];
-        expectFutureToResolveWith(self, futureB, valueB);
+        expectFutureToFullfillWith(self, futureB, valueB);
     });
 });
 

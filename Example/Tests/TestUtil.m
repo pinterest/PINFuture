@@ -8,7 +8,7 @@
 
 #import "TestUtil.h"
 
-void expectFutureToResolveWith(id testCase, PINFuture *future, id expectedValue) {
+void expectFutureToFullfillWith(id testCase, PINFuture *future, id expectedValue) {
     waitUntil(^(DoneCallback done) {
         [future executor:[PINExecutor immediate] success:^(id  _Nonnull value) {
             id self = testCase;
@@ -34,7 +34,7 @@ void expectFutureToRejectWith(id testCase, PINFuture *future, NSError *expectedE
     });
 }
 
-void runTaskAndExpectToResolveWith(id testCase, PINTask *task, id expectedValue) {
+void runTaskAndExpectToFulfillWith(id testCase, PINTask *task, id expectedValue) {
     waitUntil(^(DoneCallback done) {
         [[[task executor:[PINExecutor immediate] doSuccess:^(id  _Nonnull value) {
             id self = testCase;

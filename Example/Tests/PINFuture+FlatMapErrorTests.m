@@ -19,7 +19,7 @@ describe(@"flatMapError", ^{
         PINFuture<NSString *> *mapped = [source executor:[PINExecutor immediate] flatMapError:^PINFuture<NSString *> *(NSError *error) {
             return [PINFuture withValue:value2];
         }];
-        expectFutureToResolveWith(self, mapped, value2);
+        expectFutureToFullfillWith(self, mapped, value2);
     });
 
     it(@"can return a rejected promise", ^{

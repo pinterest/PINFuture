@@ -13,13 +13,13 @@ SpecBegin(PINFutureMapErrorSpecs)
 
 describe(@"mapError", ^{
     it(@"can return a new error", ^{
-        NSError *error1 = errorFixture();
-        NSError *error2 = errorFixture();
-        PINFuture<NSString *> *source = [PINFuture<NSString *> withError:error1];
-        PINFuture<NSString *> *mapped = [source executor:[PINExecutor immediate] mapError:^PINResult<NSString *> *(NSError *error) {
-            return [PINResult<NSString *> withError:error2];
+        NSError *error = errorFixture();
+        NSString *value = stringFixture();
+        PINFuture<NSString *> *source = [PINFuture<NSString *> withError:error];
+        PINFuture<NSString *> *mapped = [source executor:[PINExecutor immediate] mapError:^NSString *(NSError *error) {
+            return value;
         }];
-        expectFutureToRejectWith(self, mapped, error2);
+        expectFutureToFulfillWith(self, mapped, value);
     });
 });
 

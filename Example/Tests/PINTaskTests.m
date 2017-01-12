@@ -17,7 +17,7 @@ describe(@"task", ^{
     it(@"create with value", ^{
         NSString *value = stringFixture();
         PINTask<NSString *> *task = [PINTask<NSString *> withValue:value];
-        runTaskAndExpectToResolveWith(self, task, value);
+        runTaskAndExpectToFulfillWith(self, task, value);
     });
     
     it(@"create with error", ^{
@@ -35,7 +35,7 @@ describe(@"task", ^{
             reject(errorFixture());
             return NULL;
         }];
-        runTaskAndExpectToResolveWith(self, task, value);
+        runTaskAndExpectToFulfillWith(self, task, value);
     });
     
     it(@"rejects only once", ^{

@@ -20,7 +20,7 @@ describe(@"cancel tokens", ^{
         PINTask<NSString *> *taskB = [PINTaskMap<NSNumber *, NSString *> executor:[PINExecutor immediate] map:taskA success:^PINResult<NSString *> *(NSNumber *fromValue) {
             return [PINResult withValue:valueB];
         }];
-        runTaskAndExpectToResolveWith(self, taskB, valueB);
+        runTaskAndExpectToFulfillWith(self, taskB, valueB);
     });
 });
 
