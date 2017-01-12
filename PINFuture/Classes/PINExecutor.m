@@ -46,7 +46,7 @@ static inline BOOL isCurrentThreadMain()
     }];
 }
 
-+ (id<PINExecutor>)immediateOnMain
++ (id<PINExecutor>)main
 {
     return [[PINExecutor alloc] initWithExecutorBlock:^(dispatch_block_t block) {
         if (isCurrentThreadMain()) {
