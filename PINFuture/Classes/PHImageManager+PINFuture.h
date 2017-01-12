@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithImageData:(NSData *)imageData
                           dataUTI:(NSString *)dataUTI
                       orientation:(UIImageOrientation)orientation
-                             info:(NSDictionary *)info NS_DESIGNATED_INITIALIZER;
+                             info:(NSDictionary *)info;
 
 @property (nonatomic, readonly) NSData *imageData;
 @property (nonatomic, copy, readonly) NSString *dataUTI;
