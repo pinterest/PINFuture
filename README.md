@@ -105,8 +105,7 @@ OCMStub([fileMock readFileContents:@"foo.txt"]).andReturn([PINFuture<NSString *>
 
 To access the final value of a Future, register `success` and `failure` callbacks.  If you only want to know when a Future completes (and not the specific value or error), register a `complete` callback.
 
-- Callbacks will be *dispatched* in the order that they are registered.  However, depending on your specified `executor`, the blocks might  *execute* in a different order or even execute concurrently.
-- It is not safe to add another callback from within a callback of the same Future.
+Callbacks will be *dispatched* in the order that they are registered.  However, depending on your specified `executor`, the blocks might  *execute* in a different order or even execute concurrently.
 
 ### Threading model ###
 
