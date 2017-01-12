@@ -8,24 +8,24 @@
 
 #import "NSURLSession+PINFuture.h"
 
-@interface PINFutureNSURLSessionDataTaskCompletionData ()
+@interface PINFutureNSURLSessionDataTaskResult ()
 @property (nonatomic) NSData * _Nullable data;
 @property (nonatomic) NSURLResponse * _Nullable response;
 @property (nonatomic) NSError * _Nullable error;
 @end
 
-@implementation PINFutureNSURLSessionDataTaskCompletionData
+@implementation PINFutureNSURLSessionDataTaskResult
 @end
 
 @implementation NSURLSession (PINFuture)
 
-- (PINPair<NSURLSessionDataTask *, PINFuture<PINFutureNSURLSessionDataTaskCompletionData *> *> *)dataTaskFutureWithRequest:(NSURLRequest *)request;
+- (PINPair<NSURLSessionDataTask *, PINFuture<PINFutureNSURLSessionDataTaskResult *> *> *)dataTaskFutureWithRequest:(NSURLRequest *)request;
 {
     __block NSURLSessionDataTask *task;
-    PINFuture<PINFutureNSURLSessionDataTaskCompletionData *> *future;
-    future = [PINFuture<PINFutureNSURLSessionDataTaskCompletionData *> withBlock:^(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
+    PINFuture<PINFutureNSURLSessionDataTaskResult *> *future;
+    future = [PINFuture<PINFutureNSURLSessionDataTaskResult *> withBlock:^(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         task = [self dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error)  {
-            PINFutureNSURLSessionDataTaskCompletionData *resolvedData = [[PINFutureNSURLSessionDataTaskCompletionData alloc] init];
+            PINFutureNSURLSessionDataTaskResult *resolvedData = [[PINFutureNSURLSessionDataTaskResult alloc] init];
             resolvedData.data = data;
             resolvedData.response = response;
             resolvedData.error = error;
@@ -34,7 +34,7 @@
         [task resume];
     }];
 
-    return [PINPair<NSURLSessionDataTask *, PINFuture<PINFutureNSURLSessionDataTaskCompletionData *> *> pairWithFirst:task second:future];
+    return [PINPair<NSURLSessionDataTask *, PINFuture<PINFutureNSURLSessionDataTaskResult *> *> pairWithFirst:task second:future];
 }
 
 @end
