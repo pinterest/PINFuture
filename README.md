@@ -1,3 +1,13 @@
+## tldr;
+
+We're planning to migrate away from `success`/`failure` callbacks blocks and to an abstraction called *PINFuture*. This abstraction allows the compiler to catch more mistakes, is more concise, easier to test, and should give us better performance (by eliminating unnecessary dispatching through Main).
+
+## Migration Plan
+- `PIPinAPIController` and parts of `PIPinterestClient` are migrated to use PINFuture in this PR: https://phabricator.pinadmin.com/D135303
+- Next, migrate the rest of PIPinterestClient and the rest of the APIControllers.
+
+## PINFuture Overview (copy/paste from [the PINFuture project](https://github.com/chrisdanford/PINFuture))
+
 This is a work-in-progress and not ready for public consumption.
 
 # PINFuture
