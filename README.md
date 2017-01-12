@@ -192,7 +192,7 @@ stringFuture = [fileAFuture executor:[PINExecutor immediate] flatMap:^PINFuture<
 #### `flatMapError`
 ```objc
 PINFuture<NSString *> *stringFuture = [File readContentsPath:@"tryFirst.txt" encoding:EncodingUTF8];
-stringFuture = [fileAFuture executor:[PINExecutor immediate] flatMapError:^PINFuture<NSString *> * (NSError *errror) {
+stringFuture = [fileAFuture executor:[PINExecutor background] flatMapError:^PINFuture<NSString *> * (NSError *errror) {
     if ([error isKindOf:[NSURLErrorFileDoesNotExist class]) {
         return [File readContentsPath:@"trySecond.txt" encoding:EncodingUTF8];
     } else {
