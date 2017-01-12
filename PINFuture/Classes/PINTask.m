@@ -120,14 +120,3 @@ PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
 //}
 
 @end
-
-@implementation PINTask (Compose)
-
-- (PINTask<NSNull *> *)mapToNull
-{
-    return [PINTaskMap<id, NSNull *> executor:[PINExecutor immediate] mapToValue:self success:^NSNull *(id fromValue) {
-        return [NSNull null];
-    }];
-}
-
-@end

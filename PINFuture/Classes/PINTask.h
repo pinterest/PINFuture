@@ -29,10 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface PINTask<ObjectType> (Compose)
-- (PINTask<NSNull *> *)mapToNull PIN_WARN_UNUSED_RESULT;
-@end
-
 NS_ASSUME_NONNULL_END
 
 // Import everything for caller convenience.
