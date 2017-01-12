@@ -22,6 +22,17 @@ static inline BOOL isCurrentThreadMain()
 
 @end
 
+// This is very hot code path, so cache where we can to avoid creating Executor garbage.
+#define SHARED_INSTANCE(Type, constructorBlock) \
+    static Type value = nil; \
+    static dispatch_once_t onceToken; \
+    dispatch_once(&onceToken, ^{ \
+        value = constructorBlock(); \
+    }); \
+    return value;
+
+#define SHARED_EXECUTOR(constructorBlock) \
+    SHARED_INSTANCE(id<PINExecutor>, constructorBlock);
 
 @implementation PINExecutor
 
@@ -41,20 +52,24 @@ static inline BOOL isCurrentThreadMain()
 
 + (id<PINExecutor>)immediate
 {
-    return [[PINExecutor alloc] initWithExecutorBlock:^(dispatch_block_t block) {
-        block();
-    }];
+    SHARED_EXECUTOR(^{
+        return [[PINExecutor alloc] initWithExecutorBlock:^(dispatch_block_t block) {
+            block();
+        }];
+    });
 }
 
 + (id<PINExecutor>)main
 {
-    return [[PINExecutor alloc] initWithExecutorBlock:^(dispatch_block_t block) {
-        if (isCurrentThreadMain()) {
-            block();
-        } else {
-            [[self mainQueue] execute:block];
-        }
-    }];
+    SHARED_EXECUTOR(^{
+        return [[PINExecutor alloc] initWithExecutorBlock:^(dispatch_block_t block) {
+            if (isCurrentThreadMain()) {
+                return [[self immediate] execute:block];
+            } else {
+                return [[self queue:dispatch_get_main_queue()] execute:block];
+            }
+        }];
+    });
 }
 
 + (id<PINExecutor>)queue:(dispatch_queue_t)queue
@@ -64,14 +79,11 @@ static inline BOOL isCurrentThreadMain()
     }];
 }
 
-+ (id<PINExecutor>)mainQueue
-{
-    return [self queue:dispatch_get_main_queue()];
-}
-
 + (id<PINExecutor>)background
 {
-    return [self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+    SHARED_EXECUTOR(^{
+        return [self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+    });
 }
 
 @end

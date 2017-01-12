@@ -21,7 +21,7 @@ describe(@"task doAsync", ^{
         
         // This doAsync will be dispatched to the main queue, and the Task should execute before the stack unwinds
         // and therefore before the main queue is serviced.
-        task = [task executor:[PINExecutor mainQueue] doAsyncCompletion:^{
+        task = [task executor:[PINExecutor queue:dispatch_get_main_queue()] doAsyncCompletion:^{
             sideEffectExecuted = YES;
         }];
         

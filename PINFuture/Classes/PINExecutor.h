@@ -22,9 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init NS_UNAVAILABLE;
 
 /**
- * Executes immediately if the executor is invoked from the Main thread.  If the executor is not invoked from the Main thread
- * then uses `mainQueue`.  Use this instead of `[PINExecutor mainQueue]` only if you know what you're doing and are looking to
- * reduce the number of dispatches to the Main queue.
+ * Executes a block on the main thread.  The block is executed immediately if the executor is invoked from the Main thread.
+ * If the executor is not invoked from the Main thread, then the block is dispatched to Main GCD queue.
  */
 + (id<PINExecutor>)main;
 
@@ -45,11 +44,6 @@ NS_ASSUME_NONNULL_BEGIN
  * Disaptches on a specified queue.
  */
 + (id<PINExecutor>)queue:(dispatch_queue_t)queue;
-
-/**
- * Disaptches to Main queue.
- */
-+ (id<PINExecutor>)mainQueue;
 
 @end
 
