@@ -15,7 +15,7 @@ typedef void(^CompletionBlockType)(NSError *error, NSObject *value);
 
 typedef NS_ENUM(NSUInteger, PINFutureState) {
     PINFutureStatePending = 0,
-    PINFutureStateResolved,
+    PINFutureStateFulfilled,
     PINFutureStateRejected,
 };
 
@@ -50,10 +50,16 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     return self;
 }
 
+- (void)setValue:(id)value
+{
+    NSAssert([value isKindOfClass:[PINFuture class]] == NO, @"You should not fulfill a PINFuture with another PINFuture.  This is almost definintely a bug.");
+    _value = value;
+}
+
 + (PINFuture<id> *)withValue:(id)value
 {
     PINFuture<id> *future = [[PINFuture alloc] initPrivate];
-    future.state = PINFutureStateResolved;
+    future.state = PINFutureStateFulfilled;
     future.value = value;
     return future;
 }
@@ -70,7 +76,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 {
     PINFuture<id> *future = [[PINFuture alloc] initPrivate];
     block(^(id value) {
-        [future transitionToState:PINFutureStateResolved value:value error:nil];
+        [future transitionToState:PINFutureStateFulfilled value:value error:nil];
     }, ^(NSError *error) {
         [future transitionToState:PINFutureStateRejected value:nil error:error];
     });
@@ -130,7 +136,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     for (PINFutureCallback *callback in callbacks) {
         [callback.executor execute:^{
             switch (self.state) {
-                case PINFutureStateResolved:
+                case PINFutureStateFulfilled:
                     callback.success(self.value);
                     break;
                 case PINFutureStateRejected:

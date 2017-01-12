@@ -17,7 +17,7 @@
     return [self executor:executor
                  flatMap:sourceTask
                  success:^PINTask * _Nonnull(id  _Nonnull fromValue) {
-                     return success(fromValue);
+                     return [PINTask<id> withValue:success(fromValue)];
                  }];
 }
 

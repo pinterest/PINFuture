@@ -11,7 +11,7 @@
 typedef NS_ENUM(NSUInteger, PINFutureState) {
     PINFutureStateUnstarted = 0,
     PINFutureStateStarted,
-    PINFutureStateResolved,
+    PINFutureStateFulfilled,
     PINFutureStateRejected,
 };
 
@@ -30,7 +30,7 @@ typedef void(^PINCompletionBlock)(NSError *error, id value);
     dispatch_block_t tryFlushCallbacks = ^{
         NSArray<PINCompletionBlock> *callbacksToExecute;
         [propertyLock lock];
-        if (currentState == PINFutureStateResolved || currentState == PINFutureStateRejected) {
+        if (currentState == PINFutureStateFulfilled || currentState == PINFutureStateRejected) {
             callbacksToExecute = [callbacks copy];
             callbacks = nil;
         }
@@ -62,7 +62,7 @@ typedef void(^PINCompletionBlock)(NSError *error, id value);
 
         PINCompletionBlock callback = ^void(NSError *error, id value) {
             switch (currentState) {
-                case PINFutureStateResolved:
+                case PINFutureStateFulfilled:
                     resolve(finalValue);
                     break;
                 case PINFutureStateRejected:
@@ -89,7 +89,7 @@ typedef void(^PINCompletionBlock)(NSError *error, id value);
         [propertyLock unlock];
         if (shouldBegin) {
             PINTask<id> *taskWithSideEffects = [strongSelf executor:[PINExecutor immediate] doSuccess:^(id  _Nonnull value) {
-                transitionToState(PINFutureStateResolved, value, nil);
+                transitionToState(PINFutureStateFulfilled, value, nil);
             } failure:^(NSError * _Nonnull error) {
                 transitionToState(PINFutureStateRejected, nil, error);
             }];
