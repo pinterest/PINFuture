@@ -137,10 +137,14 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
         [callback.executor execute:^{
             switch (self.state) {
                 case PINFutureStateFulfilled:
-                    callback.success(self.value);
+                    if (callback.success != NULL) {
+                        callback.success(self.value);
+                    }
                     break;
                 case PINFutureStateRejected:
-                    callback.failure(self.error);
+                    if (callback.failure != NULL) {
+                        callback.failure(self.error);
+                    }
                     break;
                 default:
                     NSAssert(NO, @"unexpected state value");

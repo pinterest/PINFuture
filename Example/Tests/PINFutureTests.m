@@ -48,24 +48,18 @@ describe(@"future", ^{
         expectFutureToRejectWith(self, future, error);
     });
 
-    it(@"tolerates success callback being null", ^{
-        NSError *error = errorFixture();
-        PINFuture<NSString *> *future = [PINFuture<NSString *> withBlock:^(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
-            [[PINFuture withError:error] executor:[PINExecutor immediate] success:NULL failure:^(NSError * _Nonnull error) {
-                reject(error);
-            }];
-        }];
-        expectFutureToRejectWith(self, future, error);
+    it(@"tolerates success callback being NULL when fulfilled", ^{
+        NSString *value = stringFixture();
+        PINFuture<NSString *> *future = [PINFuture withValue:value];
+        [future executor:[PINExecutor immediate] success:NULL failure:NULL];
+        expectFutureToFulfillWith(self, future, value);
     });
 
-    it(@"tolerates failure callback being null", ^{
-        NSString *value = stringFixture();
-        PINFuture<NSString *> *future = [PINFuture<NSString *> withBlock:^(void (^ _Nonnull resolve)(NSString * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
-            [[PINFuture withValue:value] executor:[PINExecutor immediate] success:^(id  _Nonnull value) {
-                resolve(value);
-            } failure:NULL];
-        }];
-        expectFutureToFulfillWith(self, future, value);
+    it(@"tolerates failure callback being null when rejected", ^{
+        NSError *error = errorFixture();
+        PINFuture<NSString *> *future = [PINFuture withError:error];
+        [future executor:[PINExecutor immediate] success:NULL failure:NULL];
+        expectFutureToRejectWith(self, future, error);
     });
 });
 
