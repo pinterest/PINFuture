@@ -17,7 +17,7 @@ pod "PINFuture"
 
 ## Overview
 
-PINFuture is an Objective C implementation of the asynchronous primitive called "Future".  This library differs from other Objective C implementations of Future primarily because it aims to preserve type safety using Objective C generics.
+PINFuture is an Objective-C implementation of the asynchronous primitive called "Future".  This library differs from other Objective-C implementations of Future primarily because it aims to preserve type safety using Objective-C generics.
 
 ### What is a Future?
 
@@ -119,13 +119,13 @@ A good rule of thumb: Use `[PINExecutor background]` if work that your callback 
 
 ### Preserving type safety
 
-PINFuture makes use of Objective C generics to maintain the same type safety that you'd have with callbacks.
+PINFuture makes use of Objective-C generics to maintain the same type safety that you'd have with callbacks.
 
 ```objc
 [PINFuture<NSNumber *> withValue:@"foo"]; // Compile error.  Good!
 ```
 
-In Objective C, type parameters are optional.  It's a good practice to always specify them for a PINFuture.
+In Objective-C, type parameters are optional.  It's a good practice to always specify them for a PINFuture.
 ```objc
 [PINFuture withValue:@"foo"]; // This compiles but will likely blow up with "unrecognized selector" when the value is used.
 ```
@@ -163,7 +163,7 @@ PINFuture<NSString *> stringFuture = [PINFuture<NSString *> withBlock:^(void (^ 
 ```
 
 ### Transformations
-In order to achieve type safety for an operation like `map` that converts from one type of value to another type, we have to jump through some hoops because of Objective C's rudimentary support for generics.  `map` and `flatMap` are class methods on the class `PINFutureMap`.  The `PINFutureMap` class has two type parameters: `FromType` and `ToType`.
+In order to achieve type safety for an operation like `map` that converts from one type of value to another type, we have to jump through some hoops because of Objective-C's rudimentary support for generics.  `map` and `flatMap` are class methods on the class `PINFutureMap`.  The `PINFutureMap` class has two type parameters: `FromType` and `ToType`.
 
 #### Error handling with transformations
 - `map` and `flatMap` only preform a transformation is the source Future is *fulfilled*.  If the source Future is *rejected*, then the original error is simply passed through to the return value.
@@ -261,7 +261,7 @@ PINFuture<NSArray<NSString *> *> *fileContentsFuture = [PINFuture<NSString *> ga
 - Futures and Promises (mostly useful for the list of implementations) https://en.wikipedia.org/wiki/Futures_and_promises
 
 ## Design decisions
-These decisions are possibly controvercial but deliberate.
+These decisions are possibly controversial but deliberate.
 - Don't allow chaining of `success:failure:` and `completion:` methods.  A reader could easily be mislead into thinking that the chained operations are guaranteed to execute sequentially.
 - Don't expose a `success:` method or a `failure:` method.  We think it's a better for the site of any side-effects to make it explicit that they don't want to handle a value or that they don't want to handle an error by passing a `NULL` argument. 
 - Don't implement BrightFutures behavior of "execute callback on Main of it was registered from Main, or execute callback in background if registered from not Main".  We think an explicit executor is better.  With the BrightFuture behavior, a chunk of code copied to another location may not behave properly for very subtle reasons.
