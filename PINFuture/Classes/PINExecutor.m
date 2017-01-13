@@ -10,6 +10,8 @@
 
 #import <pthread.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 static inline BOOL isCurrentThreadMain()
 {
     return 0 != pthread_main_np();
@@ -87,3 +89,5 @@ static inline BOOL isCurrentThreadMain()
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

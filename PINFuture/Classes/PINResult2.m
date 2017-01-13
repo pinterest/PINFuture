@@ -10,6 +10,8 @@
 #import "PINResultSuccess.h"
 #import "PINResultFailure.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PINResultSuccess<ValueType> (private)
 @property (nonatomic, strong) id value;
 @end
@@ -33,3 +35,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

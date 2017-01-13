@@ -8,6 +8,8 @@
 
 #import "PINTask+Cache.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSUInteger, PINFutureState) {
     PINFutureStateUnstarted = 0,
     PINFutureStateStarted,
@@ -102,3 +104,5 @@ typedef void(^PINCompletionBlock)(NSError *error, id value);
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

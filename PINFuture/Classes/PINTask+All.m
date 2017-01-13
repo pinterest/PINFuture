@@ -8,6 +8,8 @@
 
 #import "PINTask+All.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation PINTask (All)
 
 + (PINTask<NSArray<id> *> *)all:(NSArray<PINTask<id> *> *)sourceTasks
@@ -42,3 +44,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

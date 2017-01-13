@@ -11,6 +11,8 @@
 #import "PINExecutor.h"
 #import "PINFutureMap+Map.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void(^CompletionBlockType)(NSError *error, NSObject *value);
 
 typedef NS_ENUM(NSUInteger, PINFutureState) {
@@ -167,3 +169,5 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

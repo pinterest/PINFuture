@@ -8,6 +8,8 @@
 
 #import "PINFuture.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation PINFuture (GatherAll)
 
 + (PINFuture<NSArray *> *)gatherAll:(NSArray<PINFuture *> *)sourceFutures
@@ -44,3 +46,5 @@
 };
 
 @end
+
+NS_ASSUME_NONNULL_END

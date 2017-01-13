@@ -3,8 +3,9 @@
 // Copyright (c) 2016 Pinterest. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "PINResultFailure.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface PINResultFailure ()
 @property (nonatomic, strong) NSError *error;
@@ -20,3 +21,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

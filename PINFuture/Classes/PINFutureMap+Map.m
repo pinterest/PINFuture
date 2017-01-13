@@ -10,6 +10,8 @@
 
 #import "PINFuture.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation PINFutureMap (Map)
 
 + (PINFuture<id> *)map:(PINFuture<id> *)sourceFuture
@@ -34,3 +36,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

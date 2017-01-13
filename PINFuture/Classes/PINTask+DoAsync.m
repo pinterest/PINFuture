@@ -8,6 +8,8 @@
 
 #import "PINTask+DoAsync.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation PINTask (DoAsync)
 
 - (PINTask<id> *)executor:(id<PINExecutor>)executor doAsyncSuccess:(nullable void(^)(id value))success failure:(nullable void(^)(NSError *error))failure
@@ -38,3 +40,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

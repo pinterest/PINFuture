@@ -11,6 +11,8 @@
 #import "PINFuture.h"
 #import "PINOnce.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef PINCancelToken *(^PINExecuteBlock)(void(^resolve)(id), void(^reject)(NSError *));
 
 PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
@@ -120,3 +122,5 @@ PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
 //}
 
 @end
+
+NS_ASSUME_NONNULL_END

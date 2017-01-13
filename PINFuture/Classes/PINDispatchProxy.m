@@ -9,6 +9,8 @@
 #import "PINDispatchProxy.h"
 #import "PINFuture.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PINDispatchProxy ()
 
 @property (nonatomic, strong) id<PINExecutor> executor;
@@ -26,7 +28,7 @@
     return proxy;
 }
 
-- (NSMethodSignature *)methodSignatureForSelector:(SEL)selector
+- (nullable NSMethodSignature *)methodSignatureForSelector:(SEL)selector
 {
     return [self.target methodSignatureForSelector:selector];
 }
@@ -50,3 +52,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

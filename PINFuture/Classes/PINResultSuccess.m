@@ -5,10 +5,11 @@
 
 #import "PINResultSuccess.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PINResultSuccess ()
 @property (nonatomic, strong) id value;
 @end
-
 
 @implementation PINResultSuccess
 
@@ -20,3 +21,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

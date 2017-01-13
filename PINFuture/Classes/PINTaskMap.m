@@ -8,5 +8,9 @@
 
 #import "PINTaskMap.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation PINTaskMap
 @end
+
+NS_ASSUME_NONNULL_END

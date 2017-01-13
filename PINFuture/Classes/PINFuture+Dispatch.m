@@ -8,6 +8,8 @@
 
 #import "PINFuture+Dispatch.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation PINFuture (Dispatch)
 
 + (PINFuture<id> *)dispatchWithExecutor:(id<PINExecutor>)executor block:(PINFuture<id> * (^)())block;
@@ -27,3 +29,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -8,6 +8,8 @@
 
 #import "PINTask+Do.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation PINTask (Do)
 
 - (PINTask<id> *)executor:(id<PINExecutor>)executor doCompletion:(void(^)(void))completion
@@ -20,3 +22,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
