@@ -8,16 +8,11 @@
 
 #import <Foundation/NSURLSession.h>
 
+#import "PINNSURLSessionDataTaskResult.h"
 #import "PINFuture.h"
 #import "PINPair.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-@interface PINFutureNSURLSessionDataTaskResult : NSObject
-@property (nonatomic, readonly) NSData * _Nullable data;
-@property (nonatomic, readonly) NSURLResponse * _Nullable response;
-@property (nonatomic, readonly) NSError * _Nullable error;
-@end
 
 @interface NSURLSession (PINFuture)
 
@@ -25,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Returns a Future that never rejects.  The value type has an error field.
  * that is set in non-exceptional cases such as 4xx response codes.
  */
-- (PINPair<NSURLSessionDataTask *, PINFuture<PINFutureNSURLSessionDataTaskResult *> *> *)dataTaskFutureWithRequest:(NSURLRequest *)request;
+- (PINPair<NSURLSessionDataTask *, PINFuture<PINNSURLSessionDataTaskResult *> *> *)pinfuture_dataTaskWithRequest:(NSURLRequest *)request;
 
 @end
 

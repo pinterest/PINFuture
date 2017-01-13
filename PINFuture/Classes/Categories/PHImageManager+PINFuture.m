@@ -8,32 +8,16 @@
 
 #import "PHImageManager+PINFuture.h"
 
-@implementation PINPHImageManagerImageDataResult
-
-- (instancetype)initWithImageData:(NSData *)imageData
-                          dataUTI:(NSString *)dataUTI
-                      orientation:(UIImageOrientation)orientation
-                             info:(NSDictionary *)info
-{
-    if (self = [super init]) {
-        _imageData = imageData;
-        _dataUTI = dataUTI;
-        _orientation = orientation;
-        _info = info;
-    }
-    return self;
-}
-
-@end
+NS_ASSUME_NONNULL_BEGIN
 
 @implementation PHImageManager (PINFuture)
 
-- (PINFuture<PINPHImageManagerImageDataResult *> *)requestImageDataForAsset:(PHAsset *)asset options:(nullable PHImageRequestOptions *)options
+- (PINFuture<PINPHImageManagerImageDataResult *> *)pinfuture_requestImageDataForAsset:(PHAsset *)asset options:(nullable PHImageRequestOptions *)options
 {
     return [PINFuture<PINPHImageManagerImageDataResult *> withBlock:^(void (^ _Nonnull resolve)(PINPHImageManagerImageDataResult * _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         [self requestImageDataForAsset:asset options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
             if (imageData) {
-                PINPHImageManagerImageDataResult *result = [[PINPHImageManagerImageDataResult alloc] initWithImageData:imageData
+                PINPHImageManagerImageDataResult *result = [PINPHImageManagerImageDataResult resultWithImageData:imageData
                                                                                                          dataUTI:dataUTI
                                                                                                      orientation:orientation
                                                                                                             info:info];
@@ -50,3 +34,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ALAssetsLibrary (PINTask)
 
-- (PINTask<ALAsset *> *)assetTaskForURL:(NSURL *)assetURL PIN_WARN_UNUSED_RESULT;
+- (PINTask<ALAsset *> *)pintask_assetForURL:(NSURL *)assetURL PIN_WARN_UNUSED_RESULT;
 
 @end
 

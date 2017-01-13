@@ -8,16 +8,11 @@
 
 #import <Foundation/NSURLSession.h>
 
+#import "PINNSURLSessionDataTaskResult.h"
 #import "PINTask.h"
 #import "PINPair.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-@interface PINTaskNSURLSessionDataTaskCompletionData : NSObject
-@property (nonatomic, readonly) NSData * _Nullable data;
-@property (nonatomic, readonly) NSURLResponse * _Nullable response;
-@property (nonatomic, readonly) NSError * _Nullable error;
-@end
 
 @interface NSURLSession (PINTask)
 
@@ -25,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Returns a Task that never rejects.  The value type has an error field.
  * that is set in non-exceptional cases such as 4xx response codes.
  */
-- (PINPair<NSURLSessionDataTask *, PINTask<PINTaskNSURLSessionDataTaskCompletionData *> *> *)taskWithRequest:(NSURLRequest *)request;
+- (PINPair<NSURLSessionDataTask *, PINTask<PINNSURLSessionDataTaskResult *> *> *)pintask_dataTaskWithRequest:(NSURLRequest *)request;
 
 @end
 

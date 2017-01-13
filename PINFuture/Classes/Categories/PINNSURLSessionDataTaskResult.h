@@ -1,5 +1,5 @@
 //
-//  NSURLSession+PINFuture.h
+//  PINNSURLSessionDataTaskResult.h
 //  Pods
 //
 //  Created by Chris Danford on 12/8/16.
@@ -11,18 +11,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PINNSURLSessionDataTaskResult : NSObject
+
 @property (nonatomic, readonly) NSData * _Nullable data;
 @property (nonatomic, readonly) NSURLResponse * _Nullable response;
 @property (nonatomic, readonly) NSError * _Nullable error;
-@end
 
-@interface NSURLSession (PINFuture)
-
-/**
- * Returns a Future that never rejects.  The value type has an error field.
- * that is set in non-exceptional cases such as 4xx response codes.
- */
-- (PINPair<NSURLSessionDataTask *, PINFuture<PINFutureNSURLSessionDataTaskResult *> *> *)PINFutureDataTaskWithRequest:(NSURLRequest *)request;
++ (instancetype)resultWithData:(NSData * _Nullable)data
+                      response:(NSURLResponse * _Nullable)response
+                         error:(NSError * _Nullable)error;
 
 @end
 
