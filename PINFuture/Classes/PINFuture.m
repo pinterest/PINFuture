@@ -37,7 +37,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 @property (nonatomic) enum PINFutureState state;
 @property (nonatomic) id value;
 @property (nonatomic) NSError *error;
-@property (nonatomic) NSMutableArray<PINFutureCallback *> *callbacks;
+@property (nonatomic, nullable) NSMutableArray<PINFutureCallback *> *callbacks;  // If nil, there are no callbacks
 
 @end
 
@@ -107,7 +107,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 #pragma mark - internal
 
-- (void)transitionToState:(PINFutureState)state value:(NSObject *)value error:(NSError *)error
+- (void)transitionToState:(PINFutureState)state value:(nullable NSObject *)value error:(nullable NSError *)error
 {
     [self.propertyLock lock];
     if (self.state == PINFutureStatePending) {
