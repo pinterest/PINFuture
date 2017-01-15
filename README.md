@@ -233,15 +233,22 @@ PINFuture<NSArray<NSString *> *> *fileContentsFuture = [PINFuture<NSString *> ga
 
 ## Alternatives
 
-### Java
-- Guava: https://github.com/google/guava/wiki/ListenableFutureExplained
+### Swift
+- BrightFutures https://github.com/Thomvis/BrightFutures
+- PromiseKit https://github.com/mxcl/PromiseKit
 
 ### Scala
 - Scalaz Task - the missing documentation http://timperrett.com/2014/07/20/scalaz-task-the-missing-documentation/
 - Monix https://monix.io/docs/2x/eval/task.html
 
+### Objective-C
+- BFTask https://github.com/BoltsFramework/Bolts-ObjC
+
+### Java
+- Guava https://github.com/google/guava/wiki/ListenableFutureExplained
+
 ### C++
-- Folly futures: https://github.com/facebook/folly/tree/master/folly/futures https://code.facebook.com/posts/1661982097368498/futures-for-c-11-at-facebook/
+- Folly futures https://github.com/facebook/folly/tree/master/folly/futures https://code.facebook.com/posts/1661982097368498/futures-for-c-11-at-facebook/
 
 ### JavaScript
 - Pied Piper https://github.com/WeltN24/PiedPiper/blob/master/README.md#promises
