@@ -137,6 +137,8 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     // execute
     for (PINFutureCallback *callback in callbacks) {
         [callback.executor execute:^{
+            // It's OK to access `self.state` here without locking because, if we hit this point,
+            // `self.state` has reached a terminal value and cannot change further.
             switch (self.state) {
                 case PINFutureStateFulfilled:
                     if (callback.success != NULL) {
