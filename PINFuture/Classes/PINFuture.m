@@ -60,6 +60,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 + (PINFuture<id> *)withValue:(id)value
 {
+    NSAssert(value != nil, @"By convention, value should not be nil");
     PINFuture<id> *future = [[PINFuture alloc] initPrivate];
     future.state = PINFutureStateFulfilled;
     future.value = value;
@@ -68,6 +69,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 + (PINFuture<id> *)withError:(NSError *)error
 {
+    NSAssert(error != nil, @"By convention, error should not be nil");
     PINFuture<id> *future = [[PINFuture alloc] initPrivate];
     future.state = PINFutureStateRejected;
     future.error = error;
@@ -78,8 +80,10 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 {
     PINFuture<id> *future = [[PINFuture alloc] initPrivate];
     block(^(id value) {
+        NSAssert(value != nil, @"By convention, you shouldn't resolve with a nil value");
         [future transitionToState:PINFutureStateFulfilled value:value error:nil];
     }, ^(NSError *error) {
+        NSAssert(error != nil, @"By convention, you shouldn't reject with a nil error");
         [future transitionToState:PINFutureStateRejected value:nil error:error];
     });
     return future;
