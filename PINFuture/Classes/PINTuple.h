@@ -53,7 +53,7 @@
 
 
 #define PIN_TUPLE_ONE_PROP(typ, val) \
-  @property (nonatomic, strong) typ val ;
+  @property (nonatomic) typ val ;
 
 #define PIN_TUPLE_ONE_METHOD_PARAM(typ, val) \
   val : (typ)val
