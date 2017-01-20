@@ -34,9 +34,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  * Executes immediately on whatever the current thread is without trampolining.
- * Use this as an optimization only if your block will execute extremely quickly, has no thread affinity
- * (because it could be executed from anywhere) and the cost of executing the block is low compared to
- * the cost of dispatching to a queue.
+ * Use this as an optimization only if your block:
+ * - will execute extremely quickly
+ * - has no restirctions on where it can be executed from
+ * - the overhead of executing the block is low compared to the cost of what the Executor does (usually a dispatch_async).
  */
 + (id<PINExecutor>)immediate;
 
