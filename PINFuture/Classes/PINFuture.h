@@ -66,10 +66,12 @@ NS_ASSUME_NONNULL_BEGIN
 NS_ASSUME_NONNULL_END
 
 // Import everything for caller convenience.
-#import "PINFuture+GatherAll.h"
+#import "PINFuture+ChainSideEffect.h"
 #import "PINFuture+Dispatch.h"
 #import "PINFuture+FlatMapError.h"
+#import "PINFuture+GatherAll.h"
 #import "PINFuture+MapError.h"
+#import "PINFuture+MapToValue.h"
 #import "PINFutureMap.h"
 #import "PINFutureMap+Map.h"
 #import "PINFutureMap+FlatMap.h"
