@@ -10,6 +10,6 @@
 
 @interface PINFuture<ObjectType> (FlatMapError)
 
-- (PINFuture<ObjectType> *)executor:(id<PINExecutor>)executor flatMapError:(PINFuture<ObjectType> *(^)(NSError *error))flatMapError;
+- (PINFuture<ObjectType> *)executor:(id<PINExecutor>)executor flatMapError:(PINFuture<ObjectType> *(^)(NSError *error))flatMapError PIN_WARN_UNUSED_RESULT;
 
 @end

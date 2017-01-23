@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#import "PINDefines.h"
+
 @interface PINOnce : NSObject
-+ (instancetype)new;
++ (instancetype)new PIN_WARN_UNUSED_RESULT;
 - (void)performOnce:(dispatch_block_t)block;
 @end

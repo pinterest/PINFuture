@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface PINFuture<ObjectType> (Dispatch)
 
-+ (PINFuture<ObjectType> *)dispatchWithExecutor:(id<PINExecutor>)executor block:(PINFuture<ObjectType> * (^)())block;
++ (PINFuture<ObjectType> *)dispatchWithExecutor:(id<PINExecutor>)executor block:(PINFuture<ObjectType> * (^)())block PIN_WARN_UNUSED_RESULT;
 
 @end
 

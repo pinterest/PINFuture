@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (PINFuture<ToType> *)flatMap:(PINFuture<FromType> *)sourceFuture
                       executor:(id<PINExecutor>)executor
-                     transform:(PINFuture<ToType> *(^)(FromType fromValue))transform;
+                     transform:(PINFuture<ToType> *(^)(FromType fromValue))transform PIN_WARN_UNUSED_RESULT;
 
 @end
 

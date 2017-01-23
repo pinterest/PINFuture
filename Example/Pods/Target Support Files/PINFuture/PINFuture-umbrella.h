@@ -38,6 +38,7 @@
 #import "PINTaskMap+Map.h"
 #import "PINTaskMap+MapToValue.h"
 #import "PINTaskMap.h"
+#import "PINTuple.h"
 
 FOUNDATION_EXPORT double PINFutureVersionNumber;
 FOUNDATION_EXPORT const unsigned char PINFutureVersionString[];

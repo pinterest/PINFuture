@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PINFutureAndCancelToken<ObjectType> : NSObject
-+ (instancetype)newWithCancelToken:(PINCancelToken *)cancelToken future:(PINFuture<ObjectType> *)future;
++ (instancetype)newWithCancelToken:(PINCancelToken *)cancelToken future:(PINFuture<ObjectType> *)future PIN_WARN_UNUSED_RESULT;
 
 - (PINCancelToken *)cancelToken;
 - (PINFuture<ObjectType> *)future;

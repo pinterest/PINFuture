@@ -10,6 +10,6 @@
 
 @interface PINFuture<ObjectType> (MapError)
 
-- (PINFuture<ObjectType> *)executor:(id<PINExecutor>)executor mapError:(ObjectType (^)(NSError *error))mapError;
+- (PINFuture<ObjectType> *)executor:(id<PINExecutor>)executor mapError:(ObjectType (^)(NSError *error))mapError PIN_WARN_UNUSED_RESULT;
 
 @end

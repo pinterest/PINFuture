@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ALAssetsLibrary (PINFuture)
 
-- (PINFuture<ALAsset *> *)pinfuture_assetForURL:(NSURL *)assetURL;
+- (PINFuture<ALAsset *> *)pinfuture_assetForURL:(NSURL *)assetURL PIN_WARN_UNUSED_RESULT;
 
 @end
 

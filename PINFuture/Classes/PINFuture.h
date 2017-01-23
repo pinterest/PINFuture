@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "PINExecutor.h"
+#import "PINDefines.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -32,19 +33,19 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Return a future that is immediately resolved.
  */
-+ (PINFuture<ObjectType> *)withValue:(ObjectType)value;
++ (PINFuture<ObjectType> *)withValue:(ObjectType)value PIN_WARN_UNUSED_RESULT;
 
 /**
  * Return a future that is immediately rejected.
  */
-+ (PINFuture<ObjectType> *)withError:(NSError *)error;
++ (PINFuture<ObjectType> *)withError:(NSError *)error PIN_WARN_UNUSED_RESULT;
 
 /**
  * Construct a future from a block that eventually calls resolve or reject.
  * This is slightly dangerous and should only be used when adapting from callbacks to a Future because there's no compiler enforcement
  * that all paths of your block will eventually call either `resolve` or `reject`.
  */
-+ (PINFuture<ObjectType> *)withBlock:(void(^)(void(^resolve)(ObjectType), void(^reject)(NSError *)))block;
++ (PINFuture<ObjectType> *)withBlock:(void(^)(void(^resolve)(ObjectType), void(^reject)(NSError *)))block PIN_WARN_UNUSED_RESULT;
 
 #pragma mark - attach callbacks
 
