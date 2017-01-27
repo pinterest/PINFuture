@@ -12,7 +12,7 @@
 
 @implementation PINFuture (ChainSideEffect)
 
-- (PINFuture<id> *)executor:(id<PINExecutor>)executor chainSideEffectSuccess:(nullable void(^)(id value))success 
+- (PINFuture<id> *)executor:(id<PINExecutor>)executor chainSideEffect:(nullable void(^)(id value))success 
 {
     return [PINFutureMap<id, id> map:self executor:executor transform:^id _Nonnull(id  _Nonnull value) {
         if (success != nil) {

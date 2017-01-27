@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PINFuture<ObjectType> (ChainSideEffect)
 
-- (PINFuture<ObjectType> *)executor:(id<PINExecutor>)executor chainSideEffectSuccess:(nullable void(^)(ObjectType value))success PIN_WARN_UNUSED_RESULT;
+- (PINFuture<ObjectType> *)executor:(id<PINExecutor>)executor chainSideEffect:(nullable void(^)(ObjectType value))success PIN_WARN_UNUSED_RESULT;
 
 @end
 
