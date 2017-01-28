@@ -21,19 +21,19 @@ describe(@"chainSideEffect", ^{
         PINFuture<NSString *> *chained = [PINFuture<NSString *> withValue:value];
         __block BOOL successCalled = NO;
         __block BOOL failureCalled = NO;
-        __block BOOL completeCalled = NO;
+        __block BOOL completionCalled = NO;
         chained = [chained executor:delayedExecutor chainSuccess:^(NSString *value) {
             successCalled = YES;
         } failure:^(NSError *error) {
             failureCalled = YES;
         }];
         chained = [chained executor:delayedExecutor chainComplete:^{
-            completeCalled = YES;
+            completionCalled = YES;
         }];
         expectFutureToFulfillWith(self, chained, value);
         expect(successCalled).to.beTruthy();
         expect(failureCalled).to.beFalsy();
-        expect(completeCalled).to.beTruthy();
+        expect(completionCalled).to.beTruthy();
     });
     
     it(@"expected callbacks called for a rejected Future", ^{
@@ -41,19 +41,19 @@ describe(@"chainSideEffect", ^{
         PINFuture<NSString *> *chained = [PINFuture<NSString *> withError:error];
         __block BOOL successCalled = NO;
         __block BOOL failureCalled = NO;
-        __block BOOL completeCalled = NO;
+        __block BOOL completionCalled = NO;
         chained = [chained executor:delayedExecutor chainSuccess:^(NSString *value) {
             successCalled = YES;
         } failure:^(NSError *error) {
             failureCalled = YES;
         }];
         chained = [chained executor:delayedExecutor chainComplete:^{
-            completeCalled = YES;
+            completionCalled = YES;
         }];
         expectFutureToRejectWith(self, chained, error);
         expect(successCalled).to.beFalsy();
         expect(failureCalled).to.beTruthy();
-        expect(completeCalled).to.beTruthy();
+        expect(completionCalled).to.beTruthy();
     });
 
     it(@"chainSuccess:failure: doesn't blow up if callbacks are nil", ^{

@@ -49,17 +49,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - attach callbacks
 
+/**
+ * Execute a block on success or on failure.  Use this if you want to have a side-effect and nothing
+ * needs to wait on your side-effect to complete.
+ */
 - (void)executor:(id<PINExecutor>)executor success:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure;
-
-@end
-
-@interface PINFuture<ObjectType> (Convenience)
-
-#pragma mark - callback methods that specify an execution context
-
-- (void)executor:(id<PINExecutor>)executor completion:(void(^)(void))completion;
-
-#pragma mark - misc
 
 @end
 
@@ -67,6 +61,7 @@ NS_ASSUME_NONNULL_END
 
 // Import everything for caller convenience.
 #import "PINFuture+ChainSideEffect.h"
+#import "PINFuture+Complete.h"
 #import "PINFuture+Dispatch.h"
 #import "PINFuture+FlatMapError.h"
 #import "PINFuture+GatherAll.h"

@@ -163,17 +163,4 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 @end
 
-@implementation PINFuture (Convenience)
-
-- (void)executor:(id<PINExecutor>)executor completion:(void(^)(void))completion
-{
-    return [self executor:executor success:^(id  _Nonnull value) {
-        completion();
-    } failure:^(NSError * _Nonnull error) {
-        completion();
-    }];
-}
-
-@end
-
 NS_ASSUME_NONNULL_END

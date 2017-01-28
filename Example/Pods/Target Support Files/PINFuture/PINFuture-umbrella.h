@@ -15,6 +15,7 @@
 #import "PINDispatchProxy.h"
 #import "PINExecutor.h"
 #import "PINFuture+ChainSideEffect.h"
+#import "PINFuture+Complete.h"
 #import "PINFuture+Dispatch.h"
 #import "PINFuture+FlatMapError.h"
 #import "PINFuture+GatherAll.h"

@@ -3,7 +3,7 @@
 //  Pods
 //
 //  Created by Chris Danford on 1/22/17.
-//
+//  Copyright (c) 2017 Pinterest. All rights reserved.
 //
 
 #import "PINFuture+ChainSideEffect.h"
