@@ -19,6 +19,7 @@
 #import "PINFuture+Dispatch.h"
 #import "PINFuture+FlatMapError.h"
 #import "PINFuture+GatherAll.h"
+#import "PINFuture+Generated.h"
 #import "PINFuture+MapError.h"
 #import "PINFuture+MapToValue.h"
 #import "PINFuture.h"
