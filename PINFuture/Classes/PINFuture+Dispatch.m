@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation PINFuture (Dispatch)
 
-+ (PINFuture<id> *)dispatchWithExecutor:(id<PINExecutor>)executor block:(PINFuture<id> * (^)())block;
++ (PINFuture<id> *)dispatchWithExecutor:(id<PINExecutor>)executor block:(PINFuture<id> * (^)(void))block;
 {
     NSAssert(executor != NULL, @"executor must not be null");
     return [PINFuture<id> withBlock:^(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {

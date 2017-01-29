@@ -21,6 +21,51 @@ NS_ASSUME_NONNULL_BEGIN
     return [self executor:[PINExecutor background] success:success failure:failure];
 }
 
+- (void)onMainCompletion:(nullable void(^)(void))completion
+{
+    return [self executor:[PINExecutor main] completion:completion];
+}
+
+- (void)onBackgroundCompletion:(nullable void(^)(void))completion
+{
+    return [self executor:[PINExecutor background] completion:completion];
+}
+
++ (PINFuture<id> *)dispatchOnMainBlock:(PINFuture<id> * (^)(void))block
+{
+    return [self dispatchWithExecutor:[PINExecutor main] block:block];
+}
+
++ (PINFuture<id> *)dispatchOnBackgroundBlock:(PINFuture<id> * (^)(void))block
+{
+    return [self dispatchWithExecutor:[PINExecutor background] block:block];
+}
+
+@end
+
+
+@implementation PINFutureMap (Generated)
+
++ (PINFuture<id> *)map:(PINFuture<id> *)sourceFuture onMainTransform:(id (^)(id fromValue))transform
+{
+    return [PINFutureMap<id, id> map:sourceFuture executor:[PINExecutor main] transform:transform];
+}
+
++ (PINFuture<id> *)map:(PINFuture<id> *)sourceFuture onBackgroundTransform:(id (^)(id fromValue))transform
+{
+    return [PINFutureMap<id, id> map:sourceFuture executor:[PINExecutor background] transform:transform];
+}
+
++ (PINFuture<id> *)flatMap:(PINFuture<id> *)sourceFuture onMainTransform:(PINFuture<id> *(^)(id fromValue))transform
+{
+    return [PINFutureMap<id, id> flatMap:sourceFuture executor:[PINExecutor main] transform:transform];
+}
+
++ (PINFuture<id> *)flatMap:(PINFuture<id> *)sourceFuture onBackgroundTransform:(PINFuture<id> *(^)(id fromValue))transform
+{
+    return [PINFutureMap<id, id> flatMap:sourceFuture executor:[PINExecutor background] transform:transform];
+}
+
 @end
 
 NS_ASSUME_NONNULL_END
