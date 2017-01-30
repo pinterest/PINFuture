@@ -218,6 +218,37 @@ PINFuture<NSArray<NSString *> *> *fileContentsFuture = [PINFuture<NSString *> ga
 }];
 ```
 
+### Chaining side-effects (necessary evil)
+#### `chainSuccess:failure:`
+This is similar to `success:failure` except that a new Future is returned that does not fulfill or reject until the side-effect has been executed.  This should be used sparingly.  It should be rare that you want to have a side-effect, and even rarer to wait on a side-effect.
+```objc
+// Fetch a user, and return a Future that resolves only after all NotificationCenter observers have been notified.
+PINFuture<User *> *userFuture = [self userForUsername:username];
+userFuture = [userFuture executor:[PINExecutor main] chainSuccess:^(User *user) {
+    [[NSNotifcationCenter sharedCenter] postNotification:kUserUpdated object:user];
+} failure:nil;
+return userFuture;
+```
+
+### Convenience methods (experimental)
+#### `onMain`/`onBackground`
+We've observed that application code will almost always call with either `executor:[PINExecutor main]` or `executor:[PINExecutor background]`.  For every method that takes an `executor:` there are 2 variations of that method, `onMain` and `onBackground`, that are slightly more concise (shorter by 22 characters).
+
+The following pairs of calls are equivalent.  The second call in each pair demonstrated the convenience method.
+```
+[userFuture executor:[PINExecutor main] success:success failure:failure];
+[userFuture onMainSuccess:success failure:failure];
+
+[userFuture executor:[PINExecutor background] success:success failure:failure];
+[userFuture onBackgroundSuccess:success failure:failure];
+
+PINFuture<Post *> *postFuture = [PINFutureMap<User, Post> map:userFuture executor:[PINExecutor main] transform:transform];
+PINFuture<Post *> *postFuture = [PINFutureMap<User, Post> map:userFuture onMainTransform:transform];
+
+PINFuture<Post *> *postFuture = [PINFutureMap<User, Post> map:userFuture executor:[PINExecutor background] transform:transform];
+PINFuture<Post *> *postFuture = [PINFutureMap<User, Post> map:userFuture onBackgroundTransform:transform];
+```
+
 ## Roadmap
 - support for cancelling the computation of the value
 - Task primitive
