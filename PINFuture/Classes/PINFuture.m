@@ -13,8 +13,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^CompletionBlockType)(NSError *error, NSObject *value);
-
 typedef NS_ENUM(NSUInteger, PINFutureState) {
     PINFutureStatePending = 0,
     PINFutureStateFulfilled,
@@ -23,8 +21,8 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 @interface PINFutureCallback : NSObject
 @property (nonatomic) id<PINExecutor> executor;
-@property (nonatomic, nullable) void(^success)(id value);
-@property (nonatomic, nullable) void(^failure)(NSError *error);
+@property (nonatomic, copy, nullable) void(^success)(id value);
+@property (nonatomic, copy, nullable) void(^failure)(NSError *error);
 @end
 
 @implementation PINFutureCallback
