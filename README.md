@@ -142,23 +142,32 @@ PINFuture does not capture Exceptions thrown by callbacks.  On platforms that PI
 
 ### Constructing
 
-#### `withValue`
+#### `withValue:`
 Construct an already-fulfilled Future with a value.
 ```objc
 PINFuture<NSString *> stringFuture = [PINFuture<NSString *> withValue:@"foo"];
 ```
 
-#### `withError`
+#### `withError:`
 Construct an already-rejected Future with an error.
 ```objc
 PINFuture<NSString *> stringFuture = [PINFuture<NSString *> withError:[NSError errorWithDescription:...]];
 ```
 
-#### `withBlock`
-Construct a Future and fulfill or reject it by calling one of two callbacks.  This method is generally not safe since because there's no enforcement that your block will call either `resolve` or `reject`.  This is generally only useful for writing a Future-based wrapper for a Callback-based method.
+#### `withBlock:`
+Construct a Future and fulfill or reject it by calling one of two callbacks.  This method is generally not safe since because there's no enforcement that your block will call either `resolve` or `reject`.  This is most useful for writing a Future-based wrapper for a Callback-based method.  You'll find this method used extensively in the PINFuture wrappers of Cocoa APIs.
 ```objc
 PINFuture<NSString *> stringFuture = [PINFuture<NSString *> withBlock:^(void (^ fulfill)(NSString *), void (^ reject)(NSError *)) {
     [foo somethingAsyncWithSuccess:resolve failure:reject];
+}];
+```
+
+#### `executor:block:`
+Construct a Future by executing a block that returns a Future.  The most common use case for this is to dispatch some chunk of compute-intensive work off of the the current thread.  You should prefer this method to `withBlock:` whenever you can return a Future because the compiler can enforce that all code paths of your block will return a Future.
+```objc
+PINFuture<NSNumber *> fibonacciResultFuture = [PINFuture<NSNumber *> executor:[PINExecutor background] block:^PINFuture *() {
+    NSInteger *fibonacciResult = [self computeFibonacci:1000000];
+    return [PINFuture<NSNumber *> withValue:fibonacciResult];
 }];
 ```
 
