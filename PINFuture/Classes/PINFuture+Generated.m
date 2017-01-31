@@ -33,12 +33,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (PINFuture<id> *)executeOnMainBlock:(PINFuture<id> * (^)(void))block
 {
-    return [self dispatchWithExecutor:[PINExecutor main] block:block];
+    return [self executor:[PINExecutor main] block:block];
 }
 
 + (PINFuture<id> *)executeOnBackgroundBlock:(PINFuture<id> * (^)(void))block
 {
-    return [self dispatchWithExecutor:[PINExecutor background] block:block];
+    return [self executor:[PINExecutor background] block:block];
 }
 
 @end

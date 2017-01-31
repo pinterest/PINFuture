@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
     // TODO(chris): This should copy but is crashing when the copy is invoked.  Why?
     //NSInvocation *invocationCopy = [invocation copy];
 
-    PINFuture *immediateFuture = [PINFuture dispatchWithExecutor:self.executor block:^PINFuture * _Nonnull{
+    PINFuture *immediateFuture = [PINFuture executor:self.executor block:^PINFuture * _Nonnull{
         // calling invoke will have the side-effect of setting the returnValue
         [invocation invokeWithTarget:self.target];
         void *returnValue = nil;
