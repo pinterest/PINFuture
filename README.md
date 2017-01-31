@@ -231,22 +231,22 @@ return userFuture;
 ```
 
 ### Convenience methods (experimental)
-#### `onMain`/`onBackground`
-We've observed that application code will almost always call with either `executor:[PINExecutor main]` or `executor:[PINExecutor background]`.  For every method that takes an `executor:` there are 2 variations of that method, `onMain` and `onBackground`, that are slightly more concise (shorter by 22 characters).
+#### `executeOnMain`/`executeOnBackground`
+We've observed that application code will almost always call with either `executor:[PINExecutor main]` or `executor:[PINExecutor background]`.  For every method that takes an `executor:` there are 2 variations of that method, `executeOnMain` and `executeOnBackground`, that are slightly more concise (shorter by 22 characters).
 
 The following pairs of calls are equivalent.  The second call in each pair demonstrated the convenience method.
 ```
 [userFuture executor:[PINExecutor main] success:success failure:failure];
-[userFuture onMainSuccess:success failure:failure];
+[userFuture executeOnMainSuccess:success failure:failure];
 
 [userFuture executor:[PINExecutor background] success:success failure:failure];
-[userFuture onBackgroundSuccess:success failure:failure];
+[userFuture executeOnBackgroundSuccess:success failure:failure];
 
 PINFuture<Post *> *postFuture = [PINFutureMap<User, Post> map:userFuture executor:[PINExecutor main] transform:transform];
-PINFuture<Post *> *postFuture = [PINFutureMap<User, Post> map:userFuture onMainTransform:transform];
+PINFuture<Post *> *postFuture = [PINFutureMap<User, Post> map:userFuture executeOnMainTransform:transform];
 
 PINFuture<Post *> *postFuture = [PINFutureMap<User, Post> map:userFuture executor:[PINExecutor background] transform:transform];
-PINFuture<Post *> *postFuture = [PINFutureMap<User, Post> map:userFuture onBackgroundTransform:transform];
+PINFuture<Post *> *postFuture = [PINFutureMap<User, Post> map:userFuture executeOnBackgroundTransform:transform];
 ```
 
 ## Roadmap

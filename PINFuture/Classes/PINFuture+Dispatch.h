@@ -10,12 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- * Trampoline execution to another queue and return a Future.
- */
 @interface PINFuture<ObjectType> (Dispatch)
 
-+ (PINFuture<ObjectType> *)dispatchWithExecutor:(id<PINExecutor>)executor block:(PINFuture<ObjectType> * (^)(void))block PIN_WARN_UNUSED_RESULT;
+/**
+ * Create a future by executing a block.
+ */
++ (PINFuture<ObjectType> *)executor:(id<PINExecutor>)executor block:(PINFuture<ObjectType> * (^)(void))block PIN_WARN_UNUSED_RESULT;
 
 @end
 
