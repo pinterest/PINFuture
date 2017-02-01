@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (PINFuture<id> *)executor:(id<PINExecutor>)executor block:(PINFuture<id> * (^)(void))block;
 {
-    NSAssert(executor != NULL, @"executor must not be null");
+    NSParameterAssert(executor);
     return [PINFuture<id> withBlock:^(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         // contextify, and execute
         [executor execute:^{

@@ -41,6 +41,27 @@ NS_ASSUME_NONNULL_BEGIN
     return [self executor:[PINExecutor background] block:block];
 }
 
+- (PINFuture<id> *)executeOnMainChainSuccess:(nullable void(^)(id value))success failure:(nullable void (^)(NSError * _Nonnull))failure
+{
+    return [self executor:[PINExecutor main] chainSuccess:success failure:failure];
+}
+
+- (PINFuture<id> *)executeOnBackgroundChainSuccess:(nullable void(^)(id value))success failure:(nullable void (^)(NSError * _Nonnull))failure
+{
+    return [self executor:[PINExecutor background] chainSuccess:success failure:failure];
+}
+
+- (PINFuture<id> *)executeOnMainChainCompletion:(void(^)(void))completion
+{
+    return [self executor:[PINExecutor main] chainCompletion:completion];
+}
+
+- (PINFuture<id> *)executeOnBackgroundChainCompletion:(void(^)(void))completion
+{
+    return [self executor:[PINExecutor background] chainCompletion:completion];
+}
+
+
 @end
 
 
