@@ -72,7 +72,7 @@ PINFuture<User *> *userFuture = [User logInWithUsername:username password:passwo
 PINFuture<Posts *> *postsFuture = [PINFutureMap<User *, Posts *> flatMap:userFuture executor:[PINExecutor main] transform:^PINFuture<Posts *> *(User *user) {
     return [Posts fetchPostsForUser:user];
 }];
-[postsFuture executor:[PINExecutor main] complete:^{
+[postsFuture executor:[PINExecutor main] completion:^{
     [self hideSpinner];
 }];
 [postsFuture executor:[PINExecutor main] success:^(Posts *posts) {

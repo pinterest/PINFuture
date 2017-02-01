@@ -1,5 +1,5 @@
 //
-//  PINFuture+Complete.h
+//  PINFuture+Completion.h
 //  Pods
 //
 //  Created by Chris Danford on 1/28/17.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PINFuture<ObjectType> (Complete)
+@interface PINFuture<ObjectType> (Completion)
 
 /**
  * Execute a block on success or on failure.  Use this if you want to have a side-effect and nothing 

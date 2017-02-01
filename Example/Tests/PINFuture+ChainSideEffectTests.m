@@ -27,7 +27,7 @@ describe(@"chainSideEffect", ^{
         } failure:^(NSError *error) {
             failureCalled = YES;
         }];
-        chained = [chained executor:delayedExecutor chainComplete:^{
+        chained = [chained executor:delayedExecutor chainCompletion:^{
             completionCalled = YES;
         }];
         expectFutureToFulfillWith(self, chained, value);
@@ -47,7 +47,7 @@ describe(@"chainSideEffect", ^{
         } failure:^(NSError *error) {
             failureCalled = YES;
         }];
-        chained = [chained executor:delayedExecutor chainComplete:^{
+        chained = [chained executor:delayedExecutor chainCompletion:^{
             completionCalled = YES;
         }];
         expectFutureToRejectWith(self, chained, error);

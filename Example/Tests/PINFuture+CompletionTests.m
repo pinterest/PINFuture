@@ -1,5 +1,5 @@
 //
-//  PINFuture+CompleteTests.m
+//  PINFuture+CompletionTests.m
 //  PINFuture
 //
 //  Created by Chris Danford on 1/28/17.
@@ -9,9 +9,9 @@
 #import "PINFuture.h"
 #import "TestUtil.h"
 
-SpecBegin(PINFutureCompleteSpecs)
+SpecBegin(PINFutureCompletionSpecs)
 
-describe(@"complete", ^{
+describe(@"completion", ^{
     
     // This executor always dispatches to the main queue to ensure that the future won't resolve until the callstack has unwound.
     id<PINExecutor> delayedExecutor = [PINExecutor queue:dispatch_get_main_queue()];

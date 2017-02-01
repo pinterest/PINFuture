@@ -31,13 +31,13 @@
     return chained;
 }
 
-- (PINFuture<id> *)executor:(id<PINExecutor>)executor chainComplete:(void(^)(void))complete
+- (PINFuture<id> *)executor:(id<PINExecutor>)executor chainCompletion:(void(^)(void))completion
 {
-    NSAssert(complete, @"complete must not be nil");
+    NSParameterAssert(completion);
     return [self executor:executor chainSuccess:^(id  _Nonnull value) {
-        complete();
+        completion();
     } failure:^(NSError * _Nonnull error) {
-        complete();
+        completion();
     }];
 }
 
