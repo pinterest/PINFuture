@@ -8,10 +8,16 @@
 
 #import "PINFuture.h"
 
+/**
+ * A Future that has no meaningful value.  Technically, it does have a value (an NSNull)
+ * but the value should not ever be used.
+ */
+typedef PINFuture<NSNull *> PINFutureNoValue;
+
 @interface PINFuture<ObjectType> (MapToValue)
 
 + (PINFuture<ObjectType> *)map:(PINFuture *)future toValue:(ObjectType)value PIN_WARN_UNUSED_RESULT;
 
-- (PINFuture<NSNull *> *)mapToNull;
+- (PINFutureNoValue *)mapToNoValue;
 
 @end

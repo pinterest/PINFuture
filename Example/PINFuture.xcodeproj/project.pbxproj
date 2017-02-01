@@ -42,6 +42,7 @@
 		83626F121DF96773001CDCC7 /* PINFutureMap+MapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83626F111DF96773001CDCC7 /* PINFutureMap+MapTests.m */; };
 		83626F1C1DFA40DE001CDCC7 /* PINFuture+MapErrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83626F1B1DFA40DE001CDCC7 /* PINFuture+MapErrorTests.m */; };
 		83C56B621DFF889100AAB9C4 /* PINTaskTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C56B611DFF889100AAB9C4 /* PINTaskTests.m */; };
+		83C7A6531E415DFB00953658 /* PINFuture+MapToValueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C7A6521E415DFB00953658 /* PINFuture+MapToValueTests.m */; };
 		83E1B2D81DF4C2730068B35F /* PINFutureMap+FlatMapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E1B2D71DF4C2730068B35F /* PINFutureMap+FlatMapTests.m */; };
 		83E1B2DB1DF4C5DF0068B35F /* TestUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E1B2DA1DF4C5DF0068B35F /* TestUtil.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
@@ -104,6 +105,7 @@
 		83626F111DF96773001CDCC7 /* PINFutureMap+MapTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PINFutureMap+MapTests.m"; sourceTree = "<group>"; };
 		83626F1B1DFA40DE001CDCC7 /* PINFuture+MapErrorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PINFuture+MapErrorTests.m"; sourceTree = "<group>"; };
 		83C56B611DFF889100AAB9C4 /* PINTaskTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PINTaskTests.m; sourceTree = "<group>"; };
+		83C7A6521E415DFB00953658 /* PINFuture+MapToValueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PINFuture+MapToValueTests.m"; sourceTree = "<group>"; };
 		83E1B2D71DF4C2730068B35F /* PINFutureMap+FlatMapTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PINFutureMap+FlatMapTests.m"; sourceTree = "<group>"; };
 		83E1B2D91DF4C5DF0068B35F /* TestUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestUtil.h; sourceTree = "<group>"; };
 		83E1B2DA1DF4C5DF0068B35F /* TestUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUtil.m; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				83626F1B1DFA40DE001CDCC7 /* PINFuture+MapErrorTests.m */,
 				833DA7101DFA428700DCFACD /* PINFuture+FlatMapErrorTests.m */,
 				83626EF61DF5F5FA001CDCC7 /* PINFuture+GatherAllTests.m */,
+				83C7A6521E415DFB00953658 /* PINFuture+MapToValueTests.m */,
 				83626EF41DF5EA1F001CDCC7 /* PINFutureStressTests.m */,
 				83E1B2D71DF4C2730068B35F /* PINFutureMap+FlatMapTests.m */,
 				83626F111DF96773001CDCC7 /* PINFutureMap+MapTests.m */,
@@ -569,6 +572,7 @@
 			files = (
 				83E1B2D81DF4C2730068B35F /* PINFutureMap+FlatMapTests.m in Sources */,
 				8349E12C1E026E9600EB7EA3 /* PINTaskMap+FlatMapTests.m in Sources */,
+				83C7A6531E415DFB00953658 /* PINFuture+MapToValueTests.m in Sources */,
 				83C56B621DFF889100AAB9C4 /* PINTaskTests.m in Sources */,
 				83E1B2DB1DF4C5DF0068B35F /* TestUtil.m in Sources */,
 				6003F5BC195388D20070C39A /* PINFutureTests.m in Sources */,
