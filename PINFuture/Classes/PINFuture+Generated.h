@@ -17,8 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)executeOnMainSuccess:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure;
 - (void)executeOnBackgroundSuccess:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure;
 
-- (void)executeOnMainCompletion:(nullable void(^)(void))completion;
-- (void)executeOnBackgroundCompletion:(nullable void(^)(void))completion;
+- (void)executeOnMainCompletion:(void(^)(void))completion;
+- (void)executeOnBackgroundCompletion:(void(^)(void))completion;
 
 + (PINFuture<ObjectType> *)executeOnMainBlock:(PINFuture<ObjectType> * (^)(void))block PIN_WARN_UNUSED_RESULT;
 + (PINFuture<ObjectType> *)executeOnBackgroundBlock:(PINFuture<ObjectType> * (^)(void))block PIN_WARN_UNUSED_RESULT;

@@ -21,12 +21,12 @@ NS_ASSUME_NONNULL_BEGIN
     return [self executor:[PINExecutor background] success:success failure:failure];
 }
 
-- (void)executeOnMainCompletion:(nullable void(^)(void))completion
+- (void)executeOnMainCompletion:(void(^)(void))completion
 {
     return [self executor:[PINExecutor main] completion:completion];
 }
 
-- (void)executeOnBackgroundCompletion:(nullable void(^)(void))completion
+- (void)executeOnBackgroundCompletion:(void(^)(void))completion
 {
     return [self executor:[PINExecutor background] completion:completion];
 }
@@ -60,7 +60,6 @@ NS_ASSUME_NONNULL_BEGIN
 {
     return [self executor:[PINExecutor background] chainCompletion:completion];
 }
-
 
 @end
 
