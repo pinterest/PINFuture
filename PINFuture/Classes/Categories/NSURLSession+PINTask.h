@@ -6,6 +6,7 @@
 //  Copyright (c) 2016 Pinterest. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <Foundation/NSURLSession.h>
 
 #import "PINNSURLSessionDataTaskResult.h"

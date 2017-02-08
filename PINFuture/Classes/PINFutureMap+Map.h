@@ -6,6 +6,8 @@
 //  Copyright © 2016 Pinterest. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 #import "PINFuture.h"
 #import "PINFutureMap.h"
 

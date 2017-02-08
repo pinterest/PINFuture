@@ -5,6 +5,8 @@
 //  Created by Chris Danford on 1/16/17.
 //
 
+#import <Foundation/Foundation.h>
+
 #import "PINCancelToken.h"
 #import "PINFuture.h"
 

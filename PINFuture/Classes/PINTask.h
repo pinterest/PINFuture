@@ -6,6 +6,8 @@
 //  Copyright (c) 2016 Pinterest. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 #import "PINDefines.h"
 #import "PINExecutor.h"
 #import "PINPair.h"
