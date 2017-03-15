@@ -1,10 +1,10 @@
 objc_library(
-  name = "lib",
-  hdrs = glob(["Classes/**/*.h"]),
-  srcs = glob(["Classes/**/*.m"]),
+  name = "PINFuture",
+  hdrs = glob(["PINFuture/Classes/**/*.h"]),
+  srcs = glob(["PINFuture/Classes/**/*.m"]),
   includes = [
-    "Classes",
-    "Classes/Categories"
+    "PINFuture/Classes",
+    "PINFuture/Classes/Categories",
   ],
   copts = ["-w"],
   visibility = ["//visibility:public"]
