@@ -7,5 +7,9 @@ objc_library(
     "PINFuture/Classes/Categories",
   ],
   copts = ["-w"],
+  sdk_frameworks = [
+  	"AssetsLibrary",
+  	"Photos"
+  ],
   visibility = ["//visibility:public"]
 )
