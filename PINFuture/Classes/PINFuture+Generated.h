@@ -25,8 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (PINFuture<ObjectType> *)executeOnMainBlock:(PINFuture<ObjectType> * (^)(void))block PIN_WARN_UNUSED_RESULT;
 + (PINFuture<ObjectType> *)executeOnBackgroundBlock:(PINFuture<ObjectType> * (^)(void))block PIN_WARN_UNUSED_RESULT;
 
-- (PINFuture<ObjectType> *)executeOnMainChainSuccess:(nullable void(^)(ObjectType value))success failure:(nullable void (^)(NSError * _Nonnull))failure PIN_WARN_UNUSED_RESULT;
-- (PINFuture<ObjectType> *)executeOnBackgroundChainSuccess:(nullable void(^)(ObjectType value))success failure:(nullable void (^)(NSError * _Nonnull))failure PIN_WARN_UNUSED_RESULT;
+- (PINFuture<ObjectType> *)executeOnMainChainSuccess:(nullable void(^)(ObjectType value))success failure:(nullable void (^)(NSError * error))failure PIN_WARN_UNUSED_RESULT;
+- (PINFuture<ObjectType> *)executeOnBackgroundChainSuccess:(nullable void(^)(ObjectType value))success failure:(nullable void (^)(NSError * error))failure PIN_WARN_UNUSED_RESULT;
 
 - (PINFuture<ObjectType> *)executeOnMainChainCompletion:(void(^)(void))completion PIN_WARN_UNUSED_RESULT;
 - (PINFuture<ObjectType> *)executeOnBackgroundChainCompletion:(void(^)(void))completion PIN_WARN_UNUSED_RESULT;
