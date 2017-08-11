@@ -1,23 +1,23 @@
 //
-//  PINOnce.m
+//  PINFutureOnce.m
 //  Pods
 //
 //  Created by Chris Danford on 12/14/16.
 //  Copyright (c) 2016 Pinterest. All rights reserved.
 //
 
-#import "PINOnce.h"
+#import "PINFutureOnce.h"
 
-@interface PINOnce ()
+@interface PINFutureOnce ()
 @property (nonatomic) NSLock *lock;
 @property (nonatomic) BOOL performed;
 @end
 
-@implementation PINOnce
+@implementation PINFutureOnce
 
 + (instancetype)new
 {
-    return [[PINOnce alloc] init];
+    return [[PINFutureOnce alloc] init];
 }
 
 - (instancetype)init

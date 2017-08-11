@@ -37,7 +37,7 @@
 #import "PINFutureMap+FlatMap.h"
 #import "PINFutureMap+Map.h"
 #import "PINFutureMap.h"
-#import "PINOnce.h"
+#import "PINFutureOnce.h"
 #import "PINPair.h"
 #import "PINResult.h"
 #import "PINResult2.h"

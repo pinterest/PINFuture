@@ -9,7 +9,7 @@
 #import "PINTask.h"
 
 #import "PINFuture.h"
-#import "PINOnce.h"
+#import "PINFutureOnce.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,7 +18,7 @@ typedef PINCancelToken *(^PINExecuteBlock)(void(^resolve)(id), void(^reject)(NSE
 PINExecuteBlock resolveOrRejectOnceExecutionBlock(PINExecuteBlock block)
 {
     return ^PINCancelToken *(void(^resolve)(id), void(^reject)(NSError *)) {
-        PINOnce *once = [[PINOnce alloc] init];
+        PINFutureOnce *once = [[PINFutureOnce alloc] init];
         return block(^(id value) {
             [once performOnce:^{
                 resolve(value);

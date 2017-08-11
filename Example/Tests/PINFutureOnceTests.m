@@ -1,5 +1,5 @@
 //
-//  PINOnceTests.m
+//  PINFutureOnceTests.m
 //  PINFuture
 //
 //  Created by Chris Danford on 12/14/16.
@@ -8,13 +8,13 @@
 
 // https://github.com/Specta/Specta
 
-#import "PINOnce.h"
+#import "PINFutureOnce.h"
 
-SpecBegin(PINOnceSpecs)
+SpecBegin(PINFutureOnceSpecs)
 
 describe(@"once", ^{
     it(@"only calls block once", ^{
-        PINOnce *once = [PINOnce new];
+        PINFutureOnce *once = [PINFutureOnce new];
         __block NSUInteger callCount = 0;
         [once performOnce:^{
             callCount++;
