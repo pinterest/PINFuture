@@ -14,7 +14,7 @@
 SpecBegin(PINFutureMapFlatMapSpecs)
 
 describe(@"flatMap", ^{
-    it(@"can return resolved promise", ^{
+    it(@"can return resolved future", ^{
         NSNumber *valueA = numberFixture();
         NSString *valueB = stringFixture();
         PINFuture<NSNumber *> *futureA = [PINFuture<NSNumber *> withValue:valueA];
@@ -24,7 +24,7 @@ describe(@"flatMap", ^{
         expectFutureToFulfillWith(self, futureB, valueB);
     });
 
-    it(@"can return rejected promise", ^{
+    it(@"can return rejected future", ^{
         NSString *valueA = stringFixture();
         NSError *errorB = errorFixture();
         PINFuture<NSString *> *futureA = [PINFuture<NSString *> withValue:valueA];
@@ -32,6 +32,16 @@ describe(@"flatMap", ^{
             return [PINFuture<NSString *> withError:errorB];
         }];
         expectFutureToRejectWith(self, futureB, errorB);
+    });
+
+    it(@"raises exception when nil is returned instead of a PINFuture", ^{
+        NSString *valueA = stringFixture();
+        PINFuture<NSString *> *futureA = [PINFuture<NSString *> withValue:valueA];
+        expect(^{
+            __unused PINFuture<NSString *> *futureB = [PINFutureMap<NSString *, NSString *> flatMap:futureA executor:[PINExecutor immediate] transform:^PINFuture<NSString *> * _Nonnull(NSString * _Nonnull fromValue) {
+                return nil;
+            }];
+        }).to.raiseAny();
     });
 });
 

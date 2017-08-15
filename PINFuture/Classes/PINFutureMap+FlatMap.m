@@ -9,6 +9,7 @@
 #import "PINFutureMap.h"
 
 #import "PINFuture.h"
+#import "PINError.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,12 +22,19 @@ NS_ASSUME_NONNULL_BEGIN
     return [PINFuture withBlock:^(void (^resolve)(id), void (^reject)(NSError *)) {
         [sourceFuture executor:executor success:^(id value) {
             PINFuture<id> *newFuture = transform(value);
-            NSAssert(newFuture != nil, @"returned future must not be nil");
-            [newFuture executor:executor success:^(id value) {
-                resolve(value);
-            } failure:^(NSError *error) {
+            NSAssert(newFuture != nil, @"A flatMap block returned nil, but it must return a PINFuture.");
+            if (newFuture == nil) {
+                NSError *error = [NSError errorWithDomain:PINFutureErrorDomain
+                                                     code:PINFutureErrorCodeNilReturnedInFlatMapError
+                                                 userInfo:nil];
                 reject(error);
-            }];
+            } else {
+                [newFuture executor:executor success:^(id value) {
+                    resolve(value);
+                } failure:^(NSError *error) {
+                    reject(error);
+                }];
+            }
         } failure:^(NSError *error) {
             reject(error);
         }];

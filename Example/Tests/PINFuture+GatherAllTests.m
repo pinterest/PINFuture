@@ -14,7 +14,7 @@
 SpecBegin(PINFutureGatherAllSpecs)
 
 describe(@"gatherAll", ^{
-    it(@"resolves if all source promises resolve", ^{
+    it(@"resolves if all source future resolve", ^{
         NSString *value1 = stringFixture();
         NSString *value2 = stringFixture();
         PINFuture<NSString *> *source1 = [PINFuture<NSString *> withValue:value1];
@@ -23,7 +23,7 @@ describe(@"gatherAll", ^{
         expectFutureToFulfillWith(self, arrayFuture, @[value1, value2]);
     });
 
-    it(@"rejects if any source promise rejects", ^{
+    it(@"rejects if any source future rejects", ^{
         NSString *value1 = stringFixture();
         NSError *error2 = errorFixture();
         PINFuture<NSString *> *source1 = [PINFuture<NSString *> withValue:value1];
