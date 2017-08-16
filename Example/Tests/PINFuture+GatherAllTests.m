@@ -1,5 +1,5 @@
 //
-//  UtilTests.m
+//  PINFuture+GatherAllTests.m
 //  PINFuture
 //
 //  Created by Chris Danford on 12/5/16.
@@ -14,7 +14,7 @@
 SpecBegin(PINFutureGatherAllSpecs)
 
 describe(@"gatherAll", ^{
-    it(@"resolves if all source future resolve", ^{
+    it(@"resolves if all source futures resolve", ^{
         NSString *value1 = stringFixture();
         NSString *value2 = stringFixture();
         PINFuture<NSString *> *source1 = [PINFuture<NSString *> withValue:value1];

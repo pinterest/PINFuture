@@ -227,6 +227,21 @@ PINFuture<NSArray<NSString *> *> *fileContentsFuture = [PINFuture<NSString *> ga
 }];
 ```
 
+#### `gatherSome`
+Experimental.  This API may change to improve type safety.
+```objc
+NSArray<NSString *> fileNames = @[@"a.txt", @"b.txt", @"c.txt"];
+NSArray<PINFuture<NSString *> *> *fileContentFutures = [fileNames map:^ PINFuture<NSString *> *(NSString *fileName) {
+    return [File readUTF8ContentsPath:fileName];
+}];
+PINFuture<NSArray *> *fileContentsOrNullFuture = [PINFuture<NSString *> gatherSome:fileContentFutures];
+[fileContentsFuture executor:[PINExecutor main] success:^(NSArray *fileContents) {
+    // fileContents is an array of either `NSString *` or `[NSNull null]` depending on whether the source future resolved or rejected.
+} failure:^(NSError *error) {
+    // This can't be reached.  If any of the source futures fails, there will be a `[NSNull null]` entry in the array.
+}];
+```
+
 ### Chaining side-effects (necessary evil)
 #### `chainSuccess:failure:`
 This is similar to `success:failure` except that a new Future is returned that does not fulfill or reject until the side-effect has been executed.  This should be used sparingly.  It should be rare that you want to have a side-effect, and even rarer to wait on a side-effect.

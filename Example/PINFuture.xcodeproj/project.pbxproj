@@ -23,6 +23,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* PINFutureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* PINFutureTests.m */; };
+		832DD8701F44950300F31888 /* PINFuture+GatherSomeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 832DD86E1F4492C900F31888 /* PINFuture+GatherSomeTests.m */; };
 		833B31EE1E1EF4B8002D0449 /* PINTaskMap+MapToValueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 833B31ED1E1EF4B8002D0449 /* PINTaskMap+MapToValueTests.m */; };
 		833B31F41E1F2B8C002D0449 /* PINTask+DoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 833B31F31E1F2B8C002D0449 /* PINTask+DoTests.m */; };
 		833B31FA1E1F6D0B002D0449 /* PINTask+DoAsyncTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 833B31F91E1F6D0B002D0449 /* PINTask+DoAsyncTests.m */; };
@@ -86,6 +87,7 @@
 		6003F5BB195388D20070C39A /* PINFutureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PINFutureTests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		781D0727B7DDED858FD00A64 /* Pods-PINFuture_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PINFuture_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PINFuture_Tests/Pods-PINFuture_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		832DD86E1F4492C900F31888 /* PINFuture+GatherSomeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PINFuture+GatherSomeTests.m"; sourceTree = "<group>"; };
 		833B31ED1E1EF4B8002D0449 /* PINTaskMap+MapToValueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PINTaskMap+MapToValueTests.m"; sourceTree = "<group>"; };
 		833B31F31E1F2B8C002D0449 /* PINTask+DoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PINTask+DoTests.m"; sourceTree = "<group>"; };
 		833B31F91E1F6D0B002D0449 /* PINTask+DoAsyncTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PINTask+DoAsyncTests.m"; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				83626F1B1DFA40DE001CDCC7 /* PINFuture+MapErrorTests.m */,
 				833DA7101DFA428700DCFACD /* PINFuture+FlatMapErrorTests.m */,
 				83626EF61DF5F5FA001CDCC7 /* PINFuture+GatherAllTests.m */,
+				832DD86E1F4492C900F31888 /* PINFuture+GatherSomeTests.m */,
 				83C7A6521E415DFB00953658 /* PINFuture+MapToValueTests.m */,
 				83626EF41DF5EA1F001CDCC7 /* PINFutureStressTests.m */,
 				83E1B2D71DF4C2730068B35F /* PINFutureMap+FlatMapTests.m */,
@@ -571,6 +574,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83E1B2D81DF4C2730068B35F /* PINFutureMap+FlatMapTests.m in Sources */,
+				832DD8701F44950300F31888 /* PINFuture+GatherSomeTests.m in Sources */,
 				8349E12C1E026E9600EB7EA3 /* PINTaskMap+FlatMapTests.m in Sources */,
 				83C7A6531E415DFB00953658 /* PINFuture+MapToValueTests.m in Sources */,
 				83C56B621DFF889100AAB9C4 /* PINTaskTests.m in Sources */,

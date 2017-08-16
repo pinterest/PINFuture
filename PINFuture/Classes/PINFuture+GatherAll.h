@@ -14,8 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PINFuture<ObjectType> (GatherAll)
 
 /**
- * From an array of Futures, create one new future that resolves with an array of the future values.
- * If any of the original futures reject, then the returned future rejects with the error of the first rejection.
+ * From an array of Futures, create one new future that resolves with an array of values.
+ * If any of the original futures reject, then the returned future rejects with the error of the earliest rejection.
  */
 + (PINFuture<NSArray<ObjectType> *> *)gatherAll:(NSArray<PINFuture<ObjectType> *> *)sourceFutures PIN_WARN_UNUSED_RESULT;
 
