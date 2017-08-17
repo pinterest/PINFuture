@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PINFuture'
-  s.version          = '4.1.0'
+  s.version          = '4.1.1'
   s.summary          = 'An Objective C future implementation that aims to provide maximal type safety.'
   s.description      = <<-DESC
 An Objective C future implementation that aims to provide maximal type safety.  It sticks close to Promises/A+
