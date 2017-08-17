@@ -8,7 +8,7 @@
 
 #import "PINFuture+FlatMapError.h"
 
-#import "PINError.h"
+#import "PINFutureError.h"
 
 @implementation PINFuture (FlatMapError)
 
@@ -21,11 +21,10 @@
         } failure:^(NSError * _Nonnull error) {
             // An error is given a chance to recover.
             PINFuture<id> *recoveredFuture = flatMapError(error);
-            NSAssert(recoveredFuture != nil, @"A flatMapError block returned nil, but it must return a PINFuture.");
+            NSString *reason = @"A flatMapError block returned nil, but it must return a PINFuture.";
+            NSAssert(recoveredFuture != nil, reason);
             if (recoveredFuture == nil) {
-                NSError *error = [NSError errorWithDomain:PINFutureErrorDomain
-                                                     code:PINFutureErrorCodeNilReturnedInFlatMapError
-                                                 userInfo:nil];
+                NSError *error = [PINFutureError errorWithReason:reason];
                 reject(error);
             } else {
                 [recoveredFuture executor:executor success:^(id  _Nonnull value) {
