@@ -4,7 +4,7 @@
 
 #import "PINCancelToken.h"
 #import "PINExecutor.h"
-#import "PINOnce.h"
+#import "PINFutureOnce.h"
 
 @interface PINCancelToken ()
     @property (nonatomic, strong) PINCancellationBlock cancellationBlock;
@@ -30,7 +30,7 @@
 
 - (PINCancelToken *)initWithExecutor:(id<PINExecutor>)executor andBlock:(PINCancellationBlock)block {
     if (self = [super init]) {
-        PINOnce *once = [[PINOnce alloc] init];
+        PINFutureOnce *once = [[PINFutureOnce alloc] init];
         self.cancellationBlock = ^{
             [executor execute:^{
                 [once performOnce:block];

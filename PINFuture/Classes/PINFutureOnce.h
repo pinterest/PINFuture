@@ -1,5 +1,5 @@
 //
-//  PINOnce.h
+//  PINFutureOnce.h
 //  Pods
 //
 //  Created by Chris Danford on 12/14/16.
@@ -10,7 +10,7 @@
 
 #import "PINDefines.h"
 
-@interface PINOnce : NSObject
+@interface PINFutureOnce : NSObject
 + (instancetype)new PIN_WARN_UNUSED_RESULT;
 - (void)performOnce:(dispatch_block_t)block;
 @end
