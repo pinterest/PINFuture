@@ -2,7 +2,7 @@ This is a work-in-progress and not ready for public consumption.
 
 # PINFuture
 
-[![CI Status](http://img.shields.io/travis/Chris Danford/PINFuture.svg?style=flat)](https://travis-ci.org/Chris Danford/PINFuture)
+[![CI Status](http://img.shields.io/travis/chrisdanford/PINFuture.svg?style=flat)](https://travis-ci.org/chrisdanford/PINFuture)
 [![Version](https://img.shields.io/cocoapods/v/PINFuture.svg?style=flat)](http://cocoapods.org/pods/PINFuture)
 [![License](https://img.shields.io/cocoapods/l/PINFuture.svg?style=flat)](http://cocoapods.org/pods/PINFuture)
 [![Platform](https://img.shields.io/cocoapods/p/PINFuture.svg?style=flat)](http://cocoapods.org/pods/PINFuture)
