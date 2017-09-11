@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation NSURLSession (PINFuture)
 
-- (PINPair<NSURLSessionDataTask *, PINFuture<PINNSURLSessionDataTaskResult *> *> *)pinfuture_dataTaskWithRequest:(NSURLRequest *)request;
+- (PINNSURLSessionDataTaskAndResult *)pinfuture_dataTaskWithRequest:(NSURLRequest *)request;
 {
     __block NSURLSessionDataTask *task;
     PINFuture<PINNSURLSessionDataTaskResult *> *future;
@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
         [task resume];
     }];
 
-    return [PINPair<NSURLSessionDataTask *, PINFuture<PINNSURLSessionDataTaskResult *> *> pairWithFirst:task second:future];
+    return [PINNSURLSessionDataTaskAndResult resultWithTask:task resultFuture:future];
 }
 
 @end

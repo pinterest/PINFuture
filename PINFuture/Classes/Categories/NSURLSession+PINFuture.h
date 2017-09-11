@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <Foundation/NSURLSession.h>
 
-#import "PINNSURLSessionDataTaskResult.h"
+#import "PINNSURLSessionDataTaskAndResult.h"
 #import "PINFuture.h"
-#import "PINPair.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Returns a Future that never rejects.  The value type has an error field.
  * that is set in non-exceptional cases such as 4xx response codes.
  */
-- (PINPair<NSURLSessionDataTask *, PINFuture<PINNSURLSessionDataTaskResult *> *> *)pinfuture_dataTaskWithRequest:(NSURLRequest *)request;
+- (PINNSURLSessionDataTaskAndResult *)pinfuture_dataTaskWithRequest:(NSURLRequest *)request;
 
 @end
 

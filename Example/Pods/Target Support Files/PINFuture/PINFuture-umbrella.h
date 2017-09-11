@@ -13,6 +13,7 @@
 #import "ALAssetsLibrary+PINFuture.h"
 #import "NSURLSession+PINFuture.h"
 #import "PHImageManager+PINFuture.h"
+#import "PINNSURLSessionDataTaskAndResult.h"
 #import "PINNSURLSessionDataTaskResult.h"
 #import "PINPHImageManagerImageDataResult.h"
 #import "PINCancelToken.h"
@@ -35,7 +36,6 @@
 #import "PINFutureMap+Map.h"
 #import "PINFutureMap.h"
 #import "PINFutureOnce.h"
-#import "PINPair.h"
 #import "PINTuple.h"
 
 FOUNDATION_EXPORT double PINFutureVersionNumber;
