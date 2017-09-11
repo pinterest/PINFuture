@@ -19,5 +19,7 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "PINFuture/Classes/**/*"
+  "source_files": "PINFuture/Classes/**/*",
+  "weak_frameworks": "Photos",
+  "frameworks": "Foundation"
 }

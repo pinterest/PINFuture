@@ -10,7 +10,6 @@
 #endif
 #endif
 
-#import "ALAssetsLibrary+PINFuture.h"
 #import "NSURLSession+PINFuture.h"
 #import "PHImageManager+PINFuture.h"
 #import "PINNSURLSessionDataTaskAndResult.h"

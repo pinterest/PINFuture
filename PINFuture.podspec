@@ -24,6 +24,6 @@ DESC
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'PINFuture/Classes/**/*'
-  s.weak_frameworks = 'Photos', 'AssetsLibrary'
+  s.weak_frameworks = 'Photos'
   s.frameworks = 'Foundation'
 end
