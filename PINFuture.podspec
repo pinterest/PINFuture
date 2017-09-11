@@ -16,7 +16,6 @@ conventions.
 DESC
 
   s.homepage         = 'https://github.com/chrisdanford/PINFuture'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Chris Danford' => 'chrisdanford@gmail.com' }
   s.source           = { :git => 'https://github.com/chrisdanford/PINFuture.git', :tag => s.version.to_s }
@@ -25,12 +24,6 @@ DESC
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'PINFuture/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'PINFuture' => ['PINFuture/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'PINFuture/Classes/public/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.weak_frameworks = 'Photos', 'AssetsLibrary'
+  s.frameworks = 'Foundation'
 end
