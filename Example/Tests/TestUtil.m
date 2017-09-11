@@ -34,33 +34,6 @@ void expectFutureToRejectWith(id testCase, PINFuture *future, NSError *expectedE
     });
 }
 
-void runTaskAndExpectToFulfillWith(id testCase, PINTask *task, id expectedValue) {
-    waitUntil(^(DoneCallback done) {
-        [[[task executor:[PINExecutor immediate] doSuccess:^(id  _Nonnull value) {
-            id self = testCase;
-            expect(value).to.equal(expectedValue);
-        } failure:^(NSError * _Nonnull error) {
-            NSCAssert(NO, @"Task should have succeeded but didn't.");
-        }] executor:[PINExecutor immediate] doCompletion:^{
-            done();
-        }] run];
-    });
-}
-
-void runTaskAndExpectToRejectWith(id testCase, PINTask *task, NSError *expectedError) {
-    waitUntil(^(DoneCallback done) {
-        [[[task executor:[PINExecutor immediate] doSuccess:^(id  _Nonnull value) {
-            NSCAssert(NO, @"Task should have failed but didn't.");
-        } failure:^(NSError * _Nonnull error) {
-            id self = testCase;
-            expect(error).to.equal(expectedError);
-        }] executor:[PINExecutor immediate] doCompletion:^{
-            done();
-        }] run];
-    });
-}
-
-
 static NSInteger counter = 0;
 
 NSNumber *numberFixture() {

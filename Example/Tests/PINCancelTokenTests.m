@@ -6,7 +6,6 @@
 //  Copyright © 2016 Pinterest. All rights reserved.
 //
 
-#import "PINTask.h"
 #import "TestUtil.h"
 
 // TODO: Do real cancel tests

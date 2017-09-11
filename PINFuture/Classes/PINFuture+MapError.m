@@ -8,8 +8,6 @@
 
 #import "PINFuture+MapError.h"
 
-#import "PINResult2.h"
-
 @implementation PINFuture (MapError)
 
 - (PINFuture<id> *)executor:(id<PINExecutor>)executor mapError:(id (^)(NSError *error))mapError

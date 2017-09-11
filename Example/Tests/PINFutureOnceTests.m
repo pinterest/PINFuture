@@ -9,6 +9,7 @@
 // https://github.com/Specta/Specta
 
 #import "PINFutureOnce.h"
+#import "TestUtil.h"
 
 SpecBegin(PINFutureOnceSpecs)
 
