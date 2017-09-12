@@ -17,8 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation PINNSURLSessionDataTaskAndResult
 
-+ (instancetype)resultWithData:(NSURLSessionDataTask *)task
-                      response:(PINFuture<PINNSURLSessionDataTaskResult *> *)resultFuture
++ (instancetype)resultWithTask:(NSURLSessionDataTask *)task
+                  resultFuture:(PINFuture<PINNSURLSessionDataTaskResult *> *)resultFuture
 {
     PINNSURLSessionDataTaskAndResult *taskAndResult = [[PINNSURLSessionDataTaskAndResult alloc] init];
     taskAndResult.task = task;
