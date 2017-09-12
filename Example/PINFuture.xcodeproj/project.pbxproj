@@ -24,7 +24,6 @@
 		6003F5BC195388D20070C39A /* PINFutureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* PINFutureTests.m */; };
 		832DD8701F44950300F31888 /* PINFuture+GatherSomeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 832DD86E1F4492C900F31888 /* PINFuture+GatherSomeTests.m */; };
 		833DA7111DFA428700DCFACD /* PINFuture+FlatMapErrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 833DA7101DFA428700DCFACD /* PINFuture+FlatMapErrorTests.m */; };
-		8349E1101E02165900EB7EA3 /* PINDispatchProxyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8349E10E1E0215FF00EB7EA3 /* PINDispatchProxyTests.m */; };
 		834AF8A51F6678990083A27F /* PINFutureOnceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 834AF8A31F6678250083A27F /* PINFutureOnceTests.m */; };
 		836101B61E3C2BB30027C0A2 /* PINFuture+ChainSideEffectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 836101B51E3C2BB30027C0A2 /* PINFuture+ChainSideEffectTests.m */; };
 		836101C31E3D4EA10027C0A2 /* PINFuture+CompletionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 836101C21E3D4EA10027C0A2 /* PINFuture+CompletionTests.m */; };
@@ -78,7 +77,6 @@
 		781D0727B7DDED858FD00A64 /* Pods-PINFuture_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PINFuture_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PINFuture_Tests/Pods-PINFuture_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		832DD86E1F4492C900F31888 /* PINFuture+GatherSomeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PINFuture+GatherSomeTests.m"; sourceTree = "<group>"; };
 		833DA7101DFA428700DCFACD /* PINFuture+FlatMapErrorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PINFuture+FlatMapErrorTests.m"; sourceTree = "<group>"; };
-		8349E10E1E0215FF00EB7EA3 /* PINDispatchProxyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PINDispatchProxyTests.m; sourceTree = "<group>"; };
 		834AF8A31F6678250083A27F /* PINFutureOnceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PINFutureOnceTests.m; sourceTree = "<group>"; };
 		836101B51E3C2BB30027C0A2 /* PINFuture+ChainSideEffectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PINFuture+ChainSideEffectTests.m"; sourceTree = "<group>"; };
 		836101C21E3D4EA10027C0A2 /* PINFuture+CompletionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PINFuture+CompletionTests.m"; sourceTree = "<group>"; };
@@ -188,7 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				09E85BBC1E171B1A00238CEB /* PINCancelTokenTests.m */,
-				8349E10E1E0215FF00EB7EA3 /* PINDispatchProxyTests.m */,
 				6003F5BB195388D20070C39A /* PINFutureTests.m */,
 				836101B51E3C2BB30027C0A2 /* PINFuture+ChainSideEffectTests.m */,
 				836101C21E3D4EA10027C0A2 /* PINFuture+CompletionTests.m */,
@@ -571,7 +568,6 @@
 				834AF8A51F6678990083A27F /* PINFutureOnceTests.m in Sources */,
 				833DA7111DFA428700DCFACD /* PINFuture+FlatMapErrorTests.m in Sources */,
 				83626F121DF96773001CDCC7 /* PINFutureMap+MapTests.m in Sources */,
-				8349E1101E02165900EB7EA3 /* PINDispatchProxyTests.m in Sources */,
 				09E85BBE1E171B2400238CEB /* PINCancelTokenTests.m in Sources */,
 				83626EF51DF5EA1F001CDCC7 /* PINFutureStressTests.m in Sources */,
 				836101C31E3D4EA10027C0A2 /* PINFuture+CompletionTests.m in Sources */,

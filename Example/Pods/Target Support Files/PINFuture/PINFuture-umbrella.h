@@ -17,7 +17,6 @@
 #import "PINPHImageManagerImageDataResult.h"
 #import "PINCancelToken.h"
 #import "PINDefines.h"
-#import "PINDispatchProxy.h"
 #import "PINExecutor.h"
 #import "PINFuture+ChainSideEffect.h"
 #import "PINFuture+Completion.h"
@@ -35,7 +34,6 @@
 #import "PINFutureMap+Map.h"
 #import "PINFutureMap.h"
 #import "PINFutureOnce.h"
-#import "PINTuple.h"
 
 FOUNDATION_EXPORT double PINFutureVersionNumber;
 FOUNDATION_EXPORT const unsigned char PINFutureVersionString[];
