@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Future improvement ideas:
  * - Support progress and cancellation.
  */
-@interface PINFuture<ObjectType> : NSObject
+@interface PINFuture<__covariant ObjectType> : NSObject
 
 - (instancetype)init NS_UNAVAILABLE;
 
