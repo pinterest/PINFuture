@@ -1,5 +1,3 @@
-This is a work-in-progress and not ready for public consumption.
-
 # PINFuture
 
 [![CI Status](http://img.shields.io/travis/chrisdanford/PINFuture.svg?style=flat)](https://travis-ci.org/chrisdanford/PINFuture)
