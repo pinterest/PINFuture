@@ -15,7 +15,7 @@ An Objective C implementation of the Future async value pattern that aims to pro
 DESC
 
   s.homepage         = 'https://github.com/pinterest/PINFuture'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.license          = { :type => 'Apache License, Version 2.0', :file => 'LICENSE' }
   s.author           = { 'Chris Danford' => 'chrisdanford@gmail.com' }
   s.source           = { :git => 'https://github.com/pinterest/PINFuture.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/PinterestEng'
