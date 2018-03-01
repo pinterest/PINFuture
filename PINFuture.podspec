@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PINFuture'
-  s.version          = '5.1.0'
-  s.summary          = 'An Objective C implementation of the Future async value pattern that aims to provide maximal type safety.'
+  s.version          = '5.1.1'
+  s.summary          = 'An Objective C implementation of the Future pattern that aims to provide maximal type safety.'
   s.description      = <<-DESC
 An Objective C implementation of the Future async value pattern that aims to provide maximal type safety.
 DESC
