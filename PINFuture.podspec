@@ -9,17 +9,16 @@
 Pod::Spec.new do |s|
   s.name             = 'PINFuture'
   s.version          = '5.1.0'
-  s.summary          = 'An Objective C future implementation that aims to provide maximal type safety.'
+  s.summary          = 'An Objective C implementation of the Future async value pattern that aims to provide maximal type safety.'
   s.description      = <<-DESC
-An Objective C future implementation that aims to provide maximal type safety.  It sticks close to Promises/A+
-conventions.
+An Objective C implementation of the Future async value pattern that aims to provide maximal type safety.
 DESC
 
-  s.homepage         = 'https://github.com/chrisdanford/PINFuture'
+  s.homepage         = 'https://github.com/pinterest/PINFuture'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Chris Danford' => 'chrisdanford@gmail.com' }
-  s.source           = { :git => 'https://github.com/chrisdanford/PINFuture.git', :tag => s.version.to_s }
-  s.social_media_url = 'https://twitter.com/chrisdanford'
+  s.source           = { :git => 'https://github.com/pinterest/PINFuture.git', :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/PinterestEng'
 
   s.ios.deployment_target = '8.0'
 
