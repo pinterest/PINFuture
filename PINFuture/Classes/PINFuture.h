@@ -55,6 +55,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)executor:(id<PINExecutor>)executor success:(nullable void(^)(ObjectType value))success failure:(nullable void(^)(NSError *error))failure;
 
+/**
+ * Enter the given dispatch group now, and
+ * leave when the future completes. If the future
+ * is already completed, this method has no effect.
+ */
+- (void)addToDispatchGroup:(dispatch_group_t)dispatchGroup;
+
 @end
 
 NS_ASSUME_NONNULL_END

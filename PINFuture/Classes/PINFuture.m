@@ -32,7 +32,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 
 @property (nonatomic) NSLock *propertyLock;
 // TODO(chris): Use PINResult here.
-@property (nonatomic) enum PINFutureState state;
+@property (nonatomic) PINFutureState state;
 @property (nonatomic) id value;
 @property (nonatomic) NSError *error;
 @property (nonatomic, nullable) NSMutableArray<PINFutureCallback *> *callbacks;  // If nil, there are no callbacks
@@ -102,15 +102,33 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     callback.success = success;
     callback.failure = failure;
     [self.propertyLock lock];
-    // Lazily instantiate self.callbacks.  Lots of futures will never have any callbacks.
-    if (self.callbacks == nil) {
-        self.callbacks = [NSMutableArray new];
-    }
-
-    [self.callbacks addObject:callback];
+    [self locked_attachCallback:callback];
     [self.propertyLock unlock];
 
     [self tryFlushCallbacks];
+}
+
+- (void)addToDispatchGroup:(dispatch_group_t)dispatchGroup
+{
+    [self.propertyLock lock];
+    if (self.state == PINFutureStatePending) {
+        // We're pending. Enter the group now,
+        // and attach a callback to leave the group
+        // on completion.
+        dispatch_group_enter(dispatchGroup);
+        PINFutureCallback *callback = [[PINFutureCallback alloc] init];
+        callback.executor = PINExecutor.immediate;
+        callback.success = ^(__unused id value) {
+            dispatch_group_leave(dispatchGroup);
+        };
+        callback.failure = ^(__unused NSError * error) {
+            dispatch_group_leave(dispatchGroup);
+        };
+        [self locked_attachCallback:callback];
+    } else {
+        // nop, we're already finished.
+    }
+    [self.propertyLock unlock];
 }
 
 #pragma mark - internal
@@ -128,6 +146,16 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     [self.propertyLock unlock];
 
     [self tryFlushCallbacks];
+}
+
+- (void)locked_attachCallback:(PINFutureCallback *)callback
+{
+    // Lazily instantiate self.callbacks.  Lots of futures will never have any callbacks.
+    if (self.callbacks == nil) {
+        self.callbacks = [NSMutableArray new];
+    }
+    
+    [self.callbacks addObject:callback];
 }
 
 - (void)tryFlushCallbacks
