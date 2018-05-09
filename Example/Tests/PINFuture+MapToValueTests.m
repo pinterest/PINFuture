@@ -19,14 +19,6 @@ describe(@"mapToValue", ^{
         PINFuture<NSString *> *mapped = [PINFuture<NSString *> map:source toValue:stringValue];
         expectFutureToFulfillWith(self, mapped, stringValue);
     });
-
-    it(@"can mapToNoValue", ^{
-        NSString *value = stringFixture();
-        PINFuture<NSString *> *source = [PINFuture<NSString *> withValue:value];
-        PINFutureNoValue *mapped = [source mapToNoValue];
-        
-        expectFutureToFulfillWith(self, mapped, [NSNull null]);
-    });
 });
 
 SpecEnd
