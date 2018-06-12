@@ -1,6 +1,6 @@
 //
-//  PINExecution.m
-//  Pods
+//  PINExecutor.m
+//  PINFuture
 //
 //  Created by Chris Danford on 12/7/16.
 //  Copyright (c) 2016 Pinterest. All rights reserved.
@@ -78,6 +78,13 @@ static inline BOOL isCurrentThreadMain()
 {
     return [[PINExecutor alloc] initWithExecutorBlock:^(dispatch_block_t block) {
         dispatch_async(queue, block);
+    }];
+}
+
++ (id<PINExecutor>)operationQueue:(NSOperationQueue *)operationQueue
+{
+    return [[PINExecutor alloc] initWithExecutorBlock:^(dispatch_block_t block) {
+        [operationQueue addOperationWithBlock:block];
     }];
 }
 
