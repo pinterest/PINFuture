@@ -71,6 +71,7 @@ NS_ASSUME_NONNULL_END
 #import "PINFuture+MapToValue.h"
 #import "PINFutureMap.h"
 #import "PINFutureMap+Map.h"
+#import "PINFuture+NoValue.h"
 #import "PINFutureMap+FlatMap.h"
 
 #import "PINFuture+Generated.h"
