@@ -33,8 +33,8 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
 @property (nonatomic) NSLock *propertyLock;
 // TODO(chris): Use PINResult here.
 @property (nonatomic) PINFutureState state;
-@property (nonatomic) id value;
-@property (nonatomic) NSError *error;
+@property (nonatomic, nullable) id value;
+@property (nonatomic, nullable) NSError *error;
 @property (nonatomic, nullable) NSMutableArray<PINFutureCallback *> *callbacks;  // If nil, there are no callbacks
 
 @end
@@ -50,7 +50,7 @@ typedef NS_ENUM(NSUInteger, PINFutureState) {
     return self;
 }
 
-- (void)setValue:(id)value
+- (void)setValue:(nullable id)value
 {
     NSAssert([value isKindOfClass:[PINFuture class]] == NO, @"You should not fulfill a PINFuture with another PINFuture.  This is almost definintely a bug.");
     _value = value;

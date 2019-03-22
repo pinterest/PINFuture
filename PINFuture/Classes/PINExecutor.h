@@ -1,6 +1,6 @@
 //
 //  PINExecutor.h
-//  Pods
+//  PINFuture
 //
 //  Created by Chris Danford on 12/7/16.
 //  Copyright (c) 2016 Pinterest. All rights reserved.
@@ -45,6 +45,11 @@ NS_ASSUME_NONNULL_BEGIN
  * Disaptches on a specified queue.
  */
 + (id<PINExecutor>)queue:(dispatch_queue_t)queue;
+
+/**
+ * Disaptches on a specified dispatch queue.
+ */
++ (id<PINExecutor>)operationQueue:(NSOperationQueue *)operationQueue;
 
 @end
 

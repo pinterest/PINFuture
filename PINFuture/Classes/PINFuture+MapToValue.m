@@ -19,9 +19,4 @@
     }];
 }
 
-- (PINFutureNoValue *)mapToNoValue
-{
-    return [PINFuture<NSNull *> map:self toValue:[NSNull null]];
-}
-
 @end
