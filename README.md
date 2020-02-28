@@ -1,9 +1,9 @@
 # PINFuture
 
-[![CI Status](http://img.shields.io/travis/pinterest/PINFuture.svg?style=flat)](https://travis-ci.org/pinterest/PINFuture)
 [![Version](https://img.shields.io/cocoapods/v/PINFuture.svg?style=flat)](http://cocoapods.org/pods/PINFuture)
 [![License](https://img.shields.io/cocoapods/l/PINFuture.svg?style=flat)](http://cocoapods.org/pods/PINFuture)
 [![Platform](https://img.shields.io/cocoapods/p/PINFuture.svg?style=flat)](http://cocoapods.org/pods/PINFuture)
+[![Build status](https://github.com/pinterest/PINFuture/workflows/CI/badge.svg)](https://github.com/pinterest/PINFuture/actions?query=workflow%3ACI+branch%3Amaster)
 
 ## Installation
 
