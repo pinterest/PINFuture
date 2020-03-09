@@ -252,6 +252,53 @@ userFuture = [userFuture executor:[PINExecutor main] chainSuccess:^(User *user) 
 return userFuture;
 ```
 
+### Pending futures
+#### `PINFuturePending` with `fulfillWithValue:` or `rejectWithError:`
+In case you need to wait for another class or method to complete a flow, not an async block, you can use `PINFuturePending`. This is a class that holds an instance of `PINFuture` you can resolve it manually via `fulfillWithValue:` or `rejectWithError:`. A specific case where this would be useful is wrapping a delegate, in which you are waiting for a delegate method to be called to resolve the future. To chain success and failure blocks while the future is pending, simply chain using `executor:success:failure` (or something equivalent) onto the future returned from `future` getter.
+
+Use this sparingly, because it can lead to tricky retain cycles holding the future.
+
+```objc
+
+// Note: The code below does not contain the full implementation needed for a complete Google sign in flow.
+@interface SignInViewController: UIViewController<GIDSignInDelegate>
+
+@property (nonatomic, strong) PINFuturePending *futurePending;
+
+@end
+
+@implementation SignInViewController
+
+- (void)startSignIn
+{
+    self.futurePending = [[PINFuturePending alloc] init];
+
+    // Chain success and failure blocks
+    [self.futurePending.future executor:[PINExecutor main] success:^(GIDGoogleUser *user) {
+        // Handle success
+    } failure:^(NSError *error) {
+        // Handle error
+    }];
+
+    // Start sign in flow
+    GIDSignIn *signIn = [GIDSignIn sharedInstance];
+    signIn.delegate = self;
+    [signIn signIn];
+}
+
+// GIDSignInDelegate protocol
+- (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error
+{
+    if (error) {
+        [self.futurePending rejectWithError:error];
+    } else {
+        [self.futurePending fulfillWithValue:user];
+    }
+}
+
+@end
+```
+
 ### Convenience methods (experimental)
 #### `executeOnMain`/`executeOnBackground`
 We've observed that application code will almost always call with either `executor:[PINExecutor main]` or `executor:[PINExecutor background]`.  For every method that takes an `executor:` there are 2 variations of that method, `executeOnMain` and `executeOnBackground`, that are slightly more concise (shorter by 22 characters).
