@@ -43,6 +43,8 @@
 		4861F2FFD5A4306E7B7BD3CD0D8199AC /* EXPMatchers+beCloseTo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B6DF8F89EC26F944197244B9F2AAB15 /* EXPMatchers+beCloseTo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4A37B359C424D02C8EEEFD69B99DCA26 /* PINFuture+NoValue.h in Headers */ = {isa = PBXBuildFile; fileRef = D55931D32B8706E43020663E0A6B85D2 /* PINFuture+NoValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4C0C5C4ED95E8B33E094C167F11406D3 /* PINFutureMap+FlatMap.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D2E0866E397B6A71FE30D65C6D27A0 /* PINFutureMap+FlatMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4C3566902415CED80066B985 /* PINFuturePending.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C35668B2415CAF10066B985 /* PINFuturePending.m */; };
+		4C3566912415CEE50066B985 /* PINFuturePending.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C35668C2415CAF10066B985 /* PINFuturePending.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CA4F8F64565882DCFA174872749C0EF /* EXPFloatTuple.h in Headers */ = {isa = PBXBuildFile; fileRef = 17B271C769948413B2D6A2FA5FA661F5 /* EXPFloatTuple.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4DB3DEB85279EF6A89A444ED524C5794 /* PINFutureError.h in Headers */ = {isa = PBXBuildFile; fileRef = A702BEA149CA0C0B1D16D1543FFB1695 /* PINFutureError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E847CF363DE065FEE9199DB8B93539A /* Pods-PINFuture_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B5FD63D2E4FEC4AB685C350DCA82C04 /* Pods-PINFuture_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -259,13 +261,15 @@
 		408EA78FA928332DAE21B1527BCC7A2F /* EXPMatchers+beTruthy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+beTruthy.m"; path = "Expecta/Matchers/EXPMatchers+beTruthy.m"; sourceTree = "<group>"; };
 		421FE500A9187876B4FF5E1AC37FF8F8 /* PINCancelToken.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PINCancelToken.m; path = PINFuture/Classes/PINCancelToken.m; sourceTree = "<group>"; };
 		42EC02837F7465B7AED8E1A256D57C91 /* EXPMatchers+beLessThan.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "EXPMatchers+beLessThan.h"; path = "Expecta/Matchers/EXPMatchers+beLessThan.h"; sourceTree = "<group>"; };
-		458FF628ABB30E15B44509E9F3BE6278 /* Specta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Specta.framework; path = Specta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		458FF628ABB30E15B44509E9F3BE6278 /* Specta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Specta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46895880D90CD5824F96A4B317B3D643 /* PINFuture+Generated.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "PINFuture+Generated.h"; path = "PINFuture/Classes/PINFuture+Generated.h"; sourceTree = "<group>"; };
 		46C0AC672CE629FD48966066D6AD5040 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		488BEC827A7195DF7F8B4F3E0188DE6C /* PINFuture.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINFuture.h; path = PINFuture/Classes/PINFuture.h; sourceTree = "<group>"; };
 		4A7BD8B745B3AA3E6399DEAC3D0764D3 /* PINFutureMap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINFutureMap.h; path = PINFuture/Classes/PINFutureMap.h; sourceTree = "<group>"; };
 		4ACECC8C59B0FB978AEBD7386E7D98B4 /* Pods-PINFuture_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PINFuture_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		4AE132E83EAFF2385E15721B5481133E /* PINFuture+MapError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "PINFuture+MapError.m"; path = "PINFuture/Classes/PINFuture+MapError.m"; sourceTree = "<group>"; };
+		4C35668B2415CAF10066B985 /* PINFuturePending.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PINFuturePending.m; path = PINFuture/Classes/PINFuturePending.m; sourceTree = "<group>"; };
+		4C35668C2415CAF10066B985 /* PINFuturePending.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PINFuturePending.h; path = PINFuture/Classes/PINFuturePending.h; sourceTree = "<group>"; };
 		4C9A24D5A30B334EC795FE880AF4E460 /* PINFuture+GatherSome.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "PINFuture+GatherSome.h"; path = "PINFuture/Classes/PINFuture+GatherSome.h"; sourceTree = "<group>"; };
 		4F67D8E8E16F0E77A2D4E5F714CEBC41 /* EXPBlockDefinedMatcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EXPBlockDefinedMatcher.m; path = Expecta/EXPBlockDefinedMatcher.m; sourceTree = "<group>"; };
 		51F770E0A0B3B0D2789D92A52AD3ABAE /* EXPMatchers+conformTo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+conformTo.m"; path = "Expecta/Matchers/EXPMatchers+conformTo.m"; sourceTree = "<group>"; };
@@ -679,6 +683,8 @@
 		BB62923D7E3E81D3CA2CDEFB16A6B3F3 /* PINFuture */ = {
 			isa = PBXGroup;
 			children = (
+				4C35668C2415CAF10066B985 /* PINFuturePending.h */,
+				4C35668B2415CAF10066B985 /* PINFuturePending.m */,
 				66A429EB2DB5EC25EAC17CB8B090ACB0 /* PINCancelToken.h */,
 				421FE500A9187876B4FF5E1AC37FF8F8 /* PINCancelToken.m */,
 				C21C28CF4A94B7820B53A56A351A6CBC /* PINDefines.h */,
@@ -888,6 +894,7 @@
 				4C0C5C4ED95E8B33E094C167F11406D3 /* PINFutureMap+FlatMap.h in Headers */,
 				6EF992C92745DFF50415126C9D39C694 /* PINFutureMap+Map.h in Headers */,
 				62F98C1B2D0A67FEAE4D118C6C17B27E /* PINFutureMap.h in Headers */,
+				4C3566912415CEE50066B985 /* PINFuturePending.h in Headers */,
 				A76C7CA427E551D8A8073CA27FF68EDF /* PINFutureOnce.h in Headers */,
 				33FE85A607B6BF88496A7BF492C95DE7 /* PINNSURLSessionDataTaskAndResult.h in Headers */,
 				88B0B08049E38B123C3BA87F70D2F1D9 /* PINNSURLSessionDataTaskResult.h in Headers */,
@@ -1086,6 +1093,7 @@
 				3040A498AE5250B056D97CDAA183E727 /* PINFutureMap+FlatMap.m in Sources */,
 				F6A2DD8D79CCAB11E23C62DD21E886CE /* PINFutureMap+Map.m in Sources */,
 				596F40BEE865DC376C08F65D27661326 /* PINFutureMap.m in Sources */,
+				4C3566902415CED80066B985 /* PINFuturePending.m in Sources */,
 				B4EBC8C8DE912F576C42BCCC5493987B /* PINFutureOnce.m in Sources */,
 				E254D614795DB0905C8E2806E327844F /* PINNSURLSessionDataTaskAndResult.m in Sources */,
 				DF696224205DB2B079723052FCF8A803 /* PINNSURLSessionDataTaskResult.m in Sources */,

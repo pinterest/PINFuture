@@ -13,7 +13,7 @@
 
 - (PINFuture<ObjectType> *)future;
 
-- (void)fulfillWithValue:(id)value;
+- (void)fulfillWithValue:(ObjectType)value;
 - (void)rejectWithError:(NSError *)error;
 
 @end

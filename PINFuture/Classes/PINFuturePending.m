@@ -27,23 +27,39 @@
     return self;
 }
 
-- (PINFuture *)future
+- (PINFuture<id> *)future
 {
     return self.pendingFuture;
 }
 
 - (void)fulfillWithValue:(id)value
 {
+    NSParameterAssert(value != nil);
+    NSParameterAssert([value isKindOfClass:[NSError class]] == NO);
+
     if (self.resolve) {
         self.resolve(value);
+    } else {
+        NSAssert(NO, @"Underlying future has already been resolved.");
     }
+
+    self.resolve = nil;
+    self.reject = nil;
 }
 
 - (void)rejectWithError:(NSError *)error
 {
+    NSParameterAssert(error != nil);
+    NSParameterAssert([error isKindOfClass:[NSError class]]);
+
     if (self.reject) {
         self.reject(error);
+    } else {
+        NSAssert(NO, @"Underlying future has already been resolved.");
     }
+
+    self.resolve = nil;
+    self.reject = nil;
 }
 
 @end
