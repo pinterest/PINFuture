@@ -36,11 +36,10 @@
 {
     NSParameterAssert(value != nil);
     NSParameterAssert([value isKindOfClass:[NSError class]] == NO);
+    NSAssert(self.resolve, @"Underlying future has already been resolved.");
 
     if (self.resolve) {
         self.resolve(value);
-    } else {
-        NSAssert(NO, @"Underlying future has already been resolved.");
     }
 
     self.resolve = nil;
@@ -51,11 +50,10 @@
 {
     NSParameterAssert(error != nil);
     NSParameterAssert([error isKindOfClass:[NSError class]]);
+    NSAssert(self.reject, @"Underlying future has already been resolved.");
 
     if (self.reject) {
         self.reject(error);
-    } else {
-        NSAssert(NO, @"Underlying future has already been resolved.");
     }
 
     self.resolve = nil;
