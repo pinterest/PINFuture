@@ -262,7 +262,6 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				8BE011059005F372199CA421 /* [CP] Embed Pods Frameworks */,
-				A3C652621DDBC72DC05E1C5D /* [CP] Copy Pods Resources */,
 				E81DC4278D39100DC8064B63 /* 📦 Embed Pods Frameworks */,
 				80C863D0009AEFE7FEECADCE /* 📦 Copy Pods Resources */,
 			);
@@ -285,7 +284,6 @@
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
 				07F1E04CFA889C4C6FB65FB2 /* [CP] Embed Pods Frameworks */,
-				0C84E192F7D747E3F2757856 /* [CP] Copy Pods Resources */,
 				681F5639130DB43525D15BB2 /* 📦 Embed Pods Frameworks */,
 				005B9CC2C7CA98AD3004ACC1 /* 📦 Copy Pods Resources */,
 			);
@@ -377,7 +375,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PINFuture_Tests/Pods-PINFuture_Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PINFuture_Tests/Pods-PINFuture_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/PINFuture/PINFuture.framework",
 				"${BUILT_PRODUCTS_DIR}/Expecta/Expecta.framework",
 				"${BUILT_PRODUCTS_DIR}/Specta/Specta.framework",
@@ -390,22 +388,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PINFuture_Tests/Pods-PINFuture_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		0C84E192F7D747E3F2757856 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PINFuture_Tests/Pods-PINFuture_Tests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PINFuture_Tests/Pods-PINFuture_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1BDE8456B130AFB191B3C499 /* [CP] Check Pods Manifest.lock */ = {
@@ -492,7 +475,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PINFuture_Example/Pods-PINFuture_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PINFuture_Example/Pods-PINFuture_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/PINFuture/PINFuture.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -501,22 +484,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PINFuture_Example/Pods-PINFuture_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A3C652621DDBC72DC05E1C5D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PINFuture_Example/Pods-PINFuture_Example-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PINFuture_Example/Pods-PINFuture_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E81DC4278D39100DC8064B63 /* 📦 Embed Pods Frameworks */ = {

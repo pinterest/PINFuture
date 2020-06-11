@@ -36,6 +36,7 @@
 #import "PINFutureMap+Map.h"
 #import "PINFutureMap.h"
 #import "PINFutureOnce.h"
+#import "PINFuturePending.h"
 
 FOUNDATION_EXPORT double PINFutureVersionNumber;
 FOUNDATION_EXPORT const unsigned char PINFutureVersionString[];
