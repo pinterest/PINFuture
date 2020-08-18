@@ -173,8 +173,8 @@ PINFuture<NSNumber *> fibonacciResultFuture = [PINFuture<NSNumber *> executor:[P
 In order to achieve type safety for an operation like `map` that converts from one type of value to another type, we have to jump through some hoops because of Objective-C's rudimentary support for generics.  `map` and `flatMap` are class methods on the class `PINFutureMap`.  The `PINFutureMap` class has two type parameters: `FromType` and `ToType`.
 
 #### Error handling with transformations
-- `map` and `flatMap` only preform a transformation is the source Future is *fulfilled*.  If the source Future is *rejected*, then the original error is simply passed through to the return value.
-- `mapError` and `flatMapError` only preform a transformation is the source Future is *rejected*.  If the source Future is *fulfilled*, then the original value is simply passed through to the return value.
+- `map` and `flatMap` only preform a transformation if the source Future is *fulfilled*.  If the source Future is *rejected*, then the original error is simply passed through to the return value.
+- `mapError` and `flatMapError` only preform a transformation if the source Future is *rejected*.  If the source Future is *fulfilled*, then the original value is simply passed through to the return value.
 
 #### `map`
 ```objc
