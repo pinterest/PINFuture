@@ -11,8 +11,6 @@
 
 #import <PINFuture/PINNSURLSessionDataTaskAndResult.h>
 
-@class PINNSURLSessionDataTaskAndResult;
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSURLSession (PINFuture)
