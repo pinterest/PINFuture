@@ -8,7 +8,7 @@
 
 #import "PINFuture+MapToValue.h"
 
-#import "PINFutureMap.h"
+#import "PINFutureMap+Map.h"
 
 @implementation PINFuture (MapToValue)
 

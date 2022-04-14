@@ -6,10 +6,8 @@
 //
 //
 
-#import <Foundation/Foundation.h>
-
-#import "PINFuture.h"
-#import "PINNSURLSessionDataTaskResult.h"
+#import <PINFuture/PINFutureDefinition.h>
+#import <PINFuture/PINNSURLSessionDataTaskResult.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

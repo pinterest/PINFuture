@@ -5,10 +5,9 @@
 //  Created by Chris Danford on 1/16/17.
 //
 
-#import <Foundation/Foundation.h>
-
-#import "PINCancelToken.h"
-#import "PINFuture.h"
+#import <PINFuture/PINFutureDefinition.h>
+#import <PINFuture/PINDefines.h>
+#import <PINFuture/PINCancelToken.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

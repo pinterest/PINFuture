@@ -6,11 +6,10 @@
 //  Copyright © 2016 Pinterest. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
 
-#import "PINFuture.h"
-#import "PINPHImageManagerImageDataResult.h"
+#import <PINFuture/PINFutureDefinition.h>
+#import <PINFuture/PINPHImageManagerImageDataResult.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -5,7 +5,7 @@
 //  Created by Ray Cho on 2/20/20.
 //
 
-#import "PINFuture.h"
+#import <PINFuture/PINFutureDefinition.h>
 
 @interface PINFuturePending<ObjectType> : NSObject
 

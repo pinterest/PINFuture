@@ -6,9 +6,9 @@
 //
 //
 
-#import <Foundation/Foundation.h>
-
-#import "PINFuture.h"
+#import <PINFuture/PINFutureDefinition.h>
+#import <PINFuture/PINDefines.h>
+#import <PINFuture/PINFutureMap.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

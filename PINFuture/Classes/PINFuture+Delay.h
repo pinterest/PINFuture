@@ -5,9 +5,7 @@
 //  Created by Chris Danford on 4/16/18.
 //
 
-#import "PINFuture.h"
-
-#import "PINFuture+MapToValue.h"
+#import <PINFuture/PINFuture+MapToValue.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -4,7 +4,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PINExecutor.h"
+#import <PINFuture/PINExecutor.h>
 
 typedef dispatch_block_t PINCancellationBlock;
 

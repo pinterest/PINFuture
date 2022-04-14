@@ -7,6 +7,8 @@
 //
 
 #import "PINFuture+GatherSome.h"
+#import "PINFuture+MapError.h"
+#import "PINFuture+GatherAll.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PINDefines.h"
+#import <PINFuture/PINDefines.h>
 
 @interface PINFutureOnce : NSObject
 + (instancetype)new PIN_WARN_UNUSED_RESULT;
