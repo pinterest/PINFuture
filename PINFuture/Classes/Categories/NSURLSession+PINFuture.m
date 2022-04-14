@@ -7,6 +7,7 @@
 //
 
 #import "NSURLSession+PINFuture.h"
+#import "PINFutureDefinition.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

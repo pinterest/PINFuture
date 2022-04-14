@@ -5,9 +5,7 @@
 //  Created by Chris Danford on 4/16/18.
 //
 
-#import <Foundation/Foundation.h>
-
-#import <PINFuture/PINFuture.h>
+#import <PINFuture/PINFutureDefinition.h>
 
 /**
  * A Future that has no meaningful value.  Technically, it does have a value (an NSNull).

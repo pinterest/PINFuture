@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-#import <PINFuture/PINFuture.h>
 #import <PINFuture/PINFutureMap.h>
+#import <PINFuture/PINFutureDefinition.h>
+#import <PINFuture/PINDefines.h>
+#import <PINFuture/PINExecutor.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

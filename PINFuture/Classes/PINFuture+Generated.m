@@ -6,6 +6,11 @@
 //
 
 #import "PINFuture+Generated.h"
+#import "PINFuture+Completion.h"
+#import "PINFuture+Dispatch.h"
+#import "PINFuture+ChainSideEffect.h"
+#import "PINFutureMap+Map.h"
+#import "PINFutureMap+FlatMap.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

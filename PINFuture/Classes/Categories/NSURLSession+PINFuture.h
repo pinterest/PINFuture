@@ -10,7 +10,6 @@
 #import <Foundation/NSURLSession.h>
 
 #import <PINFuture/PINNSURLSessionDataTaskAndResult.h>
-#import <PINFuture/PINFuture.h>
 
 @class PINNSURLSessionDataTaskAndResult;
 

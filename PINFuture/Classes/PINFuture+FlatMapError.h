@@ -6,7 +6,8 @@
 //  Copyright (c) 2016 Pinterest. All rights reserved.
 //
 
-#import <PINFuture/PINFuture.h>
+#import <PINFuture/PINFutureDefinition.h>
+#import <PINFuture/PINDefines.h>
 
 @interface PINFuture<ObjectType> (FlatMapError)
 
