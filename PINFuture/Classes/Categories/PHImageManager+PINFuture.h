@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
 
-#import "PINFuture.h"
-#import "PINPHImageManagerImageDataResult.h"
+#import <PINFuture/PINFuture.h>
+#import <PINFuture/PINPHImageManagerImageDataResult.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

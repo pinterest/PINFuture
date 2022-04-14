@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PINFuture.h"
+#import <PINFuture/PINFuture.h>
 
 /**
  * A Future that has no meaningful value.  Technically, it does have a value (an NSNull).

@@ -7,8 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PINCancelToken.h"
-#import "PINFuture.h"
+#import <PINFuture/PINCancelToken.h>
+#import <PINFuture/PINFuture.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

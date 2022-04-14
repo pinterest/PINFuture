@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PINExecutor.h"
-#import "PINDefines.h"
+#import <PINFuture/PINExecutor.h>
+#import <PINFuture/PINDefines.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -60,18 +60,25 @@ NS_ASSUME_NONNULL_BEGIN
 NS_ASSUME_NONNULL_END
 
 // Import everything for caller convenience.
-#import "PINFuture+ChainSideEffect.h"
-#import "PINFuture+Completion.h"
-#import "PINFuture+Delay.h"
-#import "PINFuture+Dispatch.h"
-#import "PINFuture+FlatMapError.h"
-#import "PINFuture+GatherAll.h"
-#import "PINFuture+GatherSome.h"
-#import "PINFuture+MapError.h"
-#import "PINFuture+MapToValue.h"
-#import "PINFutureMap.h"
-#import "PINFutureMap+Map.h"
-#import "PINFuture+NoValue.h"
-#import "PINFutureMap+FlatMap.h"
-#import "PINFuturePending.h"
-#import "PINFuture+Generated.h"
+#import <PINFuture/PINFuture+ChainSideEffect.h>
+#import <PINFuture/PINFuture+Completion.h>
+#import <PINFuture/PINFuture+Delay.h>
+#import <PINFuture/PINFuture+Dispatch.h>
+#import <PINFuture/PINFuture+FlatMapError.h>
+#import <PINFuture/PINFuture+GatherAll.h>
+#import <PINFuture/PINFuture+GatherSome.h>
+#import <PINFuture/PINFuture+MapError.h>
+#import <PINFuture/PINFuture+MapToValue.h>
+#import <PINFuture/PINFutureMap.h>
+#import <PINFuture/PINFutureMap+Map.h>
+#import <PINFuture/PINFuture+NoValue.h>
+#import <PINFuture/PINFutureMap+FlatMap.h>
+#import <PINFuture/PINFuturePending.h>
+#import <PINFuture/PINFuture+Generated.h>
+#import <PINFuture/PINFutureAndCancelToken.h>
+#import <PINFuture/NSURLSession+PINFuture.h>
+#import <PINFuture/PINNSURLSessionDataTaskResult.h>
+#import <PINFuture/PINNSURLSessionDataTaskAndResult.h>
+#import <PINFuture/PHImageManager+PINFuture.h>
+#import <PINFuture/PINFutureOnce.h>
+#import <PINFuture/PINFutureError.h>

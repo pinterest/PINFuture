@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <Foundation/NSURLSession.h>
 
-#import "PINNSURLSessionDataTaskAndResult.h"
-#import "PINFuture.h"
+#import <PINFuture/PINNSURLSessionDataTaskAndResult.h>
+#import <PINFuture/PINFuture.h>
+
+@class PINNSURLSessionDataTaskAndResult;
 
 NS_ASSUME_NONNULL_BEGIN
 
