@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PINNSURLSessionDataTaskResult : NSObject
 
 @property (nonatomic, readonly) NSData * _Nullable data;
-@property (nonatomic, readonly) NSURLResponse * _Nullable response;
+@property (nonatomic, copy, readonly) NSURLResponse * _Nullable response;
 @property (nonatomic, readonly) NSError * _Nullable error;
 
 + (instancetype)resultWithData:(NSData * _Nullable)data
