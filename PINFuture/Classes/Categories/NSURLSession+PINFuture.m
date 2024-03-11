@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
     PINFuture<PINNSURLSessionDataTaskResult *> *future;
     future = [PINFuture<PINNSURLSessionDataTaskResult *> withBlock:^(void (^ _Nonnull resolve)(id _Nonnull), void (^ _Nonnull reject)(NSError * _Nonnull)) {
         task = [self dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error)  {
-            PINNSURLSessionDataTaskResult *result = [PINNSURLSessionDataTaskResult resultWithData:[data copy] response:response error:error];
+            PINNSURLSessionDataTaskResult *result = [PINNSURLSessionDataTaskResult resultWithData:data response:response error:error];
             resolve(result);
         }];
         task.priority = priority;

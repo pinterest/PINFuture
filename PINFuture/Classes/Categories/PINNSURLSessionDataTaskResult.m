@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PINNSURLSessionDataTaskResult ()
-@property (nonatomic) NSData * _Nullable data;
+@property (nonatomic, copy) NSData * _Nullable data; //intentionally use copy as the network data might be NSMutableData under the hood
 @property (nonatomic) NSURLResponse * _Nullable response;
 @property (nonatomic) NSError * _Nullable error;
 @end
